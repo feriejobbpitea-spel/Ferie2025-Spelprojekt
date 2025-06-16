@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class playerrespawn : MonoBehaviour
+public class PlayerRespawn : MonoBehaviour
 {
     public int maxLives = 3;
     private int currentLives;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class enemie1 : MonoBehaviour
+public class Enemy_01 : MonoBehaviour
 {
     public float moveSpeed = 2f; // Hastighet på fiendens rörelse
     private Rigidbody2D rb;

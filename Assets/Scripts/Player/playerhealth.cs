@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class playerhealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     public int maxLives = 3;    // Totalt antal liv
     private int currentLives;
