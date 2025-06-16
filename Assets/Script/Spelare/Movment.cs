@@ -3,9 +3,10 @@ using UnityEngine;
 public class Movment : MonoBehaviour
 {
     public float playerSpeed;
-
+    //hopp
     public float jumpForce;
-
+    public float jumpCutMultiplier;
+    //
     public Transform groundCheck;
     public float groundCheckRadius;
 
@@ -18,6 +19,16 @@ public class Movment : MonoBehaviour
     private SpriteRenderer sr;
     private bool facingRight = true;
     //
+   
+    #region powerups
+    private bool doubleJump = false;
+    private bool doubleJumpUsed = false;
+    private bool bigJump = true;
+    public float bigJumpForce;
+    private bool superSpeed = false;
+    private bool timeSlow = false;
+    #endregion
+
     //
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,11 +44,29 @@ public class Movment : MonoBehaviour
 
         //spring
         if (Input.GetKey(KeyCode.LeftShift)) {  isRunning = 2; Debug.Log("running" + isRunning); } else { isRunning = 1; }
-
+        //
 
         float moveX = Input.GetAxis("Horizontal"); // bestämmer om du trycker a/d eller pil vänster höger
 
         Vector2 movement = new Vector2(moveX * playerSpeed * isRunning, rb.linearVelocity.y);
+       
+        // Hopp
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) //hoppar aningen om man är på marken eller har powerup
+        {
+            if (bigJump) { movement.y = bigJumpForce; }
+            else { movement.y = jumpForce; }
+            
+        } else if(Input.GetKeyDown(KeyCode.Space) && doubleJump && !doubleJumpUsed) { doubleJumpUsed = true; if (bigJump) { movement.y = bigJumpForce; }
+            else { movement.y = jumpForce; }
+        } //hopp, doublejump, bigjump
+            rb.linearVelocity = movement;
+        if (Input.GetKeyUp(KeyCode.Space) && rb.linearVelocity.y > 0)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
+        }
+
+        //
+
         // spelare tittar rätt håll 
         if (moveX < 0 && facingRight)
         {
@@ -47,24 +76,22 @@ public class Movment : MonoBehaviour
         {
             Flip();
         }
-
+        //
 
         // Kolla om vi står på marken
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        //
 
-        // Hopp
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            movement.y=jumpForce;
-        }
-
+        #region Powerups
+        if (isGrounded) {doubleJumpUsed = false;}  //doublejump
+        
 
 
 
 
 
-        print(movement);
-        rb.linearVelocity = movement;
+        #endregion
+
     }
     void Flip()
     {
