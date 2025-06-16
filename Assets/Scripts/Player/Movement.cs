@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Movment : MonoBehaviour
+public class Movement : MonoBehaviour
 {
     public float playerSpeed;
     //hopp
