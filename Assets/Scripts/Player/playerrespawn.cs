@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerRespawn : MonoBehaviour
+public class PlayerRespawn : Singleton<PlayerRespawn>
 {
     public int maxLives = 3;
     private int currentLives;
@@ -11,7 +11,7 @@ public class PlayerRespawn : MonoBehaviour
     {
         currentLives = maxLives;
         // Startposition sätts som första respawn
-        respawnPosition = transform.position;
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,13 +29,11 @@ public class PlayerRespawn : MonoBehaviour
 
         if (currentLives <= 0)
         {
-            // Dör helt – här kan du ladda om scenen eller visa Game Over
-            Debug.Log("Game Over!");
-            // UnityEngine.SceneManagement.SceneManager.LoadScene(0); // valfritt
+            Respawn();
         }
         else
         {
-            Respawn();
+           
         }
     }
 
@@ -44,6 +42,7 @@ public class PlayerRespawn : MonoBehaviour
         transform.position = respawnPosition;
         Debug.Log("Respawnar...");
         // Här kan du även lägga till animation eller reset av fiender m.m.
+        currentLives = maxLives; // Återställ liv vid respawn
     }
 
     public void SetCheckpoint(Vector3 newCheckpoint)
