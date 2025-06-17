@@ -29,19 +29,29 @@ public class SimpleShop : MonoBehaviour
 
     void BuildShop()
     {
+        // Rensa tidigare objekt i shopen
         foreach (Transform child in itemContainer)
             Destroy(child.gameObject);
 
         foreach (var item in itemsForSale)
         {
             GameObject go = Instantiate(itemPrefab, itemContainer);
-            go.transform.Find("ItemName").GetComponent<TextMeshProUGUI>().text = item.itemName;
-            go.transform.Find("ItemPrice").GetComponent<TextMeshProUGUI>().text = item.price + " kr";
+
+            // Hämta komponenterna direkt från prefab-roten
+            go.transform.Find("ItemName").GetComponent<TMP_Text>().text = item.itemName;
+            go.transform.Find("ItemPrice").GetComponent<TMP_Text>().text = item.price + " kr";
             go.transform.Find("ItemIcon").GetComponent<Image>().sprite = item.itemIcon;
 
-            go.transform.Find("BuyButton")
-                .GetComponent<Button>().onClick
-                .AddListener(() => BuyItem(item));
+            // Köpknapp
+            Button buyButton = go.transform.Find("BuyButton")?.GetComponent<Button>();
+            if (buyButton != null)
+            {
+                buyButton.onClick.AddListener(() => BuyItem(item));
+            }
+            else
+            {
+                Debug.LogError("BuyButton saknas i prefab!");
+            }
         }
 
         UpdateMoneyUI();
@@ -63,6 +73,9 @@ public class SimpleShop : MonoBehaviour
 
     void UpdateMoneyUI()
     {
-        playerMoneyText.text = "Pengar: " + playerMoney;
+        if (playerMoneyText != null)
+        {
+            playerMoneyText.text = "Pengar: " + playerMoney;
+        }
     }
 }
