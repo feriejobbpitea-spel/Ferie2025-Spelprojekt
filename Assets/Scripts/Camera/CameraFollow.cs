@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;      // Dra in spelaren här
+    Transform target; 
     public float smoothSpeed = 0.125f;
     public Vector3 offset;        // Justera om du vill se spelaren lite till vänster/höger i bild
+
+    private void Awake()
+    {
+        target = GameObject.FindGameObjectWithTag("Player")?.transform; // Hitta spelaren med taggen "Player"    
+    }
 
     void LateUpdate()
     {

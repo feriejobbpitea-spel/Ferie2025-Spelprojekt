@@ -9,13 +9,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - wall
+  - Walls
   - Water
   - UI
-  - golv
-  - projectiles
-  - Enemys
-  - 
+  - Ground
+  - Projectiles
+  - Enemies
+  - Player
   - 
   - 
   - 

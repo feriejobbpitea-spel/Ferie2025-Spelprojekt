@@ -13,7 +13,6 @@ public class PlayerHealth : Singleton<PlayerHealth>
     public Sprite fullHeartB;      // Blått hjärta (för hjärta 2)
     public Sprite emptyHeart;      // Grått/tomt hjärta
     public Image death;
-    public Transform respawnPoint; // Om du vill ha en respawnpunkt
 
     private bool isInvincible = false;
     public float invincibilityDuration = 1f; // hur länge man är odödlig

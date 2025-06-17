@@ -102,16 +102,29 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "SLANGBELLA J\xC4VEL_0"
+      name: Slangbella_0
       rect:
         serializedVersion: 2
-        x: 17
+        x: 0
         y: 0
-        width: 15
+        width: 32
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -119,21 +132,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b0faf1921bc0ce200800000000000000
-      internalID: 210557237618257675
+      spriteID: ea0a803a9d666c746a03c063385b2463
+      internalID: -1068534622
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "SLANGBELLA J\xC4VEL_1"
+      name: Slangbella_1
       rect:
         serializedVersion: 2
-        x: 41
+        x: 32
         y: 0
-        width: 21
+        width: 32
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -141,21 +154,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 44c71f4b93ef3db40800000000000000
-      internalID: 5463990296732859460
+      spriteID: 33b1a4c6e0da11d4b81f951f128c7241
+      internalID: 2077936855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "SLANGBELLA J\xC4VEL_2"
+      name: Slangbella_2
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 30
+        width: 32
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -163,10 +176,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5c93f981573838a60800000000000000
-      internalID: 7675122728916957637
+      spriteID: 882ffd7ecf99af146961b66a10ca2e28
+      internalID: -1464513429
       vertices: []
       indices: 
       edges: []
@@ -175,7 +188,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5331b3b89ced05748b1022eedd4b6ef6
     internalID: 0
     vertices: []
     indices: 
@@ -183,11 +196,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      "SLANGBELLA J\xC4VEL_0": 210557237618257675
-      "SLANGBELLA J\xC4VEL_1": 5463990296732859460
-      "SLANGBELLA J\xC4VEL_2": 7675122728916957637
+      Slangbella_0: -1068534622
+      Slangbella_1: 2077936855
+      Slangbella_2: -1464513429
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

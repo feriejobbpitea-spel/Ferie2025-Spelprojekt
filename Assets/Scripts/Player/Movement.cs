@@ -26,20 +26,19 @@ public class Movement : MonoBehaviour
     private WallSide lastWallJumpSide = WallSide.None;
     private WallSide currentWallSide = WallSide.None;
     private float wallJumpXMomentum = 0.5f;
-    private bool IsFacingWall()
+    private bool walljumpUsed = false;
+    public bool IsFacingWall()
     {
         return (currentWallSide == WallSide.Left && !facingRight) ||
                (currentWallSide == WallSide.Right && facingRight);
     }
 
+    public bool IsGrounded => isGrounded;
+    public bool IsMoving => Mathf.Abs(rb.linearVelocity.x) > 0.1f || Mathf.Abs(rb.linearVelocity.y) > 0.1f;
+    public float GetMoveSpeed => playerSpeed * isRunning * superSpeed;
 
-
-    private bool walljumpUsed = false; //har använt vägghoppet
-    //titta rätt håll
-    private SpriteRenderer sr;
     private bool facingRight = true;
-    //
-   
+
     #region powerups
     private bool doubleJump = false;
     private bool doubleJumpUsed = false;
@@ -54,7 +53,6 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
 
     }
 
@@ -211,7 +209,7 @@ else
     void Flip()
     {
         facingRight = !facingRight;
-        sr.flipX = !sr.flipX;
+        transform.localScale = new Vector3(facingRight ? 1 : -1, 1, 1);
     }
 
 }

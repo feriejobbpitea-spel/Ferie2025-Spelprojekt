@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class checkpoint : MonoBehaviour
+public class Checkpoint : MonoBehaviour
 {
     public bool startCheckpoint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,10 +29,5 @@ public class checkpoint : MonoBehaviour
     {
         Debug.Log("Player set new checkpoint");
         PlayerRespawn.Instance.SetCheckpoint(transform.position);
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
