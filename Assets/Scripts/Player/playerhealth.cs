@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : Singleton<PlayerHealth> 
 {
     public int maxLives = 3;    // Totalt antal liv
     private int currentLives;
@@ -20,7 +20,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void LoseLife()
+    public void LoseLife()
     {
         currentLives--;
         Debug.Log("Player lost a life! Lives left: " + currentLives);
