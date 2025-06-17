@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6215b59c5982e244f9107c88efcf5062
+guid: ec869207d3d0b174597213d188532dd8
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Lacquer
+  - Barlow
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
