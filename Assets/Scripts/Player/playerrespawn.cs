@@ -37,7 +37,7 @@ public class PlayerRespawn : Singleton<PlayerRespawn>
         }
     }
 
-    void Respawn()
+    public void Respawn()
     {
         transform.position = respawnPosition;
         Debug.Log("Respawnar...");
