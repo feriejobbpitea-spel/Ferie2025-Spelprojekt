@@ -1,3 +1,5 @@
+Ôªøusing System.Collections;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,42 +9,67 @@ public class PlayerHealth : Singleton<PlayerHealth>
     public int maxLives = 3;
     private int currentLives;
 
-    public Image[] hearts;         // Dra in tre Image-objekt frÂn Canvas
-    public Sprite fullHeartR;      // Rˆtt hj‰rta (fˆr hj‰rta 0)
-    public Sprite fullHeartG;      // Grˆnt hj‰rta (fˆr hj‰rta 1)
-    public Sprite fullHeartB;      // BlÂtt hj‰rta (fˆr hj‰rta 2)
-    public Sprite emptyHeart;      // GrÂtt/tomt hj‰rta
+    public Image[] hearts;         // Dra in tre Image-objekt fr√•n Canvas
+    public Sprite fullHeartR;      // R√∂tt hj√§rta (f√∂r hj√§rta 0)
+    public Sprite fullHeartG;      // Gr√∂nt hj√§rta (f√∂r hj√§rta 1)
+    public Sprite fullHeartB;      // Bl√•tt hj√§rta (f√∂r hj√§rta 2)
+    public Sprite emptyHeart;      // Gr√•tt/tomt hj√§rta
     public Image death;
 
     private bool isInvincible = false;
-    public float invincibilityDuration = 1f; // hur l‰nge man ‰r odˆdlig
+    public float invincibilityDuration = 2f; // hur l√§nge man √§r od√∂dlig
     private float invincibilityTimer;
 
+    private SpriteRenderer spriteRenderer;
+    private bool toggleWhite = false;
+    private float blinkTimer = 0f;
+    public float blinkInterval = 0.1f; // hur snabbt det blinkar
 
+    public Material whiteFlashMaterial;  // Det vita materialet
+    private Material originalMaterial;   // F√∂r att spara spelarens normala material
+    private Rigidbody2D rb;
 
+    public Movement movementScript;
+    private bool wasGroundedLastFrame = true;
+    private float lastYVelocity;
+    public float fallLimit = -10f; // Gr√§ns f√∂r fallskada, justera efter behov
     void Start()
     {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        originalMaterial = spriteRenderer.material;
         currentLives = maxLives;
         UpdateHearts();
         Debug.Log("Player lives: " + currentLives);
+        Debug.Log("SpriteRenderer: " + spriteRenderer);
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
+    {   
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            LoseLife();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             LoseLife();
         }
     }
-
     public void LoseLife()
     {
-        if (isInvincible) return; // Om vi ‰r odˆdlig, ta inte skada
+        // L√§gg till kameraskakning
+        CameraFollow.Instance.TriggerShake(0.15f, 0.2f);
+        if (isInvincible) return; // Om vi √§r od√∂dlig, ta inte skada
 
+        
         currentLives--;
         Debug.Log("Player lost a life! Lives left: " + currentLives);
         UpdateHearts();
-        // Aktivera odˆdlighet
+        // Aktivera od√∂dlighet
         isInvincible = true;
         invincibilityTimer = invincibilityDuration;
 
@@ -50,6 +77,9 @@ public class PlayerHealth : Singleton<PlayerHealth>
         {
             Die();
         }
+        else { StartCoroutine(FlashWhite());  }
+
+       
     }
 
 
@@ -59,7 +89,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         {
             if (i < currentLives)
             {
-                // V‰lj r‰tt f‰rg pÂ fullt hj‰rta beroende pÂ index
+                // V√§lj r√§tt f√§rg p√• fullt hj√§rta beroende p√• index
                 switch (i)
                 {
                     case 0: hearts[i].sprite = fullHeartR; break;
@@ -84,15 +114,45 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     private void Update()
     {
+        bool isGrounded = movementScript.isGrounded;
+       
+        // Kontrollera om vi just landade
+        if (isGrounded && !wasGroundedLastFrame)
+        {
+            if (lastYVelocity < fallLimit)
+            {
+                Debug.Log("Tog fallskada!" + lastYVelocity);
+                LoseLife(); // eller vad din metod f√∂r skada heter
+            }
+        }
+
+        wasGroundedLastFrame = isGrounded;
+        lastYVelocity = rb.linearVelocity.y;
+
         if (isInvincible)
         {
             invincibilityTimer -= Time.deltaTime;
+            blinkTimer -= Time.deltaTime;
+
+            if (blinkTimer <= 0f)
+            {
+                toggleWhite = !toggleWhite;
+                blinkTimer = blinkInterval;
+
+                if (toggleWhite)
+                    spriteRenderer.color = Color.white;
+                else
+                    spriteRenderer.color = Color.clear; // tillf√§lligt osynlig (kan bytas till original)
+            }
+
             if (invincibilityTimer <= 0)
             {
                 isInvincible = false;
+                spriteRenderer.color = Color.white; // eller Color full opacity
             }
         }
-        // Du kan l‰gga till testknappar h‰r:
+
+        // Du kan l√§gga till testknappar h√§r:
         if (Input.GetKeyDown(KeyCode.H)) LoseLife();
     }
     public void Respawn()
@@ -101,13 +161,20 @@ public class PlayerHealth : Singleton<PlayerHealth>
         // Flytta spelaren till spawnpoint
         PlayerRespawn.Instance.Respawn();
 
-        // ≈terst‰ll liv till 1
+        // √Öterst√§ll liv till 1
         currentLives = maxLives;
         UpdateHearts();  // Uppdatera UI
 
-        // Aktivera spelaren igen om den var dˆd/inaktiv
+        // Aktivera spelaren igen om den var d√∂d/inaktiv
         death.gameObject.SetActive(false);
 
         Debug.Log("Player respawned!");
     }
+    private IEnumerator FlashWhite()
+    {
+        spriteRenderer.material = whiteFlashMaterial;
+        yield return new WaitForSeconds(0.1f);  // hur l√§nge du ska blinka
+        spriteRenderer.material = originalMaterial;
+    }
+    
 }

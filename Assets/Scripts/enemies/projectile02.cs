@@ -21,4 +21,14 @@ public class projectile02 : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground") || other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+
+
+    }
 }

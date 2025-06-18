@@ -16,8 +16,8 @@ TagManager:
   - Projectiles
   - Enemies
   - Player
-  - 
-  - 
+  - Objects
+  - Enemy_ATK_Area
   - 
   - 
   - 
@@ -47,6 +47,9 @@ TagManager:
     locked: 0
   - name: Enemies
     uniqueID: 3035802621
+    locked: 0
+  - name: Coins
+    uniqueID: 3778977387
     locked: 0
   - name: Player
     uniqueID: 2832459281
