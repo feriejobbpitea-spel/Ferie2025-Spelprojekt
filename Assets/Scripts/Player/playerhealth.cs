@@ -52,7 +52,13 @@ public class PlayerHealth : Singleton<PlayerHealth>
             LoseLife();
         }
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            LoseLife();
+        }
+    }
     public void LoseLife()
     {
         // Lägg till kameraskakning
