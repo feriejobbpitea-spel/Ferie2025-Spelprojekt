@@ -34,7 +34,13 @@ public class PlayerHealth : Singleton<PlayerHealth>
             LoseLife();
         }
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            LoseLife();
+        }
+    }
     public void LoseLife()
     {
         if (isInvincible) return; // Om vi är odödlig, ta inte skada
