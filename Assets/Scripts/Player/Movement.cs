@@ -36,7 +36,7 @@ public class Movement : MonoBehaviour
     public bool facingRight = true;
 
     #region powerups
-    private bool doubleJump = false;
+    private bool doubleJump = true;
     private bool doubleJumpUsed = false;
     private bool bigJump = false;
     public float bigJumpForce;
