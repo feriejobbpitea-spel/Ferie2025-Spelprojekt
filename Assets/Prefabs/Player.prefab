@@ -661,6 +661,7 @@ MonoBehaviour:
   groundCheckRadius: 0.2
   wallCheckL: {fileID: 573090084102263091}
   wallCheckR: {fileID: 4045030841113304477}
+  gfx: {fileID: 2324704524550859693}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
