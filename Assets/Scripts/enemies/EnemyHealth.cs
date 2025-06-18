@@ -6,7 +6,11 @@ public class EnemyHealth : MonoBehaviour
     public int maxHealth = 3;
     private int currentHealth;
 
-    public Slider healthSlider; // Referens till UI-slider
+    public Slider healthSlider;             // Referens till UI-slider
+    public GameObject coinPrefab;           // Prefab som ska spawna när fienden dör
+    public float coinForce = 5f;            // Hur hårt myntet studsar ut
+
+    private SpriteRenderer spriteRenderer;  // För blink-effekt
 
     void Start()
     {
@@ -17,6 +21,8 @@ public class EnemyHealth : MonoBehaviour
             healthSlider.maxValue = maxHealth;
             healthSlider.value = currentHealth;
         }
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void TakeDamage(int amount)
@@ -28,14 +34,47 @@ public class EnemyHealth : MonoBehaviour
             healthSlider.value = currentHealth;
         }
 
+        BlinkRed();  // Blinkar rött
+
         if (currentHealth <= 0)
         {
             Die();
         }
     }
 
+    void BlinkRed()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = Color.red;
+            Invoke(nameof(ResetColor), 0.1f);
+        }
+    }
+
+    void ResetColor()
+    {
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = Color.white;
+        }
+    }
+
     void Die()
     {
+        if (coinPrefab != null)
+        {
+            // Skapa myntet vid fiendens position
+            GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+
+            // Lägg till kraft så den studsar ut
+            Rigidbody2D rb = coin.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), 1f).normalized;
+                rb.AddForce(randomDirection * coinForce, ForceMode2D.Impulse);
+            }
+        }
+
         Destroy(gameObject);
     }
 }

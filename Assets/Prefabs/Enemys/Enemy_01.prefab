@@ -215,6 +215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   healthSlider: {fileID: 4601035233139349778}
+  coinPrefab: {fileID: 5694571281342612559, guid: 3bfa30db30ed77b49a6bf50b12950849, type: 3}
+  coinForce: 5
 --- !u!1001 &7340247777529173497
 PrefabInstance:
   m_ObjectHideFlags: 0
