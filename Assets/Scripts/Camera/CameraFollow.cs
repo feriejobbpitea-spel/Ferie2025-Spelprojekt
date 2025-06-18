@@ -20,4 +20,9 @@ public class CameraFollow : MonoBehaviour
             transform.position = new Vector3(smoothedPosition.x, smoothedPosition.y, transform.position.z);
         }
     }
+
+    private void OnValidate()
+    {
+        transform.position = new Vector3(transform.position.x, transform.position.y, -10f); // Sätt z-positionen för att undvika problem med 2D-kameran
+    }
 }
