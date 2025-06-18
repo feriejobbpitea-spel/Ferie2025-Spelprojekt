@@ -47,6 +47,10 @@ public class CameraFollow : Singleton<CameraFollow>
 
     private void OnValidate()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, -10f); // Sätt z-positionen för att undvika problem med 2D-kameran
+        Vector3 pos = transform.position;
+        if(GameObject.FindGameObjectWithTag("Player")) 
+            pos = GameObject.FindGameObjectWithTag("Player").transform.position + offset; // Uppdatera positionen baserat på spelarens position
+
+        transform.position = new Vector3(pos.x, pos.y, -10f); // Sätt z-positionen för att undvika problem med 2D-kameran
     }
 }

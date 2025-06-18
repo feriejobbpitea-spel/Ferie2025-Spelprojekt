@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6519405730743261416}
   - component: {fileID: 4342815723391997493}
   - component: {fileID: 3713877745715595488}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Datachip (Coin)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

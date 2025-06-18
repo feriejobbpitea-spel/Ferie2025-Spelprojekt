@@ -33,10 +33,10 @@ public class Movement : MonoBehaviour
     public bool IsMoving => Input.GetAxis("Horizontal") != 0 || rb.linearVelocity.y != 0;
     public float GetMoveSpeed => playerSpeed * isRunning * superSpeed;
 
-    private bool facingRight = true;
+    public bool facingRight = true;
 
     #region powerups
-    private bool doubleJump = false;
+    private bool doubleJump = true;
     private bool doubleJumpUsed = false;
     private bool bigJump = false;
     public float bigJumpForce;
