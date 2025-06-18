@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
     public bool IsMoving => Mathf.Abs(rb.linearVelocity.x) > 0.1f || Mathf.Abs(rb.linearVelocity.y) > 0.1f;
     public float GetMoveSpeed => playerSpeed * isRunning * superSpeed;
 
-    private bool facingRight = true;
+    public bool facingRight = true;
 
     #region powerups
     private bool doubleJump = false;
