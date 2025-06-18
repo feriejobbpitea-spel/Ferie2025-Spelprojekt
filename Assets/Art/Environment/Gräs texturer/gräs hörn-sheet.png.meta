@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: b088ca7a63d34ef4da188d73e62a635b
+guid: 8f0343c4f4a3ad24484a0f587059323a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3099798169931298924
-    second: "gr\xE4s h\xF6rn_0"
+      213: 4417714983611953715
+    second: "gr\xE4s h\xF6rn-sheet_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "gr\xE4s h\xF6rn_0"
+      name: "gr\xE4s h\xF6rn-sheet_0"
       rect:
         serializedVersion: 2
         x: 0
@@ -115,14 +115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 497c6d5ecfd4bf4d0800000000000000
-      internalID: -3099798169931298924
+      spriteID: 3327c1d1f50ee4d30800000000000000
+      internalID: 4417714983611953715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "gr\xE4s h\xF6rn_1"
+      name: "gr\xE4s h\xF6rn-sheet_1"
       rect:
         serializedVersion: 2
         x: 16
@@ -137,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22b55c4f4223fae4d9527d59ef018f42
-      internalID: -1147266143
+      spriteID: 3e598abaed8ab654a92a17328637f9d1
+      internalID: -1457862533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "gr\xE4s h\xF6rn_2"
+      name: "gr\xE4s h\xF6rn-sheet_2"
       rect:
         serializedVersion: 2
         x: 0
@@ -159,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09da3bfd34d563b41a2a801c16ded7af
-      internalID: -1249023297
+      spriteID: ed2f108970cc181489ee55089f8fa6d0
+      internalID: -1991999704
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "gr\xE4s h\xF6rn_3"
+      name: "gr\xE4s h\xF6rn-sheet_3"
       rect:
         serializedVersion: 2
         x: 16
@@ -181,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79220b8853caf264bb92c00a72979dae
-      internalID: -1373902658
+      spriteID: 3bdca0081885e5544b7c491c503b1533
+      internalID: -2127609433
       vertices: []
       indices: 
       edges: []
@@ -191,7 +191,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 9d0e9b1f91429f94b809dc6c7b5b4bcc
+    spriteID: f6e91714be0f4074c9e4a7eb69328da8
     internalID: 0
     vertices: []
     indices: 
@@ -203,10 +203,10 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      "gr\xE4s h\xF6rn_0": -3099798169931298924
-      "gr\xE4s h\xF6rn_1": -1147266143
-      "gr\xE4s h\xF6rn_2": -1249023297
-      "gr\xE4s h\xF6rn_3": -1373902658
+      "gr\xE4s h\xF6rn-sheet_0": 4417714983611953715
+      "gr\xE4s h\xF6rn-sheet_1": -1457862533
+      "gr\xE4s h\xF6rn-sheet_2": -1991999704
+      "gr\xE4s h\xF6rn-sheet_3": -2127609433
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
