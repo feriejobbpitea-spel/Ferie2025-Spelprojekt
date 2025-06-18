@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
@@ -27,10 +28,10 @@ public class Movement : MonoBehaviour
     private float wallJumpXMomentum = 0.5f;
     private bool isGrabingwall = false;
 
-
+    public event Action OnJump;
 
     public bool IsGrounded => isGrounded;
-    public bool IsMoving => Input.GetAxis("Horizontal") != 0 || rb.linearVelocity.y != 0;
+    public bool IsMoving => Input.GetAxisRaw("Horizontal") != 0;
     public float GetMoveSpeed => playerSpeed * isRunning * superSpeed;
 
     public bool facingRight = true;
@@ -95,8 +96,6 @@ public class Movement : MonoBehaviour
             }
             else if (isGrabingwall)
             {
-               
-
                 // Blockera input kort stund
                 wallJumpTimer = wallJumpLockTime;
 
@@ -113,6 +112,8 @@ public class Movement : MonoBehaviour
 
                 return; // Stoppa movement denna frame
             }
+
+            OnJump?.Invoke();
         }
 
         //hopp, doublejump, bigjump
@@ -121,7 +122,7 @@ public class Movement : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
         }
-        
+
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);// om spelaren är på marken eller inte
 
 
