@@ -739,12 +739,14 @@ MonoBehaviour:
   groundCheckRadius: 0.2
   wallCheckL: {fileID: 573090084102263091}
   wallCheckR: {fileID: 4045030841113304477}
+  gfx: {fileID: 2324704524550859693}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   wallLayer:
     serializedVersion: 2
     m_Bits: 72
+  isGrounded: 0
   bigJumpForce: 10
 --- !u!114 &8554682644447082599
 MonoBehaviour:
@@ -782,6 +784,10 @@ MonoBehaviour:
   emptyHeart: {fileID: 2798047460436315396, guid: 33279788196df204ea745a7d869cad44, type: 3}
   death: {fileID: 4222666853691470696}
   invincibilityDuration: 1
+  blinkInterval: 0.1
+  whiteFlashMaterial: {fileID: 2100000, guid: e4129543b3ac18b43bf513379c8cf702, type: 2}
+  movementScript: {fileID: 5674908858702478707}
+  fallLimit: -10
 --- !u!1 &2375817819499851550
 GameObject:
   m_ObjectHideFlags: 0

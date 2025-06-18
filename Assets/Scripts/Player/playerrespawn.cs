@@ -26,15 +26,6 @@ public class PlayerRespawn : Singleton<PlayerRespawn>
     {
         currentLives--;
         Debug.Log("Liv kvar: " + currentLives);
-
-        if (currentLives <= 0)
-        {
-            Respawn();
-        }
-        else
-        {
-           
-        }
     }
 
     public void Respawn()

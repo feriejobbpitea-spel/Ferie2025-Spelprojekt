@@ -11,27 +11,23 @@ public class Movement : MonoBehaviour
     public float groundCheckRadius;
     public Transform wallCheckL; //kollar om vi kramar en vägg åt vänster
     public Transform wallCheckR; //kollar om vi kramar en vägg åt höger
-    
+
+    public SpriteRenderer gfx;
 
     private Rigidbody2D rb;  // Referens till Rigidbody2D-komponenten
     public LayerMask groundLayer;
     public LayerMask wallLayer;
-    private bool isGrounded;
+    public bool isGrounded;
     private float isRunning = 1;
 
     private bool isHuggingWall = false; //kramar en vägg
     private float wallJumpLockTime = 0.2f; // hur länge du låser styrning efter vägghopp
     private float wallJumpTimer = 0f;      // nedräkning
-    private enum WallSide { None, Left, Right }
-    private WallSide lastWallJumpSide = WallSide.None;
-    private WallSide currentWallSide = WallSide.None;
+    
     private float wallJumpXMomentum = 0.5f;
-    private bool walljumpUsed = false;
-    public bool IsFacingWall()
-    {
-        return (currentWallSide == WallSide.Left && !facingRight) ||
-               (currentWallSide == WallSide.Right && facingRight);
-    }
+    private bool isGrabingwall = false;
+
+
 
     public bool IsGrounded => isGrounded;
     public bool IsMoving => Mathf.Abs(rb.linearVelocity.x) > 0.1f || Mathf.Abs(rb.linearVelocity.y) > 0.1f;
@@ -97,16 +93,15 @@ public class Movement : MonoBehaviour
                 movement.y = bigJump ? bigJumpForce : jumpForce;
                 doubleJumpUsed = true;
             }
-            else if (isHuggingWall && currentWallSide != lastWallJumpSide && IsFacingWall())
+            else if (isGrabingwall)
             {
-                // Spara senaste väggen
-                lastWallJumpSide = currentWallSide;
+               
 
                 // Blockera input kort stund
                 wallJumpTimer = wallJumpLockTime;
 
                 // Tryck bort från väggen
-                float direction = (currentWallSide == WallSide.Left) ? 1f : -1f;
+                float direction = (!facingRight) ? 1f : -1f;
                 float xForce = direction * playerSpeed * 1.5f;  // TWEAKA styrka här!
                 float yForce = jumpForce*4/5;
 
@@ -145,42 +140,21 @@ public class Movement : MonoBehaviour
         bool huggingLeftWall = Physics2D.OverlapCircle(wallCheckL.position, groundCheckRadius, wallLayer); // om vi nuddar en vägg åt vänster
         bool huggingRightWall = Physics2D.OverlapCircle(wallCheckR.position, groundCheckRadius, wallLayer); // om vi nuddar en vägg åt höger
 
+        isGrabingwall = ((huggingLeftWall &&!facingRight) || (huggingRightWall && facingRight)); // om vi kramar en vägg och tittar mot den
 
-        if (huggingLeftWall)
-{
-    isHuggingWall = true;
-    currentWallSide = WallSide.Left;
-}
-else if (huggingRightWall)
-{
-    isHuggingWall = true;
-    currentWallSide = WallSide.Right;
-}
-else
-{
-    isHuggingWall = false;
-    currentWallSide = WallSide.None;
-}
-
-      
-
+       
 
         // Wall slide – endast om man tittar mot väggen
-        if (isHuggingWall && !isGrounded && rb.linearVelocity.y < 0)
+        if (isGrabingwall && rb.linearVelocity.y < 0)
         {
-            bool lookingAtWall = (currentWallSide == WallSide.Left && !facingRight) ||
-                                 (currentWallSide == WallSide.Right && facingRight);
-
-            if (lookingAtWall)
-            {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f); // Mjuk glidning
-            }
+            
         }
 
 
 
-        if (isGrounded) { doubleJumpUsed = false; walljumpUsed = false;
-            lastWallJumpSide = WallSide.None;
+        if (isGrounded) { doubleJumpUsed = false; 
+            
         }  //doublejump// Nollställ senaste vägghoppsvägg – så du kan hoppa på samma vägg igen
 
         #region Powerups
@@ -209,7 +183,7 @@ else
     void Flip()
     {
         facingRight = !facingRight;
-        transform.localScale = new Vector3(facingRight ? 1 : -1, 1, 1);
+        gfx.flipX = !facingRight;
     }
 
 }

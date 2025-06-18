@@ -1,11 +1,11 @@
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
-
-public class CameraFollow : MonoBehaviour
+using System.Collections;
+public class CameraFollow : Singleton<CameraFollow>
 {
     Transform target; 
     public float smoothSpeed = 0.125f;
     public Vector3 offset;        // Justera om du vill se spelaren lite till vänster/höger i bild
-
     private void Awake()
     {
         target = GameObject.FindGameObjectWithTag("Player")?.transform; // Hitta spelaren med taggen "Player"    
@@ -19,6 +19,30 @@ public class CameraFollow : MonoBehaviour
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed*Time.deltaTime);
             transform.position = new Vector3(smoothedPosition.x, smoothedPosition.y, transform.position.z);
         }
+    }
+    public IEnumerator Shake(float duration, float magnitude)
+    {
+        Vector3 originalPos = transform.localPosition;
+
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+            transform.localPosition = originalPos + new Vector3(x, y, 0f);
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localPosition = originalPos;
+    }
+
+    public void TriggerShake(float duration = 0.1f, float magnitude = 0.1f)
+    {
+        StartCoroutine(Shake(duration, magnitude));
     }
 
     private void OnValidate()
