@@ -169,9 +169,10 @@ MonoBehaviour:
   damage: 1
   lifetime: 2
   speed: 15
+  radius: 0.1
   CollisionIgnore:
     serializedVersion: 2
-    m_Bits: 1664
+    m_Bits: 3712
 --- !u!96 &3392772697970025392
 TrailRenderer:
   serializedVersion: 3

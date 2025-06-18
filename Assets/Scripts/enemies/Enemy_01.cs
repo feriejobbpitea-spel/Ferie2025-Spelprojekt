@@ -50,7 +50,7 @@ public class Enemy_01 : MonoBehaviour
         // Vänd fiendens sprite i rörelseriktning
         if (direction != 0)
         {
-            transform.localScale = new Vector3(Mathf.Sign(direction) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(-1 * Mathf.Sign(direction) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
     }
 
