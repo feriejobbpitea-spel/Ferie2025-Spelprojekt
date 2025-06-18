@@ -4,20 +4,18 @@ public class Checkpoint : MonoBehaviour
 {
     public bool startCheckpoint;
     private Animator _animator;
+    private bool _hasReachedCheckpoint = false;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         if (startCheckpoint)
         {
-            // Om detta är startcheckpoint, sätt den som respawnpunkt
             SetNewCheckpoint();
-            Debug.Log("Start checkpoint set at: " + transform.position);
             _animator.SetTrigger("Activate");
 
         }
@@ -34,6 +32,9 @@ public class Checkpoint : MonoBehaviour
 
     void SetNewCheckpoint()
     {
+        if (_hasReachedCheckpoint)
+            return;
+        _hasReachedCheckpoint = true;
         Debug.Log("Player set new checkpoint");
         PlayerRespawn.Instance.SetCheckpoint(transform.position);
         _animator.SetTrigger("Activate");

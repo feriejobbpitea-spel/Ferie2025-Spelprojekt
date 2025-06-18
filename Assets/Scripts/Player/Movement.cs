@@ -30,7 +30,7 @@ public class Movement : MonoBehaviour
 
 
     public bool IsGrounded => isGrounded;
-    public bool IsMoving => Mathf.Abs(rb.linearVelocity.x) > 0.1f || Mathf.Abs(rb.linearVelocity.y) > 0.1f;
+    public bool IsMoving => Input.GetAxis("Horizontal") != 0 || rb.linearVelocity.y != 0;
     public float GetMoveSpeed => playerSpeed * isRunning * superSpeed;
 
     private bool facingRight = true;
