@@ -2,25 +2,32 @@ using UnityEngine;
 
 public class ParallaxLayer : MonoBehaviour
 {
-    [Tooltip("Lower = moves slower (background). Higher = moves faster (foreground).")]
+    [Tooltip("Lower = moves slower (background). 1 = matches player exactly.")]
     [Range(0f, 1f)] public float parallaxFactor = 0.5f;
 
-    private Vector3 previousCameraPosition;
-    private Transform cameraTransform;
-    private Vector3 startPosition;
+    public Transform player; // Assign this via Inspector or dynamically
+
+    private Vector3 startLocalPosition;
+    private Vector3 playerStartPosition;
 
     void Start()
     {
-        cameraTransform = Camera.main.transform;
-        previousCameraPosition = cameraTransform.position;
-        startPosition = transform.position;
+        if (player == null)
+        {
+            Debug.LogError("ParallaxLayer: Player not assigned!");
+            return;
+        }
+
+        startLocalPosition = transform.localPosition;
+        playerStartPosition = player.position;
     }
 
     void LateUpdate()
     {
-        Vector3 cameraDelta = cameraTransform.position - previousCameraPosition;
-        Vector3 parallaxMovement = new Vector3(cameraDelta.x * parallaxFactor, cameraDelta.y * parallaxFactor, 0);
-        transform.position += parallaxMovement;
-        previousCameraPosition = cameraTransform.position;
+        if (player == null) return;
+
+        Vector3 playerOffset = player.position - playerStartPosition;
+        Vector3 parallaxOffset = new Vector3(playerOffset.x * parallaxFactor, playerOffset.y * parallaxFactor, 0);
+        transform.localPosition = startLocalPosition + parallaxOffset;
     }
 }

@@ -926,7 +926,7 @@ MonoBehaviour:
   blinkInterval: 0.1
   whiteFlashMaterial: {fileID: 2100000, guid: e4129543b3ac18b43bf513379c8cf702, type: 2}
   movementScript: {fileID: 5674908858702478707}
-  fallLimit: -10
+  fallLimit: -20
 --- !u!1 &2375817819499851550
 GameObject:
   m_ObjectHideFlags: 0
