@@ -2,41 +2,45 @@ using UnityEngine;
 
 public class earthwave : MonoBehaviour
 {
-    Transform playerTransform; // Referens till spelarens transform
-    Vector2 Playerdirection;
-    private void Start()
-    {playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Hitta spelaren i scenen
-        if (playerTransform == null)
-        {
-            Debug.LogError("Player not found! Make sure the player has the 'Player' tag.");
-        }
-        else
-        {
-            // Justera riktning mot spelaren om det behövs
-            Vector2 direction = (playerTransform.position - transform.position).normalized;
-            Playerdirection = direction;
-            Playerdirection.y = 0; // Sätt y-komponenten till 0 för att hålla den horisontell
-        }
+    private Transform playerTransform;
+    private Vector2 playerDirection;
 
-    }
     public float speed = 5f;
     public int damage = 1;
 
-    void Update()
+    private void Start()
     {
-        transform.Translate(Playerdirection * speed * Time.deltaTime); // Justera riktning vid behov
+        playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
+        if (playerTransform == null)
+        {
+            Debug.LogError("Player not found! Se till att spelaren har taggen 'Player'.");
+            playerDirection = Vector2.right; // Standardriktning om ingen spelare finns
+        }
+        else
+        {
+            Vector2 dir = (playerTransform.position - transform.position).normalized;
+            dir.y = 0; // Endast horisontell riktning
+            playerDirection = dir;
+        }
+        Destroy(gameObject, 5f); // Förstör vågen efter 5 sekunder
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
+    {
+        transform.Translate(playerDirection * speed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            // Skada spelaren (byt ut enligt din skademetod)
             PlayerHealth.Instance.LoseLife();
             Destroy(gameObject);
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            Destroy(gameObject); // Stoppa när den träffar något i miljön
+            Destroy(gameObject);
         }
     }
 }
