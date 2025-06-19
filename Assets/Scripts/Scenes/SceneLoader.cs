@@ -19,5 +19,6 @@ public class SceneLoader : Singleton<SceneLoader>
         {
             yield return null;
         }
+        Time.timeScale = 1f; // Ensure time scale is reset after loading a new scene
     }
 }

@@ -1,4 +1,4 @@
-using UnityEditor.Rendering.LookDev;
+
 using UnityEngine;
 using System.Collections;
 public class CameraFollow : Singleton<CameraFollow>

@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour
     public bool isGrounded;
     private float isRunning = 1;
 
-    private bool isHuggingWall = false; //kramar en vägg
+    private bool isHuggingWall = false; //kramar en vägga
     private float wallJumpLockTime = 0.2f; // hur länge du låser styrning efter vägghopp
     private float wallJumpTimer = 0f;      // nedräkning
     

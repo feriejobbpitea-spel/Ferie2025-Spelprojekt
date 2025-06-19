@@ -35,6 +35,11 @@ public class CoinPickup : MonoBehaviour
     {
         if (!_collected && other.CompareTag("Player") && Time.time >= spawnTime + pickupDelay)
         {
+            if(TryGetComponent(out Rigidbody2D rb)) 
+            {
+                Destroy(rb);
+            }
+            Destroy(GetComponent<CircleCollider2D>());
             Collect();
         }
     }
@@ -43,6 +48,11 @@ public class CoinPickup : MonoBehaviour
     {
         if (!_collected && collision.collider.CompareTag("Player") && Time.time >= spawnTime + pickupDelay)
         {
+            if (TryGetComponent(out Rigidbody2D rb))
+            {
+                Destroy(rb);
+            }
+            Destroy(GetComponent<CircleCollider2D>());
             Collect();
         }
     }
