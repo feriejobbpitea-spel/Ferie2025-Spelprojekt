@@ -1,10 +1,10 @@
 using UnityEngine;
-
 public class Enemy_01 : MonoBehaviour
 {
     public float moveSpeed = 2f;
     public float jumpForce = 5f;
-    public LayerMask obstacleLayer; // Layer för väggar/hinder
+    public float aggroRange = 8f; // <-- Nytt: aggro range
+    public LayerMask obstacleLayer;
     public Transform groundCheck;
     public Transform wallCheck;
     public float checkRadius = 0.2f;
@@ -31,17 +31,15 @@ public class Enemy_01 : MonoBehaviour
     {
         if (player == null) return;
 
-        // Kolla om fienden står på marken
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, LayerMask.GetMask("Ground"));
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        if (distanceToPlayer > aggroRange) return; // Utanför aggro: stå still
 
-        // Kolla om fienden träffar en vägg
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, LayerMask.GetMask("Ground"));
         hittingWall = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, obstacleLayer);
 
-        // Rörelse mot spelaren
         float direction = Mathf.Sign(player.position.x - transform.position.x);
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
-        Debug.Log(isGrounded + " " + hittingWall + " " + rb.linearVelocity.y);
-        // Hoppa om hinder framför och står på marken
+
         if (hittingWall && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -56,19 +54,25 @@ public class Enemy_01 : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        // Ritning av ground och wall checks
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
-        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+        if (wallCheck != null) Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
+        if (groundCheck != null) Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
+
+        // Ritning av aggro-radie
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, aggroRange);
     }
 }
 
 
 
-   
-        
-    
 
-    
-        
-    
+
+
+
+
+
+
+
 
