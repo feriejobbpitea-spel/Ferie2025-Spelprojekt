@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8727591996312976483}
   - component: {fileID: 5693511235915682276}
   - component: {fileID: 4176207078037788815}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: earthwave
   m_TagString: Enemy
   m_Icon: {fileID: 0}

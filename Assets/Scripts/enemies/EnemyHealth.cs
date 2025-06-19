@@ -1,4 +1,4 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
@@ -7,10 +7,14 @@ public class EnemyHealth : MonoBehaviour
     private int currentHealth;
 
     public Slider healthSlider;             // Referens till UI-slider
-    public GameObject coinPrefab;           // Prefab som ska spawna nÃ¤r fienden dÃ¶r
-    public float coinForce = 5f;            // Hur hÃ¥rt myntet studsar ut
+    public GameObject coinPrefab;           // Prefab som ska spawna när fienden dör
+    public float coinForce = 5f;            // Hur hårt myntet studsar ut
 
-    private SpriteRenderer spriteRenderer;  // FÃ¶r blink-effekt
+    [Header("Overrides")]
+    public GameObject toRemove;
+    public SpriteRenderer spriteRendererOverride;
+
+    private SpriteRenderer spriteRenderer;  // För blink-effekt
 
     void Start()
     {
@@ -22,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
             healthSlider.value = currentHealth;
         }
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = (spriteRendererOverride != null) ? spriteRendererOverride : GetComponent<SpriteRenderer>();
     }
 
     public void TakeDamage(int amount)
@@ -34,7 +38,7 @@ public class EnemyHealth : MonoBehaviour
             healthSlider.value = currentHealth;
         }
 
-        BlinkRed();  // Blinkar rÃ¶tt
+        BlinkRed();  // Blinkar rött
 
         if (currentHealth <= 0)
         {
@@ -64,21 +68,17 @@ public class EnemyHealth : MonoBehaviour
         if (coinPrefab != null)
         {
             // Skapa myntet vid fiendens position
-            GameObject coin = Instantiate(coinPrefab, transform.position + Vector3.up, Quaternion.identity);
+            GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
 
-            // LÃ¤gg till Rigidbody2D
-            Rigidbody2D rb = coin.AddComponent<Rigidbody2D>();
+            // Lägg till kraft så den studsar ut
+            Rigidbody2D rb = coin.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
                 Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), 1f).normalized;
                 rb.AddForce(randomDirection * coinForce, ForceMode2D.Impulse);
             }
-
-            // LÃ¤gg till en Collider (t.ex. CircleCollider2D) och gÃ¶r den till en trigger
-            CircleCollider2D collider = coin.GetComponent<CircleCollider2D>();
-            collider.isTrigger = false;
         }
 
-        Destroy(gameObject);
+        Destroy((toRemove != null) ? toRemove :  gameObject);
     }
 }

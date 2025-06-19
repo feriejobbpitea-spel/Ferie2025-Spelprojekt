@@ -12,7 +12,7 @@ public class MeleeAttack : MonoBehaviour
 
     void Start()
     {
-        hitCollider = hitArea.GetComponent<Collider2D>();
+        hitCollider = hitArea.GetComponentInChildren<Collider2D>();
         transform.localPosition = Vector3.zero; // Sätt vapnets position relativt spelaren
     }
 

@@ -1,25 +1,25 @@
 using UnityEngine;
 using System.Collections;
-public class boss : MonoBehaviour
+public class Boss : MonoBehaviour
 {
     [Header("Referenser")]
     public Transform player;
     public Transform throwPoint;
     public Transform groundCheck;
-    public Collider2D backHitbox;         // Sårbar rygg-hitbox (trigger collider)
+    public Collider2D backHitbox;         // Sï¿½rbar rygg-hitbox (trigger collider)
 
     [Header("Prefabs")]
     public GameObject throwablePrefab;
     public GameObject earthWavePrefab;
 
-    [Header("Attackinställningar")]
+    [Header("Attackinstï¿½llningar")]
     public float jumpForce = 10f;
     public float slamDelay = 1.5f;
     public float throwForce = 10f;
     public float attackCooldown = 3f;
-    public float vulnerableDuration = 2f;    // Hur länge bossen är sårbar efter landning
+    public float vulnerableDuration = 2f;    // Hur lï¿½nge bossen ï¿½r sï¿½rbar efter landning
 
-    [Header("Agroinställning")]
+    [Header("Agroinstï¿½llning")]
     public float agroRange = 10f;
 
     private Rigidbody2D rb;
@@ -30,7 +30,7 @@ public class boss : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // Se till att rygghitboxen är inaktiverad till en början
+        // Se till att rygghitboxen ï¿½r inaktiverad till en bï¿½rjan
         if (backHitbox != null)
             backHitbox.enabled = false;
 
@@ -41,7 +41,7 @@ public class boss : MonoBehaviour
     {
         while (true)
         {
-            // Kolla om spelaren är inom aggro-range
+            // Kolla om spelaren ï¿½r inom aggro-range
             if (Vector2.Distance(transform.position, player.position) <= agroRange)
             {
                 if (!isAttacking)
@@ -66,43 +66,46 @@ public class boss : MonoBehaviour
 
     private IEnumerator SlamAttack()
     {
-        Debug.Log("Boss gör Slam Attack");
+        Debug.Log("Boss gï¿½r Slam Attack");
 
-        // Flyg uppåt
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        // Rï¿½kna ut riktningen mot spelaren i X-led
+        float horizontalDirection = Mathf.Sign(player.position.x - transform.position.x);
+
+        // Sï¿½tt bossens velocity fï¿½r att hoppa mot spelaren
+        rb.linearVelocity = new Vector2(horizontalDirection * (jumpForce * 0.5f), jumpForce);
         yield return new WaitForSeconds(slamDelay);
 
-        // Krasch ner
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, -jumpForce * 2);
+        // Krasch ner (rakt ner)
+        rb.linearVelocity = new Vector2(0f, -jumpForce * 2);
 
-        // Vänta tills bossen är på marken
+        // Vï¿½nta tills bossen ï¿½r pï¿½ marken
         yield return new WaitUntil(() => IsGrounded());
 
-        // Skapa jordvågsattacken vid markkontrollpunkten
+        // Skapa jordvï¿½gsattacken vid markkontrollpunkten
         Instantiate(earthWavePrefab, groundCheck.position, Quaternion.identity);
 
-        // Aktivera sårbarheten på ryggen
-        Debug.Log("Boss är sårbar i ryggen!");
+        // Aktivera sï¿½rbarheten pï¿½ ryggen
+        Debug.Log("Boss ï¿½r sï¿½rbar i ryggen!");
         isVulnerable = true;
         if (backHitbox != null)
             backHitbox.enabled = true;
 
-        // Vänta medan bossen är sårbar
+        // Vï¿½nta medan bossen ï¿½r sï¿½rbar
         yield return new WaitForSeconds(vulnerableDuration);
 
-        // Rotera bossen och stäng av sårbarheten
+        // Rotera bossen och stï¿½ng av sï¿½rbarheten
         RotateBoss();
 
         isVulnerable = false;
         if (backHitbox != null)
             backHitbox.enabled = false;
 
-        Debug.Log("Boss roterade och är inte längre sårbar.");
+        Debug.Log("Boss roterade och ï¿½r inte lï¿½ngre sï¿½rbar.");
     }
 
     private IEnumerator ThrowAttack()
     {
-        Debug.Log("Boss gör Throw Attack");
+        Debug.Log("Boss gï¿½r Throw Attack");
 
         Vector2 direction = (player.position - throwPoint.position).normalized;
 
@@ -132,18 +135,17 @@ public class boss : MonoBehaviour
         transform.localScale = scale;
     }
 
-    // Metod för att ta skada, kallas från backHitbox trigger
+    // Metod fï¿½r att ta skada, kallas frï¿½n backHitbox trigger
     public void TakeDamage(int amount)
     {
         if (isVulnerable)
         {
             Debug.Log("Boss tar " + amount + " i skada!");
-            // Lägg in HP-hantering här om du vill
+            // Lï¿½gg in HP-hantering hï¿½r om du vill
         }
         else
         {
-            Debug.Log("Bossen är inte sårbar just nu.");
+            Debug.Log("Bossen ï¿½r inte sï¿½rbar just nu.");
         }
     }
 }
-    
