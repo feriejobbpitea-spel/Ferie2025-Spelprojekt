@@ -20,26 +20,43 @@ public class Enemy_01 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
-            Debug.LogError("Rigidbody2D saknas på fienden!");
+            Debug.LogError("Rigidbody2D saknas på fienden: " + gameObject.name);
 
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         if (player == null)
-            Debug.LogError("Ingen spelare hittades med taggen 'Player'");
+            Debug.LogError("Ingen spelare med taggen 'Player' hittades!");
     }
 
     void FixedUpdate()
     {
         if (player == null) return;
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        if (distanceToPlayer > aggroRange) return; // Utanför aggro: stå still
+        // Kolla mark
+        isGrounded = false;
+        if (groundCheck != null)
+        {
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, LayerMask.GetMask("Ground"));
+        }
+        else
+        {
+            Debug.LogError("groundCheck är inte tilldelat i Inspector!");
+        }
 
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, LayerMask.GetMask("Ground"));
-        hittingWall = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, obstacleLayer);
+        // Kolla vägg
+        hittingWall = false;
+        if (wallCheck != null)
+        {
+            hittingWall = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, obstacleLayer);
+        }
+        else
+        {
+            Debug.LogError("wallCheck är inte tilldelat i Inspector!");
+        }
 
         float direction = Mathf.Sign(player.position.x - transform.position.x);
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
 
+        // Hoppa om hinder framför och står på marken
         if (hittingWall && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -48,20 +65,25 @@ public class Enemy_01 : MonoBehaviour
         // Vänd fiendens sprite i rörelseriktning
         if (direction != 0)
         {
-            transform.localScale = new Vector3(-1 * Mathf.Sign(direction) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(-1 * Mathf.Sign(direction) * Mathf.Abs(transform.localScale.x),
+                                              transform.localScale.y,
+                                              transform.localScale.z);
         }
     }
 
     private void OnDrawGizmos()
     {
-        // Ritning av ground och wall checks
-        Gizmos.color = Color.green;
-        if (wallCheck != null) Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
-        if (groundCheck != null) Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
-
-        // Ritning av aggro-radie
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, aggroRange);
+        if (wallCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, wallCheckRadius);
+            Debug.LogWarning("wallCheck är inte tilldelat – visar standardposition");
+        }
     }
 }
 
