@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+
+
     public float playerSpeed;
     //hopp
     public float jumpForce;
@@ -51,6 +53,14 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Traps"))
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce*4/5); // T.ex. studsa uppåt
+        }
     }
 
     // Update is called once per frame

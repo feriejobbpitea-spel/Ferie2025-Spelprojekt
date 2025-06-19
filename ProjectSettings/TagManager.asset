@@ -17,8 +17,8 @@ TagManager:
   - Enemies
   - Player
   - Objects
-  - Trigger
-  - 
+  - Enemy_ATK_Area
+  - Traps
   - 
   - 
   - 
