@@ -58,6 +58,7 @@ public class Enemy_01 : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
+        Gizmos.DrawWireSphere(groundCheck.position, checkRadius);
     }
 }
 
