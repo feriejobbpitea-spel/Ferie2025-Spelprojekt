@@ -52,7 +52,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 328
   range: 20
-  damagePerSecond: 10
+  damagePerSecond: 20
 --- !u!114 &3290045558263266924
 MonoBehaviour:
   m_ObjectHideFlags: 0

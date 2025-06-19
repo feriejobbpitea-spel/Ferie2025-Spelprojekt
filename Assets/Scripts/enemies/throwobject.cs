@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class throwobject : MonoBehaviour
@@ -9,13 +10,8 @@ public class throwobject : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            Destroy(gameObject);
-        }
-    }
+   
+   
 }
 
 

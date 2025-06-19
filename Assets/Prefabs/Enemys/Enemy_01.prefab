@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
   jumpForce: 5
+  aggroRange: 15
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64

@@ -10,6 +10,10 @@ public class EnemyHealth : MonoBehaviour
     public GameObject coinPrefab;           // Prefab som ska spawna när fienden dör
     public float coinForce = 5f;            // Hur hårt myntet studsar ut
 
+    [Header("Overrides")]
+    public GameObject toRemove;
+    public SpriteRenderer spriteRendererOverride;
+
     private SpriteRenderer spriteRenderer;  // För blink-effekt
 
     void Start()
@@ -22,7 +26,7 @@ public class EnemyHealth : MonoBehaviour
             healthSlider.value = currentHealth;
         }
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = (spriteRendererOverride != null) ? spriteRendererOverride : GetComponent<SpriteRenderer>();
     }
 
     public void TakeDamage(int amount)
@@ -75,6 +79,6 @@ public class EnemyHealth : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
+        Destroy((toRemove != null) ? toRemove :  gameObject);
     }
 }
