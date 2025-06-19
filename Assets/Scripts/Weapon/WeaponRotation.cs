@@ -10,6 +10,12 @@ public class WeaponRotation : MonoBehaviour
 
     private float fireCooldown = 0f;
 
+    void Start()
+    {
+      player = GameObject.FindGameObjectWithTag("Player")?.transform;
+      
+        transform.localPosition = Vector3.zero; // Sätt vapnets position relativt spelaren
+    }
     void Update()
     {
         RotateAndPositionWeapon();
@@ -20,6 +26,11 @@ public class WeaponRotation : MonoBehaviour
             Shoot();
             fireCooldown = fireRate;
         }
+    }
+
+    private void OnValidate()
+    {
+        transform.localPosition = Vector3.zero;
     }
 
     void RotateAndPositionWeapon()
@@ -45,6 +56,10 @@ public class WeaponRotation : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        if (bulletPrefab != null)
+        {
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        }
+       
     }
 }

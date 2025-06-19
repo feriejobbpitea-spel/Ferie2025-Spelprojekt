@@ -40,7 +40,7 @@ public class Enemy_01 : MonoBehaviour
         // Rörelse mot spelaren
         float direction = Mathf.Sign(player.position.x - transform.position.x);
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
-        Debug.Log(isGrounded + " " + hittingWall + " " + rb.linearVelocity.y);
+        
         // Hoppa om hinder framför och står på marken
         if (hittingWall && isGrounded)
         {
