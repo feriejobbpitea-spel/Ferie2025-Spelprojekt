@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8626927684388885953}
   - component: {fileID: 472574569654958991}
   - component: {fileID: -187736328566223141}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: kastobjekt
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class SceneLoadByButton : MonoBehaviour
 {
     public Button Button;
+    public string SceneName;
 
     private void OnEnable()
     {
@@ -17,7 +18,6 @@ public class SceneLoadByButton : MonoBehaviour
 
     private void OnButtonClick()
     {
-        string sceneName = Button.name;
-        SceneLoader.Instance.LoadScene(sceneName);
+        SceneLoader.Instance.LoadScene(SceneName);
     }
 }

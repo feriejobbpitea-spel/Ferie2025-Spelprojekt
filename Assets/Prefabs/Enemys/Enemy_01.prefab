@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20c30b4020b6c34282afe4cb8a568f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 60
   healthSlider: {fileID: 4601035233139349778}
   coinPrefab: {fileID: 5694571281342612559, guid: 3bfa30db30ed77b49a6bf50b12950849, type: 3}
   coinForce: 5

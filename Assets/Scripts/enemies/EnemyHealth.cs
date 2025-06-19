@@ -10,6 +10,8 @@ public class EnemyHealth : MonoBehaviour
     public GameObject coinPrefab;           // Prefab som ska spawna när fienden dör
     public float coinForce = 5f;            // Hur hårt myntet studsar ut
 
+    public GameObject toRemove;
+
     private SpriteRenderer spriteRenderer;  // För blink-effekt
 
     void Start()
@@ -75,6 +77,6 @@ public class EnemyHealth : MonoBehaviour
             }
         }
 
-        Destroy(gameObject);
+        Destroy((toRemove != null) ? toRemove :  gameObject);
     }
 }
