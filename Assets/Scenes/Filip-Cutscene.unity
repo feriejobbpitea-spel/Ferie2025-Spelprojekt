@@ -286,16 +286,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slides:
   - image: {fileID: -2307006551632423868, guid: f704bb26f448f2d48a73d62f4ca6f15f, type: 3}
-    text: "Storyteller: Grandpa was fucking tired, tired of all this innovation.
-      He couldn't stand all his grandchildren leaving him for some stupid machine
-      called a computer. \r\nGrandpa: At the age of thirteen, children should be
-      responsible, read books and most importantly SPEND TIME WITH THEIR  FUCKIN\u2019
-      GRANDPARENTS, but no. All they do is to sit in front of that stupid machine.
-      In addition, the irresponsible inventors have created something called AI.
-      I have no idea what that AI bullshit is but either way, grandpa WILL make a
-      change.\r"
+    text: Grandpa was fucking tired, tired of all this innovation.
   - image: {fileID: -379241700, guid: ab516be893e387b4cbe0c932e2f046c2, type: 3}
-    text: 'Test 2 '
+    text: He couldn't stand all his grandchildren leaving him for some stupid machine
+      called a computer.
+  - image: {fileID: -379241700, guid: ab516be893e387b4cbe0c932e2f046c2, type: 3}
+    text: "Grandpa: At the age of thirteen, children should be responsible, read
+      books and most importantly SPEND TIME WITH THEIR FUCKIN\u2019 GRANDPARENTS,
+      but no."
+  - image: {fileID: 2798047460436315396, guid: 33279788196df204ea745a7d869cad44, type: 3}
+    text: All they do is to sit in front of that stupid machine.
+  - image: {fileID: -3736903775432963038, guid: f2d1eae8d1dfd22428c741364ea3c964, type: 3}
+    text: In addition, the irresponsible inventors have created something called
+      AI.
+  - image: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
+    text: I have no idea what that AI bullshit is but either way, grandpa WILL make
+      a change.
   cutsceneImage: {fileID: 1455496540}
   cutsceneText: {fileID: 594626297}
 --- !u!4 &1050734647
