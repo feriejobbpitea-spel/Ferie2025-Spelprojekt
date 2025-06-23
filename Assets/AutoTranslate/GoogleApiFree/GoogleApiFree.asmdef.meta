@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d2f119fba2ab41541aa81be3d47d0600
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212842
+  packageName: Auto Translate for Unity Localization
+  packageVersion: 0.5.0
+  assetPath: Assets/AutoTranslate/GoogleApiFree/GoogleApiFree.asmdef
+  uploadId: 764238

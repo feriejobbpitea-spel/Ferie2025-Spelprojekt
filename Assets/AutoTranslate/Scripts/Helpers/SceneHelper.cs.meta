@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: f2c07fe983c37d6408d8f81abf601e94
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212842
+  packageName: Auto Translate for Unity Localization
+  packageVersion: 0.5.0
+  assetPath: Assets/AutoTranslate/Scripts/Helpers/SceneHelper.cs
+  uploadId: 764238

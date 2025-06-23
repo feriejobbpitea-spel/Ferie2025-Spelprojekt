@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8493e8ce9e7b84e4bb737049000ac0d1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212842
+  packageName: Auto Translate for Unity Localization
+  packageVersion: 0.5.0
+  assetPath: Assets/AutoTranslate/Editor/Search/SearchTextInScenes_EditorWindow.cs
+  uploadId: 764238

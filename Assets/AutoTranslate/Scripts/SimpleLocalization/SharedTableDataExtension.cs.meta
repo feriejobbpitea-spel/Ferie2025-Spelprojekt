@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 8e1e716478e44384c80f809622e7c911
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212842
+  packageName: Auto Translate for Unity Localization
+  packageVersion: 0.5.0
+  assetPath: Assets/AutoTranslate/Scripts/SimpleLocalization/SharedTableDataExtension.cs
+  uploadId: 764238

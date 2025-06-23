@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 16c12dadba0de0b49bf48ed9c461846c
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212842
+  packageName: Auto Translate for Unity Localization
+  packageVersion: 0.5.0
+  assetPath: Assets/AutoTranslate/Scripts/SimpleInterfaceTranslateApi/SimpleInterfaceTranslateApi.asmdef
+  uploadId: 764238
