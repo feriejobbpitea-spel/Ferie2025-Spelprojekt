@@ -80,7 +80,7 @@ public class CoinPickup : MonoBehaviour
             moneyHolder.AddMoney(coinValue);
         }
 
-        Destroy(gameObject, 0.2f);
+        Destroy(gameObject, 0.7f);
     }
 
     private void SelfDestruct()

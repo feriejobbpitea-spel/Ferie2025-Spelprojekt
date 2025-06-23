@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -23,14 +24,17 @@ public class Movement : MonoBehaviour
     public bool isGrounded;
     private float isRunning = 1;
 
-    private bool isHuggingWall = false; //kramar en vägga
+    private bool wasGrabbingWall = false;
     private float wallJumpLockTime = 0.2f; // hur länge du låser styrning efter vägghopp
     private float wallJumpTimer = 0f;      // nedräkning
     
     private float wallJumpXMomentum = 0.5f;
-    private bool isGrabingwall = false;
+    public bool isGrabingwall = false;
 
     public event Action OnJump;
+
+    private Tween walkTween;
+
 
     public bool IsGrounded => isGrounded;
     public bool IsMoving => Input.GetAxisRaw("Horizontal") != 0;
@@ -66,7 +70,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        ApplyFallStretch();
         //spring
         if (Input.GetKey(KeyCode.LeftShift)) {  isRunning = 2;  } else { isRunning = 1; }
         //
@@ -95,17 +99,24 @@ public class Movement : MonoBehaviour
         // Hopp
         if (Input.GetKeyDown(KeyCode.Space))
         {
+
             if (isGrounded)
             {
+                OnJump?.Invoke();
+                PlayJumpTween();
                 movement.y = bigJump ? bigJumpForce : jumpForce;
             }
             else if (doubleJump && !doubleJumpUsed)
             {
+                OnJump?.Invoke();
+                PlayJumpTween();
                 movement.y = bigJump ? bigJumpForce : jumpForce;
                 doubleJumpUsed = true;
             }
             else if (isGrabingwall)
             {
+                OnJump?.Invoke();
+                PlayJumpTween();
                 // Blockera input kort stund
                 wallJumpTimer = wallJumpLockTime;
 
@@ -123,7 +134,6 @@ public class Movement : MonoBehaviour
                 return; // Stoppa movement denna frame
             }
 
-            OnJump?.Invoke();
         }
 
         //hopp, doublejump, bigjump
@@ -152,8 +162,12 @@ public class Movement : MonoBehaviour
         bool huggingRightWall = Physics2D.OverlapCircle(wallCheckR.position, groundCheckRadius, wallLayer); // om vi nuddar en vägg åt höger
 
         isGrabingwall = ((huggingLeftWall &&!facingRight) || (huggingRightWall && facingRight)); // om vi kramar en vägg och tittar mot den
+        if (isGrabingwall && !wasGrabbingWall)
+        {
+            PlayWallImpactTween(); // Trigger the animation when first touching wall
+        }
+        wasGrabbingWall = isGrabingwall;
 
-       
 
         // Wall slide – endast om man tittar mot väggen
         if (isGrabingwall && rb.linearVelocity.y < 0)
@@ -164,8 +178,8 @@ public class Movement : MonoBehaviour
 
 
 
-        if (isGrounded) { doubleJumpUsed = false; 
-            
+        if (isGrounded) { doubleJumpUsed = false;
+            ResetScale();
         }  //doublejump// Nollställ senaste vägghoppsvägg – så du kan hoppa på samma vägg igen
 
         #region Powerups
@@ -191,10 +205,57 @@ public class Movement : MonoBehaviour
         #endregion
 
     }
+
+    void PlayTurnTween()
+    {
+        gfx.transform.DOKill(); // Cancel any ongoing tweens
+
+        Sequence turnSquash = DOTween.Sequence();
+        turnSquash.Append(gfx.transform.DOScaleX(1.4f, 0.05f));
+        turnSquash.Join(gfx.transform.DOScaleY(0.8f, 0.05f));
+        turnSquash.Append(gfx.transform.DOScale(Vector3.one, 0.1f).SetEase(Ease.OutBack));
+    }
+
+
+    void PlayWallImpactTween()
+    {
+        gfx.transform.DOKill();
+
+        Sequence wallSquash = DOTween.Sequence();
+        wallSquash.Append(gfx.transform.DOScaleX(0.7f, 0.05f));
+        wallSquash.Join(gfx.transform.DOScaleY(1.3f, 0.05f));
+        wallSquash.Append(gfx.transform.DOScale(Vector3.one, 0.1f).SetEase(Ease.OutBack));
+    }
+    void PlayJumpTween()
+    {
+        gfx.transform.DOKill(); // Cancel any current tweens
+
+        Sequence jumpSquash = DOTween.Sequence();
+        jumpSquash.Append(gfx.transform.DOScaleY(0.7f, 0.05f)); // Squash
+        jumpSquash.Join(gfx.transform.DOScaleX(1.3f, 0.05f));    // Stretch wide
+
+        jumpSquash.Append(gfx.transform.DOScale(new Vector3(1f, 1f, 1f), 0.1f).SetEase(Ease.OutBack)); // Return to normal
+    }
+
     void Flip()
     {
         facingRight = !facingRight;
         gfx.flipX = !facingRight;
+        PlayTurnTween();
+    }
+
+    void ResetScale()
+    {
+        gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
+    }
+    void ApplyFallStretch()
+    {
+        // Only apply if falling downward and not hugging a wall
+        if (rb.linearVelocity.y < -0.1f && !isGrabingwall && !isGrounded)
+        {
+            gfx.transform.DOScaleY(1.4f, 4).SetEase(Ease.OutQuad);
+            gfx.transform.DOScaleX(0.6f, 4).SetEase(Ease.OutQuad);
+        }
     }
 
 }

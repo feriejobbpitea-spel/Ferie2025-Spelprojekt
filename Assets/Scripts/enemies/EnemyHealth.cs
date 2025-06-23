@@ -71,7 +71,7 @@ public class EnemyHealth : MonoBehaviour
             GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
 
             // Lägg till kraft så den studsar ut
-            Rigidbody2D rb = coin.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb = coin.AddComponent<Rigidbody2D>();
             if (rb != null)
             {
                 Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), 1f).normalized;
