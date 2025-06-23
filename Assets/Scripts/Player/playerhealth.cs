@@ -34,6 +34,8 @@ public class PlayerHealth : Singleton<PlayerHealth>
     private bool wasGroundedLastFrame = true;
     private float lastYVelocity;
     public float fallLimit = -10f; // Gräns för fallskada, justera efter behov
+
+     
     void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -72,7 +74,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         UpdateHearts();
         // Aktivera odödlighet
         isInvincible = true;
-        invincibilityTimer = invincibilityDuration;
+        invincibilityTimer = invincibilityDuration*1;
 
         if (currentLives <= 0)
         {
@@ -84,21 +86,33 @@ public class PlayerHealth : Singleton<PlayerHealth>
     }
 
 
-    void UpdateHearts()
+    public void UpdateHearts()
     {
         
         for (int i = 0; i < maxLives; i++)
         {
             if (i < currentLives)
             {
+                GameObject player = GameObject.FindWithTag("Player");
+                string biome = player.GetComponent<SetBiom>().biome;
+                if (biome == "Grass") { hearts[i].sprite = fullHeartR; } // Rött hjärta för gräsbiom
+                else if (biome == "mine") { hearts[i].sprite = fullHeartG; } // Grönt hjärta för skogsbiom
+                else if (biome == "boss") { hearts[i].sprite = fullHeartB; } // Blått hjärta för snöbiom
+                else { hearts[i].sprite = fullHeartR; } // Standardfärg om inget annat anges
+                
+                
+                
+                
+                
+                
                 // Välj rätt färg på fullt hjärta beroende på index
-                switch (i)
-                {
+               // switch (i)
+               // {
                     
-                    case 0: hearts[i].sprite = fullHeartR; ; break;
-                    case 1: hearts[i].sprite = fullHeartG; ; break;
-                    case 2: hearts[i].sprite = fullHeartB; ; break;
-                }
+                //    case 0: hearts[i].sprite = fullHeartR; ; break;
+                //    case 1: hearts[i].sprite = fullHeartG; ; break;
+                //    case 2: hearts[i].sprite = fullHeartB; ; break;
+               // }
             }
             else
             {
@@ -173,7 +187,9 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
         // Aktivera spelaren igen om den var död/inaktiv
         death.gameObject.SetActive(false);
-
+        isInvincible = true;
+        invincibilityTimer = invincibilityDuration*2;
+        
         Debug.Log("Player respawned!");
     }
     private IEnumerator FlashWhite()

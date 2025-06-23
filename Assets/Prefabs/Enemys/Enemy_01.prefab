@@ -148,6 +148,8 @@ MonoBehaviour:
   wallCheck: {fileID: 8094896008012255339}
   checkRadius: 0.2
   wallCheckRadius: 0.2
+  raycastDistance: 2
+  healthBar: {fileID: 670402908738686867}
 --- !u!50 &2068875834683967062
 Rigidbody2D:
   serializedVersion: 5
@@ -259,6 +261,8 @@ MonoBehaviour:
   healthSlider: {fileID: 4601035233139349778}
   coinPrefab: {fileID: 5694571281342612559, guid: 3bfa30db30ed77b49a6bf50b12950849, type: 3}
   coinForce: 5
+  toRemove: {fileID: 0}
+  spriteRendererOverride: {fileID: 0}
 --- !u!1 &2116358458097125865
 GameObject:
   m_ObjectHideFlags: 0

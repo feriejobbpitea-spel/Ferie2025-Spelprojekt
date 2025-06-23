@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
     {
 
         //spring
-        if (Input.GetKey(KeyCode.LeftShift)) {  isRunning = 2;  } else { isRunning = 1; }
+        if (Input.GetKey(KeyCode.LeftShift)) { if (isGrounded) { isRunning = 2; }  } else { if (isGrounded) { isRunning = 1; } }
         //
 
         float moveX = Input.GetAxis("Horizontal"); // bestämmer om du trycker a/d eller pil vänster höger

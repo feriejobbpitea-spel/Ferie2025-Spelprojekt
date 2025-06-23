@@ -18,14 +18,17 @@ public class WeaponRotation : MonoBehaviour
     }
     void Update()
     {
-        RotateAndPositionWeapon();
-        fireCooldown -= Time.deltaTime;
+        if (Time.timeScale > 0) {
+            RotateAndPositionWeapon();
+            fireCooldown -= Time.deltaTime;
 
-        if (Input.GetMouseButton(0) && fireCooldown <= 0f)
-        {
-            Shoot();
-            fireCooldown = fireRate;
+            if (Input.GetMouseButton(0) && fireCooldown <= 0f)
+            {
+                Shoot();
+                fireCooldown = fireRate;
+            }
         }
+       
     }
 
     private void OnValidate()
