@@ -1,10 +1,10 @@
 using UnityEngine;
-
 public class Enemy_01 : MonoBehaviour
 {
     public float moveSpeed = 2f;
     public float jumpForce = 5f;
-    public LayerMask obstacleLayer; // Layer för väggar/hinder
+    public float aggroRange = 8f; // <-- Nytt: aggro range
+    public LayerMask obstacleLayer;
     public Transform groundCheck;
     public Transform wallCheck;
     public float checkRadius = 0.2f;
@@ -53,8 +53,11 @@ public class Enemy_01 : MonoBehaviour
             Debug.LogError("wallCheck är inte tilldelat i Inspector!");
         }
 
-        // Rörelse mot spelaren
-        float direction = Mathf.Sign(player.position.x - transform.position.x);
+        float direction = 0;
+        if (Vector2.Distance(player.transform.position, transform.position) < aggroRange)
+        {
+            direction = Mathf.Sign(player.position.x - transform.position.x);
+        }
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
 
         // Hoppa om hinder framför och står på marken
@@ -85,5 +88,20 @@ public class Enemy_01 : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position, wallCheckRadius);
             Debug.LogWarning("wallCheck är inte tilldelat – visar standardposition");
         }
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, aggroRange);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

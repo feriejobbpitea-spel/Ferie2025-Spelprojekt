@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using UnityEditor.Rendering.LookDev;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerHealth : Singleton<PlayerHealth>
 {
     public int maxLives = 3;
-    private int currentLives;
+    public int currentLives;
 
     public Image[] hearts;         // Dra in tre Image-objekt från Canvas
     public Sprite fullHeartR;      // Rött hjärta (för hjärta 0)
@@ -15,7 +15,8 @@ public class PlayerHealth : Singleton<PlayerHealth>
     public Sprite fullHeartB;      // Blått hjärta (för hjärta 2)
     public Sprite emptyHeart;      // Grått/tomt hjärta
     public Image death;
-
+    public Image pause;
+    public Image gameOver;
     private bool isInvincible = false;
     public float invincibilityDuration = 2f; // hur länge man är odödlig
     private float invincibilityTimer;
@@ -62,10 +63,10 @@ public class PlayerHealth : Singleton<PlayerHealth>
     public void LoseLife()
     {
         // Lägg till kameraskakning
-        CameraFollow.Instance.TriggerShake(0.15f, 0.2f);
-        if (isInvincible) return; // Om vi är odödlig, ta inte skada
-
         
+        if (isInvincible) return; // Om vi är odödlig, ta inte skada
+        CameraFollow.Instance.TriggerShake(0.15f, 0.2f);
+
         currentLives--;
         Debug.Log("Player lost a life! Lives left: " + currentLives);
         UpdateHearts();
@@ -85,21 +86,24 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     void UpdateHearts()
     {
-        for (int i = 0; i < hearts.Length; i++)
+        
+        for (int i = 0; i < maxLives; i++)
         {
             if (i < currentLives)
             {
                 // Välj rätt färg på fullt hjärta beroende på index
                 switch (i)
                 {
-                    case 0: hearts[i].sprite = fullHeartR; break;
-                    case 1: hearts[i].sprite = fullHeartG; break;
-                    case 2: hearts[i].sprite = fullHeartB; break;
+                    
+                    case 0: hearts[i].sprite = fullHeartR; ; break;
+                    case 1: hearts[i].sprite = fullHeartG; ; break;
+                    case 2: hearts[i].sprite = fullHeartB; ; break;
                 }
             }
             else
             {
                 hearts[i].sprite = emptyHeart;
+               
             }
         }
     }
@@ -107,7 +111,8 @@ public class PlayerHealth : Singleton<PlayerHealth>
     void Die()
     {
         Debug.Log("Player is dead!");
-        death.gameObject.SetActive(true);
+        if(maxLives == 1) { gameOver.gameObject.SetActive(true); } else { death.gameObject.SetActive(true); }
+            
         // Ladda om scenen eller visa Game Overd a
         Time.timeScale = 0; // Stoppa spelet
     }
@@ -160,8 +165,9 @@ public class PlayerHealth : Singleton<PlayerHealth>
         Time.timeScale = 1;
         // Flytta spelaren till spawnpoint
         PlayerRespawn.Instance.Respawn();
-
+        maxLives--; // Minska max liv med 1
         // Återställ liv till 1
+        hearts[maxLives].gameObject.SetActive(false);
         currentLives = maxLives;
         UpdateHearts();  // Uppdatera UI
 
@@ -177,4 +183,10 @@ public class PlayerHealth : Singleton<PlayerHealth>
         spriteRenderer.material = originalMaterial;
     }
     
+    public void tryAgain()
+    {
+                Time.timeScale = 1; // Återställ tidsskalan
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Ladda om nuvarande scen
+        gameOver.gameObject.SetActive(false); // Stäng av Game Over UI
+    }
 }

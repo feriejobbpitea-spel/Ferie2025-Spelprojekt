@@ -1,11 +1,11 @@
 using UnityEngine;
-
 public class Enemy_02 : MonoBehaviour
 {
     public GameObject projectilePrefab;
     public Transform firePoint;
     public float shootInterval = 2f;
     public float projectileSpeed = 10f;
+    public float aggroRange = 10f; // Aggro-räckvidd
 
     private float timer = 0f;
     private Transform player;
@@ -23,11 +23,15 @@ public class Enemy_02 : MonoBehaviour
     {
         if (player == null) return;
 
-        timer += Time.deltaTime;
-        if (timer >= shootInterval)
+        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        if (distanceToPlayer <= aggroRange)
         {
-            ShootAtPlayer();
-            timer = 0f;
+            timer += Time.deltaTime;
+            if (timer >= shootInterval)
+            {
+                ShootAtPlayer();
+                timer = 0f;
+            }
         }
     }
 
@@ -40,4 +44,12 @@ public class Enemy_02 : MonoBehaviour
         projScript.SetDirection(direction);
         projScript.speed = projectileSpeed;
     }
+
+    // Visa aggro-rangen i Scene-vyn när fienden är markerad
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, aggroRange);
+    }
 }
+

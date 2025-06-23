@@ -1,55 +1,151 @@
 using UnityEngine;
 using System.Collections;
-public class boss : MonoBehaviour
+public class Boss : MonoBehaviour
 {
+    [Header("Referenser")]
+    public Transform player;
+    public Transform throwPoint;
+    public Transform groundCheck;
+    public Collider2D backHitbox;         // Sï¿½rbar rygg-hitbox (trigger collider)
+
+    [Header("Prefabs")]
+    public GameObject throwablePrefab;
+    public GameObject earthWavePrefab;
+
+    [Header("Attackinstï¿½llningar")]
     public float jumpForce = 10f;
-public float slamDelay = 1.5f;
-public GameObject earthWavePrefab;
-public Transform groundCheck;
+    public float slamDelay = 1.5f;
+    public float throwForce = 10f;
+    public float attackCooldown = 3f;
+    public float vulnerableDuration = 2f;    // Hur lï¿½nge bossen ï¿½r sï¿½rbar efter landning
 
-private Rigidbody2D rb;
-private bool isGrounded;
-private bool isAttacking;
+    [Header("Agroinstï¿½llning")]
+    public float agroRange = 10f;
 
-void Start()
-{
-    rb = GetComponent<Rigidbody2D>();
-}
+    private Rigidbody2D rb;
+    private bool isAttacking;
+    private bool isVulnerable;
 
-void Update()
-{
-    if (!isAttacking && Input.GetKeyDown(KeyCode.Space)) // Byt ut triggern till vad du vill
+    private void Start()
     {
-        StartCoroutine(SlamAttack());
+        rb = GetComponent<Rigidbody2D>();
+
+        // Se till att rygghitboxen ï¿½r inaktiverad till en bï¿½rjan
+        if (backHitbox != null)
+            backHitbox.enabled = false;
+
+        StartCoroutine(AttackRoutine());
+    }
+
+    private IEnumerator AttackRoutine()
+    {
+        while (true)
+        {
+            // Kolla om spelaren ï¿½r inom aggro-range
+            if (Vector2.Distance(transform.position, player.position) <= agroRange)
+            {
+                if (!isAttacking)
+                {
+                    isAttacking = true;
+
+                    int attackType = Random.Range(0, 2); // 0 = slam, 1 = kast
+
+                    if (attackType == 0)
+                        yield return StartCoroutine(SlamAttack());
+                    else
+                        yield return StartCoroutine(ThrowAttack());
+
+                    yield return new WaitForSeconds(attackCooldown);
+                    isAttacking = false;
+                }
+            }
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator SlamAttack()
+    {
+        Debug.Log("Boss gï¿½r Slam Attack");
+
+        // Rï¿½kna ut riktningen mot spelaren i X-led
+        float horizontalDirection = Mathf.Sign(player.position.x - transform.position.x);
+
+        // Sï¿½tt bossens velocity fï¿½r att hoppa mot spelaren
+        rb.linearVelocity = new Vector2(horizontalDirection * (jumpForce * 0.5f), jumpForce);
+        yield return new WaitForSeconds(slamDelay);
+
+        // Krasch ner (rakt ner)
+        rb.linearVelocity = new Vector2(0f, -jumpForce * 2);
+
+        // Vï¿½nta tills bossen ï¿½r pï¿½ marken
+        yield return new WaitUntil(() => IsGrounded());
+
+        // Skapa jordvï¿½gsattacken vid markkontrollpunkten
+        Instantiate(earthWavePrefab, groundCheck.position, Quaternion.identity);
+
+        // Aktivera sï¿½rbarheten pï¿½ ryggen
+        Debug.Log("Boss ï¿½r sï¿½rbar i ryggen!");
+        isVulnerable = true;
+        if (backHitbox != null)
+            backHitbox.enabled = true;
+
+        // Vï¿½nta medan bossen ï¿½r sï¿½rbar
+        yield return new WaitForSeconds(vulnerableDuration);
+
+        // Rotera bossen och stï¿½ng av sï¿½rbarheten
+        RotateBoss();
+
+        isVulnerable = false;
+        if (backHitbox != null)
+            backHitbox.enabled = false;
+
+        Debug.Log("Boss roterade och ï¿½r inte lï¿½ngre sï¿½rbar.");
+    }
+
+    private IEnumerator ThrowAttack()
+    {
+        Debug.Log("Boss gï¿½r Throw Attack");
+
+        Vector2 direction = (player.position - throwPoint.position).normalized;
+
+        GameObject thrownObj = Instantiate(throwablePrefab, throwPoint.position, Quaternion.identity);
+        Rigidbody2D rbObj = thrownObj.GetComponent<Rigidbody2D>();
+
+        if (rbObj != null)
+        {
+            rbObj.gravityScale = 0f;
+            rbObj.linearVelocity = direction * throwForce;
+        }
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    private bool IsGrounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.1f);
+        return hit.collider != null;
+    }
+
+    private void RotateBoss()
+    {
+        // Roterar bossen 180 grader runt Y-axeln (flippar sprite)
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
+    }
+
+    // Metod fï¿½r att ta skada, kallas frï¿½n backHitbox trigger
+    public void TakeDamage(int amount)
+    {
+        if (isVulnerable)
+        {
+            Debug.Log("Boss tar " + amount + " i skada!");
+            // Lï¿½gg in HP-hantering hï¿½r om du vill
+        }
+        else
+        {
+            Debug.Log("Bossen ï¿½r inte sï¿½rbar just nu.");
+        }
     }
 }
-
-private IEnumerator SlamAttack()
-{
-    isAttacking = true;
-
-    // Steg 1: Hoppa upp
-    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-
-    // Vänta i luften
-    yield return new WaitForSeconds(slamDelay);
-
-    // Steg 2: Slå ner snabbt
-    rb.linearVelocity = new Vector2(rb.linearVelocity.x, -jumpForce * 2);
-
-    // Vänta tills den landar
-    yield return new WaitUntil(() => IsGrounded());
-
-    // Steg 3: Skapa jordvågen
-    Instantiate(earthWavePrefab, groundCheck.position, Quaternion.identity);
-
-    isAttacking = false;
-}
-
-private bool IsGrounded()
-{
-    RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.1f);
-    return hit.collider != null;
-}
-}
-   
