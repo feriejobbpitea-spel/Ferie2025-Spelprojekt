@@ -1,8 +1,8 @@
 # 🎮 Feriearbete i Piteå 2025 – *Revenge of the Gramps*
 
-[![Spela på Itch.io](https://img.shields.io/badge/Spela%20på-Itch.io-FA5C5C?logo=itch-io&logoColor=white&style=for-the-badge)](https://spelutvecklingpiteo.itch.io/revenge-of-the-gramps)
-[![Visa Trello](https://img.shields.io/badge/Projektplan-Trello-0079BF?logo=trello&logoColor=white&style=for-the-badge)](https://trello.com/invite/b/6846c10f16d349a4e499a53e/ATTI1b0aec871426728337565c61dfb331feC9C8F302/revenge-of-the-gramps)
-[![Första Dagen-presentation](https://img.shields.io/badge/Första%20Dagen-Presentation-4285F4?logo=google-slides&logoColor=white&style=for-the-badge)](https://docs.google.com/presentation/d/16EgDOYZUNLx46qXgqkIJjfC7MWOO_Orhv64_4BHIYnM/edit?usp=sharing)
+[![Spela på Itch.io](https://img.shields.io/badge/Spela%20på-Itch.io-FA5C5C?logo=itch-io&logoColor=white&style=flat)](https://spelutvecklingpiteo.itch.io/revenge-of-the-gramps)
+[![Visa Trello](https://img.shields.io/badge/Projektplan-Trello-0079BF?logo=trello&logoColor=white&style=flat)](https://trello.com/invite/b/6846c10f16d349a4e499a53e/ATTI1b0aec871426728337565c61dfb331feC9C8F302/revenge-of-the-gramps)
+[![Första Dagen-presentation](https://img.shields.io/badge/Första%20Dagen-Presentation-4285F4?logo=google-slides&logoColor=white&style=flat)](https://docs.google.com/presentation/d/16EgDOYZUNLx46qXgqkIJjfC7MWOO_Orhv64_4BHIYnM/edit?usp=sharing)
 
 ---
 
