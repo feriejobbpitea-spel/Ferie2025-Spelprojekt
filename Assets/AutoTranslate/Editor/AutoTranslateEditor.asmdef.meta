@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 213ea582fc33e3643b5514b498f99a59
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212842
+  packageName: Auto Translate for Unity Localization
+  packageVersion: 0.5.0
+  assetPath: Assets/AutoTranslate/Editor/AutoTranslateEditor.asmdef
+  uploadId: 764238

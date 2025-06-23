@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 48c689d02c538a140b8c704861b63ef0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212842
+  packageName: Auto Translate for Unity Localization
+  packageVersion: 0.5.0
+  assetPath: Assets/AutoTranslate/Scripts/AutoTranslateSetting.cs
+  uploadId: 764238

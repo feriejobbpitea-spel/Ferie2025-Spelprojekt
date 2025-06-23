@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: c779cb2e8f9932046b945e34b482f4de
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212842
+  packageName: Auto Translate for Unity Localization
+  packageVersion: 0.5.0
+  assetPath: Assets/AutoTranslate/Editor/Cleanup/CleanupLocalizationPrefabs_EditorWindow.cs
+  uploadId: 764238

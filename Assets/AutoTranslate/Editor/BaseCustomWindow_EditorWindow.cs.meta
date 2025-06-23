@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b4c45d6e8bb54314e89fbe587ee9bcc3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 212842
+  packageName: Auto Translate for Unity Localization
+  packageVersion: 0.5.0
+  assetPath: Assets/AutoTranslate/Editor/BaseCustomWindow_EditorWindow.cs
+  uploadId: 764238
