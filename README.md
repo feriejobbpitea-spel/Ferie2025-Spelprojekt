@@ -1,9 +1,8 @@
 # Feriearbete i Piteå 2025 - Revenge of the Gramps
 
-[![Play on Itch.io](https://img.shields.io/badge/Play%20on-Itch.io-FA5C5C?logo=itch-io&logoColor=white&style=for-the-badge)](https://spelutvecklingpiteo.itch.io/revenge-of-the-gramps)
-[![View Trello Board](https://img.shields.io/badge/View%20on-Trello-0079BF?logo=trello&logoColor=white&style=for-the-badge)](https://trello.com/invite/b/6846c10f16d349a4e499a53e/ATTI1b0aec871426728337565c61dfb331feC9C8F302/revenge-of-the-gramps)
+[![Spela på Itch.io](https://img.shields.io/badge/Play%20on-Itch.io-FA5C5C?logo=itch-io&logoColor=white&style=for-the-badge)](https://spelutvecklingpiteo.itch.io/revenge-of-the-gramps)
 
-**Revenge of the Gramps** är ett spel utvecklat som en del av ett tre veckor långt feriearbete under sommaren 2025, arrangerat av **Piteå Kommun** och utfört på **Kaleido (period 1)**. Projektet syftade till att ge ungdomar praktisk erfarenhet av spelutveckling i en kreativ och samarbetsinriktad miljö.
+**Revenge of the Gramps** är ett 2D Platformer spel utvecklat under tre veckor långt feriearbete under sommaren 2025, arrangerat av **Piteå Kommun** och utfört på **Kaleido (period 1)**. Projektet syftade till att ge ungdomar praktisk erfarenhet av spelutveckling i en kreativ och samarbetsinriktad miljö.
 
 Deltagarna arbetade i team med fokus på kodning, grafik och projektplanering, med handledning av en erfaren utvecklare.
 
@@ -13,8 +12,7 @@ Deltagarna arbetade i team med fokus på kodning, grafik och projektplanering, m
 
 Vi använde **Trello** som projektverktyg för att planera, följa upp och samarbeta kring alla delar av utvecklingen – från idé till färdigt spel. Alla i gruppen hade tillgång till tavlan och kunde bidra med egna kort, checklistor, deadlines och kommentarer.
 
-- **Länk till Trello (Observer View):**  
-  [https://trello.com/invite/b/6846c10f16d349a4e499a53e/ATTI1b0aec871426728337565c61dfb331feC9C8F302/revenge-of-the-gramps](https://trello.com/invite/b/6846c10f16d349a4e499a53e/ATTI1b0aec871426728337565c61dfb331feC9C8F302/revenge-of-the-gramps)
+[![Länk till Trello Board](https://img.shields.io/badge/View%20on-Trello-0079BF?logo=trello&logoColor=white&style=for-the-badge)](https://trello.com/invite/b/6846c10f16d349a4e499a53e/ATTI1b0aec871426728337565c61dfb331feC9C8F302/revenge-of-the-gramps)
 
 ---
 
