@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Cut Scene Dialog Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Cut Scene Dialog
+  m_TableCollectionNameGuidString: a9fcbbae91553f441a7fbc67e61eb121
+  m_Entries:
+  - m_Id: 208060743680
+    m_Key: Element1_Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 809058369536
+    m_Key: Element2_Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 811264573440
+    m_Key: Element3_Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 813382696960
+    m_Key: Element4_Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 854788866048
+    m_Key: Element5_Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1587382779904
+    m_Key: Element6_Key
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1089064620693127168
+  references:
+    version: 2
+    RefIds:
+    - rid: 1089064620693127168
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1750756855639

@@ -119,6 +119,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &176095950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 176095952}
+  - component: {fileID: 176095951}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &176095951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176095950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d77d5d8dd4d611f48b8ea31a6a37a394, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &176095952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176095950}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &359571887
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,22 +444,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slides:
   - image: {fileID: -2307006551632423868, guid: f704bb26f448f2d48a73d62f4ca6f15f, type: 3}
-    text: Grandpa was fucking tired, tired of all this innovation.
+    localizationKey: Element1_Key
   - image: {fileID: -379241700, guid: ab516be893e387b4cbe0c932e2f046c2, type: 3}
-    text: He couldn't stand all his grandchildren leaving him for some stupid machine
-      called a computer.
+    localizationKey: Element2_Key
   - image: {fileID: -379241700, guid: ab516be893e387b4cbe0c932e2f046c2, type: 3}
-    text: "Grandpa: At the age of thirteen, children should be responsible, read
-      books and most importantly SPEND TIME WITH THEIR FUCKIN\u2019 GRANDPARENTS,
-      but no."
+    localizationKey: Element3_Key
   - image: {fileID: 2798047460436315396, guid: 33279788196df204ea745a7d869cad44, type: 3}
-    text: All they do is to sit in front of that stupid machine.
+    localizationKey: Element4_Key
   - image: {fileID: -3736903775432963038, guid: f2d1eae8d1dfd22428c741364ea3c964, type: 3}
-    text: In addition, the irresponsible inventors have created something called
-      AI.
+    localizationKey: Element5_Key
   - image: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
-    text: I have no idea what that AI bullshit is but either way, grandpa WILL make
-      a change.
+    localizationKey: Element6_Key
   cutsceneImage: {fileID: 1455496540}
   cutsceneText: {fileID: 594626297}
   textFader: {fileID: 594626300}
@@ -1140,3 +1179,4 @@ SceneRoots:
   - {fileID: 2141682790}
   - {fileID: 1178537426}
   - {fileID: 1050734647}
+  - {fileID: 176095952}
