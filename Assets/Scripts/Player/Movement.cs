@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour
 
     public event Action OnJump;
 
-    private Tween walkTween;
+    private Tween fallStretchTween;
 
 
     public bool IsGrounded => isGrounded;
@@ -250,11 +250,21 @@ public class Movement : MonoBehaviour
     }
     void ApplyFallStretch()
     {
-        // Only apply if falling downward and not hugging a wall
         if (rb.linearVelocity.y < -0.1f && !isGrabingwall && !isGrounded)
         {
-            gfx.transform.DOScaleY(1.4f, 4).SetEase(Ease.OutQuad);
-            gfx.transform.DOScaleX(0.6f, 4).SetEase(Ease.OutQuad);
+            if (fallStretchTween == null || !fallStretchTween.IsPlaying())
+            {
+                fallStretchTween = gfx.transform.DOScale(new Vector3(0.6f, 1.4f, 1f), 0.2f).SetEase(Ease.OutQuad);
+            }
+        }
+        else
+        {
+            // Return to normal only if currently stretched
+            if (fallStretchTween != null && fallStretchTween.IsPlaying())
+            {
+                fallStretchTween.Kill();
+                fallStretchTween = gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
+            }
         }
     }
 

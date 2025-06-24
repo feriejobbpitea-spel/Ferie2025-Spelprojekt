@@ -36,7 +36,7 @@ MonoBehaviour:
   m_ColliderType: 1
   weightedSprites:
   - sprite: {fileID: -133397718, guid: 077fe0e49d761e54db6f6cf22845a30a, type: 3}
-    weight: 1
+    weight: 0.989
   - sprite: {fileID: -437096550, guid: 077fe0e49d761e54db6f6cf22845a30a, type: 3}
     weight: 1
   - sprite: {fileID: -638619652, guid: 077fe0e49d761e54db6f6cf22845a30a, type: 3}
