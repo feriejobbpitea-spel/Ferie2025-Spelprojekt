@@ -49,6 +49,8 @@ public class Boss : MonoBehaviour
 
     private void Start()
     {
+        bossHealthBar.SetActive(false);
+
         rb = GetComponent<Rigidbody2D>();
 
         StartCoroutine(AttackRoutine());
@@ -62,10 +64,6 @@ public class Boss : MonoBehaviour
             {
                 bossHealthBar.SetActive(true);
                 _hasSeenPlayer = true;
-            }
-            else 
-            {
-                bossHealthBar.SetActive(false);
             }
             if (_hasSeenPlayer)
             {
@@ -91,33 +89,44 @@ public class Boss : MonoBehaviour
     private IEnumerator SlamAttack()
     {
         LookAtPlayer();
-        OnFly?.Invoke(); // <-- Flying up
-        yield return new WaitForSeconds(1f);
-        LookAtPlayer();
-        float horizontalDirection = Mathf.Sign(player.position.x - transform.position.x);
+        OnFly?.Invoke(); // Start fly animation
 
+        // Step 1: Fly up
+        rb.linearVelocity = new Vector2(0, jumpForce);
+        yield return new WaitForSeconds(0.5f);
 
-        rb.linearVelocity = new Vector2(horizontalDirection * (jumpForce * 0.5f), jumpForce);
+        // Step 2: Move horizontally above the player
+        float hoverDuration = 1f;
+        float hoverSpeed = 5f;
+        float timer = 0f;
 
-        yield return new WaitForSeconds(slamDelay);
+        while (timer < hoverDuration)
+        {
+            float horizontalDirection = Mathf.Sign(player.position.x - transform.position.x);
+            rb.linearVelocity = new Vector2(horizontalDirection * hoverSpeed, 0);
+            timer += Time.deltaTime;
+            yield return null;
+        }
 
-        rb.linearVelocity = new Vector2(0f, -jumpForce * 2); // Slam down
+        // Step 3: Slam down
+        rb.linearVelocity = new Vector2(0f, -jumpForce * 2f);
 
         yield return new WaitUntil(() => IsGrounded());
 
-
-        OnSlam?.Invoke(); // <-- Slam hits ground
+        OnSlam?.Invoke(); // Ground impact
+        yield return new WaitForSeconds(0.5f);
         Instantiate(earthWavePrefab, earthWavePoint.position, Quaternion.identity);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
+
         isVulnerable = true;
         LookAwayFromPlayer();
         yield return new WaitForSeconds(vulnerableDuration);
+        isVulnerable = false;
 
         LookAtPlayer();
-
-        isVulnerable = false;
     }
+
 
 
     private IEnumerator ThrowAttack()
@@ -145,7 +154,7 @@ public class Boss : MonoBehaviour
 
     private bool IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, 5f, groundLayer);
         return hit.collider != null;
     }
 
