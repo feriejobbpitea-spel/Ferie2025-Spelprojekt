@@ -214,7 +214,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Jaquevius
+  m_text: Jaquavius
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c95815556e1557640b35d073cb1a483f, type: 2}
   m_sharedMaterial: {fileID: 8509452484567170275, guid: c95815556e1557640b35d073cb1a483f, type: 2}
