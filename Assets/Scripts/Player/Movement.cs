@@ -254,7 +254,7 @@ public class Movement : MonoBehaviour
         {
             if (fallStretchTween == null || !fallStretchTween.IsPlaying())
             {
-                fallStretchTween = gfx.transform.DOScale(new Vector3(0.6f, 1.4f, 1f), 0.2f).SetEase(Ease.OutQuad);
+                fallStretchTween = gfx.transform.DOScale(new Vector3(0.6f, 1.4f, 1f), 3f).SetEase(Ease.OutQuad);
             }
         }
         else
