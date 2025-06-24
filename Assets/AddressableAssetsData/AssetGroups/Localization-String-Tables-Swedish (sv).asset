@@ -20,6 +20,13 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv
+    - Preload
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ced7eec7fa49e674aa690d59c1c0e66b
+    m_Address: Cut Scene Dialog_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 4183d6c41c6d0a045bfcd722e875f937, type: 2}
