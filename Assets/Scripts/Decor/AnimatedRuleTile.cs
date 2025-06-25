@@ -7,6 +7,12 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "AnimatedRuleTile", menuName = "Tiles/Animated Rule Tile")]
 public class AnimatedRuleTile : TileBase
 {
+    public enum TileColliderType
+    {
+        None,
+        Sprite,
+        Grid
+    }
     public enum NeighborCondition
     {
         DontCare,
@@ -36,6 +42,7 @@ public class AnimatedRuleTile : TileBase
     }
 
     public float Speed = 10F;
+    public TileColliderType colliderType = TileColliderType.Sprite;
     public List<AnimatedRule> rules = new List<AnimatedRule>();
     public Sprite defaultSprite;
 
@@ -62,11 +69,13 @@ public class AnimatedRuleTile : TileBase
         if (matchingRule != null && matchingRule.sprites.Length > 0)
         {
             tileData.sprite = matchingRule.sprites[0];
-            tileData.gameObject = null; // or assign your prefab if needed
+            tileData.colliderType = (Tile.ColliderType)colliderType; // Cast your enum to Unity's ColliderType
+            tileData.gameObject = null;
         }
         else
         {
             tileData.sprite = defaultSprite;
+            tileData.colliderType = (Tile.ColliderType)colliderType;
             tileData.gameObject = null;
         }
     }

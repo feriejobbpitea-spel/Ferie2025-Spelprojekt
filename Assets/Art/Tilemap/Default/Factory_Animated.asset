@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Factory_Animated
   m_EditorClassIdentifier: 
   Speed: 10
+  colliderType: 2
   rules:
   - sprites:
     - {fileID: 1041259485, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}

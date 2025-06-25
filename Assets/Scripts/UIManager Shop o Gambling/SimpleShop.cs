@@ -20,7 +20,6 @@ public class SimpleShop : MonoBehaviour
     public GameObject itemPrefab;
     public Transform itemContainer;
     public TMP_Text playerMoneyText;
-    public int playerMoney = 1000;
 
     void Start()
     {
@@ -39,8 +38,8 @@ public class SimpleShop : MonoBehaviour
 
             // Hämta komponenterna direkt från prefab-roten
             go.transform.Find("ItemName").GetComponent<TMP_Text>().text = item.itemName;
-            go.transform.Find("ItemPrice").GetComponent<TMP_Text>().text = item.price + " kr";
-            go.transform.Find("ItemIcon").GetComponent<Image>().sprite = item.itemIcon;
+            go.transform.Find("ItemPrice").GetComponent<TMP_Text>().text = item.price + " coins";
+            go.transform.Find("ItemHolder").Find("ItemIcon").GetComponent<Image>().sprite = item.itemIcon;
 
             // Köpknapp
             Button buyButton = go.transform.Find("BuyButton")?.GetComponent<Button>();
@@ -59,9 +58,9 @@ public class SimpleShop : MonoBehaviour
 
     void BuyItem(ShopItem item)
     {
-        if (playerMoney >= item.price)
+        if (MoneyHolder.Instance.money >= item.price)
         {
-            playerMoney -= item.price;
+            MoneyHolder.Instance.money -= item.price;
             Debug.Log("Du köpte: " + item.itemName);
             UpdateMoneyUI();
         }
@@ -75,7 +74,7 @@ public class SimpleShop : MonoBehaviour
     {
         if (playerMoneyText != null)
         {
-            playerMoneyText.text = "Pengar: " + playerMoney;
+            playerMoneyText.text = $"{MoneyHolder.Instance.money}";
         }
     }
 }

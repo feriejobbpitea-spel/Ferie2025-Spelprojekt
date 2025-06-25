@@ -7,6 +7,8 @@ public class AnimatedRuleTileEditor : Editor
 {
     private SerializedProperty rulesProp;
     private SerializedProperty speedProp;
+    private SerializedProperty colliderTypeProp;
+
     private ReorderableList rulesList;
 
     private static readonly Vector3Int[] neighborOffsets = new Vector3Int[]
@@ -26,6 +28,7 @@ public class AnimatedRuleTileEditor : Editor
 
     private void OnEnable()
     {
+        colliderTypeProp = serializedObject.FindProperty("colliderType");
         rulesProp = serializedObject.FindProperty("rules");
         speedProp = serializedObject.FindProperty("Speed");
 
@@ -124,6 +127,7 @@ public class AnimatedRuleTileEditor : Editor
             SerializedProperty spritesProp = ruleProp.FindPropertyRelative("sprites");
             SerializedProperty animationProp = ruleProp.FindPropertyRelative("animation");
 
+
             float height = EditorGUIUtility.singleLineHeight + 4; // Label
             height += EditorGUI.GetPropertyHeight(spritesProp, true) + 4;
             height += EditorGUI.GetPropertyHeight(animationProp, true) + 6;
@@ -138,6 +142,7 @@ public class AnimatedRuleTileEditor : Editor
         serializedObject.Update();
 
         EditorGUILayout.PropertyField(speedProp);
+        EditorGUILayout.PropertyField(colliderTypeProp, new GUIContent("Collider Type"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("defaultSprite"), new GUIContent("Default Sprite"));
 
         EditorGUILayout.Space();

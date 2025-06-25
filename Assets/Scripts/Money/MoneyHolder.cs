@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class MoneyHolder : MonoBehaviour
+public class MoneyHolder : Singleton<MoneyHolder>
 {
     public int money = 0;
     public TMP_Text moneyText;
@@ -16,6 +16,13 @@ public class MoneyHolder : MonoBehaviour
         money += amount;
         UpdateMoneyUI();
     }
+
+    public void RemoveMoney(int amount)
+    {
+        money -= amount;
+        if (money < 0) money = 0; // Prevent negative money
+        UpdateMoneyUI();
+    }   
 
     void UpdateMoneyUI()
     {

@@ -4,6 +4,7 @@ public class Menu : MonoBehaviour
 {
     public bool ShowOnStart = false;
     private Canvas canvas;
+    public bool IsOpen => canvas.enabled;
 
     private void Awake()
     {
@@ -16,6 +17,8 @@ public class Menu : MonoBehaviour
 
     private void Start()
     {
+        MenuManager.Instance.InitializeMenu(this);
+
         if (ShowOnStart)
             ShowMenu();
         else

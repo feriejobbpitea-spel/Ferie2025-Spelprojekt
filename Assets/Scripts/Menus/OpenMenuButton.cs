@@ -6,6 +6,7 @@ public class OpenMenuButton : MonoBehaviour
 {
     public Menu Menu;
     private Button _button;
+    public bool CanOpenAndClose;
 
     private void Awake()
     {
@@ -16,16 +17,30 @@ public class OpenMenuButton : MonoBehaviour
             return;
         }
         
-        _button.onClick.AddListener(OpenMenu);
+    }
+
+    private void OnEnable()
+    {
+        _button.onClick.AddListener(ClickedButton);
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(OpenMenu);
+        _button.onClick.RemoveListener(ClickedButton);
     }
 
-    private void OpenMenu()
+    private void ClickedButton()
     {
-        MenuManager.Instance.OpenMenu(Menu);
+        if (CanOpenAndClose)
+        {
+            if(Menu.IsOpen)
+                Menu.HideMenu();
+            else
+                MenuManager.Instance.OpenMenu(Menu);
+        }
+        else
+        {
+            MenuManager.Instance.OpenMenu(Menu);
+        }
     }
 }

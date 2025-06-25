@@ -1,14 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;   
 
 public class MenuManager : Singleton<MenuManager>
 {
-    private Menu[] _allMenus;
+    private List<Menu> _allMenus = new();
 
-    private void Awake()
-    {
-        _allMenus = FindObjectsByType<Menu>(FindObjectsSortMode.InstanceID);
-    }
-
+    public void InitializeMenu(Menu menu) => _allMenus.Add(menu); 
 
     public void OpenMenu(Menu menu) 
     {

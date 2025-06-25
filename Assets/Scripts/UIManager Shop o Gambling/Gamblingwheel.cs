@@ -46,13 +46,13 @@ public class Gamblingwheel : MonoBehaviour
         ShowChancesUI();
 
         if (costText != null)
-            costText.text = $"Price: {spinCost} kr";
+            costText.text = $"SPIN ({spinCost} DATACHIP)";
     }
 
     void UpdateMoneyUI()
     {
         if (moneyText != null)
-            moneyText.text = $"Money: {playerMoney}";
+            moneyText.text = $"{playerMoney}";
     }
 
     void ShowChancesUI()
