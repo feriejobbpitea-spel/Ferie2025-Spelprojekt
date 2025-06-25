@@ -37,6 +37,7 @@ public class earthwave : MonoBehaviour
             // Skada spelaren (byt ut enligt din skademetod)
             PlayerHealth.Instance.LoseLife();
             Destroy(gameObject);
+            
         }
         else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {

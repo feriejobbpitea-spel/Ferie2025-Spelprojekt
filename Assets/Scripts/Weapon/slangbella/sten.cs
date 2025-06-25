@@ -3,7 +3,8 @@ using UnityEngine;
 public class Sten : MonoBehaviour
 {
     public float lifeTime = 5f;
-    public int damage = 10;
+    public float baseDamage = 10f;
+    public float damageMultiplier = 1.5f; // Skala på hur mycket skada baseras på träffkraft
 
     private Rigidbody2D rb;
 
@@ -13,7 +14,7 @@ public class Sten : MonoBehaviour
 
         if (rb == null)
         {
-            Debug.LogError("Rigidbody2D saknas p� stenen!");
+            Debug.LogError("Rigidbody2D saknas på stenen!");
         }
         else
         {
@@ -30,13 +31,22 @@ public class Sten : MonoBehaviour
         EnemyHealth enemyHealth = collision.collider.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
-            Debug.Log($"Ger {damage} skada till {collision.collider.name}");
-            enemyHealth.TakeDamage(damage);
+            float impactForce = collision.relativeVelocity.magnitude;
+            int totalDamage = Mathf.RoundToInt(baseDamage * impactForce * damageMultiplier);
+
+            Debug.Log($"Ger {totalDamage} skada (base {baseDamage} + kraft {impactForce:F2}) till {collision.collider.name}");
+            enemyHealth.TakeDamage(totalDamage);
             Destroy(gameObject);
             return;
         }
 
-        // Om det �r n�got annat (t.ex. mark eller v�gg), f�rst�r stenen �nd�
+        // Om träffar något annat (vägg/mark)
+        Destroy(gameObject);
+    }
+
+    void OnBecameInvisible()
+    {
+        Debug.Log("Stenen lämnade skärmen och tas bort.");
         Destroy(gameObject);
     }
 }

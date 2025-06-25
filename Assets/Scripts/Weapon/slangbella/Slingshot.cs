@@ -12,18 +12,27 @@ public class Slingshot : MonoBehaviour
     public int linePoints = 30;
     public float timeStep = 0.05f;
 
+    public Animator animator; // Dra in Animator i Inspector
+
     private float currentForce = 0f;
     private bool isCharging = false;
+
+    private float fireCooldown = 0.5f; // Max 2 skott per sekund
+    private float nextFireTime = 0f;
 
     void Start()
     {
         if (trajectoryLine != null)
         {
             trajectoryLine.textureMode = LineTextureMode.Tile;
-
-            // Sätt transparent svart färg på linjen
             trajectoryLine.startColor = new Color(0f, 0f, 0f, 0.5f);
             trajectoryLine.endColor = new Color(0f, 0f, 0f, 0.5f);
+        }
+
+        if (animator != null)
+        {
+            animator.SetBool("isCharging", false);
+            animator.speed = 1f;
         }
     }
 
@@ -33,6 +42,12 @@ public class Slingshot : MonoBehaviour
         {
             isCharging = true;
             currentForce = minForce;
+
+            if (animator != null)
+            {
+                animator.SetBool("isCharging", true);
+                animator.speed = chargeRate / (maxForce - minForce);
+            }
         }
 
         if (Input.GetMouseButton(0) && isCharging)
@@ -44,9 +59,20 @@ public class Slingshot : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && isCharging)
         {
-            Shoot(currentForce);
+            if (Time.time >= nextFireTime)
+            {
+                Shoot(currentForce);
+                nextFireTime = Time.time + fireCooldown;
+            }
+
+            if (animator != null)
+            {
+                animator.SetBool("isCharging", false);
+                animator.speed = 1f;
+            }
+
             isCharging = false;
-            trajectoryLine.positionCount = 0; // Ta bort linjen efter skott
+            trajectoryLine.positionCount = 0;
         }
     }
 
@@ -78,14 +104,12 @@ public class Slingshot : MonoBehaviour
             float t = i * timeStep;
             Vector2 point = startPos + startVel * t + 0.5f * Physics2D.gravity * t * t;
 
-            // Begränsa punkter inom kamerans synfält
             point.x = Mathf.Clamp(point.x, screenBottomLeft.x, screenTopRight.x);
             point.y = Mathf.Clamp(point.y, screenBottomLeft.y, screenTopRight.y);
 
             trajectoryLine.SetPosition(i, point);
         }
 
-        // Justera strecktäthet baserat på kraften
         if (trajectoryLine.material != null)
             trajectoryLine.material.mainTextureScale = new Vector2(force, 1);
     }

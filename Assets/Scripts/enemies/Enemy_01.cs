@@ -88,14 +88,7 @@ public class Enemy_01 : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("EMP"))
-        {
-            Debug.Log("Träffad av EMP! Fienden är avstängd.");
-            Stun(10f);
-        }
-    }
+    
 
     public void Stun(float duration)
     {
