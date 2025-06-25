@@ -6529,6 +6529,7 @@ GameObject:
   - component: {fileID: 2934233217691040914}
   - component: {fileID: 5265066189604250668}
   - component: {fileID: 6407460222364315440}
+  - component: {fileID: 2363345733586919303}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -6752,6 +6753,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 5041629190206755082}
+--- !u!114 &2363345733586919303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088855305761094871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5721489d2eea8b459a06309c51bac24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbSpeed: 4
+  jumpForce: 7
 --- !u!1 &2375817819499851550
 GameObject:
   m_ObjectHideFlags: 0
