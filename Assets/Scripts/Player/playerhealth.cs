@@ -84,11 +84,35 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
        
     }
-
-
-    public void UpdateHearts()
+    public void AddLife()
     {
         
+    
+    
+        if (maxLives < 4)
+        {
+            maxLives++; // Öka max liv med 1
+            
+            Debug.Log("Player gained a life! Lives now: " + currentLives);
+            
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRespawn>().updateMaxLives(); // Uppdatera respawn max liv}
+          }
+        if (currentLives < maxLives)
+        {
+            currentLives++;
+            Debug.Log("Player gained a life! Lives now: " + currentLives);
+
+        }
+        UpdateHearts(); // Uppdatera UI
+    }
+   
+    public void UpdateHearts()
+    {
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            hearts[i].gameObject.SetActive(i < maxLives); // Aktivera/deaktivera hjärtan baserat på maxLives
+        }
+
         for (int i = 0; i < maxLives; i++)
         {
             if (i < currentLives)
@@ -133,6 +157,10 @@ public class PlayerHealth : Singleton<PlayerHealth>
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            AddLife();
+        }
         bool isGrounded = movementScript.isGrounded;
        
         // Kontrollera om vi just landade
@@ -181,7 +209,7 @@ public class PlayerHealth : Singleton<PlayerHealth>
         PlayerRespawn.Instance.Respawn();
         maxLives--; // Minska max liv med 1
         // Återställ liv till 1
-        hearts[maxLives].gameObject.SetActive(false);
+        
         currentLives = maxLives;
         UpdateHearts();  // Uppdatera UI
 

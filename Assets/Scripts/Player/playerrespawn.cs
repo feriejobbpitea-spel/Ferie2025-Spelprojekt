@@ -2,16 +2,22 @@ using UnityEngine;
 
 public class PlayerRespawn : Singleton<PlayerRespawn>
 {
-    public int maxLives = 3;
+    private int maxLives;
     private int currentLives;
 
     private Vector3 respawnPosition;
 
     void Start()
     {
+        maxLives = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().maxLives; // Max antal liv
         currentLives = maxLives;
         // Startposition sätts som första respawn
        
+    }
+
+    public void updateMaxLives() {
+        maxLives++;
+        currentLives++;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
