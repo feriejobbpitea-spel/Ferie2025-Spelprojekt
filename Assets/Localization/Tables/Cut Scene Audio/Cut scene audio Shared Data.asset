@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Cut scene audio Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Cut scene audio
+  m_TableCollectionNameGuidString: e37181e35d2155a4f8f1f681d10550ff
+  m_Entries:
+  - m_Id: 386901671936
+    m_Key: Element1_Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 389288230912
+    m_Key: Element2_Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 391569932288
+    m_Key: Element3_Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 393478340608
+    m_Key: Element4_Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 397706199040
+    m_Key: Element5_Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 399824322560
+    m_Key: Element6_Key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 402005360640
+    m_Key: Element7_Key
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items:
+    - rid: 1089064641314685004
+  m_KeyGenerator:
+    rid: 1089064641314685003
+  references:
+    version: 2
+    RefIds:
+    - rid: 1089064641314685003
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1750841276895
+    - rid: 1089064641314685004
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 386901671936
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 389288230912
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 391569932288
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 393478340608
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 397706199040
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 399824322560
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 402005360640
+          m_TableCodes:
+          - en
+          - sv
+        m_TypeString: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null

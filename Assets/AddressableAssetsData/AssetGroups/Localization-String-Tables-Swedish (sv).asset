@@ -22,6 +22,12 @@ MonoBehaviour:
     - Locale-sv
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c47b81c0af8bc244a04f2b347a14ec8
+    m_Address: Cutscene audio_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ced7eec7fa49e674aa690d59c1c0e66b
     m_Address: Cut Scene Dialog_sv
     m_ReadOnly: 1
