@@ -114,6 +114,50 @@ MonoBehaviour:
     - offset: {x: 1, y: -1, z: 0}
       condition: 0
   - sprites:
+    - {fileID: 2750256096970003261, guid: a5fb7cc29ef53fb49ba04e474c984419, type: 3}
+    animation:
+      frames:
+      - {fileID: 2750256096970003261, guid: a5fb7cc29ef53fb49ba04e474c984419, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 2
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 0
+  - sprites:
+    - {fileID: 214600007163403114, guid: a5fb7cc29ef53fb49ba04e474c984419, type: 3}
+    animation:
+      frames:
+      - {fileID: 214600007163403114, guid: a5fb7cc29ef53fb49ba04e474c984419, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 2
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 0
+  - sprites:
     - {fileID: 2026154065, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
     animation:
       frames:
@@ -138,6 +182,50 @@ MonoBehaviour:
       condition: 0
     - offset: {x: -1, y: 0, z: 0}
       condition: 2
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 0
+  - sprites:
+    - {fileID: 1165901721759835400, guid: a5fb7cc29ef53fb49ba04e474c984419, type: 3}
+    animation:
+      frames:
+      - {fileID: 1165901721759835400, guid: a5fb7cc29ef53fb49ba04e474c984419, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 2
+  - sprites:
+    - {fileID: 971144163582594683, guid: a5fb7cc29ef53fb49ba04e474c984419, type: 3}
+    animation:
+      frames:
+      - {fileID: 971144163582594683, guid: a5fb7cc29ef53fb49ba04e474c984419, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 2
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 1
     - offset: {x: 1, y: 0, z: 0}
       condition: 1
     - offset: {x: -1, y: -1, z: 0}
