@@ -108,7 +108,7 @@ MonoBehaviour:
   firePoint: {fileID: 6343981072180394237}
   shootInterval: 1.5
   projectileSpeed: 7
-  aggroRange: 10
+  aggroRange: 15
 --- !u!114 &7394445667949276825
 MonoBehaviour:
   m_ObjectHideFlags: 0
