@@ -1,0 +1,303 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48af2aaca57dc95438386926c08d3fff, type: 3}
+  m_Name: Factory_Animated
+  m_EditorClassIdentifier: 
+  Speed: 10
+  rules:
+  - sprites:
+    - {fileID: 1041259485, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    animation:
+      frames:
+      - {fileID: 1041259485, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -61935071, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -289985590, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1712446624, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1531535771, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -865001100, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -449426774, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 414402110, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1416356437, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 906452831, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 8164993, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -537806525, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 2
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 0
+  - sprites:
+    - {fileID: -21512221, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    animation:
+      frames:
+      - {fileID: -21512221, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1373655704, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -962203841, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1543544131, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -526893351, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -826377269, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1790458946, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 912434649, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -2092039385, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1222944406, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1159903328, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1207800298, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 2
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 2
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 0
+  - sprites:
+    - {fileID: 861402642, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    animation:
+      frames:
+      - {fileID: 861402642, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1054070979, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 2080473495, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1382178941, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1746671679, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -508780496, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 266397605, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1277103361, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1106251449, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 2027370846, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1591286825, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1019231429, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 2
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 2
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 0
+  - sprites:
+    - {fileID: 2026154065, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    animation:
+      frames:
+      - {fileID: 2026154065, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1127346779, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1096081300, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1726362392, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1512225691, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -687761252, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1052785589, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -150354762, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 2098694152, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1659723134, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1813684713, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -972038650, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 2
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 0
+  - sprites:
+    - {fileID: 538923518, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    animation:
+      frames:
+      - {fileID: -705775233, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 0
+  - sprites:
+    - {fileID: -800294036, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    animation:
+      frames:
+      - {fileID: -800294036, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -212457360, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -2051659602, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 413313244, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 2000512987, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1339057911, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 693573069, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1399729845, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1785087328, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1220953361, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 958520279, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -332862202, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 2
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 0
+  - sprites:
+    - {fileID: -629307701, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    animation:
+      frames:
+      - {fileID: -629307701, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 500411531, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1067452855, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1373782538, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 100828767, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1799340598, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -903866271, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 2130750742, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1559793266, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1174517813, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1662180643, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1257317283, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 2
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 2
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 0
+  - sprites:
+    - {fileID: 324498751, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    animation:
+      frames:
+      - {fileID: 324498751, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1413008855, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1854143133, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1565231228, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 950778796, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1822448802, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 342143979, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1845412340, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1565857858, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -28833521, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -789355123, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -2025797525, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 2
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 0
+  - sprites:
+    - {fileID: 1919745784, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    animation:
+      frames:
+      - {fileID: 1919745784, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1207123988, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1681609171, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -182822577, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 102896970, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1286364888, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 921495911, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 1054675564, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -581108127, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: 562949954, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -2128963333, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+      - {fileID: -1359033849, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
+    neighbors:
+    - offset: {x: -1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: 1, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 1, z: 0}
+      condition: 0
+    - offset: {x: -1, y: 0, z: 0}
+      condition: 1
+    - offset: {x: 1, y: 0, z: 0}
+      condition: 2
+    - offset: {x: -1, y: -1, z: 0}
+      condition: 0
+    - offset: {x: 0, y: -1, z: 0}
+      condition: 2
+    - offset: {x: 1, y: -1, z: 0}
+      condition: 0
+  defaultSprite: {fileID: 1041259485, guid: 2297120ca9d57694d9f6d9647498ee11, type: 3}
