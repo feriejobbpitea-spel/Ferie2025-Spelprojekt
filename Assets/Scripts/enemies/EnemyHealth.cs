@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
@@ -63,7 +64,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    void Die()
+    public virtual void Die()
     {
         if (coinPrefab != null)
         {

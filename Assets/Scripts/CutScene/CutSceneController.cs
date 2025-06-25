@@ -1,14 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
+using UnityEngine.Localization;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.Localization.Settings;
+using System.Collections;
 
 [System.Serializable]
 public class CutsceneSlide
 {
     public Sprite image;
-    [TextArea(2, 5)]
-    public string text;
+    [Tooltip("Nyckel till lokaliserad text i din Localization Table")]
+    public string localizationKey;
 }
 
 public class CutSceneController : MonoBehaviour
@@ -19,7 +22,7 @@ public class CutSceneController : MonoBehaviour
     public TextFader textFader;
     public CanvasGroup continueText;
     public CanvasGroup skipText;
-    public Image skipProgressBar; // <-- lägg till denna i Unity Inspector
+    public Image skipProgressBar;
 
     private int currentSlideIndex = 0;
     private bool isFading = false;
@@ -27,12 +30,22 @@ public class CutSceneController : MonoBehaviour
     private float skipHoldTime = 5f;
     private float holdTimer = 0f;
 
-    void Start()
+    private LocalizedString localizedString;
+    private Coroutine updateTextCoroutine;
+
+    IEnumerator Start()
     {
+        localizedString = new LocalizedString();
+        localizedString.TableReference = "Cut Scene Dialog";
+
+        yield return LocalizationSettings.InitializationOperation;
+
+        Debug.Log("Current Locale: " + LocalizationSettings.SelectedLocale.Identifier.Code);
+
         ShowSlide(currentSlideIndex);
 
         if (continueText != null) continueText.alpha = 0f;
-        if (skipText != null) skipText.alpha = 1f; // alltid synlig
+        if (skipText != null) skipText.alpha = 1f;
         if (skipProgressBar != null) skipProgressBar.fillAmount = 0f;
 
         StartCoroutine(InitialFadeIn());
@@ -40,7 +53,6 @@ public class CutSceneController : MonoBehaviour
 
     void Update()
     {
-        // Håll Enter för att skippa
         if (Input.GetKey(KeyCode.Return))
         {
             holdTimer += Time.deltaTime;
@@ -61,7 +73,6 @@ public class CutSceneController : MonoBehaviour
                 skipProgressBar.fillAmount = 0f;
         }
 
-        // Tryck Enter för att gå vidare (endast om inte håller ner)
         if (Input.GetKeyDown(KeyCode.Return) && !isFading)
         {
             currentSlideIndex++;
@@ -71,7 +82,7 @@ public class CutSceneController : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene("Level1");
+                SceneLoader.Instance.LoadScene("MainGame");
             }
         }
     }
@@ -79,27 +90,49 @@ public class CutSceneController : MonoBehaviour
     void ShowSlide(int index)
     {
         cutsceneImage.sprite = slides[index].image;
-        cutsceneText.text = slides[index].text;
+
+        localizedString.TableEntryReference = slides[index].localizationKey;
+
+        Debug.Log($"Loading localization key: {localizedString.TableEntryReference} from table: {localizedString.TableReference}");
+
+        if (updateTextCoroutine != null)
+            StopCoroutine(updateTextCoroutine);
+
+        updateTextCoroutine = StartCoroutine(UpdateLocalizedText());
     }
 
-    System.Collections.IEnumerator InitialFadeIn()
+    private IEnumerator UpdateLocalizedText()
+    {
+        var handle = localizedString.GetLocalizedStringAsync();
+        yield return handle;
+
+        if (handle.Status == AsyncOperationStatus.Succeeded)
+        {
+            Debug.Log("Localized text: " + handle.Result);
+            cutsceneText.text = handle.Result;
+        }
+        else
+        {
+            Debug.LogError("Failed to load localized string for key: " + localizedString.TableEntryReference);
+            cutsceneText.text = "[Missing Text]";
+        }
+    }
+
+    IEnumerator InitialFadeIn()
     {
         isFading = true;
         yield return textFader.FadeIn(3f);
         yield return new WaitForSeconds(1f);
 
         StartCoroutine(FadeInText(continueText, 1f));
-        // skipText syns alltid, vi skippar FadeIn
-
         isFading = false;
     }
 
-    System.Collections.IEnumerator TransitionToSlide(int index)
+    IEnumerator TransitionToSlide(int index)
     {
         isFading = true;
 
         StartCoroutine(FadeOutText(continueText, 0.5f));
-        // skipText alltid synlig, vi skippar FadeOut
 
         yield return textFader.FadeOut(3f);
         ShowSlide(index);
@@ -111,7 +144,7 @@ public class CutSceneController : MonoBehaviour
         isFading = false;
     }
 
-    System.Collections.IEnumerator FadeInText(CanvasGroup group, float duration)
+    IEnumerator FadeInText(CanvasGroup group, float duration)
     {
         if (group == null) yield break;
 
@@ -125,7 +158,7 @@ public class CutSceneController : MonoBehaviour
         group.alpha = 1f;
     }
 
-    System.Collections.IEnumerator FadeOutText(CanvasGroup group, float duration)
+    IEnumerator FadeOutText(CanvasGroup group, float duration)
     {
         if (group == null) yield break;
 
@@ -141,6 +174,6 @@ public class CutSceneController : MonoBehaviour
 
     void SkipCutscene()
     {
-        SceneManager.LoadScene("Level1");
+        SceneLoader.Instance.LoadScene("MainGame");
     }
 }
