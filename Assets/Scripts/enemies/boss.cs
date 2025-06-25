@@ -11,6 +11,8 @@ public class Boss : MonoBehaviour
     public LayerMask groundLayer;
     public GameObject bossHealthBar;
 
+    public Collider2D[] collidersToDisableOnDeath;
+
     [Header("Prefabs")]
     public GameObject throwablePrefab;
     public GameObject earthWavePrefab;
@@ -18,11 +20,14 @@ public class Boss : MonoBehaviour
 
 
     [Header("Attackinställningar")]
+    public float jumpChargeTime = 1f;
     public float jumpForce = 10f;
     public float slamDelay = 1.5f;
     public float throwForce = 10f;
     public float attackCooldown = 3f;
     public float vulnerableDuration = 2f;
+    public float hoverDuration = 2f;
+    public float hoverSpeed = 2f;   
 
     [Header("Agroinställning")]
     public float agroRange = 10f;
@@ -46,6 +51,20 @@ public class Boss : MonoBehaviour
         }
     }
 
+
+    public void StopAll()
+    {
+        gameObject.layer = LayerMask.NameToLayer("Default"); // Reset layer to default
+        gameObject.tag = "Untagged"; // Reset layer to default
+        StopAllCoroutines();
+        rb.linearVelocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
+
+        foreach (var item in collidersToDisableOnDeath)
+        {
+            item.enabled = false;
+        }
+    }
 
     private void Start()
     {
@@ -91,19 +110,32 @@ public class Boss : MonoBehaviour
         LookAtPlayer();
         OnFly?.Invoke(); // Start fly animation
 
+        yield return new WaitForSeconds(jumpChargeTime);
         // Step 1: Fly up
         rb.linearVelocity = new Vector2(0, jumpForce);
-        yield return new WaitForSeconds(0.5f);
 
-        // Step 2: Move horizontally above the player
-        float hoverDuration = 1f;
-        float hoverSpeed = 5f;
+        yield return new WaitForSeconds(0.5f);
+        // Capture the player's position once here
+        Vector3 targetPosition = player.position;
+
+        // Step 2: Move horizontally above the captured position
         float timer = 0f;
 
         while (timer < hoverDuration)
         {
-            float horizontalDirection = Mathf.Sign(player.position.x - transform.position.x);
-            rb.linearVelocity = new Vector2(horizontalDirection * hoverSpeed, 0);
+            // Move toward the captured horizontal position only
+            float horizontalDirection = Mathf.Sign(targetPosition.x - transform.position.x);
+
+            // Optional: Stop moving if close enough to target position
+            if (Mathf.Abs(transform.position.x - targetPosition.x) < 0.1f)
+            {
+                rb.linearVelocity = new Vector2(0, 0);
+            }
+            else
+            {
+                rb.linearVelocity = new Vector2(horizontalDirection * hoverSpeed, 0);
+            }
+
             timer += Time.deltaTime;
             yield return null;
         }

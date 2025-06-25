@@ -217,18 +217,20 @@ public class Movement : MonoBehaviour
     {
         if (rb.linearVelocity.y < -0.1f && !isGrabingwall && !isGrounded)
         {
-            if (fallStretchTween == null || !fallStretchTween.IsPlaying())
+            if (fallStretchTween == null || !fallStretchTween.IsActive() || !fallStretchTween.IsPlaying())
             {
+                fallStretchTween?.Kill();
                 fallStretchTween = gfx.transform.DOScale(new Vector3(0.6f, 1.4f, 1f), 3f).SetEase(Ease.OutQuad);
             }
         }
         else
         {
-            if (fallStretchTween != null && fallStretchTween.IsPlaying())
+            if (fallStretchTween != null && fallStretchTween.IsActive())
             {
                 fallStretchTween.Kill();
                 fallStretchTween = gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
             }
         }
     }
+
 }
