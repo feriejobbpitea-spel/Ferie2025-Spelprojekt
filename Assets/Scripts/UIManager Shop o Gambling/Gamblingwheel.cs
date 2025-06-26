@@ -35,7 +35,6 @@ public class Gamblingwheel : MonoBehaviour
         12.5f, 12.5f, 12.5f, 12.5f, 20f, 15f, 10f, 5f
     };
 
-    private int playerMoney = 1000;
 
     void Start()
     {
@@ -52,7 +51,7 @@ public class Gamblingwheel : MonoBehaviour
     void UpdateMoneyUI()
     {
         if (moneyText != null)
-            moneyText.text = $"{playerMoney}";
+            moneyText.text = $"{PlayerMoney.Instance.money}";
     }
 
     void ShowChancesUI()
@@ -71,14 +70,14 @@ public class Gamblingwheel : MonoBehaviour
 
     public void SpinWheel()
     {
-        if (playerMoney < spinCost)
+        if (PlayerMoney.Instance.money < spinCost)
         {
             resultText.text = "Inte tillräckligt med pengar!";
             return;
         }
 
         spinButton.interactable = false;
-        playerMoney -= spinCost;
+        PlayerMoney.Instance.money -= spinCost;
         UpdateMoneyUI();
 
         int chosenSegment = GetRandomSegmentBasedOnChance();
@@ -126,7 +125,7 @@ public class Gamblingwheel : MonoBehaviour
         wheel.rotation = endRotation;
 
         int reward = rewardsPerSegment[segmentIndex];
-        playerMoney += reward;
+        PlayerMoney.Instance.money += reward;
 
         resultText.text = $"Resultat: {segmentNames[segmentIndex]}";
         Debug.Log($"Snurrade till segment {segmentIndex}: {segmentNames[segmentIndex]}");

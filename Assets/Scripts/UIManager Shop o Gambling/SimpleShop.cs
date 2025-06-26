@@ -58,9 +58,9 @@ public class SimpleShop : MonoBehaviour
 
     void BuyItem(ShopItem item)
     {
-        if (MoneyHolder.Instance.money >= item.price)
+        if (PlayerMoney.Instance.money >= item.price)
         {
-            MoneyHolder.Instance.money -= item.price;
+            PlayerMoney.Instance.money -= item.price;
             Debug.Log("Du köpte: " + item.itemName);
             UpdateMoneyUI();
         }
@@ -74,7 +74,7 @@ public class SimpleShop : MonoBehaviour
     {
         if (playerMoneyText != null)
         {
-            playerMoneyText.text = $"{MoneyHolder.Instance.money}";
+            playerMoneyText.text = $"{PlayerMoney.Instance.money}";
         }
     }
 }
