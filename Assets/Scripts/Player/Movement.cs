@@ -83,8 +83,8 @@ public class Movement : MonoBehaviour
         keybinds["Right"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Right", KeyCode.D.ToString()));
 
         float moveX = 0f;
-        if (Input.GetKey(keybinds["Left"])) moveX -= 1f;
-        if (Input.GetKey(keybinds["Right"])) moveX += 1f;
+        if (Input.GetKey(keybinds["Left"])) moveX = -1f;
+        if (Input.GetKey(keybinds["Right"])) moveX = 1f;
 
         Vector2 movement;
 
@@ -97,9 +97,9 @@ public class Movement : MonoBehaviour
         {
             wallJumpXMomentum = 0;
           
-            if (Input.GetKey(keybinds["Left"])) moveX -= 1f;
-            if (Input.GetKey(keybinds["Right"])) moveX += 1f;
-
+            if (Input.GetKey(keybinds["Left"])) moveX = -1f;
+            if (Input.GetKey(keybinds["Right"])) moveX = 1f;
+            
             float targetX = moveX * playerSpeed * isRunning * superSpeed;
             float smoothedX = Mathf.Lerp(rb.linearVelocity.x, targetX, 0.1f);
             movement = new Vector2(smoothedX, rb.linearVelocity.y);

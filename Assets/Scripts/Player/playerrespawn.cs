@@ -9,7 +9,7 @@ public class PlayerRespawn : Singleton<PlayerRespawn>
 
     void Start()
     {
-        maxLives = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().maxLives; // Max antal liv
+        maxLives = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthV2>().maxLives; // Max antal liv
         currentLives = maxLives;
         // Startposition sätts som första respawn
        

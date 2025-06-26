@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerHealth : Singleton<PlayerHealth>
+public class PlayerHealthV2 : Singleton<PlayerHealthV2>
 {
     public int maxLives = 3;
     public int currentLives;
