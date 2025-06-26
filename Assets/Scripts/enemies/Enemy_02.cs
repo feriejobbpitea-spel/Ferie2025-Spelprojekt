@@ -5,7 +5,10 @@ public class Enemy_02 : MonoBehaviour
     public Transform firePoint;
     public float shootInterval = 2f;
     public float projectileSpeed = 10f;
-    public float aggroRange = 10f; // Aggro-räckvidd
+    public float aggroRange = 10f;
+
+    public AudioSource shootAudioSource;   // Lägg till denna rad
+    public AudioClip shootSound;            // Lägg till denna rad
 
     private float timer = 0f;
     private Transform player;
@@ -20,14 +23,17 @@ public class Enemy_02 : MonoBehaviour
         {
             Debug.LogError("Player not found in scene!");
         }
+        if (shootAudioSource == null)
+        {
+            shootAudioSource = GetComponent<AudioSource>();
+        }
     }
 
     void Update()
     {
-
         if (player == null) return;
 
-         float direction = Mathf.Sign(player.position.x - transform.position.x);
+        float direction = Mathf.Sign(player.position.x - transform.position.x);
 
         if (direction != 0)
         {
@@ -57,35 +63,39 @@ public class Enemy_02 : MonoBehaviour
         {
             stunned = true;
             stunTimer -= Time.fixedDeltaTime;
-           
+
             return;
-        } else { stunned = false; }
+        }
+        else { stunned = false; }
     }
     public void Stun(float duration)
     {
         stunTimer = Mathf.Max(stunTimer, duration);
         Debug.Log($"Fienden är stunad i {duration} sekunder.");
-        
         // Lägg till animation/effekt här vid behov
     }
     void ShootAtPlayer()
     {
-        if (!stunned) {
+        if (!stunned)
+        {
             Vector3 direction = (player.position - firePoint.position).normalized;
 
             GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
             projectile02 projScript = proj.GetComponent<projectile02>();
             projScript.SetDirection(direction);
             projScript.speed = projectileSpeed;
+
+            // Spela skjutljudet
+            if (shootAudioSource != null && shootSound != null)
+            {
+                shootAudioSource.PlayOneShot(shootSound);
+            }
         }
-        
     }
 
-    // Visa aggro-rangen i Scene-vyn när fienden är markerad
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, aggroRange);
     }
 }
-
