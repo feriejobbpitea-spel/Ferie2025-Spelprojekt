@@ -100,7 +100,7 @@ public class Emp_cone_shots : MonoBehaviour
             {
                 enemy2.Stun(20f);
             }
-        }
+        } 
     }
 
     void OnDrawGizmosSelected()

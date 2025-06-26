@@ -315,8 +315,7 @@ MonoBehaviour:
   hitMask:
     serializedVersion: 2
     m_Bits: 328
-  range: 20
-  damagePerSecond: 20
+  damagePerSecond: 40
   maxEnergy: 100
   currentEnergy: 0
   energyDrainPerSecond: 20

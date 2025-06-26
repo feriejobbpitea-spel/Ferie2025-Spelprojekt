@@ -64,7 +64,7 @@ public class Enemy_01 : MonoBehaviour
                 if (hitLayer == LayerMask.NameToLayer("Traps"))
                 {
                     direction = 0f;
-                    Debug.Log("Fienden stannar pga trap framför");
+                    
                 }
             }
         }

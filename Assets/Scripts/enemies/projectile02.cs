@@ -24,10 +24,14 @@ public class projectile02 : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground") || other.CompareTag("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground") || other.gameObject.layer == LayerMask.NameToLayer("goTrough"))
         {
             Destroy(gameObject, 0.1F);
+        } else if (other.CompareTag("Player")){
+            other.GetComponent<PlayerHealth>().LoseLife();
+            Destroy(gameObject, 0.1F);
         }
+       
 
 
     }
