@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: goldblock
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 1786308637, guid: 8e0a427e469f238488d503915c4f228f, type: 3}
-  - {fileID: -474881165, guid: 8e0a427e469f238488d503915c4f228f, type: 3}
+  - {fileID: -379241700, guid: be4d2258c173ec14c85db0e59f0cc6bc, type: 3}
   m_MinSpeed: 2
   m_MaxSpeed: 2
   m_AnimationStartTime: 0
