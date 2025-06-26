@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
@@ -23,10 +24,11 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
-        if(!IsCloseToShop())
+        if (!IsCloseToShop())
             return;
 
-        if (Input.GetKeyDown(KeyCode.E)) 
+        // Kolla om spelaren trycker på "Interact"-knappen (som kan vara reboundad)
+        if (Input.GetKeyDown(InputSettings.InteractKey))
         {
             if (_inShop)
                 ExitShop();

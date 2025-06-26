@@ -28,7 +28,10 @@ public class Movement : MonoBehaviour
     private Tween fallStretchTween;
 
     public bool IsGrounded => isGrounded;
-    public bool IsMoving => Input.GetAxisRaw("Horizontal") != 0;
+    public bool IsMoving =>
+     Input.GetKey(keybinds["Left"]) || Input.GetKey(keybinds["Right"]) ||
+     Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
+
     public float GetMoveSpeed => playerSpeed * isRunning * superSpeed;
 
     public bool facingRight = true;
@@ -83,8 +86,9 @@ public class Movement : MonoBehaviour
         keybinds["Right"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Right", KeyCode.D.ToString()));
 
         float moveX = 0f;
-        if (Input.GetKey(keybinds["Left"])) moveX = -1f;
-        if (Input.GetKey(keybinds["Right"])) moveX = 1f;
+        if (Input.GetKey(keybinds["Left"]) || Input.GetKey(KeyCode.LeftArrow)) moveX = -1f;
+        if (Input.GetKey(keybinds["Right"]) || Input.GetKey(KeyCode.RightArrow)) moveX = 1f;
+
 
         Vector2 movement;
 
@@ -96,16 +100,17 @@ public class Movement : MonoBehaviour
         else
         {
             wallJumpXMomentum = 0;
-          
-            if (Input.GetKey(keybinds["Left"])) moveX = -1f;
-            if (Input.GetKey(keybinds["Right"])) moveX = 1f;
-            
+
+            if (Input.GetKey(keybinds["Left"]) || Input.GetKey(KeyCode.LeftArrow)) moveX = -1f;
+            if (Input.GetKey(keybinds["Right"]) || Input.GetKey(KeyCode.RightArrow)) moveX = 1f;
+
+
             float targetX = moveX * playerSpeed * isRunning * superSpeed;
             float smoothedX = Mathf.Lerp(rb.linearVelocity.x, targetX, 0.1f);
             movement = new Vector2(smoothedX, rb.linearVelocity.y);
         }
 
-        if (Input.GetKeyDown(keybinds["Jump"]))
+        if (Input.GetKeyDown(keybinds["Jump"]) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (isGrounded)
             {

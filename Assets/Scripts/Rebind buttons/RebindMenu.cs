@@ -13,8 +13,12 @@ public class RebindMenu : MonoBehaviour
     public Button applyButton;
     public Button backButton;
 
-    // Lägg till SkipCutscene här också
-    private List<string> actions = new List<string> { "Jump", "Sprint", "Shoot", "Left", "Right", "SkipCutscene", "NextSlide" };
+    // Lista på alla actions som kan bindas
+    private List<string> actions = new List<string>
+    {
+        "Jump", "Sprint", "Shoot", "Left", "Right", "SkipCutscene", "NextSlide", "Interact"
+    };
+
     private bool isWaitingForKey = false;
     private string currentAction;
 
@@ -27,10 +31,10 @@ public class RebindMenu : MonoBehaviour
         actionsDropdown.ClearOptions();
         actionsDropdown.AddOptions(actions);
 
-        // Initiera tempBindings från PlayerPrefs (eller default)
+        // Initiera tempBindings från PlayerPrefs (eller standard)
         foreach (var action in actions)
         {
-            string savedKey = PlayerPrefs.GetString("bind_" + action, "None");
+            string savedKey = PlayerPrefs.GetString("bind_" + action, GetDefaultKeyForAction(action));
             if (Enum.TryParse<KeyCode>(savedKey, out var key))
             {
                 tempBindings[action] = key;
@@ -45,7 +49,7 @@ public class RebindMenu : MonoBehaviour
         currentAction = actions[0];
         UpdateRebindButtonText();
 
-        // Koppla events
+        // Koppla UI-knappar
         actionsDropdown.onValueChanged.AddListener(OnDropdownChanged);
         rebindButton.onClick.AddListener(OnRebindButtonClicked);
         applyButton.onClick.AddListener(OnApplyClicked);
@@ -107,15 +111,15 @@ public class RebindMenu : MonoBehaviour
         }
         PlayerPrefs.Save();
         Debug.Log("Bindings saved!");
-        // Här kan du lägga till kod för att stänga inställningsmenyn eller visa bekräftelse
+        // Du kan lägga till kod här för att stänga menyn eller visa bekräftelse
     }
 
     void OnBackClicked()
     {
-        // Återställ tempBindings till PlayerPrefs (dvs ignorera ändringar)
+        // Återställ tempBindings till sparade värden (ignorera ändringar)
         foreach (var action in actions)
         {
-            string savedKey = PlayerPrefs.GetString("bind_" + action, "None");
+            string savedKey = PlayerPrefs.GetString("bind_" + action, GetDefaultKeyForAction(action));
             if (Enum.TryParse<KeyCode>(savedKey, out var key))
             {
                 tempBindings[action] = key;
@@ -125,8 +129,26 @@ public class RebindMenu : MonoBehaviour
                 tempBindings[action] = KeyCode.None;
             }
         }
+
         UpdateRebindButtonText();
         Debug.Log("Changes discarded");
-        // Här kan du lägga till kod för att stänga inställningsmenyn eller gå tillbaka
+        // Du kan lägga till kod här för att stänga menyn
+    }
+
+    // Hämtar standardtangent för varje action
+    private string GetDefaultKeyForAction(string action)
+    {
+        switch (action)
+        {
+            case "Jump": return KeyCode.Space.ToString();
+            case "Sprint": return KeyCode.LeftShift.ToString();
+            case "Shoot": return KeyCode.Mouse0.ToString();
+            case "Left": return KeyCode.A.ToString();
+            case "Right": return KeyCode.D.ToString();
+            case "SkipCutscene": return KeyCode.Return.ToString();
+            case "NextSlide": return KeyCode.Return.ToString();
+            case "Interact": return KeyCode.E.ToString();
+            default: return KeyCode.None.ToString();
+        }
     }
 }
