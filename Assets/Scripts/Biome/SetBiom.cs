@@ -33,7 +33,7 @@ public class SetBiom : MonoBehaviour
 
         if (lastBiome != biome)
         {
-            player.GetComponent<PlayerHealth>().UpdateHearts();
+            player.GetComponent<PlayerHealthV2>().UpdateHearts();
             lastBiome = biome;
 
         }

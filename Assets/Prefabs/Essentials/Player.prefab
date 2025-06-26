@@ -6669,6 +6669,9 @@ MonoBehaviour:
   isGrabingwall: 0
   facingRight: 1
   bigJumpForce: 10
+  currentCharge: 1
+  maxCharge: 1
+  rechargeRate: 0.1
 --- !u!114 &8554682644447082599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6681,7 +6684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5106e2a0cdde3fe47a1334e20efb635b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLives: 3
 --- !u!114 &1796634301345471787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6712,6 +6714,11 @@ MonoBehaviour:
   whiteFlashMaterial: {fileID: 2100000, guid: e4129543b3ac18b43bf513379c8cf702, type: 2}
   movementScript: {fileID: 5674908858702478707}
   fallLimit: -20
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  boxCastSize: {x: 1, y: 1}
+  boxCastDistance: 0.1
 --- !u!114 &2934233217691040914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14946,9 +14953,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1743070080453706184}
-  - component: {fileID: 3726653950959807029}
+  - component: {fileID: 5190979528853624707}
   m_Layer: 0
-  m_Name: MoneyHolder
+  m_Name: Player Money
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14963,13 +14970,13 @@ Transform:
   m_GameObject: {fileID: 7571619306194472001}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 234.1, y: 729.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1685208924219828145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3726653950959807029
+--- !u!114 &5190979528853624707
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14978,7 +14985,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7571619306194472001}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2814d8f83a319564593616a44716e077, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f72fa292868a4c4c9e576dd793eb679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   money: 0
@@ -15635,7 +15642,6 @@ GameObject:
   - component: {fileID: 8925368682725005329}
   - component: {fileID: 6578036188949125557}
   - component: {fileID: 5227162334003183010}
-  - component: {fileID: 1512888722523633595}
   m_Layer: 5
   m_Name: HUD (Canvas)
   m_TagString: Untagged
@@ -15729,19 +15735,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1512888722523633595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8229268360251789660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c1d5b19ee1e2474fb30ec1fe1fac42a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHUDCanvas: {fileID: 8925368682725005329}
 --- !u!1 &8284922752459772727
 GameObject:
   m_ObjectHideFlags: 0
@@ -17285,6 +17278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Menu: {fileID: 4141930051637150958}
+  CanOpenAndClose: 0
 --- !u!224 &1788234393129031660 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1231991134768026610, guid: 70577ed1ecfa30a448020e5b1575adee, type: 3}
@@ -17792,6 +17786,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1685208924219828145}
     m_Modifications:
+    - target: {fileID: 168567228193887510, guid: 443c2d42229628e4cb1467e226420012, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 168567228193887510, guid: 443c2d42229628e4cb1467e226420012, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 168567228193887510, guid: 443c2d42229628e4cb1467e226420012, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0

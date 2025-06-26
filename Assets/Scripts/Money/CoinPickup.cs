@@ -74,11 +74,7 @@ public class CoinPickup : MonoBehaviour
             _animator.SetTrigger("Collected");
         }
 
-        var moneyHolder = FindFirstObjectByType<MoneyHolder>();
-        if (moneyHolder != null)
-        {
-            moneyHolder.AddMoney(coinValue);
-        }
+        PlayerMoney.Instance.AddMoney(coinValue);
 
         Destroy(gameObject, 0.7f);
     }
