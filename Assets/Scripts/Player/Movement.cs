@@ -58,9 +58,16 @@ public class Movement : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce * 4 / 5);
         }
     }
+    public float currentCharge = 1f;
+    public float maxCharge = 1f;
+    public float rechargeRate = 0.1f; // Långsammare laddning
 
     void Update()
     {
+        if (currentCharge < maxCharge)
+        {
+            currentCharge = Mathf.Min(currentCharge + rechargeRate * Time.deltaTime, maxCharge);
+        }
         ApplyFallStretch();
 
         if (Input.GetKey(KeyCode.LeftShift)) { if (isGrounded) { isRunning = 2; } } else { if (isGrounded) { isRunning = 1; } }

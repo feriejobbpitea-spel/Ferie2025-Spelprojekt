@@ -10,14 +10,17 @@ public class Enemy_01 : MonoBehaviour
     public Transform wallCheck;
     public float checkRadius = 0.2f;
     public float wallCheckRadius = 0.2f;
+    public float raycastDistance = 3f;
 
-    public float raycastDistance = 3f; // Max avstånd neråt för markkontroll
+    public Transform healthBar;
 
     private Rigidbody2D rb;
     private Transform player;
 
     private bool isGrounded;
     private bool hittingWall;
+
+    private float stunTimer = 0f;
 
     void Start()
     {
@@ -32,76 +35,69 @@ public class Enemy_01 : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (stunTimer > 0f)
+        {
+            stunTimer -= Time.fixedDeltaTime;
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Fienden står still i x-led
+            return;
+        }
+
         if (player == null) return;
 
-        // Kolla mark under fienden
-        isGrounded = false;
-        if (groundCheck != null)
-        {
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, LayerMask.GetMask("Ground"));
-        }
-        else
-        {
-            Debug.LogError("groundCheck är inte tilldelat i Inspector!");
-        }
-
-        // Kolla vägg
-        hittingWall = false;
-        if (wallCheck != null)
-        {
-            hittingWall = Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, obstacleLayer);
-        }
-        else
-        {
-            Debug.LogError("wallCheck är inte tilldelat i Inspector!");
-        }
+        isGrounded = groundCheck != null && Physics2D.OverlapCircle(groundCheck.position, checkRadius, LayerMask.GetMask("Ground"));
+        hittingWall = wallCheck != null && Physics2D.OverlapCircle(wallCheck.position, wallCheckRadius, obstacleLayer);
 
         float direction = 0f;
 
-        // Kolla om spelaren är nära nog för att aggera
         if (Vector2.Distance(player.position, transform.position) < aggroRange)
         {
-            // Räkna ut riktning mot spelaren: +1 eller -1
             direction = Mathf.Sign(player.position.x - transform.position.x);
 
-            // Raycast framifrån och nedåt där fienden tänker gå
             Vector2 rayOrigin = (Vector2)groundCheck.position + new Vector2(direction * 0.5f, 0);
-            RaycastHit2D groundInfo = Physics2D.Raycast(rayOrigin, Vector2.down, raycastDistance, LayerMask.GetMask("Ground"));
+            LayerMask groundAndTrapMask = LayerMask.GetMask("Ground", "Traps");
 
-            if (groundInfo.collider == null)
+            RaycastHit2D groundInfo = Physics2D.Raycast(rayOrigin, Vector2.down, raycastDistance, groundAndTrapMask);
+
+            if (groundInfo.collider != null)
             {
-                // Om det inte finns mark framför: stoppa (direction = 0)
-                direction = 0f;
-                Debug.Log("Fienden stannar pga stup framför");
+                int hitLayer = groundInfo.collider.gameObject.layer;
+                if (hitLayer == LayerMask.NameToLayer("Traps"))
+                {
+                    direction = 0f;
+                    Debug.Log("Fienden stannar pga trap framför");
+                }
             }
         }
 
-        // Sätt velocity med linearVelocity
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
 
-        // Hoppa om hinder framför och står på marken
         if (hittingWall && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
 
-        // Vänd sprite i rörelseriktning
         if (direction != 0)
         {
-            transform.localScale = new Vector3(
-                -1 * Mathf.Sign(direction) * Mathf.Abs(transform.localScale.x),
-                transform.localScale.y,
-                transform.localScale.z
-            );
-            healthBar.localScale = new Vector3(
-                -1 * Mathf.Sign(direction) * Mathf.Abs(healthBar.localScale.x),
-                healthBar.localScale.y,
-                healthBar.localScale.z
-            );
+            float dirSign = Mathf.Sign(direction);
+            transform.localScale = new Vector3(-1 * dirSign * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+            if (healthBar != null)
+            {
+                healthBar.localScale = new Vector3(-1 * dirSign * Mathf.Abs(healthBar.localScale.x), healthBar.localScale.y, healthBar.localScale.z);
+            }
         }
     }
-    public Transform healthBar;
-    private void OnDrawGizmos()
+
+    
+
+    public void Stun(float duration)
+    {
+        stunTimer = Mathf.Max(stunTimer, duration);
+        Debug.Log($"Fienden är stunad i {duration} sekunder.");
+        // Lägg till animation/effekt här vid behov
+    }
+
+    void OnDrawGizmos()
     {
         if (wallCheck != null)
         {
@@ -120,7 +116,6 @@ public class Enemy_01 : MonoBehaviour
 
         if (groundCheck != null)
         {
-            // Rita raycast neråt framför fienden
             float direction = 1f;
             if (player != null)
                 direction = Mathf.Sign(player.position.x - transform.position.x);

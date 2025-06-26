@@ -9,6 +9,9 @@ public class Enemy_02 : MonoBehaviour
 
     private float timer = 0f;
     private Transform player;
+    public Transform healthBar;
+    private float stunTimer = 0f;
+    private bool stunned = false;
 
     void Start()
     {
@@ -21,8 +24,24 @@ public class Enemy_02 : MonoBehaviour
 
     void Update()
     {
+
         if (player == null) return;
 
+         float direction = Mathf.Sign(player.position.x - transform.position.x);
+
+        if (direction != 0)
+        {
+            transform.localScale = new Vector3(
+                -1 * Mathf.Sign(direction) * Mathf.Abs(transform.localScale.x),
+                transform.localScale.y,
+                transform.localScale.z
+            );
+            healthBar.localScale = new Vector3(
+                -1 * Mathf.Sign(direction) * Mathf.Abs(healthBar.localScale.x),
+                healthBar.localScale.y,
+                healthBar.localScale.z
+            );
+        }
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         if (distanceToPlayer <= aggroRange)
         {
@@ -33,16 +52,33 @@ public class Enemy_02 : MonoBehaviour
                 timer = 0f;
             }
         }
-    }
 
+        if (stunTimer > 0f)
+        {
+            stunned = true;
+            stunTimer -= Time.fixedDeltaTime;
+           
+            return;
+        } else { stunned = false; }
+    }
+    public void Stun(float duration)
+    {
+        stunTimer = Mathf.Max(stunTimer, duration);
+        Debug.Log($"Fienden är stunad i {duration} sekunder.");
+        
+        // Lägg till animation/effekt här vid behov
+    }
     void ShootAtPlayer()
     {
-        Vector3 direction = (player.position - firePoint.position).normalized;
+        if (!stunned) {
+            Vector3 direction = (player.position - firePoint.position).normalized;
 
-        GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-        projectile02 projScript = proj.GetComponent<projectile02>();
-        projScript.SetDirection(direction);
-        projScript.speed = projectileSpeed;
+            GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
+            projectile02 projScript = proj.GetComponent<projectile02>();
+            projScript.SetDirection(direction);
+            projScript.speed = projectileSpeed;
+        }
+        
     }
 
     // Visa aggro-rangen i Scene-vyn när fienden är markerad

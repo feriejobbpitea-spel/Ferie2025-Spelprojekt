@@ -26,7 +26,7 @@ public class projectile02 : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground") || other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 0.1F);
         }
 
 

@@ -1,11 +1,15 @@
 using UnityEngine;
+using System.Collections;
 
 public class MeleeAttack : MonoBehaviour
 {
-    public GameObject hitArea;              // HitArea-objektet med t.ex. BoxCollider2D
+    public GameObject hitArea;
     public LayerMask enemyLayer;
     public int damage = 10;
     public float attackCooldown = 1f;
+    public float attackAnimationDuration = 0.5f;
+
+    public Animator playerAnimator;  // Animator på spelaren
 
     private float cooldownTimer = 0f;
     private Collider2D hitCollider;
@@ -13,7 +17,18 @@ public class MeleeAttack : MonoBehaviour
     void Start()
     {
         hitCollider = hitArea.GetComponentInChildren<Collider2D>();
-        transform.localPosition = Vector3.zero; // Sätt vapnets position relativt spelaren
+        playerAnimator =  transform.parent.GetComponentInChildren<Animator>();
+
+        if (!hitCollider.isTrigger)
+        {
+            Debug.LogWarning("HitArea collider måste vara Is Trigger för att inte putta fiender!");
+        }
+        hitArea.SetActive(false);
+
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetLayerWeight(1, 0f); // Layer off i början
+        }
     }
 
     void Update()
@@ -29,7 +44,12 @@ public class MeleeAttack : MonoBehaviour
 
     void PerformAttack()
     {
-        // Aktivera för att kunna köra overlap (om det är inaktivt)
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetBool("isAttacking", true);
+            playerAnimator.SetLayerWeight(1, 1f);
+        }
+
         hitArea.SetActive(true);
 
         ContactFilter2D filter = new ContactFilter2D();
@@ -48,7 +68,20 @@ public class MeleeAttack : MonoBehaviour
             }
         }
 
-        // Valfritt: slå av träffytan igen efter attack
+        StartCoroutine(EndAttackAfterDelay());
+    }
+
+
+    IEnumerator EndAttackAfterDelay()
+    {
+        yield return new WaitForSeconds(attackAnimationDuration);
+
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetBool("isAttacking", false);
+            playerAnimator.SetLayerWeight(1, 0f);
+        }
+
         hitArea.SetActive(false);
     }
 }

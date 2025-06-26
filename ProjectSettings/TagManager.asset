@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Enemy
   - EnemyWarning
-  - Ladder
+  - Traps
   layers:
   - Default
   - TransparentFX
@@ -22,7 +22,7 @@ TagManager:
   - Trigger
   - EnemyProjectiles
   - Traps
-  - 
+  - EMP
   - 
   - 
   - 

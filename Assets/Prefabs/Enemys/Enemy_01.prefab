@@ -148,7 +148,7 @@ MonoBehaviour:
   wallCheck: {fileID: 8094896008012255339}
   checkRadius: 0.2
   wallCheckRadius: 0.2
-  raycastDistance: 2
+  raycastDistance: 10
   healthBar: {fileID: 670402908738686867}
 --- !u!50 &2068875834683967062
 Rigidbody2D:
