@@ -35,7 +35,7 @@ public class earthwave : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             // Skada spelaren (byt ut enligt din skademetod)
-            PlayerHealth.Instance.LoseLife();
+            PlayerHealthV2.Instance.LoseLife();
             Destroy(gameObject);
             
         }

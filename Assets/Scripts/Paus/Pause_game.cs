@@ -23,8 +23,8 @@ public class Pause_game : MonoBehaviour
 
     public void Pause()
     {
-        int currentLives = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().currentLives;
-        Image pause = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().pause;
+        int currentLives = GameObject.FindWithTag("Player").GetComponent<PlayerHealthV2>().currentLives;
+        Image pause = GameObject.FindWithTag("Player").GetComponent<PlayerHealthV2>().pause;
         // Toggle the pause state of the game
         if (Time.timeScale != 0f && currentLives > 0)
         {

@@ -7,30 +7,15 @@ public class PlayerRespawn : Singleton<PlayerRespawn>
 
     private Vector3 respawnPosition;
 
-    [SerializeField] private MovingPlatform movingPlatform; // Du kan dra in manuellt, annars hittas automatiskt
-
     void Start()
     {
-        // Hämta max liv från PlayerHealth
-        maxLives = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>().maxLives;
+        maxLives = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthV2>().maxLives; // Max antal liv
         currentLives = maxLives;
-
-        // Försök hitta plattformen automatiskt (ny metod i Unity 2023+)
-        if (movingPlatform == null)
-        {
-            movingPlatform = Object.FindFirstObjectByType<MovingPlatform>();
-            if (movingPlatform == null)
-            {
-                Debug.LogWarning("Ingen MovingPlatform hittades i scenen.");
-            }
-        }
-
-        // Sätt nuvarande position som start-respawnpunkt
-        respawnPosition = transform.position;
+        // Startposition sätts som första respawn
+       
     }
 
-    public void updateMaxLives()
-    {
+    public void updateMaxLives() {
         maxLives++;
         currentLives++;
     }
@@ -51,16 +36,10 @@ public class PlayerRespawn : Singleton<PlayerRespawn>
 
     public void Respawn()
     {
-        // Flytta spelaren till senaste checkpoint
         transform.position = respawnPosition;
         Debug.Log("Respawnar...");
-        currentLives = maxLives;
-
-        // Återställ plattformen om den finns
-        if (movingPlatform != null)
-        {
-            movingPlatform.RespawnPlatform();
-        }
+        // Här kan du även lägga till animation eller reset av fiender m.m.
+        currentLives = maxLives; // Återställ liv vid respawn
     }
 
     public void SetCheckpoint(Vector3 newCheckpoint)
