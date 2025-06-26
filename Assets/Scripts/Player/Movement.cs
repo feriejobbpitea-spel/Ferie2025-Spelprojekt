@@ -62,7 +62,9 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Traps"))
         {
+            
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce * 4 / 5);
+            
         }
     }
     public float currentCharge = 1f;
@@ -139,6 +141,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyUp(keybinds["Jump"]) && rb.linearVelocity.y > 0)
 
         {
+            
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
         }
 
@@ -179,8 +182,16 @@ public class Movement : MonoBehaviour
             }
         }
         #endregion
-    }
+        // Tryck på S för att sluta väggglida
+        if (isGrabingwall && Input.GetKeyDown(KeyCode.S))
+        {
+            isGrabingwall = false;
+            gfx.flipX = false;  // Titta rakt fram
+            facingRight = !facingRight; // Synka variabeln
+        }
 
+    }
+    
     // 🕸 Dessa två metoder behövs för spindelnätet
     public void ApplySlow()
     {

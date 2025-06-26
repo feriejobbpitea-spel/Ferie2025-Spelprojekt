@@ -3,21 +3,42 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    public GameObject[] weaponPrefabs;
-    public Sprite[] weaponIcons;
+    public Transform playerTransform;
 
+    [Header("UI Slots")]
     public Image slot1;
     public Image slot2;
     public Image slot3;
     public Image slot4;
 
-    public Transform playerTransform;
+    [Header("Prefabs")]
+    public GameObject meleePrefab;
+    public Sprite meleeIcon;
+
+    public GameObject empPrefab;
+    public Sprite empIcon;
+
+    public GameObject rayGunPrefab;
+    public Sprite rayGunIcon;
+
+    public GameObject slingshotPrefab;
+    public Sprite slingshotIcon;
+
+    public GameObject confettiGunPrefab;        // 🆕 Confetti gun prefab
+    public Sprite confettiGunIcon;              // 🆕 Confetti gun icon
 
     private GameObject currentWeapon;
     private GameObject activeBeam;
 
+    private GameObject[] inventoryWeapons = new GameObject[4];
+    private Sprite[] inventoryIcons = new Sprite[4];
+
     void Start()
     {
+        inventoryWeapons[0] = meleePrefab;
+        inventoryIcons[0] = meleeIcon;
+
+        EquipWeapon(0); // Equip melee at start
         UpdateInventoryUI();
     }
 
@@ -27,12 +48,17 @@ public class InventoryManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha2)) EquipWeapon(1);
         else if (Input.GetKeyDown(KeyCode.Alpha3)) EquipWeapon(2);
         else if (Input.GetKeyDown(KeyCode.Alpha4)) EquipWeapon(3);
+
+        if (Input.GetKeyDown(KeyCode.E)) AddEmpGun();
+        if (Input.GetKeyDown(KeyCode.R)) AddRayGun();
+        if (Input.GetKeyDown(KeyCode.T)) AddSlingshot();
+        if (Input.GetKeyDown(KeyCode.Y)) AddConfettiGun(); // 🆕 Y = lägg till Confetti Gun
     }
 
     void EquipWeapon(int index)
     {
-        if (index < 0 || index >= weaponPrefabs.Length) return;
-        if (weaponPrefabs[index] == null)
+        if (index < 0 || index >= inventoryWeapons.Length) return;
+        if (inventoryWeapons[index] == null)
         {
             Debug.LogWarning($"Inget vapen i slot {index + 1}");
             return;
@@ -49,7 +75,7 @@ public class InventoryManager : MonoBehaviour
             Destroy(currentWeapon);
         }
 
-        currentWeapon = Instantiate(weaponPrefabs[index], playerTransform);
+        currentWeapon = Instantiate(inventoryWeapons[index], playerTransform);
         currentWeapon.transform.localPosition = Vector3.zero;
         currentWeapon.transform.localRotation = Quaternion.identity;
 
@@ -71,9 +97,9 @@ public class InventoryManager : MonoBehaviour
 
         for (int i = 0; i < slots.Length; i++)
         {
-            if (i < weaponIcons.Length && weaponIcons[i] != null)
+            if (inventoryIcons[i] != null)
             {
-                slots[i].sprite = weaponIcons[i];
+                slots[i].sprite = inventoryIcons[i];
                 slots[i].color = Color.white;
             }
             else
@@ -82,5 +108,76 @@ public class InventoryManager : MonoBehaviour
                 slots[i].color = new Color(1, 1, 1, 0);
             }
         }
+    }
+
+    public void AddEmpGun()
+    {
+        AddWeaponToNextSlot(empPrefab, empIcon);
+    }
+
+    public void AddRayGun()
+    {
+        AddWeaponToNextSlot(rayGunPrefab, rayGunIcon);
+    }
+
+    public void AddSlingshot()
+    {
+        AddWeaponToNextSlot(slingshotPrefab, slingshotIcon);
+    }
+
+    public void AddConfettiGun() // 🆕
+    {
+        AddWeaponToNextSlot(confettiGunPrefab, confettiGunIcon);
+    }
+
+    private void AddWeaponToNextSlot(GameObject weaponPrefab, Sprite icon)
+    {
+        // Kontrollera om vapnet redan finns
+        for (int i = 0; i < inventoryWeapons.Length; i++)
+        {
+            if (inventoryWeapons[i] == weaponPrefab)
+            {
+                Debug.Log("Du har redan detta vapen.");
+                return;
+            }
+        }
+
+        // Sök efter nästa lediga slot (förutom slot 0)
+        for (int i = 1; i < inventoryWeapons.Length; i++)
+        {
+            if (inventoryWeapons[i] == null)
+            {
+                inventoryWeapons[i] = weaponPrefab;
+                inventoryIcons[i] = icon;
+                UpdateInventoryUI();
+                return;
+            }
+        }
+
+        Debug.Log("Inventory fullt – kunde inte lägga till nytt vapen.");
+    }
+
+    public void DropWeaponOnDeath()
+    {
+        if (activeBeam != null)
+        {
+            Destroy(activeBeam);
+            activeBeam = null;
+        }
+
+        if (currentWeapon != null)
+        {
+            Destroy(currentWeapon);
+            currentWeapon = null;
+        }
+
+        for (int i = 1; i < inventoryWeapons.Length; i++)
+        {
+            inventoryWeapons[i] = null;
+            inventoryIcons[i] = null;
+        }
+
+        UpdateInventoryUI();
+        EquipWeapon(0);
     }
 }

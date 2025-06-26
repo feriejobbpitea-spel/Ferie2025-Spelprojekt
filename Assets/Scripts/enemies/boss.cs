@@ -64,6 +64,12 @@ public class Boss : MonoBehaviour
         {
             item.enabled = false;
         }
+        if (LevelTimer.Instance != null)
+        {
+            float finalTime = LevelTimer.Instance.GetElapsedTime();
+            PlayerPrefs.SetFloat("LevelTime", finalTime);
+            PlayerPrefs.Save();
+        }
     }
 
     private void Start()

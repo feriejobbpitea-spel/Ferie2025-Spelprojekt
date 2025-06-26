@@ -14,7 +14,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
     public Image pause;
     public Image gameOver;
     private bool isInvincible = false;
-    public float invincibilityDuration = 2f; // hur länge man är odödlig
+    public float invincibilityDuration = 0.8f; // hur länge man är odödlig
     private float invincibilityTimer;
 
     private SpriteRenderer spriteRenderer;
@@ -33,7 +33,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
 
     // Nytt för BoxCast
     public LayerMask enemyLayer;                // Fiendelayer
-    public Vector2 boxCastSize = new Vector2(1f, 1f);  // Storlek på boxen
+    public Vector2 boxCastSize = new Vector2(1f, 1.5f);  // Storlek på boxen
     public float boxCastDistance = 0.1f;        // Hur långt framför spelaren boxen kastas
 
     void Start()
@@ -55,8 +55,9 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         RaycastHit2D hit = Physics2D.BoxCast(origin, boxCastSize, 0f, direction, boxCastDistance, enemyLayer);
         if (hit.collider != null)
         {
+            Debug.Log("BoxCast hit enemy: " + hit.collider.name);
             LoseLife();
-            Debug.Log("Player hit an enemy via BoxCast and lost a life!");
+            
         }
 
         if (Input.GetKeyDown(KeyCode.J))
@@ -132,12 +133,13 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         {
             maxLives++;
             Debug.Log("Player gained a life! Max lives now: " + maxLives);
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerRespawn>().updateMaxLives();
+            
         }
         if (currentLives < maxLives)
         {
             currentLives++;
             Debug.Log("Player gained a life! Lives now: " + currentLives);
+            
         }
         UpdateHearts();
     }
@@ -162,16 +164,31 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             }
         }
     }
-
+    public InventoryManager inventoryManager;
     void Die()
     {
         Debug.Log("Player is dead!");
         if (maxLives == 1) gameOver.gameObject.SetActive(true);
         else death.gameObject.SetActive(true);
-
+        if (inventoryManager != null)
+        {
+            inventoryManager.DropWeaponOnDeath();
+        }
         Time.timeScale = 0; // Stoppa spelet
     }
 
+    public void SuperRespawn()
+    {
+        Time.timeScale = 1;
+        PlayerRespawn.Instance.RespawnAtSuperCheckpoint();
+        maxLives = 3; // Sätt tillbaka till max liv
+        currentLives = maxLives;
+        UpdateHearts();
+        gameOver.gameObject.SetActive(false);
+        isInvincible = true;
+        invincibilityTimer = invincibilityDuration * 2;
+        Debug.Log("Player respawned at super checkpoint!");
+    }
     public void Respawn()
     {
         Time.timeScale = 1;

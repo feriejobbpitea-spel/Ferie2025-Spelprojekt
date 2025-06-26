@@ -183,7 +183,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  damage: 10
+  damage: 25
   attackCooldown: 1
   attackAnimationDuration: 0.5
   playerAnimator: {fileID: 0}

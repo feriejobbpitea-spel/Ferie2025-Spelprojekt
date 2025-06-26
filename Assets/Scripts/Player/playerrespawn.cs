@@ -2,49 +2,48 @@ using UnityEngine;
 
 public class PlayerRespawn : Singleton<PlayerRespawn>
 {
-    private int maxLives;
-    private int currentLives;
-
     private Vector3 respawnPosition;
+    [SerializeField] private Vector3 superCheckpointPosition;
 
     void Start()
     {
-        maxLives = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthV2>().maxLives; // Max antal liv
-        currentLives = maxLives;
-        // Startposition sätts som första respawn
-       
+        // Första respawnpositionen är spelarens startplats
+        respawnPosition = transform.position;
     }
 
-    public void updateMaxLives() {
-        maxLives++;
-        currentLives++;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            LoseLife();
-        }
-    }
-
-    void LoseLife()
-    {
-        currentLives--;
-        Debug.Log("Liv kvar: " + currentLives);
-    }
-
+    /// <summary>
+    /// Respawnar vid senaste vanliga checkpointen.
+    /// </summary>
     public void Respawn()
     {
         transform.position = respawnPosition;
-        Debug.Log("Respawnar...");
-        // Här kan du även lägga till animation eller reset av fiender m.m.
-        currentLives = maxLives; // Återställ liv vid respawn
+        Debug.Log("Respawnar vid vanlig checkpoint...");
     }
 
+    /// <summary>
+    /// Respawnar vid super checkpoint. Anropas ex. efter game over.
+    /// </summary>
+    public void RespawnAtSuperCheckpoint()
+    {
+        transform.position = superCheckpointPosition;
+        Debug.Log("Respawnar vid SUPER checkpoint!");
+    }
+
+    /// <summary>
+    /// Sätter ny vanlig checkpoint.
+    /// </summary>
     public void SetCheckpoint(Vector3 newCheckpoint)
     {
         respawnPosition = newCheckpoint;
-        Debug.Log("Checkpoint uppnådd!");
+        Debug.Log("Ny checkpoint satt.");
+    }
+
+    /// <summary>
+    /// Sätter super checkpoint via kod om du inte använder inspector.
+    /// </summary>
+    public void SetSuperCheckpoint(Vector3 superCheckpoint)
+    {
+        superCheckpointPosition = superCheckpoint;
+        Debug.Log("Super checkpoint satt.");
     }
 }

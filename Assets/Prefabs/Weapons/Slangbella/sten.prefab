@@ -166,5 +166,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 5
-  baseDamage: 0.25
-  damageMultiplier: 2
+  baseDamage: 0.5
+  damageMultiplier: 2.2
