@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8e0a427e469f238488d503915c4f228f
+guid: fa4a98cc437fc9e488a51a92c4f2afec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8647171919521056621
-    second: goldblock_0
+      213: -6899718100470854415
+    second: ny obsidian_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: goldblock_0
+      name: ny obsidian_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d6709cecb0de00870800000000000000
-      internalID: 8647171919521056621
+      spriteID: 1fc0a13a1f64f30a0800000000000000
+      internalID: -6899718100470854415
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      goldblock_0: 8647171919521056621
+      ny obsidian_0: -6899718100470854415
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
