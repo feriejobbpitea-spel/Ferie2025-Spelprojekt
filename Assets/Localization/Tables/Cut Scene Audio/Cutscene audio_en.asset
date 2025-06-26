@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Cutscene audio_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: bfcff2bcc9678fc46b43e639e1d6a559, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 28670361600
+    m_Localized: Grandpa was fucking tired, tired of all this innovation.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31753175040
+    m_Localized: He couldn't stand all his grandchildren leaving him for some stupid
+      machine called a computer.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33699332096
+    m_Localized: "At the age of thirteen, children should be responsible, read books
+      and most importantly SPEND TIME WITH THEIR FUCKIN\u2019 GRANDPARENTS, but no."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36689870848
+    m_Localized: All they do is to sit in front of that stupid machine.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39038681088
+    m_Localized: In addition, the irresponsible inventors have created something
+      called AI.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 412231073792
+    m_Localized: I have no idea what that AI bullshit is but either way, grandpa
+      WILL make a change.
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

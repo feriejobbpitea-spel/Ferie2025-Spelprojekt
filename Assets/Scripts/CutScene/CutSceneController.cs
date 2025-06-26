@@ -10,8 +10,8 @@ using System.Collections;
 public class CutsceneSlide
 {
     public Sprite image;
-    [Tooltip("Nyckel till lokaliserad text i din Localization Table")]
     public string localizationKey;
+    public LocalizedAudioClip voiceLine;
 }
 
 public class CutSceneController : MonoBehaviour
@@ -23,15 +23,23 @@ public class CutSceneController : MonoBehaviour
     public CanvasGroup continueText;
     public CanvasGroup skipText;
     public Image skipProgressBar;
+    public AudioSource audioSource;
+
+    public TextMeshProUGUI continueTextLabel;  // NY: Text-komponent för "Press ENTER to Continue"
+    public TextMeshProUGUI skipTextLabel;      // NY: Text-komponent för "Hold ENTER to skip"
 
     private int currentSlideIndex = 0;
     private bool isFading = false;
+    private bool canContinue = false;
 
-    private float skipHoldTime = 5f;
+    private float skipHoldTime = 2f;
     private float holdTimer = 0f;
 
     private LocalizedString localizedString;
     private Coroutine updateTextCoroutine;
+
+    private KeyCode skipKey;  // Keybind för skip
+    private KeyCode nextSlideKey; // Keybind för nästa slide
 
     IEnumerator Start()
     {
@@ -40,7 +48,22 @@ public class CutSceneController : MonoBehaviour
 
         yield return LocalizationSettings.InitializationOperation;
 
-        Debug.Log("Current Locale: " + LocalizationSettings.SelectedLocale.Identifier.Code);
+        // Läs in keybinds från PlayerPrefs, fallback till Return
+        string savedSkipKey = PlayerPrefs.GetString("bind_SkipCutscene", KeyCode.Return.ToString());
+        if (!System.Enum.TryParse(savedSkipKey, out skipKey))
+        {
+            skipKey = KeyCode.Return;
+        }
+
+        string savedNextKey = PlayerPrefs.GetString("bind_NextSlide", KeyCode.Return.ToString());
+        if (!System.Enum.TryParse(savedNextKey, out nextSlideKey))
+        {
+            nextSlideKey = KeyCode.Return;
+        }
+
+        // Uppdatera UI-texten med rätt knappnamn
+        UpdateContinueTextLabel();
+        UpdateSkipTextLabel();
 
         ShowSlide(currentSlideIndex);
 
@@ -53,7 +76,7 @@ public class CutSceneController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Return))
+        if (Input.GetKey(skipKey))
         {
             holdTimer += Time.deltaTime;
             float progress = Mathf.Clamp01(holdTimer / skipHoldTime);
@@ -73,7 +96,7 @@ public class CutSceneController : MonoBehaviour
                 skipProgressBar.fillAmount = 0f;
         }
 
-        if (Input.GetKeyDown(KeyCode.Return) && !isFading)
+        if (Input.GetKeyDown(nextSlideKey) && !isFading && canContinue)
         {
             currentSlideIndex++;
             if (currentSlideIndex < slides.Length)
@@ -87,67 +110,106 @@ public class CutSceneController : MonoBehaviour
         }
     }
 
+    void UpdateContinueTextLabel()
+    {
+        if (continueTextLabel != null)
+        {
+            continueTextLabel.text = $"Press {KeyCodeToString(nextSlideKey)} to Continue";
+        }
+    }
+
+    void UpdateSkipTextLabel()
+    {
+        if (skipTextLabel != null)
+        {
+            skipTextLabel.text = $"Hold {KeyCodeToString(skipKey)} to skip";
+        }
+    }
+
+    string KeyCodeToString(KeyCode key)
+    {
+        // Anpassa sträng om du vill, t.ex. ersätt KeyCode.Return med "ENTER"
+        if (key == KeyCode.Return) return "ENTER";
+        if (key == KeyCode.Escape) return "ESC";
+        // Lägg till fler specialfall vid behov
+
+        return key.ToString().ToUpper();
+    }
+
+    // Resten av din kod är oförändrad, här är resten av klassen för referens:
+
     void ShowSlide(int index)
     {
         cutsceneImage.sprite = slides[index].image;
-
         localizedString.TableEntryReference = slides[index].localizationKey;
-
-        Debug.Log($"Loading localization key: {localizedString.TableEntryReference} from table: {localizedString.TableReference}");
 
         if (updateTextCoroutine != null)
             StopCoroutine(updateTextCoroutine);
 
-        updateTextCoroutine = StartCoroutine(UpdateLocalizedText());
+        updateTextCoroutine = StartCoroutine(UpdateLocalizedText(slides[index].voiceLine));
     }
 
-    private IEnumerator UpdateLocalizedText()
+    private IEnumerator UpdateLocalizedText(LocalizedAudioClip voiceClip)
     {
+        canContinue = false;
+        if (continueText != null) continueText.alpha = 0f;
+
         var handle = localizedString.GetLocalizedStringAsync();
         yield return handle;
 
         if (handle.Status == AsyncOperationStatus.Succeeded)
         {
-            Debug.Log("Localized text: " + handle.Result);
             cutsceneText.text = handle.Result;
         }
         else
         {
-            Debug.LogError("Failed to load localized string for key: " + localizedString.TableEntryReference);
             cutsceneText.text = "[Missing Text]";
         }
+
+        yield return new WaitForSeconds(0.2f);
+
+        if (voiceClip != null)
+        {
+            var audioHandle = voiceClip.LoadAssetAsync();
+            yield return audioHandle;
+
+            if (audioHandle.Status == AsyncOperationStatus.Succeeded && audioHandle.Result != null)
+            {
+                audioSource.Stop();
+                audioSource.clip = audioHandle.Result;
+                audioSource.Play();
+                yield return new WaitWhile(() => audioSource.isPlaying);
+            }
+        }
+
+        StartCoroutine(FadeInText(continueText, 1f));
+        canContinue = true;
     }
 
     IEnumerator InitialFadeIn()
     {
         isFading = true;
-        yield return textFader.FadeIn(3f);
+        yield return textFader.FadeIn(1f);
         yield return new WaitForSeconds(1f);
-
-        StartCoroutine(FadeInText(continueText, 1f));
         isFading = false;
     }
 
     IEnumerator TransitionToSlide(int index)
     {
         isFading = true;
-
         StartCoroutine(FadeOutText(continueText, 0.5f));
+        yield return textFader.FadeOut(1f);
 
-        yield return textFader.FadeOut(3f);
         ShowSlide(index);
-        yield return textFader.FadeIn(3f);
-        yield return new WaitForSeconds(1f);
 
-        StartCoroutine(FadeInText(continueText, 1f));
-
+        yield return textFader.FadeIn(2.5f);
+        yield return new WaitForSeconds(0.5f);
         isFading = false;
     }
 
     IEnumerator FadeInText(CanvasGroup group, float duration)
     {
         if (group == null) yield break;
-
         float timer = 0f;
         while (timer < duration)
         {
@@ -161,7 +223,6 @@ public class CutSceneController : MonoBehaviour
     IEnumerator FadeOutText(CanvasGroup group, float duration)
     {
         if (group == null) yield break;
-
         float timer = 0f;
         while (timer < duration)
         {

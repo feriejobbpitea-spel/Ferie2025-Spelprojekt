@@ -10,26 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Localization-String-Tables-English (en)
+  m_Name: Localization-Assets-English (en)
   m_EditorClassIdentifier: 
-  m_GroupName: Localization-String-Tables-English (en)
-  m_GUID: f1e19ed68df39d14bb20c44fadba7735
+  m_GroupName: Localization-Assets-English (en)
+  m_GUID: e1c0913faf38b834eb8be8f67d59a1d4
   m_SerializeEntries:
-  - m_GUID: 19130af9e6abca846aaffb7a3006e975
-    m_Address: Cutscene audio_en
+  - m_GUID: 0bb1c5e42dcd19d498d939f3b1a08913
+    m_Address: Audio 14
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3a42a408f1fd4de4993a8de15683856d
-    m_Address: Main Menu_en
+  - m_GUID: 565cb06f5f501ee48b2dba24481c48db
+    m_Address: Audio 9
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
-    - Preload
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e4ec2be45bea54a4d9e27757cd96197d
-    m_Address: Cut Scene Dialog_en
+  - m_GUID: b73f8bcbde9fe4949abe19790275337f
+    m_Address: Audio 10
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dadab7766183e994caed03aeca1caec4
+    m_Address: Audio 12
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
@@ -38,5 +43,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 4183d6c41c6d0a045bfcd722e875f937, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 1f64e62b57dd02d469d7d8c134f116d3, type: 2}
-    - {fileID: 11400000, guid: 964ce968ced89f445b4113db4749d149, type: 2}
+    - {fileID: 11400000, guid: fc30ce459e559fc43a41c86d8a49a493, type: 2}
+    - {fileID: 11400000, guid: 9e128d985806573419cebc4180aab5e6, type: 2}

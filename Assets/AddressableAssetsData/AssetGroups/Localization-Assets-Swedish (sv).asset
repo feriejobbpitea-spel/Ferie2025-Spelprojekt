@@ -10,33 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Localization-String-Tables-English (en)
+  m_Name: Localization-Assets-Swedish (sv)
   m_EditorClassIdentifier: 
-  m_GroupName: Localization-String-Tables-English (en)
-  m_GUID: f1e19ed68df39d14bb20c44fadba7735
+  m_GroupName: Localization-Assets-Swedish (sv)
+  m_GUID: 01427adb3ba3dec499f21f714943f57f
   m_SerializeEntries:
-  - m_GUID: 19130af9e6abca846aaffb7a3006e975
-    m_Address: Cutscene audio_en
+  - m_GUID: 17cc6e9a403f70b47a8c272f5becbd44
+    m_Address: boss music loop
     m_ReadOnly: 1
     m_SerializedLabels:
-    - Locale-en
+    - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3a42a408f1fd4de4993a8de15683856d
-    m_Address: Main Menu_en
+  - m_GUID: 1d012fb2423e9a946b939fd10f232583
+    m_Address: Audio 11
     m_ReadOnly: 1
     m_SerializedLabels:
-    - Locale-en
-    - Preload
+    - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e4ec2be45bea54a4d9e27757cd96197d
-    m_Address: Cut Scene Dialog_en
+  - m_GUID: 3b600478776b93045b91e1e689613f60
+    m_Address: boss music start
     m_ReadOnly: 1
     m_SerializedLabels:
-    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c9d4f38514d8f8343ac0d9f7e2a06556
+    m_Address: Audio 2
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 4183d6c41c6d0a045bfcd722e875f937, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 1f64e62b57dd02d469d7d8c134f116d3, type: 2}
-    - {fileID: 11400000, guid: 964ce968ced89f445b4113db4749d149, type: 2}
+    - {fileID: 11400000, guid: 490676c786cf9e64cac7d00b8369c379, type: 2}
+    - {fileID: 11400000, guid: 2a0b0eea38628444191488720998be66, type: 2}

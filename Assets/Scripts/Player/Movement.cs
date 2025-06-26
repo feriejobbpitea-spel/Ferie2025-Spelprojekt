@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -32,6 +33,8 @@ public class Movement : MonoBehaviour
 
     public bool facingRight = true;
 
+    private Dictionary<string, KeyCode> keybinds = new Dictionary<string, KeyCode>();
+
     #region powerups
     private bool doubleJump = true;
     private bool doubleJumpUsed = false;
@@ -49,6 +52,10 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         normalSpeed = playerSpeed; // 🕸 Save original speed
+                                   // Ladda keybinds från PlayerPrefs
+        keybinds["Jump"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Jump", KeyCode.Space.ToString()));
+        keybinds["Sprint"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Sprint", KeyCode.LeftShift.ToString()));
+        keybinds["Shoot"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString()));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -70,9 +77,15 @@ public class Movement : MonoBehaviour
         }
         ApplyFallStretch();
 
-        if (Input.GetKey(KeyCode.LeftShift)) { if (isGrounded) { isRunning = 2; } } else { if (isGrounded) { isRunning = 1; } }
+        if (Input.GetKey(keybinds["Sprint"])) { if (isGrounded) { isRunning = 2; } } else { if (isGrounded) { isRunning = 1; } }
 
-        float moveX = Input.GetAxis("Horizontal");
+        keybinds["Left"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Left", KeyCode.A.ToString()));
+        keybinds["Right"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Right", KeyCode.D.ToString()));
+
+        float moveX = 0f;
+        if (Input.GetKey(keybinds["Left"])) moveX -= 1f;
+        if (Input.GetKey(keybinds["Right"])) moveX += 1f;
+
         Vector2 movement;
 
         if (wallJumpTimer > 0)
@@ -83,13 +96,16 @@ public class Movement : MonoBehaviour
         else
         {
             wallJumpXMomentum = 0;
-            float moveDX = Input.GetAxis("Horizontal");
+          
+            if (Input.GetKey(keybinds["Left"])) moveX -= 1f;
+            if (Input.GetKey(keybinds["Right"])) moveX += 1f;
+
             float targetX = moveX * playerSpeed * isRunning * superSpeed;
             float smoothedX = Mathf.Lerp(rb.linearVelocity.x, targetX, 0.1f);
             movement = new Vector2(smoothedX, rb.linearVelocity.y);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(keybinds["Jump"]))
         {
             if (isGrounded)
             {
@@ -120,7 +136,8 @@ public class Movement : MonoBehaviour
 
         rb.linearVelocity = movement;
 
-        if (Input.GetKeyUp(KeyCode.Space) && rb.linearVelocity.y > 0)
+        if (Input.GetKeyUp(keybinds["Jump"]) && rb.linearVelocity.y > 0)
+
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
         }

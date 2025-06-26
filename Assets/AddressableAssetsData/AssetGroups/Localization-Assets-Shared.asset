@@ -15,6 +15,20 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: 2a23ce10e77f89b4a8f01c6ad66e0d23
   m_SerializeEntries:
+  - m_GUID: 329d8e92eb9de7b4c805658cb84edff0
+    m_Address: Audio 7
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ce4c3f0b060cbf41988d9b74e802338
+    m_Address: Audio 4
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 647361db4f093ca4b89d89914dccf343
     m_Address: Assets/Localization/Tables/Main Menu Shared Data.asset
     m_ReadOnly: 1
@@ -22,6 +36,24 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a9fcbbae91553f441a7fbc67e61eb121
     m_Address: Assets/Localization/Tables/Cut Scene Dialog Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bfcff2bcc9678fc46b43e639e1d6a559
+    m_Address: Assets/Localization/Tables/Cut Scene Audio/Cutscene audio Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de31fd32957dab34284983f827c18b24
+    m_Address: Audio 1
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e37181e35d2155a4f8f1f681d10550ff
+    m_Address: Assets/Localization/Tables/Cut Scene Audio/Cut scene audio Shared
+      Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
