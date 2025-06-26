@@ -9,9 +9,6 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
     public int currentLives;
 
     public Image[] hearts;         // Dra in tre Image-objekt från Canvas
-    public Sprite fullHeartR;      // Rött hjärta (för hjärta 0)
-    public Sprite fullHeartG;      // Grönt hjärta (för hjärta 1)
-    public Sprite fullHeartB;      // Blått hjärta (för hjärta 2)
     public Sprite emptyHeart;      // Grått/tomt hjärta
     public Image death;
     public Image pause;
@@ -156,12 +153,8 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         {
             if (i < currentLives)
             {
-                GameObject player = GameObject.FindWithTag("Player");
-                string biome = player.GetComponent<SetBiom>().biome;
-                if (biome == "Grass") hearts[i].sprite = fullHeartR;
-                else if (biome == "mine") hearts[i].sprite = fullHeartG;
-                else if (biome == "boss") hearts[i].sprite = fullHeartB;
-                else hearts[i].sprite = fullHeartR;
+                var heartUI = BiomeHandler.Instance.CurrentBiome.HeartUI;
+                hearts[i].sprite = heartUI;
             }
             else
             {

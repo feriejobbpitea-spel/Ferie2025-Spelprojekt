@@ -6702,9 +6702,6 @@ MonoBehaviour:
   - {fileID: 4348755311790734137}
   - {fileID: 399585387377823196}
   - {fileID: 4980174484963460284}
-  fullHeartR: {fileID: 2150585771334873267, guid: 575c31afa4014004eb5edfcd6f1a8e76, type: 3}
-  fullHeartG: {fileID: -7628474057703728873, guid: b32e8366b2bd78c4c978b01e86ce9e74, type: 3}
-  fullHeartB: {fileID: -4136378046484077177, guid: 07f9e6304226b674e9d8d840d7399a17, type: 3}
   emptyHeart: {fileID: 2798047460436315396, guid: 33279788196df204ea745a7d869cad44, type: 3}
   death: {fileID: 4222666853691470696}
   pause: {fileID: 1016460551117613194}
@@ -6744,9 +6741,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b6da4b2926fa274191026b291617df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  biomeM: {fileID: 0}
-  biomeB: {fileID: 0}
-  biome: Grass
+  StartBiome: {fileID: 11400000, guid: 81831a07e25e03a4d939bc066c2285fd, type: 2}
+  colorTweenDuration: 1
 --- !u!114 &6407460222364315440
 MonoBehaviour:
   m_ObjectHideFlags: 0
