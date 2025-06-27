@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -27,7 +26,7 @@ public class Gamblingwheel : MonoBehaviour
     // Namn per segment
     public string[] segmentNames = {
         "Förlust", "Förlust", "Förlust", "Förlust",
-        "150 kr", "200 kr", "300 kr", "Jackpot 500 kr"
+        "150 Datachips", "200 Datachips", "300 Datachips", "Jackpot 500 Datachips"
     };
 
     // Sannolikheter per segment – totalt 100%
@@ -60,10 +59,10 @@ public class Gamblingwheel : MonoBehaviour
 
         string chanceDisplay = "Vinstchanser:\n";
         chanceDisplay += "Förlust: 50%\n";
-        chanceDisplay += "150 kr: 20%\n";
-        chanceDisplay += "200 kr: 15%\n";
-        chanceDisplay += "300 kr: 10%\n";
-        chanceDisplay += "Jackpot 500 kr: 5%\n";
+        chanceDisplay += "150 Datachips: 20%\n";
+        chanceDisplay += "200 Datachips: 15%\n";
+        chanceDisplay += "300 Datachips: 10%\n";
+        chanceDisplay += "Jackpot 500 Datachips: 5%\n";
 
         chancesText.text = chanceDisplay;
     }
@@ -108,22 +107,30 @@ public class Gamblingwheel : MonoBehaviour
 
     IEnumerator SpinAnimation(float targetAngle, int segmentIndex)
     {
+        // Snurra 5 hela varv + slumpat segment (medurs = minska rotation i z-axeln)
         float totalAngle = 360f * 5 + targetAngle;
         float elapsed = 0f;
 
-        Quaternion startRotation = wheel.rotation;
-        Quaternion endRotation = Quaternion.Euler(0, 0, -totalAngle);
+        // Hämta aktuell rotation i grader (0-360)
+        float startRotation = wheel.eulerAngles.z;
 
         while (elapsed < spinDuration)
         {
-            float t = elapsed / spinDuration;
-            wheel.rotation = Quaternion.Lerp(startRotation, endRotation, EaseOut(t));
             elapsed += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(elapsed / spinDuration);
+            float easedT = EaseOut(t);
+
+            // Beräkna ny rotation med easing, minska z för medurs snurr
+            float newRotation = startRotation - totalAngle * easedT;
+            wheel.rotation = Quaternion.Euler(0f, 0f, newRotation);
+
             yield return null;
         }
 
-        wheel.rotation = endRotation;
+        // SäDatachipsa att hjulet stannar exakt där det ska
+        wheel.rotation = Quaternion.Euler(0f, 0f, startRotation - totalAngle);
 
+        // Ge belöning
         int reward = rewardsPerSegment[segmentIndex];
         PlayerMoney.Instance.money += reward;
 

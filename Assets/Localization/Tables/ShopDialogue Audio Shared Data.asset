@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: ShopDialogue Audio Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: ShopDialogue Audio
+  m_TableCollectionNameGuidString: 40c72d228a56c764aa88ec1606e2da93
+  m_Entries:
+  - m_Id: 307566411776
+    m_Key: Entry1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 310875717632
+    m_Key: Entry2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 313224527872
+    m_Key: Entry3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 315002912768
+    m_Key: Entry5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 316852600832
+    m_Key: Entry6
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items:
+    - rid: 1089064686527447300
+  m_KeyGenerator:
+    rid: 1089064686527447298
+  references:
+    version: 2
+    RefIds:
+    - rid: 1089064686527447298
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1751023200177
+    - rid: 1089064686527447300
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 307566411776
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 310875717632
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 313224527872
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 315002912768
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 316852600832
+          m_TableCodes:
+          - en
+          - sv
+        m_TypeString: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null

@@ -12,28 +12,42 @@ public class RebindMenu : MonoBehaviour
 
     public Button applyButton;
     public Button backButton;
+    public Button resetButton;  // Här är knappen för att resetta keybinds
 
-    // Lägg till SkipCutscene här också
     private List<string> actions = new List<string> { "Jump", "Sprint", "Shoot", "Left", "Right", "SkipCutscene", "NextSlide" };
     private bool isWaitingForKey = false;
     private string currentAction;
 
-    // Temporär lagring för bindningar som ändras i menyn
     private Dictionary<string, KeyCode> tempBindings = new Dictionary<string, KeyCode>();
+
+    // Standardbindningar
+    private Dictionary<string, KeyCode> defaultBindings = new Dictionary<string, KeyCode>
+    {
+        { "Jump", KeyCode.Space },
+        { "Sprint", KeyCode.LeftShift },
+        { "Shoot", KeyCode.Mouse0 },
+        { "Left", KeyCode.A },
+        { "Right", KeyCode.D },
+        { "SkipCutscene", KeyCode.Backspace },     // Ändra vid behov
+        { "NextSlide", KeyCode.Return }         // Ändra vid behov
+    };
 
     void Start()
     {
-        // Fyll dropdown med actions
         actionsDropdown.ClearOptions();
         actionsDropdown.AddOptions(actions);
 
-        // Initiera tempBindings från PlayerPrefs (eller default)
+        // Initiera bindningar från PlayerPrefs eller default
         foreach (var action in actions)
         {
-            string savedKey = PlayerPrefs.GetString("bind_" + action, "None");
+            string savedKey = PlayerPrefs.GetString("bind_" + action, "");
             if (Enum.TryParse<KeyCode>(savedKey, out var key))
             {
                 tempBindings[action] = key;
+            }
+            else if (defaultBindings.ContainsKey(action))
+            {
+                tempBindings[action] = defaultBindings[action];
             }
             else
             {
@@ -41,20 +55,20 @@ public class RebindMenu : MonoBehaviour
             }
         }
 
-        // Välj första action som default
         currentAction = actions[0];
         UpdateRebindButtonText();
 
-        // Koppla events
         actionsDropdown.onValueChanged.AddListener(OnDropdownChanged);
         rebindButton.onClick.AddListener(OnRebindButtonClicked);
         applyButton.onClick.AddListener(OnApplyClicked);
         backButton.onClick.AddListener(OnBackClicked);
+
+        resetButton.onClick.AddListener(OnResetClicked);  // Lägg till denna rad för reset-knappen
     }
 
     void OnDropdownChanged(int index)
     {
-        if (isWaitingForKey) return; // blocka byte under rebind
+        if (isWaitingForKey) return;
         currentAction = actions[index];
         UpdateRebindButtonText();
     }
@@ -100,25 +114,26 @@ public class RebindMenu : MonoBehaviour
 
     void OnApplyClicked()
     {
-        // Spara alla temp-bindningar till PlayerPrefs
         foreach (var kvp in tempBindings)
         {
             PlayerPrefs.SetString("bind_" + kvp.Key, kvp.Value.ToString());
         }
         PlayerPrefs.Save();
         Debug.Log("Bindings saved!");
-        // Här kan du lägga till kod för att stänga inställningsmenyn eller visa bekräftelse
     }
 
     void OnBackClicked()
     {
-        // Återställ tempBindings till PlayerPrefs (dvs ignorera ändringar)
         foreach (var action in actions)
         {
-            string savedKey = PlayerPrefs.GetString("bind_" + action, "None");
+            string savedKey = PlayerPrefs.GetString("bind_" + action, "");
             if (Enum.TryParse<KeyCode>(savedKey, out var key))
             {
                 tempBindings[action] = key;
+            }
+            else if (defaultBindings.ContainsKey(action))
+            {
+                tempBindings[action] = defaultBindings[action];
             }
             else
             {
@@ -127,6 +142,16 @@ public class RebindMenu : MonoBehaviour
         }
         UpdateRebindButtonText();
         Debug.Log("Changes discarded");
-        // Här kan du lägga till kod för att stänga inställningsmenyn eller gå tillbaka
+    }
+
+    void OnResetClicked()
+    {
+        // Sätt tempBindings till defaultbindningar
+        foreach (var kvp in defaultBindings)
+        {
+            tempBindings[kvp.Key] = kvp.Value;
+        }
+        UpdateRebindButtonText();
+        Debug.Log("Keybinds reset to default!");
     }
 }

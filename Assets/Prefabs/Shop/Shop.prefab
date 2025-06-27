@@ -514,7 +514,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1574931611
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -504975458, guid: 91689594947315c4bba51664e75ab86b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -570,19 +570,67 @@ MonoBehaviour:
   DialogueHandler:
     ShopKeeperName: "Benny \xC5kesson"
     EnterShop:
-    - Text: "O S\xC4LJA DE E MITT MOTTO DE"
-      AudioClip: {fileID: 8300000, guid: c9d4f38514d8f8343ac0d9f7e2a06556, type: 3}
-    - Text: SKA DU HA EN CIGG ELLER?
-      AudioClip: {fileID: 8300000, guid: de31fd32957dab34284983f827c18b24, type: 3}
+    - LocalizedText:
+        m_TableReference:
+          m_TableCollectionName: GUID:b8f403256989f9146bce84d2256096f8
+        m_TableEntryReference:
+          m_KeyId: 9246539776
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      AudioClip_English: {fileID: 8300000, guid: 565cb06f5f501ee48b2dba24481c48db, type: 3}
+      AudioClip_Swedish: {fileID: 8300000, guid: c9d4f38514d8f8343ac0d9f7e2a06556, type: 3}
+    - LocalizedText:
+        m_TableReference:
+          m_TableCollectionName: GUID:b8f403256989f9146bce84d2256096f8
+        m_TableEntryReference:
+          m_KeyId: 5333254144
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      AudioClip_English: {fileID: 8300000, guid: 329d8e92eb9de7b4c805658cb84edff0, type: 3}
+      AudioClip_Swedish: {fileID: 8300000, guid: de31fd32957dab34284983f827c18b24, type: 3}
     ExitShop:
-    - Text: "IKV\xC4LL SKA JAG BAKA MASSA BULLAR, MJAA DET SKA BLI J\xC4TTEGOET. "
-      AudioClip: {fileID: 8300000, guid: d861d197b5c20c946959513709790296, type: 3}
+    - LocalizedText:
+        m_TableReference:
+          m_TableCollectionName: GUID:b8f403256989f9146bce84d2256096f8
+        m_TableEntryReference:
+          m_KeyId: 531118620672
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      AudioClip_English: {fileID: 8300000, guid: 6b3a8f5522e9f084d8e6cbf915f8edc7, type: 3}
+      AudioClip_Swedish: {fileID: 8300000, guid: d861d197b5c20c946959513709790296, type: 3}
     RandomDialogue:
-    - Text: "VAD SK\xD6\xD6\xD6\xD6NT"
-      AudioClip: {fileID: 8300000, guid: 9b9cc2068e96f25418b87a56a96a093b, type: 3}
-    - Text: "SKYNDA P\xC5 D\xC5E"
-      AudioClip: {fileID: 8300000, guid: b7de7455f37b87d4596b4c930a8b2743, type: 3}
+    - LocalizedText:
+        m_TableReference:
+          m_TableCollectionName: GUID:b8f403256989f9146bce84d2256096f8
+        m_TableEntryReference:
+          m_KeyId: 566313025536
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      AudioClip_English: {fileID: 8300000, guid: 0bb1c5e42dcd19d498d939f3b1a08913, type: 3}
+      AudioClip_Swedish: {fileID: 8300000, guid: 9b9cc2068e96f25418b87a56a96a093b, type: 3}
+    - LocalizedText:
+        m_TableReference:
+          m_TableCollectionName: GUID:b8f403256989f9146bce84d2256096f8
+        m_TableEntryReference:
+          m_KeyId: 7338131456
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
+        m_LocalVariables: []
+      AudioClip_English: {fileID: 8300000, guid: 5305d7d149e096841b5636bd6bce0853, type: 3}
+      AudioClip_Swedish: {fileID: 8300000, guid: b7de7455f37b87d4596b4c930a8b2743, type: 3}
     TalkButton: {fileID: 7178236499101279291}
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &5286667601083402238
 GameObject:
   m_ObjectHideFlags: 0

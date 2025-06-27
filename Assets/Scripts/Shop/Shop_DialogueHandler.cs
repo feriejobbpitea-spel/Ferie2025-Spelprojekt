@@ -1,15 +1,18 @@
-using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Localization;
 
-[Serializable]
-public class Dialogue 
+[System.Serializable]
+public class Dialogue
 {
-    public string Text;
-    public AudioClip AudioClip;
+    public LocalizedString LocalizedText;   // Text från localization table
+    public AudioClip AudioClip_English;     // Engelskt ljud
+    public AudioClip AudioClip_Swedish;     // Svenskt ljud
 }
 
 [System.Serializable]
+
 public class Shop_DialogueHandler
 {
     public string ShopKeeperName = "John";
@@ -27,21 +30,40 @@ public class Shop_DialogueHandler
         }
     }
 
-    public void PlayEnterShopDialogue() 
+    public void PlayEnterShopDialogue()
     {
-        var randomShopkeeperDialogue = EnterShop[UnityEngine.Random.Range(0, EnterShop.Length)];
-        ShopDialogueManager.Instance.NewDialogue(ShopKeeperName, randomShopkeeperDialogue.Text, randomShopkeeperDialogue.AudioClip);
+        var dialogue = EnterShop[Random.Range(0, EnterShop.Length)];
+        ShopDialogueManager.Instance.StartCoroutine(PlayLocalizedDialogue(dialogue));
     }
 
     public void PlayExitShopDialogue()
     {
-        var randomShopkeeperDialogue = ExitShop[UnityEngine.Random.Range(0, ExitShop.Length)];
-        ShopDialogueManager.Instance.NewDialogue(ShopKeeperName, randomShopkeeperDialogue.Text, randomShopkeeperDialogue.AudioClip);
+        var dialogue = ExitShop[Random.Range(0, ExitShop.Length)];
+        ShopDialogueManager.Instance.StartCoroutine(PlayLocalizedDialogue(dialogue));
     }
 
     public void PlayRandomShopDialogue()
     {
-        var randomShopkeeperDialogue = RandomDialogue[UnityEngine.Random.Range(0, RandomDialogue.Length)];
-        ShopDialogueManager.Instance.NewDialogue(ShopKeeperName, randomShopkeeperDialogue.Text, randomShopkeeperDialogue.AudioClip);
+        var dialogue = RandomDialogue[Random.Range(0, RandomDialogue.Length)];
+        ShopDialogueManager.Instance.StartCoroutine(PlayLocalizedDialogue(dialogue));
+    }
+
+    private IEnumerator PlayLocalizedDialogue(Dialogue dialogue)
+    {
+        var localizedTextOp = dialogue.LocalizedText.GetLocalizedStringAsync();
+        yield return localizedTextOp;
+        string text = localizedTextOp.Result;
+
+        AudioClip clipToPlay;
+
+        // Kolla valt språk (Locale-kod är t.ex. "sv" eller "en")
+        var currentLocale = UnityEngine.Localization.Settings.LocalizationSettings.SelectedLocale.Identifier.Code;
+
+        if (currentLocale == "sv")
+            clipToPlay = dialogue.AudioClip_Swedish;
+        else
+            clipToPlay = dialogue.AudioClip_English;
+
+        ShopDialogueManager.Instance.NewDialogue(ShopKeeperName, text, clipToPlay);
     }
 }

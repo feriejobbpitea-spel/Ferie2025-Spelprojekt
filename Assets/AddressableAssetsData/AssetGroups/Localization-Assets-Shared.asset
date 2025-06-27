@@ -29,6 +29,11 @@ MonoBehaviour:
     - Locale-en
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40c72d228a56c764aa88ec1606e2da93
+    m_Address: Assets/Localization/Tables/ShopDialogue Audio Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 647361db4f093ca4b89d89914dccf343
     m_Address: Assets/Localization/Tables/Main Menu Shared Data.asset
     m_ReadOnly: 1
@@ -36,6 +41,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a9fcbbae91553f441a7fbc67e61eb121
     m_Address: Assets/Localization/Tables/Cut Scene Dialog Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8f403256989f9146bce84d2256096f8
+    m_Address: Assets/Localization/Tables/ShopDialogue translater Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
