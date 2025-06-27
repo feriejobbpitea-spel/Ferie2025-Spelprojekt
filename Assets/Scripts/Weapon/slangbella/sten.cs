@@ -27,24 +27,19 @@ public class Sten : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log($"Sten krockade med {collision.collider.name}");
-        Boss boss = collision.collider.GetComponent<Boss>();
         EnemyHealth enemyHealth = collision.collider.GetComponent<EnemyHealth>();
-        if (enemyHealth != null)
+        if (enemyHealth != null) 
+        {
+            enemyHealth = collision.collider.GetComponentInChildren<EnemyHealth>();
+        }
+
+            if (enemyHealth != null)
         {
             float impactForce = collision.relativeVelocity.magnitude;
             int totalDamage = Mathf.RoundToInt(baseDamage * impactForce * damageMultiplier);
 
             Debug.Log($"Ger {totalDamage} skada (base {baseDamage} + kraft {impactForce:F2}) till {collision.collider.name}");
             enemyHealth.TakeDamage(totalDamage);
-            Destroy(gameObject);
-            return;
-        }
-        if(boss != null)
-        {
-            float impactForce = collision.relativeVelocity.magnitude;
-            int totalDamage = Mathf.RoundToInt(baseDamage * impactForce * damageMultiplier);
-            Debug.Log($"Ger {totalDamage} skada (base {baseDamage} + kraft {impactForce:F2}) till Bossen {collision.collider.name}");
-            boss.TakeDamage(totalDamage);
             Destroy(gameObject);
             return;
         }

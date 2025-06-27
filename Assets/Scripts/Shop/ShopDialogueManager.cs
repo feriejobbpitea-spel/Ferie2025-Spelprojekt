@@ -91,7 +91,7 @@ public class ShopDialogueManager : Singleton<ShopDialogueManager>
         if (cg != null)
         {
             cg.DOKill();
-            cg.DOFade(0, exitDuration).OnComplete(() =>
+            cg.DOFade(0, exitDuration).SetUpdate(true).OnComplete(() =>
             {
                 DialogueMenu.HideMenu();
                 Dialogue.text = "";

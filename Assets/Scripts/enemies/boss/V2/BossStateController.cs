@@ -19,6 +19,7 @@ public class BossStateController : MonoBehaviour
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
+        bossHealthBar.SetActive(false);
         StartCoroutine(StateMachine());
     }
 

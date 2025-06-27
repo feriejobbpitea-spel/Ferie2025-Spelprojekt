@@ -47,8 +47,6 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         originalMaterial = spriteRenderer.material;
         currentLives = maxLives;
         UpdateHearts();
-        Debug.Log("Player lives: " + currentLives);
-        Debug.Log("SpriteRenderer: " + spriteRenderer);
     }
    
 
@@ -64,7 +62,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
 
         if (hitT.collider != null)
         {
-            Debug.Log("BoxCast hit trap: " + hitT.collider.gameObject.layer);
+            //Debug.Log("BoxCast hit trap: " + hitT.collider.gameObject.layer);
             
             Vector3 hitPoint = hitT.point;
             Vector3 playerPosition = transform.position;
@@ -94,7 +92,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
 
         if (hitE.collider != null)
         {
-            Debug.Log("BoxCast hit enemy: " + hitE.collider.gameObject.layer);
+            //Debug.Log("BoxCast hit enemy: " + hitE.collider.gameObject.layer);
             LoseLife();
 
         }
@@ -111,7 +109,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         {
             if (lastYVelocity < fallLimit)
             {
-                Debug.Log("Tog fallskada! Hastighet: " + lastYVelocity);
+                //Debug.Log("Tog fallskada! Hastighet: " + lastYVelocity);
                 LoseLife();
             }
         }
@@ -150,7 +148,6 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         CameraFollow.Instance.TriggerShake(0.15f, 0.2f);
 
         currentLives--;
-        Debug.Log("Player lost a life! Lives left: " + currentLives);
         UpdateHearts();
 
         isInvincible = true;
@@ -171,13 +168,11 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         if (maxLives < 4)
         {
             maxLives++;
-            Debug.Log("Player gained a life! Max lives now: " + maxLives);
             
         }
         if (currentLives < maxLives)
         {
             currentLives++;
-            Debug.Log("Player gained a life! Lives now: " + currentLives);
             
         }
         UpdateHearts();
@@ -206,7 +201,6 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
     public InventoryManager inventoryManager;
     void Die()
     {
-        Debug.Log("Player is dead!");
         if (maxLives == 1) gameOver.gameObject.SetActive(true);
         else death.gameObject.SetActive(true);
         if (inventoryManager != null)
@@ -226,7 +220,6 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         gameOver.gameObject.SetActive(false);
         isInvincible = true;
         invincibilityTimer = invincibilityDuration * 2;
-        Debug.Log("Player respawned at super checkpoint!");
     }
     public void Respawn()
     {
@@ -239,8 +232,6 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         death.gameObject.SetActive(false);
         isInvincible = true;
         invincibilityTimer = invincibilityDuration * 2;
-
-        Debug.Log("Player respawned!");
     }
 
     private IEnumerator FlashWhite()

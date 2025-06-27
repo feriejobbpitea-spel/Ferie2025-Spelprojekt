@@ -53,11 +53,12 @@ public class ConfettiBall : MonoBehaviour
         {
             if (hit.gameObject.layer == LayerMask.NameToLayer("Enemies"))
             {
-                if(hit.name == "Boss")
-                {
-                   hit.GetComponent<Boss>()?.TakeDamage(damage);
-                } else { hit.GetComponent<EnemyHealth>()?.TakeDamage(damage); }
-                    
+                var enemyHealth = hit.GetComponent<EnemyHealth>();  
+                if (enemyHealth == null)
+                    enemyHealth = hit.GetComponentInChildren<EnemyHealth>(); // Försök hitta EnemyHealth i barnobjekt
+
+                enemyHealth?.TakeDamage(damage);
+
             }
             else if (hit.gameObject.layer == LayerMask.NameToLayer("Player"))
             {

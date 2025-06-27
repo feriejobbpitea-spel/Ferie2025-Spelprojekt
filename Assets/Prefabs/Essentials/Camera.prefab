@@ -515,8 +515,8 @@ MonoBehaviour:
   Dialogue: {fileID: 3426338091280102534}
   Speaker: {fileID: 6968212654694456301}
   DialogueMenu: {fileID: 2012424137094833449}
-  enterDuration: 0.5
-  exitDuration: 0.5
+  enterDuration: 0.1
+  exitDuration: 0.1
   typingSpeed: 0.05
 --- !u!82 &6968212654694456301
 AudioSource:

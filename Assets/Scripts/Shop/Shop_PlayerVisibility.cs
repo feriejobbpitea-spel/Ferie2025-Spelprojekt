@@ -5,6 +5,7 @@ public class Shop_PlayerVisibility
 {
     private GameObject _player;
     private GameObject _gfxChild;
+    private Canvas _playerHUD;
 
     private void FindPlayerAndGFX()
     {
@@ -30,6 +31,14 @@ public class Shop_PlayerVisibility
                 Debug.LogError("GFX child not found under Player!");
             }
         }
+
+        if (_playerHUD == null) {
+            _playerHUD = GameObject.Find("HUD (Canvas)")?.GetComponent<Canvas>();
+            if (_playerHUD == null)
+            {
+                Debug.LogError("HUD (Canvas) not found! Make sure it exists in the scene.");
+            }
+        }
     }
 
     public void ShowPlayer()
@@ -40,6 +49,7 @@ public class Shop_PlayerVisibility
         {
             _gfxChild.SetActive(true);
         }
+        _playerHUD.enabled = true;
     }
 
     public void HidePlayer()
@@ -50,5 +60,6 @@ public class Shop_PlayerVisibility
         {
             _gfxChild.SetActive(false);
         }
+        _playerHUD.enabled = false;
     }
 }

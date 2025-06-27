@@ -2286,13 +2286,12 @@ MonoBehaviour:
   - itemName: Time slow
     itemIcon: {fileID: -1557981131, guid: 340dec31a89f1814292ab81588e650c2, type: 3}
     price: 19
-  - itemName: "K\xE4ppen"
-    itemIcon: {fileID: -1042706412, guid: 2aa69a7d980ef23499b1bc428dda15ff, type: 3}
-    price: 18
+  - itemName: Konfetti
+    itemIcon: {fileID: -379241700, guid: 3139102f4dde16245a99f67496d96825, type: 3}
+    price: 1
   itemPrefab: {fileID: 2843723940921800422, guid: 8d1cae4b5fc105e47a7205bb69008757, type: 3}
   itemContainer: {fileID: 2908438862406297006}
   playerMoneyText: {fileID: 230578006266058908}
-  playerMoney: 1000
 --- !u!1 &6013998835295304332
 GameObject:
   m_ObjectHideFlags: 0
