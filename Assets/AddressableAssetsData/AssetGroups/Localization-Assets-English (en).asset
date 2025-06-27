@@ -21,8 +21,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5305d7d149e096841b5636bd6bce0853
+    m_Address: HURRY UP
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 565cb06f5f501ee48b2dba24481c48db
     m_Address: Audio 9
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b3a8f5522e9f084d8e6cbf915f8edc7
+    m_Address: TONIGHT IM GONNA BAKE SOM BUNS, MJAAAA ITS GONNA BE GREAT.
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

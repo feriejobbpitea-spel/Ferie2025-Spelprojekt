@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Localization-Asset-Tables-Swedish (sv)
   m_GUID: 8aa23a780c438bb4387d4c1472b9c81f
   m_SerializeEntries:
+  - m_GUID: 15a05a4571afefb4aab4e052aed39c27
+    m_Address: ShopDialogue Audio_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dcca644f38780b84dbc35bc80a8504dd
     m_Address: Cut scene audio_sv
     m_ReadOnly: 1

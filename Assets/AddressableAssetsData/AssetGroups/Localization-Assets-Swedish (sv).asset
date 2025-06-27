@@ -33,8 +33,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b9cc2068e96f25418b87a56a96a093b
+    m_Address: "VAD SK\xD6\xD6\xD6\xD6NT"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b7de7455f37b87d4596b4c930a8b2743
+    m_Address: "SKYNDA P\xC5 D\xC5E"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c9d4f38514d8f8343ac0d9f7e2a06556
     m_Address: Audio 2
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d861d197b5c20c946959513709790296
+    m_Address: "IKV\xC4LL SKA JAG BAKA MASSA BULLAR, MJAA DET SKA BLI J\xC4TTEGOET"
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv

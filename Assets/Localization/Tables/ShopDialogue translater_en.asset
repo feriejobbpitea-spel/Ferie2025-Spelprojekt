@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: ShopDialogue translater_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: b8f403256989f9146bce84d2256096f8, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 5333254144
+    m_Localized: DO YOU WANT A CIGGARETTE?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7338131456
+    m_Localized: HURRY UP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9246539776
+    m_Localized: TO SELL IS MY MOTTO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11092033536
+    m_Localized: THANK YOU, IM GONNA PUT THAT IN MY NOTEBOOK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 531118620672
+    m_Localized: TONIGHT IM GONNA BAKE SOM BUNS, MJAAAA ITS GONNA BE GREAT.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 566313025536
+    m_Localized: SO NIIIIIIIIICEEEEEE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 612785913856
+    m_Localized: "S\xC5 J\xC4VLA LEJDDDDDD"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

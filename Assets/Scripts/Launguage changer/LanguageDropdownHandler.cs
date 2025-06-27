@@ -7,6 +7,7 @@ using UnityEngine.Localization.Settings;
 public class LanguageDropdownHandler : MonoBehaviour
 {
     public TMP_Dropdown dropdown; // Dra in din dropdown i Inspector
+    private const string PlayerPrefKey = "SelectedLanguage";
 
     private Locale appliedLanguage;  // Språket som är aktivt (det senaste "Apply"-språket)
     private Locale pendingLanguage;  // Språket användaren har valt men inte applicerat än
@@ -25,16 +26,31 @@ public class LanguageDropdownHandler : MonoBehaviour
 
         dropdown.AddOptions(options);
 
-        // Initiera appliedLanguage och pendingLanguage med det språk som är aktivt nu
-        appliedLanguage = LocalizationSettings.SelectedLocale;
+        // Läs sparat språk från PlayerPrefs
+        string savedLocaleName = PlayerPrefs.GetString(PlayerPrefKey, null);
+
+        if (!string.IsNullOrEmpty(savedLocaleName))
+        {
+            appliedLanguage = locales.Find(l => l.LocaleName == savedLocaleName);
+            if (appliedLanguage == null)
+                appliedLanguage = LocalizationSettings.SelectedLocale;
+        }
+        else
+        {
+            appliedLanguage = LocalizationSettings.SelectedLocale;
+        }
+
         pendingLanguage = appliedLanguage;
 
-        // Sätt dropdown till appliedLanguage
         int currentIndex = locales.IndexOf(appliedLanguage);
+        if (currentIndex < 0) currentIndex = 0; // fallback
         dropdown.value = currentIndex;
         dropdown.RefreshShownValue();
 
         dropdown.onValueChanged.AddListener(OnLanguageChanged);
+
+        // Sätt LocalizationSettings.SelectedLocale till sparat språk direkt
+        LocalizationSettings.SelectedLocale = appliedLanguage;
     }
 
     void OnLanguageChanged(int index)
@@ -49,12 +65,15 @@ public class LanguageDropdownHandler : MonoBehaviour
         {
             LocalizationSettings.SelectedLocale = pendingLanguage;
             appliedLanguage = pendingLanguage;  // Uppdatera appliedLanguage
+
+            // Spara valt språk i PlayerPrefs
+            PlayerPrefs.SetString(PlayerPrefKey, appliedLanguage.LocaleName);
+            PlayerPrefs.Save();
+
             Debug.Log("Språk ändrat till: " + appliedLanguage.LocaleName);
         }
     }
 
-    // Den här metoden kan du kalla när du "stänger" settings utan att trycka Apply,
-    // för att återställa dropdown till appliedLanguage
     public void ResetDropdownToApplied()
     {
         if (appliedLanguage != null)
@@ -64,7 +83,6 @@ public class LanguageDropdownHandler : MonoBehaviour
             dropdown.SetValueWithoutNotify(index);
             dropdown.RefreshShownValue();
 
-            // Även uppdatera pendingLanguage så det matchar appliedLanguage
             pendingLanguage = appliedLanguage;
         }
     }
