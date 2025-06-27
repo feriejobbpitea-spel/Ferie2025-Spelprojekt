@@ -10,6 +10,10 @@ public class projectile02 : MonoBehaviour
     public void SetDirection(Vector3 dir)
     {
         direction = dir.normalized;
+
+        // ROTERA PROJEKTILEN I Z-LED SÅ ATT DEN "PEKAR" I RIKTNINGEN
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     void Update()
@@ -27,12 +31,11 @@ public class projectile02 : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground") || other.gameObject.layer == LayerMask.NameToLayer("goTrough"))
         {
             Destroy(gameObject, 0.1F);
-        } else if (other.CompareTag("Player")){
+        }
+        else if (other.CompareTag("Player"))
+        {
             other.GetComponent<PlayerHealthV2>().LoseLife();
             Destroy(gameObject, 0.1F);
         }
-       
-
-
     }
 }
