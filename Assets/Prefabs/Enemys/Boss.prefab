@@ -208,12 +208,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1285362915556996229}
   - component: {fileID: 3593701465027202884}
-  - component: {fileID: 1655705526815074593}
   - component: {fileID: 5206348028256717521}
   - component: {fileID: 6265906871615660965}
   - component: {fileID: 8197920517632837075}
-  - component: {fileID: 2291309115666698315}
   - component: {fileID: 4357908329784051740}
+  - component: {fileID: 7036117806275113216}
+  - component: {fileID: 5026094292256385974}
+  - component: {fileID: 7682881470486700959}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Enemy
@@ -297,38 +298,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1655705526815074593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3598016814301857601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af109cf8b5274fb41b40259a6e85cef3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  throwPoint: {fileID: 4646144641889832410}
-  earthWavePoint: {fileID: 7915544049458227658}
-  groundCheck: {fileID: 5459211683806485481}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  bossHealthBar: {fileID: 7631249398532543359}
-  collidersToDisableOnDeath:
-  - {fileID: 1554464581134962259}
-  throwablePrefab: {fileID: 6964891685908431941, guid: 245cdf86751d73b4b9b00e33b607ea26, type: 3}
-  earthWavePrefab: {fileID: 3819795789127177674, guid: 4dd1083e6ed33be449968bc656ae7096, type: 3}
-  jumpChargeTime: 1
-  jumpForce: 10
-  slamDelay: 0.5
-  throwForce: 12
-  attackCooldown: 2
-  vulnerableDuration: 4
-  hoverDuration: 1.5
-  hoverSpeed: 3
-  agroRange: 20
 --- !u!50 &5206348028256717521
 Rigidbody2D:
   serializedVersion: 5
@@ -424,19 +393,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2291309115666698315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3598016814301857601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96717c99793b1a642a69b346bc456b76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boss: {fileID: 1655705526815074593}
 --- !u!61 &4357908329784051740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -483,6 +439,68 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.382141, y: 2.4105415}
   m_EdgeRadius: 0
+--- !u!114 &7036117806275113216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598016814301857601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1353d7a3b7556e24ca4ecffdabbd96ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackHandler: {fileID: 7682881470486700959}
+  vulnerabilityHandler: {fileID: 5026094292256385974}
+  bossHealthBar: {fileID: 7631249398532543359}
+  agroRange: 20
+--- !u!114 &5026094292256385974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598016814301857601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b23fe707107fff44b6ee64d1599261d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vulnerableDuration: 2
+--- !u!114 &7682881470486700959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598016814301857601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14fce6cbe4551aa47bdf83747fb4c1d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  throwPoint: {fileID: 4646144641889832410}
+  earthWavePoint: {fileID: 7915544049458227658}
+  colliders:
+  - {fileID: 4357908329784051740}
+  - {fileID: 6265906871615660965}
+  throwablePrefab: {fileID: 6964891685908431941, guid: 245cdf86751d73b4b9b00e33b607ea26, type: 3}
+  earthWavePrefab: {fileID: 3819795789127177674, guid: 4dd1083e6ed33be449968bc656ae7096, type: 3}
+  jumpChargeTime: 1
+  jumpForce: 10
+  slamDelay: 1.5
+  throwForce: 5
+  attackCooldown: 3
+  hoverDuration: 2
+  hoverSpeed: 2
+  earthWaveCount: 5
+  earthWaveSpacing: 1
+  earthWaveSpeed: 5
+  groundCheck: {fileID: 5459211683806485481}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &4341665970175819241
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +630,6 @@ MonoBehaviour:
   toRemove: {fileID: 3598016814301857601}
   spriteRendererOverride: {fileID: 3593701465027202884}
   Animator: {fileID: 8197920517632837075}
-  Boss: {fileID: 1655705526815074593}
   GameCompleteScene: CutScene slut
 --- !u!1 &4618493260406493589
 GameObject:

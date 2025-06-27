@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -108,22 +107,30 @@ public class Gamblingwheel : MonoBehaviour
 
     IEnumerator SpinAnimation(float targetAngle, int segmentIndex)
     {
+        // Snurra 5 hela varv + slumpat segment (medurs = minska rotation i z-axeln)
         float totalAngle = 360f * 5 + targetAngle;
         float elapsed = 0f;
 
-        Quaternion startRotation = wheel.rotation;
-        Quaternion endRotation = Quaternion.Euler(0, 0, -totalAngle);
+        // Hämta aktuell rotation i grader (0-360)
+        float startRotation = wheel.eulerAngles.z;
 
         while (elapsed < spinDuration)
         {
-            float t = elapsed / spinDuration;
-            wheel.rotation = Quaternion.Lerp(startRotation, endRotation, EaseOut(t));
             elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / spinDuration);
+            float easedT = EaseOut(t);
+
+            // Beräkna ny rotation med easing, minska z för medurs snurr
+            float newRotation = startRotation - totalAngle * easedT;
+            wheel.rotation = Quaternion.Euler(0f, 0f, newRotation);
+
             yield return null;
         }
 
-        wheel.rotation = endRotation;
+        // Säkra att hjulet stannar exakt där det ska
+        wheel.rotation = Quaternion.Euler(0f, 0f, startRotation - totalAngle);
 
+        // Ge belöning
         int reward = rewardsPerSegment[segmentIndex];
         PlayerMoney.Instance.money += reward;
 

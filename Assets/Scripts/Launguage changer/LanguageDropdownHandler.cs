@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -6,14 +7,21 @@ using UnityEngine.Localization.Settings;
 
 public class LanguageDropdownHandler : MonoBehaviour
 {
-    public TMP_Dropdown dropdown; // Dra in din dropdown i Inspector
-    private const string PlayerPrefKey = "SelectedLanguage";
+    public TMP_Dropdown dropdown;
 
-    private Locale appliedLanguage;  // Språket som är aktivt (det senaste "Apply"-språket)
-    private Locale pendingLanguage;  // Språket användaren har valt men inte applicerat än
+    private Locale appliedLanguage;
+    private Locale pendingLanguage;
 
     void Start()
     {
+        StartCoroutine(InitializeDropdown());
+    }
+
+    private IEnumerator InitializeDropdown()
+    {
+        // Wait for localization system to finish initializing
+        yield return LocalizationSettings.InitializationOperation;
+
         var locales = LocalizationSettings.AvailableLocales.Locales;
 
         dropdown.ClearOptions();
@@ -26,36 +34,18 @@ public class LanguageDropdownHandler : MonoBehaviour
 
         dropdown.AddOptions(options);
 
-        // Läs sparat språk från PlayerPrefs
-        string savedLocaleName = PlayerPrefs.GetString(PlayerPrefKey, null);
-
-        if (!string.IsNullOrEmpty(savedLocaleName))
-        {
-            appliedLanguage = locales.Find(l => l.LocaleName == savedLocaleName);
-            if (appliedLanguage == null)
-                appliedLanguage = LocalizationSettings.SelectedLocale;
-        }
-        else
-        {
-            appliedLanguage = LocalizationSettings.SelectedLocale;
-        }
-
+        appliedLanguage = LocalizationSettings.SelectedLocale;
         pendingLanguage = appliedLanguage;
 
         int currentIndex = locales.IndexOf(appliedLanguage);
-        if (currentIndex < 0) currentIndex = 0; // fallback
         dropdown.value = currentIndex;
         dropdown.RefreshShownValue();
 
         dropdown.onValueChanged.AddListener(OnLanguageChanged);
-
-        // Sätt LocalizationSettings.SelectedLocale till sparat språk direkt
-        LocalizationSettings.SelectedLocale = appliedLanguage;
     }
 
     void OnLanguageChanged(int index)
     {
-        // Spara pending språk men byt inte språk direkt
         pendingLanguage = LocalizationSettings.AvailableLocales.Locales[index];
     }
 
@@ -64,13 +54,8 @@ public class LanguageDropdownHandler : MonoBehaviour
         if (pendingLanguage != null && LocalizationSettings.SelectedLocale != pendingLanguage)
         {
             LocalizationSettings.SelectedLocale = pendingLanguage;
-            appliedLanguage = pendingLanguage;  // Uppdatera appliedLanguage
-
-            // Spara valt språk i PlayerPrefs
-            PlayerPrefs.SetString(PlayerPrefKey, appliedLanguage.LocaleName);
-            PlayerPrefs.Save();
-
-            Debug.Log("Språk ändrat till: " + appliedLanguage.LocaleName);
+            appliedLanguage = pendingLanguage;
+            Debug.Log("Language changed to: " + appliedLanguage.LocaleName);
         }
     }
 
@@ -82,7 +67,6 @@ public class LanguageDropdownHandler : MonoBehaviour
             int index = locales.IndexOf(appliedLanguage);
             dropdown.SetValueWithoutNotify(index);
             dropdown.RefreshShownValue();
-
             pendingLanguage = appliedLanguage;
         }
     }

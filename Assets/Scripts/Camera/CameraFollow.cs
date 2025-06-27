@@ -26,6 +26,15 @@ public class CameraFollow : Singleton<CameraFollow>
         }
     }
 
+    private void Start()
+    {
+        if(playerTarget != null)
+        {
+            Vector3 desiredPosition = playerTarget.position + offset;
+            transform.position = new Vector3(desiredPosition.x, desiredPosition.y, -50);
+        }
+    }
+
     void LateUpdate()
     {
         Transform target = OverrideTarget != null ? OverrideTarget : playerTarget;
