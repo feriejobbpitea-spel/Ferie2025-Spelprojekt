@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - EnemyWarning
   - Traps
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,7 @@ TagManager:
   - EMP
   - goTrough
   - konffeti
-  - 
+  - Steam
   - 
   - 
   - 
@@ -53,11 +54,11 @@ TagManager:
   - name: Coins
     uniqueID: 3778977387
     locked: 0
-  - name: Player
-    uniqueID: 2832459281
-    locked: 0
   - name: Shop
     uniqueID: 1574931611
+    locked: 0
+  - name: Player
+    uniqueID: 2832459281
     locked: 0
   - name: Foreground
     uniqueID: 1575563787

@@ -11,9 +11,15 @@ public class MovingPlatform : MonoBehaviour
     private GameObject player;
     private bool hasBeenActivated = false;
 
+    private SpriteRenderer spriteRenderer;
+    private Collider2D platformCollider;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        platformCollider = GetComponent<Collider2D>();
+
         startPos = rb.position;
         previousPosition = rb.position;
     }
@@ -27,8 +33,8 @@ public class MovingPlatform : MonoBehaviour
 
             if (newPosition.x >= maxXPosition)
             {
-                // Istället för att förstöra plattformen, kan vi dölja den och inaktivera rörelsen
-                gameObject.SetActive(false);
+                // Dölj plattformen och inaktivera rörelse
+                DisablePlatform();
                 return;
             }
 
@@ -65,13 +71,34 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    // Publik metod för att respawna plattformen, kalla denna från spelarens script när spelaren dör
+    private void DisablePlatform()
+    {
+        spriteRenderer.enabled = false;
+        platformCollider.enabled = false;
+        hasBeenActivated = false;
+    }
+    void OnEnable()
+    {
+        PlayerRespawn.OnPlayerRespawn += RespawnPlatform;
+    }
+
+    void OnDisable()
+    {
+        PlayerRespawn.OnPlayerRespawn -= RespawnPlatform;
+    }
+
+
+    // Publik metod för att återställa plattformen, anropas när spelaren dör
     public void RespawnPlatform()
     {
+        Debug.Log("Plattform respawnar");
+
         rb.position = startPos;
         previousPosition = startPos;
-        hasBeenActivated = false;
         player = null;
-        gameObject.SetActive(true);
+
+        spriteRenderer.enabled = true;
+        platformCollider.enabled = true;
+        hasBeenActivated = false;
     }
 }

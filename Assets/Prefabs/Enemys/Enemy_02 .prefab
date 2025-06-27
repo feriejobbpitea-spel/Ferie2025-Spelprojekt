@@ -144,9 +144,9 @@ MonoBehaviour:
   aggroRange: 15
   shootAudioSource: {fileID: 8104537851572764012}
   shootSound: {fileID: 8300000, guid: 9e5f540411cfe97479c4b9507cb48249, type: 3}
-  obstacleMask:
+  visionMask:
     serializedVersion: 2
-    m_Bits: 32840
+    m_Bits: 576
   healthBar: {fileID: 8434426802587631480}
 --- !u!114 &7394445667949276825
 MonoBehaviour:
