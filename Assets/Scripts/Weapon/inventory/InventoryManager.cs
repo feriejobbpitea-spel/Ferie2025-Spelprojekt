@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : Singleton<InventoryManager>
 {
     public Transform playerTransform;
 
     [Header("UI Slots")]
-    public Image slot1;
-    public Image slot2;
-    public Image slot3;
-    public Image slot4;
+    public List<Image> slots;
+
 
     [Header("Prefabs")]
     public GameObject meleePrefab;
@@ -49,10 +48,7 @@ public class InventoryManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha3)) EquipWeapon(2);
         else if (Input.GetKeyDown(KeyCode.Alpha4)) EquipWeapon(3);
 
-        if (Input.GetKeyDown(KeyCode.E)) AddEmpGun();
-        if (Input.GetKeyDown(KeyCode.R)) AddRayGun();
-        if (Input.GetKeyDown(KeyCode.T)) AddSlingshot();
-        if (Input.GetKeyDown(KeyCode.Y)) AddConfettiGun(); // 🆕 Y = lägg till Confetti Gun
+       
     }
 
     void EquipWeapon(int index)
@@ -93,9 +89,10 @@ public class InventoryManager : MonoBehaviour
 
     void UpdateInventoryUI()
     {
-        Image[] slots = { slot1, slot2, slot3, slot4 };
+        if (slots == null)
+            return;
 
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slots.Count; i++)
         {
             if (inventoryIcons[i] != null)
             {
@@ -132,9 +129,13 @@ public class InventoryManager : MonoBehaviour
 
     private void AddWeaponToNextSlot(GameObject weaponPrefab, Sprite icon)
     {
+        if (weaponPrefab == null)
+            return;
+
         // Kontrollera om vapnet redan finns
         for (int i = 0; i < inventoryWeapons.Length; i++)
         {
+            Debug.Log($"Checking slot {i}: {inventoryWeapons[i]} against {weaponPrefab}");
             if (inventoryWeapons[i] == weaponPrefab)
             {
                 Debug.Log("Du har redan detta vapen.");
@@ -171,13 +172,8 @@ public class InventoryManager : MonoBehaviour
             currentWeapon = null;
         }
 
-        for (int i = 1; i < inventoryWeapons.Length; i++)
-        {
-            inventoryWeapons[i] = null;
-            inventoryIcons[i] = null;
-        }
-
-        UpdateInventoryUI();
-        EquipWeapon(0);
+        // ❌ Ta INTE bort vapen från inventory – bara återgå till melee
+        EquipWeapon(0); // Växla till melee
     }
+
 }

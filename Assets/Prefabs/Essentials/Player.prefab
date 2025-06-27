@@ -6928,7 +6928,7 @@ Transform:
   - {fileID: 8105862195858904665}
   - {fileID: 4045030841113304477}
   - {fileID: 573090084102263091}
-  - {fileID: 7791112940546694379}
+  - {fileID: 2248267667559109554}
   - {fileID: 7054335347230043139}
   - {fileID: 4128599994710448769}
   - {fileID: 1743070080453706184}
@@ -6938,6 +6938,7 @@ Transform:
   - {fileID: 8748599292575650456}
   - {fileID: 8050620600404778914}
   - {fileID: 2777126604990309200}
+  - {fileID: 472910090514066224}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &810931596324450891
@@ -6974,7 +6975,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.042924523, y: 0}
+  m_Offset: {x: -0.03, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7042,7 +7043,12 @@ MonoBehaviour:
   isGrounded: 0
   isGrabingwall: 0
   facingRight: 1
+  doubleJump: 0
+  doubleJumpUsed: 0
+  bigJump: 0
   bigJumpForce: 10
+  superSpeed: 1
+  timeSlow: 0
   currentCharge: 1
   maxCharge: 1
   rechargeRate: 0.1
@@ -7082,17 +7088,22 @@ MonoBehaviour:
   death: {fileID: 4222666853691470696}
   pause: {fileID: 1016460551117613194}
   gameOver: {fileID: 3796764246469710039}
-  invincibilityDuration: 1
+  invincibilityDuration: 1.5
   blinkInterval: 0.1
   whiteFlashMaterial: {fileID: 2100000, guid: e4129543b3ac18b43bf513379c8cf702, type: 2}
   movementScript: {fileID: 5674908858702478707}
   fallLimit: -20
+  trapLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  boxCastSizeT: {x: 0.6, y: 1}
+  boxCastDistanceT: 0
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 12544
-  boxCastSize: {x: 1.1, y: 1.5}
-  boxCastDistance: 0.1
-  inventoryManager: {fileID: 7139110486486978604}
+    m_Bits: 4352
+  boxCastSizeE: {x: 1.2, y: 1.1}
+  boxCastDistanceE: 0.1
+  inventoryManager: {fileID: 7214375957433315167}
 --- !u!114 &2934233217691040914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8879,7 +8890,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2272363439062348704}
-  m_Father: {fileID: 7791112940546694379}
+  m_Father: {fileID: 1685208924219828145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -15042,66 +15053,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &6404174537276735185
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7791112940546694379}
-  - component: {fileID: 7139110486486978604}
-  m_Layer: 9
-  m_Name: InventoryManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7791112940546694379
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6404174537276735185}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.3300018, y: 0.065999985, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2248267667559109554}
-  m_Father: {fileID: 1685208924219828145}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7139110486486978604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6404174537276735185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6efadf3d5221ec4a8bed042ef1abed8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 1685208924219828145}
-  slot1: {fileID: 6614909063729527960}
-  slot2: {fileID: 4758127430420289647}
-  slot3: {fileID: 1928506773656724108}
-  slot4: {fileID: 104344086009730276}
-  meleePrefab: {fileID: 4341737245077582509, guid: eee01e5f0c594eb4f9cdd8f8914c5262, type: 3}
-  meleeIcon: {fileID: -5730937193342837537, guid: a19045c04e88bdb4e8e90082e5a2eb6b, type: 3}
-  empPrefab: {fileID: 6911513226552144701, guid: 12a06cdd4e466ac4b90d37210dd82d96, type: 3}
-  empIcon: {fileID: -3424780418405362961, guid: 63abe869c9dfdb14aa5b2dd3bcbb33be, type: 3}
-  rayGunPrefab: {fileID: 3689554879932518867, guid: 443c2d42229628e4cb1467e226420012, type: 3}
-  rayGunIcon: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
-  slingshotPrefab: {fileID: 2966429678390243854, guid: 93b3dcd5c4ad9ec498873bc1d960a856, type: 3}
-  slingshotIcon: {fileID: 7675122728916957637, guid: e24305870847dd24b9b35e100b455102, type: 3}
-  confettiGunPrefab: {fileID: 4441914280489922357, guid: b7eb7afe8cd51e242b8548a365b34fe6, type: 3}
-  confettiGunIcon: {fileID: -379241700, guid: 3139102f4dde16245a99f67496d96825, type: 3}
 --- !u!1 &6536217428200207202
 GameObject:
   m_ObjectHideFlags: 0
@@ -15449,6 +15400,66 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: {fileID: 2918260523027785146}
   SceneName: MainMenu
+--- !u!1 &6867716631634842040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 472910090514066224}
+  - component: {fileID: 7214375957433315167}
+  m_Layer: 9
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &472910090514066224
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6867716631634842040}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.3300018, y: 0.065999985, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1685208924219828145}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7214375957433315167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6867716631634842040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6efadf3d5221ec4a8bed042ef1abed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 1685208924219828145}
+  slots:
+  - {fileID: 6614909063729527960}
+  - {fileID: 4758127430420289647}
+  - {fileID: 1928506773656724108}
+  - {fileID: 104344086009730276}
+  meleePrefab: {fileID: 4341737245077582509, guid: eee01e5f0c594eb4f9cdd8f8914c5262, type: 3}
+  meleeIcon: {fileID: -5730937193342837537, guid: a19045c04e88bdb4e8e90082e5a2eb6b, type: 3}
+  empPrefab: {fileID: 6911513226552144701, guid: 12a06cdd4e466ac4b90d37210dd82d96, type: 3}
+  empIcon: {fileID: -3424780418405362961, guid: 63abe869c9dfdb14aa5b2dd3bcbb33be, type: 3}
+  rayGunPrefab: {fileID: 3689554879932518867, guid: 443c2d42229628e4cb1467e226420012, type: 3}
+  rayGunIcon: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
+  slingshotPrefab: {fileID: 2966429678390243854, guid: 93b3dcd5c4ad9ec498873bc1d960a856, type: 3}
+  slingshotIcon: {fileID: 7675122728916957637, guid: e24305870847dd24b9b35e100b455102, type: 3}
+  confettiGunPrefab: {fileID: 4441914280489922357, guid: b7eb7afe8cd51e242b8548a365b34fe6, type: 3}
+  confettiGunIcon: {fileID: -379241700, guid: 3139102f4dde16245a99f67496d96825, type: 3}
 --- !u!1 &7034831109133803259
 GameObject:
   m_ObjectHideFlags: 0

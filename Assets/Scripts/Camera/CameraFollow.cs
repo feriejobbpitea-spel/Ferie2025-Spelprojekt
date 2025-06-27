@@ -42,14 +42,14 @@ public class CameraFollow : Singleton<CameraFollow>
         if (target != null)
         {
             Vector3 desiredPosition = target.position + offset;
-            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+            Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.unscaledDeltaTime);
             transform.position = new Vector3(smoothedPosition.x, smoothedPosition.y, transform.position.z);
 
             // Handle zoom override
             if (cam != null)
             {
                 float targetZoom = OverrideZoom > 0 ? OverrideZoom : defaultZoom;
-                cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, smoothSpeed * Time.deltaTime);
+                cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, smoothSpeed * Time.unscaledDeltaTime);
             }
         }
     }

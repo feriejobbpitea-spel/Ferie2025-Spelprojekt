@@ -28,10 +28,17 @@ public class Shop : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E)) 
         {
-            if (_inShop)
+            if (_inShop) {
+                 // Resume time when exiting shop
                 ExitShop();
+            }
+
             else
+            {
+                 // Pause time when entering shop
                 EnterShop();
+            }
+                
         }
     }
 
@@ -45,6 +52,7 @@ public class Shop : MonoBehaviour
 
     private void EnterShop() 
     {
+        Time.timeScale = 0f;
         PlayerHandler.HidePlayer();
         _inShop = true;
         CameraHandler.MoveCameraToShop();
@@ -54,6 +62,7 @@ public class Shop : MonoBehaviour
 
     public void ExitShop() 
     {
+        Time.timeScale = 1f;
         PlayerHandler.ShowPlayer();
         _inShop = false;
         CameraHandler.MoveCameraAwayFromShop();

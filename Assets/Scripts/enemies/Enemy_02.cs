@@ -1,4 +1,5 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
+
 public class Enemy_02 : MonoBehaviour
 {
     public GameObject projectilePrefab;
@@ -7,8 +8,10 @@ public class Enemy_02 : MonoBehaviour
     public float projectileSpeed = 10f;
     public float aggroRange = 10f;
 
-    public AudioSource shootAudioSource;   // L‰gg till denna rad
-    public AudioClip shootSound;            // L‰gg till denna rad
+    public AudioSource shootAudioSource;
+    public AudioClip shootSound;
+
+    public LayerMask obstacleMask; // Lager f√∂r hinder, exkluderar spelaren
 
     private float timer = 0f;
     private Transform player;
@@ -31,7 +34,7 @@ public class Enemy_02 : MonoBehaviour
 
     void Update()
     {
-        if (player == null) return;
+        if (Time.timeScale == 0f || player == null) return;
 
         float direction = Mathf.Sign(player.position.x - transform.position.x);
 
@@ -48,6 +51,7 @@ public class Enemy_02 : MonoBehaviour
                 healthBar.localScale.z
             );
         }
+
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         if (distanceToPlayer <= aggroRange)
         {
@@ -62,30 +66,41 @@ public class Enemy_02 : MonoBehaviour
         if (stunTimer > 0f)
         {
             stunned = true;
-            stunTimer -= Time.fixedDeltaTime;
-
+            stunTimer -= Time.deltaTime;
             return;
         }
-        else { stunned = false; }
+        else
+        {
+            stunned = false;
+        }
     }
+
     public void Stun(float duration)
     {
         stunTimer = Mathf.Max(stunTimer, duration);
-        Debug.Log($"Fienden ‰r stunad i {duration} sekunder.");
-        // L‰gg till animation/effekt h‰r vid behov
+        Debug.Log($"Fienden √§r stunad i {duration} sekunder.");
     }
+
     void ShootAtPlayer()
     {
-        if (!stunned)
-        {
-            Vector3 direction = (player.position - firePoint.position).normalized;
+        if (stunned) return;
 
+        Vector3 direction = (player.position - firePoint.position).normalized;
+        float distanceToPlayer = Vector2.Distance(firePoint.position, player.position);
+
+        // Kolla om n√•got hinder finns mellan fienden och spelaren
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, direction, distanceToPlayer, obstacleMask);
+
+        // Debugga raycast i scenen (gr√∂n = fri sikt, r√∂d = hinder)
+        Debug.DrawRay(firePoint.position, direction * distanceToPlayer, hit.collider == null ? Color.green : Color.red, 0.5f);
+
+        if (hit.collider == null) // Ingen v√§gg/hinder i v√§gen -> skjut!
+        {
             GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
             projectile02 projScript = proj.GetComponent<projectile02>();
             projScript.SetDirection(direction);
             projScript.speed = projectileSpeed;
 
-            // Spela skjutljudet
             if (shootAudioSource != null && shootSound != null)
             {
                 shootAudioSource.PlayOneShot(shootSound);
