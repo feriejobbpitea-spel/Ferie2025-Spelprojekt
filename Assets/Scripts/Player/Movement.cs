@@ -87,7 +87,6 @@ public class Movement : MonoBehaviour
         float moveX = 0f;
         if (Input.GetKey(keybinds["Left"])) moveX = -1f;
         if (Input.GetKey(keybinds["Right"])) moveX = 1f;
-        Debug.Log(moveX);
 
         Vector2 movement;
 
