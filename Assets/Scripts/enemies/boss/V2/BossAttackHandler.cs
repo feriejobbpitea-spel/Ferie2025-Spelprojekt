@@ -54,12 +54,10 @@ public class BossAttackHandler : MonoBehaviour
     {
         int attackType = Random.Range(0, 2);
 
-        yield return ThrowAttack();
-
-        /*if (attackType == 0)
+        if (attackType == 0)
             yield return SlamAttack();
         else
-            yield return ThrowAttack();*/
+            yield return ThrowAttack();
 
         yield return new WaitForSeconds(attackCooldown);
     }
@@ -97,19 +95,20 @@ public class BossAttackHandler : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // Step 4: Teleport directly above the target position (off-screen again)
-        rb.position = new Vector3(targetPosition.x, offScreenY, transform.position.z);
-        rb.gravityScale = 1f;
-        Debug.Log(targetPosition);
-
-        SetCollisionStatus(true);
+        var hit = Physics2D.Raycast(player.transform.position, Vector2.up, 100, groundLayer);
+        rb.position = new Vector3(targetPosition.x, hit.point.y - 1, transform.position.z);
 
         yield return new WaitForSeconds(0.3f); // Dramatic pause before slam
 
         // Step 5: Slam straight down
         rb.linearVelocity = new Vector2(0, -jumpForce * 5f);
 
+        rb.gravityScale = 1f;
+
         // Step 6: Wait until boss lands
-        yield return new WaitUntil(IsGrounded);
+        yield return new WaitUntil(() => IsGrounded());
+        SetCollisionStatus(true);
+
 
         OnSlam?.Invoke();
 
@@ -159,6 +158,9 @@ public class BossAttackHandler : MonoBehaviour
     {
         GameObject wave = Instantiate(earthWavePrefab, position, Quaternion.identity);
         Rigidbody2D waveRb = wave.GetComponent<Rigidbody2D>();
+
+        wave.transform.localScale = new Vector3(1, 1, 1);
+
         if (waveRb != null)
         {
             waveRb.linearVelocity = direction * earthWaveSpeed;
@@ -170,6 +172,7 @@ public class BossAttackHandler : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, 5f, groundLayer);
         return hit.collider != null;
     }
+
 
     private void LookAtPlayer()
     {

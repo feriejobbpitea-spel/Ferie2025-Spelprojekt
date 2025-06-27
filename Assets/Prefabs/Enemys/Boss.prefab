@@ -490,7 +490,7 @@ MonoBehaviour:
   jumpChargeTime: 1
   jumpForce: 10
   slamDelay: 1.5
-  throwForce: 10
+  throwForce: 5
   attackCooldown: 3
   hoverDuration: 2
   hoverSpeed: 2

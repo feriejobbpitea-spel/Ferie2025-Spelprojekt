@@ -2,46 +2,64 @@ using UnityEngine;
 
 public class earthwave : MonoBehaviour
 {
-    private Transform playerTransform;
-    private Vector2 playerDirection;
-
-    public float speed = 5f;
-    public int damage = 1;
+    public LayerMask GroundLayer;
+    public LayerMask PlayerLayer;
+    public float RemoveAfterTime = 5F;
+    public float DistanceToWalls = 0.1F;
 
     private void Start()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player")?.transform;
-        if (playerTransform == null)
-        {
-            Debug.LogError("Player not found! Se till att spelaren har taggen 'Player'.");
-            playerDirection = Vector2.right; // Standardriktning om ingen spelare finns
-        }
-        else
-        {
-            Vector2 dir = (playerTransform.position - transform.position).normalized;
-            dir.y = 0; // Endast horisontell riktning
-            playerDirection = dir;
-        }
-        Destroy(gameObject, 5f); // Förstör vågen efter 5 sekunder
+        Destroy(gameObject, RemoveAfterTime); // Förstör vågen efter 5 sekunder
     }
 
     private void Update()
     {
-        transform.Translate(playerDirection * speed * Time.deltaTime);
+        bool hitGroundRight = Physics2D.Raycast(transform.position, Vector2.right, DistanceToWalls, GroundLayer);
+        bool hitGroundLeft = Physics2D.Raycast(transform.position, Vector2.right, DistanceToWalls, GroundLayer);
+        if(hitGroundLeft || hitGroundRight)
+        {
+            RemoveSelf();
+        }
+
+        bool hitPlayer = Physics2D.CircleCast(transform.position, 1F, Vector2.up, 1F, PlayerLayer);
+        if (hitPlayer)
+        {
+            RemoveSelf();
+            HurtPlayer();
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnDrawGizmos()
     {
-        if (collision.CompareTag("Player"))
-        {
-            // Skada spelaren (byt ut enligt din skademetod)
-            PlayerHealthV2.Instance.LoseLife();
-            Destroy(gameObject);
-            
-        }
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
-            Destroy(gameObject);
-        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 1F); // Visar cirkeln för spelarkollision
+        Gizmos.DrawRay(transform.position, Vector2.right * DistanceToWalls); // Visar raycast för markkollision höger
+        Gizmos.DrawRay(transform.position, Vector2.left * DistanceToWalls); // Visar raycast för markkollision vänster
     }
+
+
+    private void RemoveSelf() {
+        Destroy(gameObject);
+    }
+
+    private void HurtPlayer() 
+    {
+        PlayerHealthV2.Instance.LoseLife();
+    }
+
+
+    /*    private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                // Skada spelaren (byt ut enligt din skademetod)
+                PlayerHealthV2.Instance.LoseLife();
+                Destroy(gameObject);
+
+            }
+            else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                Destroy(gameObject);
+            }
+        }*/
 }
