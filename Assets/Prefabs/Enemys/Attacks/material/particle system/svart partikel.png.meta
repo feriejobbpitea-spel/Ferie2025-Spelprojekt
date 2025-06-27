@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bf32a3b3d692c424b92c067ad720d65f
+guid: 25f813617fdd37542a2ee3457ce88da5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1966600147343935595
-    second: toxic waste barrel_0
+      213: -6357247926858935416
+    second: svart partikel_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: toxic waste barrel_0
+      name: svart partikel_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.75}
+        x: 1
+        y: 11
+        width: 2
+        height: 2
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b22ed93018a44184296b1421b9d0a29f
-      internalID: 499026799
+      spriteID: 7519a86f14a2b7440accce09c011ce57
+      internalID: 91103766
       vertices: []
       indices: 
       edges: []
@@ -148,9 +148,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      toxic waste barrel_0: 499026799
+      svart partikel_0: 91103766
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
