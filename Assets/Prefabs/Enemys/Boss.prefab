@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 7036117806275113216}
   - component: {fileID: 5026094292256385974}
   - component: {fileID: 7682881470486700959}
+  - component: {fileID: 8228788430379448623}
   m_Layer: 8
   m_Name: Boss
   m_TagString: Enemy
@@ -494,13 +495,30 @@ MonoBehaviour:
   attackCooldown: 3
   hoverDuration: 2
   hoverSpeed: 2
-  earthWaveCount: 5
-  earthWaveSpacing: 1
-  earthWaveSpeed: 5
+  earthWaveCount: 16
+  earthWaveSpacing: 2
+  earthWaveSpeed: 0.1
+  delayBetweenWaves: 0.15
+  disappearDelay: 0.6
+  distanceUp: 4
+  startDistanceDown: 4
   groundCheck: {fileID: 5459211683806485481}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &8228788430379448623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598016814301857601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96717c99793b1a642a69b346bc456b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 7682881470486700959}
 --- !u!1 &4341665970175819241
 GameObject:
   m_ObjectHideFlags: 0

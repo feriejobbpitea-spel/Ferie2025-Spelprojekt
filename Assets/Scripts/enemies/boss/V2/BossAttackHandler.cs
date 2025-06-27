@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using static BossStateController;
+using DG.Tweening; 
 
 public class BossAttackHandler : MonoBehaviour
 {
@@ -28,6 +29,10 @@ public class BossAttackHandler : MonoBehaviour
     public int earthWaveCount = 5;
     public float earthWaveSpacing = 1f;
     public float earthWaveSpeed = 5f;
+    public float delayBetweenWaves = 0.2f; 
+    public float disappearDelay = 3f; 
+    public float distanceUp = 3f;
+    public float startDistanceDown = 3f;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -114,7 +119,7 @@ public class BossAttackHandler : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        SpawnEarthWaves();
+        StartCoroutine(SpawnEarthWaves());
 
         yield return new WaitForSeconds(1f);
 
@@ -142,30 +147,42 @@ public class BossAttackHandler : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
-    private void SpawnEarthWaves()
-    {
-        for (int i = 1; i <= earthWaveCount; i++)
-        {
-            Vector3 rightPos = earthWavePoint.position + new Vector3(earthWaveSpacing * i, 0, 0);
-            Vector3 leftPos = earthWavePoint.position - new Vector3(earthWaveSpacing * i, 0, 0);
 
-            SpawnWave(rightPos, Vector2.right);
-            SpawnWave(leftPos, Vector2.left);
+    private IEnumerator SpawnEarthWaves()
+    {
+        for (int i = 0; i < earthWaveCount; i++)
+        {
+            // Calculate horizontal offset: alternate left/right from center
+            int direction = (i % 2 == 0) ? 1 : -1;
+            // Distance multiplier: for 0 it's center, for 1 and 2 it's 1 * spacing, for 3 and 4 it's 2 * spacing, etc.
+            int distanceIndex = (i + 1) / 2;
+
+            float xOffset = distanceIndex * earthWaveSpacing * direction;
+
+            Vector3 spawnPosition = earthWavePoint.position + new Vector3(xOffset, -startDistanceDown, 0);
+            GameObject earthWave = Instantiate(earthWavePrefab, spawnPosition, Quaternion.identity);
+
+            // Tween the earth wave upwards by distDown over earthWaveSpeed seconds
+            earthWave.transform.DOMoveY(earthWave.transform.position.y + distanceUp, earthWaveSpeed).SetEase(Ease.InOutSine);
+
+            // Start coroutine to make it disappear after delay
+            StartCoroutine(DisappearEarthWave(earthWave));
+
+            yield return new WaitForSeconds(delayBetweenWaves);
         }
     }
 
-    private void SpawnWave(Vector3 position, Vector2 direction)
+    private IEnumerator DisappearEarthWave(GameObject earthWave)
     {
-        GameObject wave = Instantiate(earthWavePrefab, position + (Vector3)direction, Quaternion.identity);
-        Rigidbody2D waveRb = wave.GetComponent<Rigidbody2D>();
+        yield return new WaitForSeconds(disappearDelay);
 
-        wave.transform.localScale = new Vector3(direction.x > 0 ? 1 : -1, 1, 1);
-
-        if (waveRb != null)
+        // Move down into the ground and destroy after tween completes
+        earthWave.transform.DOMoveY(earthWave.transform.position.y - startDistanceDown, 1f).SetEase(Ease.InBack).OnComplete(() =>
         {
-            waveRb.linearVelocity = direction * earthWaveSpeed;
-        }
+            Destroy(earthWave);
+        });
     }
+
 
     private bool IsGrounded()
     {

@@ -4,6 +4,8 @@ public class earthwave : MonoBehaviour
 {
     public LayerMask GroundLayer;
     public LayerMask PlayerLayer;
+
+    public Vector3 Offset;
     public float RemoveAfterTime = 5F;
     public float DistanceToWalls = 0.1F;
 
@@ -14,14 +16,14 @@ public class earthwave : MonoBehaviour
 
     private void Update()
     {
-        bool hitGroundRight = Physics2D.Raycast(transform.position, Vector2.right, DistanceToWalls, GroundLayer);
-        bool hitGroundLeft = Physics2D.Raycast(transform.position, Vector2.right, DistanceToWalls, GroundLayer);
+        bool hitGroundRight = Physics2D.Raycast(transform.position + Offset, Vector2.right, DistanceToWalls, GroundLayer);
+        bool hitGroundLeft = Physics2D.Raycast(transform.position + Offset, Vector2.right, DistanceToWalls, GroundLayer);
         if(hitGroundLeft || hitGroundRight)
         {
             RemoveSelf();
         }
 
-        bool hitPlayer = Physics2D.CircleCast(transform.position, 1F, Vector2.up, 1F, PlayerLayer);
+        bool hitPlayer = Physics2D.CircleCast(transform.position + Offset, 1F, Vector2.up, 1F, PlayerLayer);
         if (hitPlayer)
         {
             RemoveSelf();
@@ -32,9 +34,9 @@ public class earthwave : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 1F); // Visar cirkeln för spelarkollision
-        Gizmos.DrawRay(transform.position, Vector2.right * DistanceToWalls); // Visar raycast för markkollision höger
-        Gizmos.DrawRay(transform.position, Vector2.left * DistanceToWalls); // Visar raycast för markkollision vänster
+        Gizmos.DrawWireSphere(transform.position + Offset, 1F); // Visar cirkeln för spelarkollision
+        Gizmos.DrawRay(transform.position + Offset, Vector2.right * DistanceToWalls); // Visar raycast för markkollision höger
+        Gizmos.DrawRay(transform.position + Offset, Vector2.left * DistanceToWalls); // Visar raycast för markkollision vänster
     }
 
 

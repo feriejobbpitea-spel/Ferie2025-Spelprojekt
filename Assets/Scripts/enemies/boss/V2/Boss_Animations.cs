@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Boss_Animations : MonoBehaviour
 {
-/*
-    [SerializeField] private Boss_V2 boss;
+
+    [SerializeField] private BossAttackHandler boss;
     private Animator _animator;
 
     private void Awake()
@@ -42,5 +42,5 @@ public class Boss_Animations : MonoBehaviour
     private void HandleThrow()
     {
         _animator.SetTrigger("Throw");
-    }*/
+    }
 }
