@@ -156,10 +156,10 @@ public class BossAttackHandler : MonoBehaviour
 
     private void SpawnWave(Vector3 position, Vector2 direction)
     {
-        GameObject wave = Instantiate(earthWavePrefab, position, Quaternion.identity);
+        GameObject wave = Instantiate(earthWavePrefab, position + (Vector3)direction, Quaternion.identity);
         Rigidbody2D waveRb = wave.GetComponent<Rigidbody2D>();
 
-        wave.transform.localScale = new Vector3(1, 1, 1);
+        wave.transform.localScale = new Vector3(direction.x > 0 ? 1 : -1, 1, 1);
 
         if (waveRb != null)
         {
