@@ -118,7 +118,7 @@ public class Gamblingwheel : MonoBehaviour
         {
             float t = elapsed / spinDuration;
             wheel.rotation = Quaternion.Lerp(startRotation, endRotation, EaseOut(t));
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             yield return null;
         }
 

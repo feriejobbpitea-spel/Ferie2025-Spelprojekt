@@ -48,7 +48,7 @@ public class ShopDialogueManager : Singleton<ShopDialogueManager>
         }
         cg.DOKill();
         cg.alpha = 0;
-        cg.DOFade(1, enterDuration).OnComplete(() => onComplete?.Invoke());
+        cg.DOFade(1, enterDuration).SetUpdate(true).OnComplete(() => onComplete?.Invoke());
     }
 
     private IEnumerator TypeText(string fullText, float clipLength)
@@ -64,7 +64,7 @@ public class ShopDialogueManager : Singleton<ShopDialogueManager>
             charIndex++;
 
             timer += typingSpeed;
-            yield return new WaitForSeconds(typingSpeed);
+            yield return new WaitForSecondsRealtime(typingSpeed);
         }
 
         // Ensure full text is displayed after typing
@@ -73,7 +73,7 @@ public class ShopDialogueManager : Singleton<ShopDialogueManager>
         // Wait remaining time of clip after typing finishes
         float remaining = clipLength - (typingSpeed * totalChars);
         if (remaining > 0)
-            yield return new WaitForSeconds(remaining);
+            yield return new WaitForSecondsRealtime(remaining);
 
         ClearDialogue();
     }

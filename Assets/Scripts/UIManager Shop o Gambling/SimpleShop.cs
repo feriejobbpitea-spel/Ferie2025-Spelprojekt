@@ -46,6 +46,8 @@ public class SimpleShop : MonoBehaviour
             if (buyButton != null)
             {
                 buyButton.onClick.AddListener(() => BuyItem(item));
+
+                
             }
             else
             {
@@ -60,9 +62,41 @@ public class SimpleShop : MonoBehaviour
     {
         if (PlayerMoney.Instance.money >= item.price)
         {
+            GameObject player = GameObject.Find("Player");
             PlayerMoney.Instance.money -= item.price;
             Debug.Log("Du köpte: " + item.itemName);
             UpdateMoneyUI();
+            switch (item.itemName)
+            {
+                case "Konfetti":
+                    Debug.Log("´du fick konfetti!");
+                    InventoryManager.Instance.AddConfettiGun();
+                    break;
+                case "RayGun":
+                    InventoryManager.Instance.AddRayGun();
+                    break;
+                case "Slangebella":
+                    InventoryManager.Instance.AddSlingshot();
+                    break;
+                case "EmpVapen":
+                    InventoryManager.Instance.AddEmpGun();
+                    break;
+                case "DoubleJump":
+                    player.GetComponent<Movement>().doubleJump = true;
+                    break;
+                case "SuperJump":
+                    player.GetComponent<Movement>().bigJump = true;
+                    break;
+                case "Time slow":
+                    player.GetComponent<Movement>().timeSlow = true;
+                    break;
+                case "Speed":
+                    player.GetComponent<Movement>().superSpeed = 2;
+                    break;
+                default:
+                    Debug.LogWarning("Okänt föremål: " + item.itemName);
+                    break;
+            }
         }
         else
         {

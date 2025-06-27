@@ -2,30 +2,39 @@ using UnityEngine;
 
 public class ConfettiBall : MonoBehaviour
 {
-    public GameObject explosionEffect;      // Partikeleffekt
-    public float lifetime = 3f;             // Max tid innan den exploderar
-    public float explosionRadius = 0.5f;      // Radius för explosionen
-    public LayerMask damageLayers;          // Vad som kan ta skada
+    public GameObject explosionEffect;
+    public float lifetime = 3f;
+    public float explosionRadius = 0.5f;
+    public LayerMask damageLayers;     // Vad som kan ta skada (Enemies, Player)
+    public LayerMask collisionLayers;  // Vad som får bollen att explodera (Ground, Enemies)
     public int damage = 1;
 
     private bool exploded = false;
+    private Rigidbody2D rb;
 
-    private void Start()
+    void Start()
     {
-        Debug.Log("Confetti ball created!");
-        Invoke(nameof(Explode), lifetime);  // Explodera automatiskt efter 'lifetime'
+        rb = GetComponent<Rigidbody2D>();
+        Invoke(nameof(Explode), lifetime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void FixedUpdate()
     {
-        if (exploded) return;
+        if (exploded || rb == null) return;
 
-        // Kolla om den träffar Ground eller Enemy
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground") ||
-            collision.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+        Vector2 direction = rb.linearVelocity.normalized;
+        float distance = rb.linearVelocity.magnitude * Time.fixedDeltaTime + 0.05f;
+
+        // Raycast i rörelseriktningen
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance, collisionLayers);
+
+        if (hit.collider != null)
         {
             Explode();
         }
+
+        // (Valfritt) Debug-linje i Scene View:
+        Debug.DrawRay(transform.position, direction * distance, Color.red);
     }
 
     void Explode()
@@ -33,29 +42,29 @@ public class ConfettiBall : MonoBehaviour
         if (exploded) return;
         exploded = true;
 
-        Debug.Log("Confetti ball exploded!");
-
-        if (explosionEffect)
+        if (explosionEffect != null)
         {
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
         }
 
-        // Skada alla inom explosionens radie
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosionRadius, damageLayers);
+
         foreach (Collider2D hit in hits)
         {
             if (hit.gameObject.layer == LayerMask.NameToLayer("Enemies"))
             {
-                hit.GetComponent<EnemyHealth>()?.TakeDamage(damage);
+                if(hit.name == "Boss")
+                {
+                   hit.GetComponent<Boss>()?.TakeDamage(damage);
+                } else { hit.GetComponent<EnemyHealth>()?.TakeDamage(damage); }
+                    
             }
             else if (hit.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 hit.GetComponent<PlayerHealthV2>()?.LoseLife();
             }
-
-
         }
 
-        Destroy(gameObject);  // Förstör konfettibollen
+        Destroy(gameObject);
     }
 }

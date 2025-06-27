@@ -36,12 +36,12 @@ public class Movement : MonoBehaviour
     private Dictionary<string, KeyCode> keybinds = new Dictionary<string, KeyCode>();
 
     #region powerups
-    private bool doubleJump = true;
-    private bool doubleJumpUsed = false;
-    private bool bigJump = false;
+    public bool doubleJump = true;
+    public bool doubleJumpUsed = false;
+    public bool bigJump = false;
     public float bigJumpForce;
-    private float superSpeed = 1;
-    private bool timeSlow = false;
+    public float superSpeed = 1;
+    public bool timeSlow = false;
     #endregion
 
     // 🕸 Spiderweb slow support
@@ -58,22 +58,23 @@ public class Movement : MonoBehaviour
         keybinds["Shoot"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString()));
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Traps"))
-        {
-            
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce * 4 / 5);
-            
-        }
-    }
+   
     public float currentCharge = 1f;
     public float maxCharge = 1f;
     public float rechargeRate = 0.1f; // Långsammare laddning
 
+    private BoxCollider2D boxCollider;
     void Update()
     {
-        if (currentCharge < maxCharge)
+        boxCollider = GetComponent<BoxCollider2D>();
+        if (!IsGrounded) {
+            boxCollider.size = new Vector2(0.6f, 1f); 
+                                                      }
+
+            //change colider in air
+
+
+            if (currentCharge < maxCharge)
         {
             currentCharge = Mathf.Min(currentCharge + rechargeRate * Time.deltaTime, maxCharge);
         }
@@ -168,7 +169,7 @@ public class Movement : MonoBehaviour
         }
 
         #region Powerups
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T) && timeSlow)
         {
             if (Time.timeScale == 1f)
             {
