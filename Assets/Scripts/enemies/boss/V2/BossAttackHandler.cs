@@ -84,7 +84,7 @@ public class BossAttackHandler : MonoBehaviour
 
         // Step 1: Launch boss way above the screen
         float cameraTop = Camera.main.transform.position.y + Camera.main.orthographicSize;
-        float offScreenY = 40; // 2x screen height above
+        float offScreenY = transform.position.y + 15; // 2x screen height above
         rb.linearVelocity = new Vector2(0, jumpForce); // Launch up
         rb.gravityScale = 0f;
         SetCollisionStatus(false);
@@ -106,7 +106,7 @@ public class BossAttackHandler : MonoBehaviour
         yield return new WaitForSeconds(0.3f); // Dramatic pause before slam
 
         // Step 5: Slam straight down
-        rb.linearVelocity = new Vector2(0, -jumpForce * 5f);
+        rb.linearVelocity = new Vector2(0, -jumpForce);
 
         rb.gravityScale = 1f;
 
