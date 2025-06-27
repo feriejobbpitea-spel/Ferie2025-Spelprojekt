@@ -87,6 +87,7 @@ public class Movement : MonoBehaviour
         float moveX = 0f;
         if (Input.GetKey(keybinds["Left"])) moveX = -1f;
         if (Input.GetKey(keybinds["Right"])) moveX = 1f;
+        Debug.Log(moveX);
 
         Vector2 movement;
 
@@ -245,7 +246,8 @@ public class Movement : MonoBehaviour
 
     void ResetScale()
     {
-        gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
+        gfx.transform.DOKill();
+        gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack); // error <- Max Tween Reached: Capacaity has been automatically increased.
     }
 
     void ApplyFallStretch()
@@ -255,17 +257,18 @@ public class Movement : MonoBehaviour
             if (fallStretchTween == null || !fallStretchTween.IsActive() || !fallStretchTween.IsPlaying())
             {
                 fallStretchTween?.Kill();
-                fallStretchTween = gfx.transform.DOScale(new Vector3(0.6f, 1.4f, 1f), 3f).SetEase(Ease.OutQuad);
+                fallStretchTween = gfx.transform.DOScale(new Vector3(0.6f, 1.4f, 1f), 4f).SetEase(Ease.OutQuad);
             }
         }
         else
         {
-            if (fallStretchTween != null && fallStretchTween.IsActive())
+            if (fallStretchTween != null && fallStretchTween.IsActive() && !fallStretchTween.IsComplete())
             {
                 fallStretchTween.Kill();
                 fallStretchTween = gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
             }
         }
     }
+
 
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -6,13 +7,21 @@ using UnityEngine.Localization.Settings;
 
 public class LanguageDropdownHandler : MonoBehaviour
 {
-    public TMP_Dropdown dropdown; // Dra in din dropdown i Inspector
+    public TMP_Dropdown dropdown;
 
-    private Locale appliedLanguage;  // Språket som är aktivt (det senaste "Apply"-språket)
-    private Locale pendingLanguage;  // Språket användaren har valt men inte applicerat än
+    private Locale appliedLanguage;
+    private Locale pendingLanguage;
 
     void Start()
     {
+        StartCoroutine(InitializeDropdown());
+    }
+
+    private IEnumerator InitializeDropdown()
+    {
+        // Wait for localization system to finish initializing
+        yield return LocalizationSettings.InitializationOperation;
+
         var locales = LocalizationSettings.AvailableLocales.Locales;
 
         dropdown.ClearOptions();
@@ -25,11 +34,9 @@ public class LanguageDropdownHandler : MonoBehaviour
 
         dropdown.AddOptions(options);
 
-        // Initiera appliedLanguage och pendingLanguage med det språk som är aktivt nu
         appliedLanguage = LocalizationSettings.SelectedLocale;
         pendingLanguage = appliedLanguage;
 
-        // Sätt dropdown till appliedLanguage
         int currentIndex = locales.IndexOf(appliedLanguage);
         dropdown.value = currentIndex;
         dropdown.RefreshShownValue();
@@ -39,7 +46,6 @@ public class LanguageDropdownHandler : MonoBehaviour
 
     void OnLanguageChanged(int index)
     {
-        // Spara pending språk men byt inte språk direkt
         pendingLanguage = LocalizationSettings.AvailableLocales.Locales[index];
     }
 
@@ -48,13 +54,11 @@ public class LanguageDropdownHandler : MonoBehaviour
         if (pendingLanguage != null && LocalizationSettings.SelectedLocale != pendingLanguage)
         {
             LocalizationSettings.SelectedLocale = pendingLanguage;
-            appliedLanguage = pendingLanguage;  // Uppdatera appliedLanguage
-            Debug.Log("Språk ändrat till: " + appliedLanguage.LocaleName);
+            appliedLanguage = pendingLanguage;
+            Debug.Log("Language changed to: " + appliedLanguage.LocaleName);
         }
     }
 
-    // Den här metoden kan du kalla när du "stänger" settings utan att trycka Apply,
-    // för att återställa dropdown till appliedLanguage
     public void ResetDropdownToApplied()
     {
         if (appliedLanguage != null)
@@ -63,8 +67,6 @@ public class LanguageDropdownHandler : MonoBehaviour
             int index = locales.IndexOf(appliedLanguage);
             dropdown.SetValueWithoutNotify(index);
             dropdown.RefreshShownValue();
-
-            // Även uppdatera pendingLanguage så det matchar appliedLanguage
             pendingLanguage = appliedLanguage;
         }
     }
