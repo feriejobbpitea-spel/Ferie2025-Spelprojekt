@@ -23,22 +23,23 @@ public class Shop : MonoBehaviour
 
     private void Update()
     {
-        if(!IsCloseToShop())
+        if (!IsCloseToShop())
             return;
 
-        if (Input.GetKeyDown(KeyCode.E)) 
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (_inShop) {
-                 // Resume time when exiting shop
+            if (_inShop)
+            {
+                // Resume time when exiting shop
                 ExitShop();
             }
 
             else
             {
-                 // Pause time when entering shop
+                // Pause time when entering shop
                 EnterShop();
             }
-                
+
         }
     }
 
@@ -50,7 +51,7 @@ public class Shop : MonoBehaviour
 
     public bool IsCloseToShop() => Vector2.Distance(_player.position, transform.position) < InteractDistance;
 
-    private void EnterShop() 
+    private void EnterShop()
     {
         Time.timeScale = 0f;
         PlayerHandler.HidePlayer();
@@ -60,7 +61,7 @@ public class Shop : MonoBehaviour
         DialogueHandler.PlayEnterShopDialogue();
     }
 
-    public void ExitShop() 
+    public void ExitShop()
     {
         Time.timeScale = 1f;
         PlayerHandler.ShowPlayer();
@@ -68,7 +69,7 @@ public class Shop : MonoBehaviour
         CameraHandler.MoveCameraAwayFromShop();
         ShopHUDHandler.CloseShopHUD();
         DialogueHandler.PlayExitShopDialogue();
+
+        PlayerMoney.Instance.UpdateMoneyUI();  // <-- Lägg till detta för att uppdatera pengarna direkt
     }
-
-
 }

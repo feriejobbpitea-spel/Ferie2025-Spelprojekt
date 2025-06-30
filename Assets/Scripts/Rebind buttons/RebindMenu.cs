@@ -14,7 +14,10 @@ public class RebindMenu : MonoBehaviour
     public Button backButton;
     public Button resetButton;  // Här är knappen för att resetta keybinds
 
-    private List<string> actions = new List<string> { "Jump", "Sprint", "Shoot", "Left", "Right", "SkipCutscene", "NextSlide" };
+    private List<string> actions = new List<string> {
+    "Jump", "Sprint", "Shoot", "Left", "Right", "SkipCutscene", "NextSlide",
+    "WeaponSlot1", "WeaponSlot2", "WeaponSlot3", "WeaponSlot4"
+};
     private bool isWaitingForKey = false;
     private string currentAction;
 
@@ -22,15 +25,19 @@ public class RebindMenu : MonoBehaviour
 
     // Standardbindningar
     private Dictionary<string, KeyCode> defaultBindings = new Dictionary<string, KeyCode>
-    {
-        { "Jump", KeyCode.Space },
-        { "Sprint", KeyCode.LeftShift },
-        { "Shoot", KeyCode.Mouse0 },
-        { "Left", KeyCode.A },
-        { "Right", KeyCode.D },
-        { "SkipCutscene", KeyCode.Backspace },     // Ändra vid behov
-        { "NextSlide", KeyCode.Return }         // Ändra vid behov
-    };
+{
+    { "Jump", KeyCode.Space },
+    { "Sprint", KeyCode.LeftShift },
+    { "Shoot", KeyCode.Mouse0 },
+    { "Left", KeyCode.A },
+    { "Right", KeyCode.D },
+    { "SkipCutscene", KeyCode.Backspace },
+    { "NextSlide", KeyCode.Return },
+    { "WeaponSlot1", KeyCode.Alpha1 },
+    { "WeaponSlot2", KeyCode.Alpha2 },
+    { "WeaponSlot3", KeyCode.Alpha3 },
+    { "WeaponSlot4", KeyCode.Alpha4 }
+};
 
     void Start()
     {

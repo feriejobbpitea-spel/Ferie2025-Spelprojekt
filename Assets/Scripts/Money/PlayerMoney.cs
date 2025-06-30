@@ -22,13 +22,14 @@ public class PlayerMoney : Singleton<PlayerMoney>
         money -= amount;
         if (money < 0) money = 0; // Prevent negative money
         UpdateMoneyUI();
-    }   
+    }
 
-    void UpdateMoneyUI()
+   public void UpdateMoneyUI()
     {
         if (moneyText != null)
         {
             moneyText.text = $"{money}";
+            Debug.Log($"Money updated to: {money} at time {Time.time}");
         }
     }
 }

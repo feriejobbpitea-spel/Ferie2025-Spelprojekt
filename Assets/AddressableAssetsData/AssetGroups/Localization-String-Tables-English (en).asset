@@ -28,6 +28,18 @@ MonoBehaviour:
     - Locale-en
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 508e9accdc6316d41a53cb5d784a41a3
+    m_Address: Cut Scene End Dialog_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cecef9d4df19edb4faa08f33ef2375bf
+    m_Address: Cut Scene End Dialog1_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d8f62582dbb1248429e536ba60458c30
     m_Address: ShopDialogue translater_en
     m_ReadOnly: 1

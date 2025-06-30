@@ -15,6 +15,16 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: 2a23ce10e77f89b4a8f01c6ad66e0d23
   m_SerializeEntries:
+  - m_GUID: 25f1993ac05ae5b40b8ccc258a0926f3
+    m_Address: Assets/Localization/Locales/Cut Scene End Dialog1 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2bb8e5faf8ed6ea4ab6e0bfe05e69b28
+    m_Address: Assets/Localization/Locales/Cut Scene End Dialog Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 329d8e92eb9de7b4c805658cb84edff0
     m_Address: Audio 7
     m_ReadOnly: 1
