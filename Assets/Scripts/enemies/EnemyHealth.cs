@@ -1,21 +1,26 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
+    [Header("Hälsa")]
     public int maxHealth = 3;
     private int currentHealth;
+    public Slider healthSlider;
 
-    public Slider healthSlider;             // Referens till UI-slider
-    public GameObject coinPrefab;           // Prefab som ska spawna när fienden dör
-    public float coinForce = 5f;            // Hur hårt myntet studsar ut
+    [Header("Belöning")]
+    public GameObject coinPrefab;
+    public float coinForce = 5f;
 
     [Header("Overrides")]
     public GameObject toRemove;
     public SpriteRenderer spriteRendererOverride;
 
-    private SpriteRenderer spriteRenderer;  // För blink-effekt
+    [Header("Ljud")]
+    public AudioClip damageSound;
+    public AudioSource audioSource;
+
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -28,6 +33,11 @@ public class EnemyHealth : MonoBehaviour
         }
 
         spriteRenderer = (spriteRendererOverride != null) ? spriteRendererOverride : GetComponent<SpriteRenderer>();
+
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     public void TakeDamage(int amount)
@@ -39,11 +49,20 @@ public class EnemyHealth : MonoBehaviour
             healthSlider.value = currentHealth;
         }
 
-        BlinkRed();  // Blinkar rött
+        PlayDamageSound();
+        BlinkRed();
 
         if (currentHealth <= 0)
         {
             Die();
+        }
+    }
+
+    void PlayDamageSound()
+    {
+        if (audioSource != null && damageSound != null)
+        {
+            audioSource.PlayOneShot(damageSound);
         }
     }
 
@@ -66,12 +85,11 @@ public class EnemyHealth : MonoBehaviour
 
     public virtual void Die()
     {
+        PlaySoundAtPosition(damageSound, transform.position);
+
         if (coinPrefab != null)
         {
-            // Skapa myntet vid fiendens position
             GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
-
-            // Lägg till kraft så den studsar ut
             Rigidbody2D rb = coin.AddComponent<Rigidbody2D>();
             if (rb != null)
             {
@@ -80,6 +98,19 @@ public class EnemyHealth : MonoBehaviour
             }
         }
 
-        Destroy((toRemove != null) ? toRemove :  gameObject);
+        Destroy((toRemove != null) ? toRemove : gameObject);
+    }
+
+    void PlaySoundAtPosition(AudioClip clip, Vector3 position)
+    {
+        if (clip == null) return;
+
+        GameObject tempGO = new GameObject("TempAudio");
+        tempGO.transform.position = position;
+        AudioSource aSource = tempGO.AddComponent<AudioSource>();
+        aSource.clip = clip;
+        aSource.Play();
+
+        Destroy(tempGO, clip.length);
     }
 }

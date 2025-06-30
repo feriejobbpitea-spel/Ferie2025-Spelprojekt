@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using static BossStateController;
 using DG.Tweening; 
@@ -7,7 +7,7 @@ public class BossAttackHandler : MonoBehaviour
 {
     public Transform throwPoint;
     public Transform earthWavePoint;
-    public Collider2D[] colliders; 
+    public Collider2D[] colliders;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -15,6 +15,7 @@ public class BossAttackHandler : MonoBehaviour
     [Header("Prefabs")]
     public GameObject throwablePrefab;
     public GameObject earthWavePrefab;
+    public GameObject platformPrefab;
 
     [Header("Settings")]
     public float jumpChargeTime = 1f;
@@ -29,10 +30,17 @@ public class BossAttackHandler : MonoBehaviour
     public int earthWaveCount = 5;
     public float earthWaveSpacing = 1f;
     public float earthWaveSpeed = 5f;
-    public float delayBetweenWaves = 0.2f; 
-    public float disappearDelay = 3f; 
+    public float delayBetweenWaves = 0.2f;
+    public float disappearDelay = 3f;
     public float distanceUp = 3f;
     public float startDistanceDown = 3f;
+
+    [Header("Platform Spawn Settings")]
+    public int platformCount = 3;
+    public float platformSpacing = 2f;
+    public float platformYPosition = 3f;
+    public float platformFadeDuration = 0.5f;
+    public float platformLifeTime = 5f;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -67,7 +75,7 @@ public class BossAttackHandler : MonoBehaviour
         yield return new WaitForSeconds(attackCooldown);
     }
 
-    private void SetCollisionStatus(bool enabled) 
+    private void SetCollisionStatus(bool enabled)
     {
         foreach (var item in colliders)
         {
@@ -77,43 +85,34 @@ public class BossAttackHandler : MonoBehaviour
 
     private IEnumerator SlamAttack()
     {
+        SpawnPlatforms(); // ⬅ Spawna plattformar när bossen hoppar
         LookAtPlayer();
         OnFly?.Invoke();
 
         yield return new WaitForSeconds(jumpChargeTime);
 
-        // Step 1: Launch boss way above the screen
         float cameraTop = Camera.main.transform.position.y + Camera.main.orthographicSize;
-        float offScreenY = transform.position.y + 15; // 2x screen height above
-        rb.linearVelocity = new Vector2(0, jumpForce); // Launch up
+        float offScreenY = transform.position.y + 15;
+        rb.linearVelocity = new Vector2(0, jumpForce);
         rb.gravityScale = 0f;
         SetCollisionStatus(false);
 
-        // Wait until boss is off-screen (well above the visible area)
         yield return new WaitUntil(() => transform.position.y >= offScreenY);
 
-        // Step 2: Capture the player's position at the moment the boss disappears
         Vector2 targetPosition = player.position;
-
-        // Step 3: Optional pause for tension
         rb.linearVelocity = Vector2.zero;
         yield return new WaitForSeconds(0.5f);
 
-        // Step 4: Teleport directly above the target position (off-screen again)
         var hit = Physics2D.Raycast(player.transform.position, Vector2.up, 100, groundLayer);
         rb.position = new Vector3(targetPosition.x, hit.point.y - 1, transform.position.z);
 
-        yield return new WaitForSeconds(0.3f); // Dramatic pause before slam
+        yield return new WaitForSeconds(0.3f);
 
-        // Step 5: Slam straight down
         rb.linearVelocity = new Vector2(0, -jumpForce);
-
         rb.gravityScale = 1f;
 
-        // Step 6: Wait until boss lands
         yield return new WaitUntil(() => IsGrounded());
         SetCollisionStatus(true);
-
 
         OnSlam?.Invoke();
 
@@ -125,7 +124,6 @@ public class BossAttackHandler : MonoBehaviour
 
         stateController.SetState(BossState.Vulnerable);
     }
-
 
     private IEnumerator ThrowAttack()
     {
@@ -147,14 +145,11 @@ public class BossAttackHandler : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
-
     private IEnumerator SpawnEarthWaves()
     {
         for (int i = 0; i < earthWaveCount; i++)
         {
-            // Calculate horizontal offset: alternate left/right from center
             int direction = (i % 2 == 0) ? 1 : -1;
-            // Distance multiplier: for 0 it's center, for 1 and 2 it's 1 * spacing, for 3 and 4 it's 2 * spacing, etc.
             int distanceIndex = (i + 1) / 2;
 
             float xOffset = distanceIndex * earthWaveSpacing * direction;
@@ -162,10 +157,7 @@ public class BossAttackHandler : MonoBehaviour
             Vector3 spawnPosition = earthWavePoint.position + new Vector3(xOffset, -startDistanceDown, 0);
             GameObject earthWave = Instantiate(earthWavePrefab, spawnPosition, Quaternion.identity);
 
-            // Tween the earth wave upwards by distDown over earthWaveSpeed seconds
             earthWave.transform.DOMoveY(earthWave.transform.position.y + distanceUp, earthWaveSpeed).SetEase(Ease.InOutSine);
-
-            // Start coroutine to make it disappear after delay
             StartCoroutine(DisappearEarthWave(earthWave));
 
             yield return new WaitForSeconds(delayBetweenWaves);
@@ -176,20 +168,61 @@ public class BossAttackHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(disappearDelay);
 
-        // Move down into the ground and destroy after tween completes
         earthWave.transform.DOMoveY(earthWave.transform.position.y - startDistanceDown, 1f).SetEase(Ease.InBack).OnComplete(() =>
         {
             Destroy(earthWave);
         });
     }
 
+    private void SpawnPlatforms()
+    {
+        Debug.Log("Spawning platforms...");
+
+        float centerX = transform.position.x;
+        float y = transform.position.y - 1f; // Lite under bossens mitt
+
+        for (int i = 0; i < platformCount; i++)
+        {
+            float offset = (i - (platformCount - 1) / 2f) * platformSpacing;
+
+            // Skip spawn direkt under bossen (valfritt)
+            if (Mathf.Abs(offset) < 0.1f) continue;
+
+            Vector3 spawnPosition = new Vector3(centerX + offset, y, 0);
+            GameObject platform = Instantiate(platformPrefab, spawnPosition, Quaternion.identity);
+            Debug.Log("Spawned platform at: " + spawnPosition);
+
+            SpriteRenderer sr = platform.GetComponent<SpriteRenderer>();
+            if (sr != null)
+            {
+                Color startColor = sr.color;
+                startColor.a = 0;
+                sr.color = startColor;
+
+                sr.DOFade(1f, platformFadeDuration);
+                StartCoroutine(FadeOutAndDestroy(platform, sr));
+            }
+            else
+            {
+                Debug.LogWarning("Spawned platform has no SpriteRenderer!");
+                Destroy(platform, platformLifeTime);
+            }
+        }
+    }
+    private IEnumerator FadeOutAndDestroy(GameObject obj, SpriteRenderer sr)
+    {
+        yield return new WaitForSeconds(platformLifeTime - platformFadeDuration);
+        sr.DOFade(0f, platformFadeDuration).OnComplete(() =>
+        {
+            Destroy(obj);
+        });
+    }
 
     private bool IsGrounded()
     {
         RaycastHit2D hit = Physics2D.Raycast(groundCheck.position, Vector2.down, 5f, groundLayer);
         return hit.collider != null;
     }
-
 
     private void LookAtPlayer()
     {
