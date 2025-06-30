@@ -38,6 +38,7 @@ public class InventoryManager : Singleton<InventoryManager>
         inventoryIcons[0] = meleeIcon;
 
         EquipWeapon(0); // Equip melee at start
+        AddEmpGun();
         UpdateInventoryUI();
     }
 
