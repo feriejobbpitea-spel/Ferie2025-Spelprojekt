@@ -348,7 +348,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1462508015
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -2307006551632423868, guid: f704bb26f448f2d48a73d62f4ca6f15f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -15738,8 +15738,8 @@ MonoBehaviour:
   fullscreenToggle: {fileID: 4599079305235317134}
   fullscreenToggleText: {fileID: 9075455075000552556}
   volumeSlider: {fileID: 8691716210307735816}
-  resolutionDropdown: {fileID: 6953212016262921586}
   applyButton: {fileID: 997125625766857439}
+  resetButton: {fileID: 0}
 --- !u!1 &7204398491797980230
 GameObject:
   m_ObjectHideFlags: 0
@@ -18756,7 +18756,7 @@ PrefabInstance:
     - target: {fileID: 2528695925679301848, guid: 70577ed1ecfa30a448020e5b1575adee, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 451533831596330625, guid: 3785087aff1a0364bb034eaeb939a4e8, type: 2}
+      objectReference: {fileID: 4163177401038753236, guid: a61a4a8828fc5c349881bbf4da7bd854, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19177,7 +19177,7 @@ PrefabInstance:
     - target: {fileID: 2528695925679301848, guid: 70577ed1ecfa30a448020e5b1575adee, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 451533831596330625, guid: 3785087aff1a0364bb034eaeb939a4e8, type: 2}
+      objectReference: {fileID: 4163177401038753236, guid: a61a4a8828fc5c349881bbf4da7bd854, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
