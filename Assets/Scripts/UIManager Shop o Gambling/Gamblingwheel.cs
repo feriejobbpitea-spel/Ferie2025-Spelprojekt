@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -20,20 +20,25 @@ public class Gamblingwheel : MonoBehaviour
     [Header("Gameplay Settings")]
     public int spinCost = 1;
 
-    // Belöningar per segment
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip spinSound;
+    public AudioClip winSound;
+    public AudioClip loseSound;
+
+    // BelÃ¶ningar per segment
     public int[] rewardsPerSegment = { 0, 0, 0, 0, 150, 200, 300, 500 };
 
     // Namn per segment
     public string[] segmentNames = {
-        "Förlust", "Förlust", "Förlust", "Förlust",
+        "FÃ¶rlust", "FÃ¶rlust", "FÃ¶rlust", "FÃ¶rlust",
         "150 Datachips", "200 Datachips", "300 Datachips", "Jackpot 500 Datachips"
     };
 
-    // Sannolikheter per segment – totalt 100%
+    // Sannolikheter per segment â€“ totalt 100%
     public float[] segmentChances = {
         12.5f, 12.5f, 12.5f, 12.5f, 20f, 15f, 10f, 5f
     };
-
 
     void Start()
     {
@@ -58,7 +63,7 @@ public class Gamblingwheel : MonoBehaviour
         if (chancesText == null) return;
 
         string chanceDisplay = "Vinstchanser:\n";
-        chanceDisplay += "Förlust: 50%\n";
+        chanceDisplay += "FÃ¶rlust: 50%\n";
         chanceDisplay += "150 Datachips: 20%\n";
         chanceDisplay += "200 Datachips: 15%\n";
         chanceDisplay += "300 Datachips: 10%\n";
@@ -71,13 +76,17 @@ public class Gamblingwheel : MonoBehaviour
     {
         if (PlayerMoney.Instance.money < spinCost)
         {
-            resultText.text = "Inte tillräckligt med pengar!";
+            resultText.text = "Inte tillrÃ¤ckligt med pengar!";
             return;
         }
 
         spinButton.interactable = false;
         PlayerMoney.Instance.money -= spinCost;
         UpdateMoneyUI();
+
+        // ðŸ”Š Spela snurrljud
+        if (spinSound != null && audioSource != null)
+            audioSource.PlayOneShot(spinSound);
 
         int chosenSegment = GetRandomSegmentBasedOnChance();
         float anglePerSegment = 360f / segmentCount;
@@ -107,11 +116,8 @@ public class Gamblingwheel : MonoBehaviour
 
     IEnumerator SpinAnimation(float targetAngle, int segmentIndex)
     {
-        // Snurra 5 hela varv + slumpat segment (medurs = minska rotation i z-axeln)
         float totalAngle = 360f * 5 + targetAngle;
         float elapsed = 0f;
-
-        // Hämta aktuell rotation i grader (0-360)
         float startRotation = wheel.eulerAngles.z;
 
         while (elapsed < spinDuration)
@@ -120,19 +126,29 @@ public class Gamblingwheel : MonoBehaviour
             float t = Mathf.Clamp01(elapsed / spinDuration);
             float easedT = EaseOut(t);
 
-            // Beräkna ny rotation med easing, minska z för medurs snurr
             float newRotation = startRotation - totalAngle * easedT;
             wheel.rotation = Quaternion.Euler(0f, 0f, newRotation);
 
             yield return null;
         }
 
-        // SäDatachipsa att hjulet stannar exakt där det ska
         wheel.rotation = Quaternion.Euler(0f, 0f, startRotation - totalAngle);
 
-        // Ge belöning
         int reward = rewardsPerSegment[segmentIndex];
         PlayerMoney.Instance.money += reward;
+
+        // ðŸ”Š Vinst- eller fÃ¶rlustljud
+        if (audioSource != null)
+        {
+            if (reward > 0)
+            {
+                if (winSound != null) audioSource.PlayOneShot(winSound);
+            }
+            else
+            {
+                if (loseSound != null) audioSource.PlayOneShot(loseSound);
+            }
+        }
 
         resultText.text = $"Resultat: {segmentNames[segmentIndex]}";
         Debug.Log($"Snurrade till segment {segmentIndex}: {segmentNames[segmentIndex]}");
@@ -146,3 +162,4 @@ public class Gamblingwheel : MonoBehaviour
         return 1f - Mathf.Pow(1f - t, 3);
     }
 }
+

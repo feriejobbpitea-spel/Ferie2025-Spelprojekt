@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask wallLayer;
     public bool isGrounded;
+    private bool wasGrounded = false; // 👈 För att detektera landning
     private float isRunning = 1;
     private bool wasGrabbingWall = false;
     private float wallJumpLockTime = 0.2f;
@@ -30,7 +31,6 @@ public class Movement : MonoBehaviour
     public bool IsGrounded => isGrounded;
     public bool IsMoving => Input.GetAxisRaw("Horizontal") != 0;
     public float GetMoveSpeed => playerSpeed * isRunning * superSpeed;
-
     public bool facingRight = true;
 
     private Dictionary<string, KeyCode> keybinds = new Dictionary<string, KeyCode>();
@@ -44,43 +44,50 @@ public class Movement : MonoBehaviour
     public bool timeSlow = false;
     #endregion
 
-    // 🕸 Spiderweb slow support
     private int slowCounter = 0;
     private float normalSpeed;
+
+    [Header("Audio")]
+    public AudioClip walkSound;
+    public AudioClip runSound;
+    public AudioClip jumpSound;
+    public AudioClip landSound; // 👈 Nytt ljud för landning
+    public AudioSource audioSource;
+
+    private float walkSoundCooldown = 0.5f;
+    private float walkTimer = 0f;
+
+    private BoxCollider2D boxCollider;
+    public float currentCharge = 1f;
+    public float maxCharge = 1f;
+    public float rechargeRate = 0.1f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        normalSpeed = playerSpeed; // 🕸 Save original speed
-                                   // Ladda keybinds från PlayerPrefs
+        normalSpeed = playerSpeed;
+
         keybinds["Jump"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Jump", KeyCode.Space.ToString()));
         keybinds["Sprint"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Sprint", KeyCode.LeftShift.ToString()));
         keybinds["Shoot"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString()));
     }
 
-   
-    public float currentCharge = 1f;
-    public float maxCharge = 1f;
-    public float rechargeRate = 0.1f; // Långsammare laddning
-
-    private BoxCollider2D boxCollider;
     void Update()
     {
         boxCollider = GetComponent<BoxCollider2D>();
-        if (!IsGrounded) {
-            boxCollider.size = new Vector2(0.6f, 1f); 
-                                                      }
 
-            //change colider in air
+        if (!IsGrounded)
+            boxCollider.size = new Vector2(0.6f, 1f);
 
-
-            if (currentCharge < maxCharge)
-        {
+        if (currentCharge < maxCharge)
             currentCharge = Mathf.Min(currentCharge + rechargeRate * Time.deltaTime, maxCharge);
-        }
+
         ApplyFallStretch();
 
-        if (Input.GetKey(keybinds["Sprint"])) { if (isGrounded) { isRunning = 2; } } else { if (isGrounded) { isRunning = 1; } }
+        if (Input.GetKey(keybinds["Sprint"]) && isGrounded)
+            isRunning = 2;
+        else if (isGrounded)
+            isRunning = 1;
 
         keybinds["Left"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Left", KeyCode.A.ToString()));
         keybinds["Right"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Right", KeyCode.D.ToString()));
@@ -99,10 +106,6 @@ public class Movement : MonoBehaviour
         else
         {
             wallJumpXMomentum = 0;
-          
-            if (Input.GetKey(keybinds["Left"])) moveX = -1f;
-            if (Input.GetKey(keybinds["Right"])) moveX = 1f;
-            
             float targetX = moveX * playerSpeed * isRunning * superSpeed;
             float smoothedX = Mathf.Lerp(rb.linearVelocity.x, targetX, 0.1f);
             movement = new Vector2(smoothedX, rb.linearVelocity.y);
@@ -114,12 +117,14 @@ public class Movement : MonoBehaviour
             {
                 OnJump?.Invoke();
                 PlayJumpTween();
+                if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
                 movement.y = bigJump ? bigJumpForce : jumpForce;
             }
             else if (doubleJump && !doubleJumpUsed)
             {
                 OnJump?.Invoke();
                 PlayJumpTween();
+                if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
                 movement.y = bigJump ? bigJumpForce : jumpForce;
                 doubleJumpUsed = true;
             }
@@ -127,10 +132,11 @@ public class Movement : MonoBehaviour
             {
                 OnJump?.Invoke();
                 PlayJumpTween();
+                if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
                 wallJumpTimer = wallJumpLockTime;
                 float direction = (!facingRight) ? 1f : -1f;
                 float xForce = direction * playerSpeed * 1.5f;
-                float yForce = jumpForce * 4 / 5;
+                float yForce = jumpForce * 0.8f;
                 rb.linearVelocity = new Vector2(xForce, yForce);
                 wallJumpXMomentum = xForce;
                 return;
@@ -140,13 +146,20 @@ public class Movement : MonoBehaviour
         rb.linearVelocity = movement;
 
         if (Input.GetKeyUp(keybinds["Jump"]) && rb.linearVelocity.y > 0)
-
         {
-            
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
         }
 
+        // Kolla om spelaren är på marken
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        // 👇 Landningsljud (om vi just landat)
+        if (isGrounded && !wasGrounded)
+        {
+            if (landSound != null)
+                audioSource.PlayOneShot(landSound);
+        }
+        wasGrounded = isGrounded;
 
         if (moveX < 0 && facingRight) Flip();
         else if (moveX > 0 && !facingRight) Flip();
@@ -168,36 +181,37 @@ public class Movement : MonoBehaviour
             ResetScale();
         }
 
-        #region Powerups
-        if (Input.GetKeyDown(KeyCode.T) && timeSlow)
+        // 🎵 Spela gång-/springljud
+        if (isGrounded && IsMoving)
         {
-            if (Time.timeScale == 1f)
+            walkTimer -= Time.deltaTime;
+            if (walkTimer <= 0f)
             {
-                Time.timeScale = 0.3f;
-                Time.fixedDeltaTime = 0.02f * Time.timeScale;
-            }
-            else
-            {
-                Time.timeScale = 1f;
-                Time.fixedDeltaTime = 0.02f;
+                AudioClip clipToPlay = (isRunning > 1f) ? runSound : walkSound;
+                if (clipToPlay != null)
+                    audioSource.PlayOneShot(clipToPlay);
+                walkTimer = walkSoundCooldown;
             }
         }
-        #endregion
-        // Tryck på S för att sluta väggglida
+
+        if (Input.GetKeyDown(KeyCode.T) && timeSlow)
+        {
+            Time.timeScale = (Time.timeScale == 1f) ? 0.3f : 1f;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
+
         if (isGrabingwall && Input.GetKeyDown(KeyCode.S))
         {
             isGrabingwall = false;
-            gfx.flipX = false;  // Titta rakt fram
-            facingRight = !facingRight; // Synka variabeln
+            gfx.flipX = false;
+            facingRight = !facingRight;
         }
-
     }
-    
-    // 🕸 Dessa två metoder behövs för spindelnätet
+
     public void ApplySlow()
     {
         slowCounter++;
-        playerSpeed = normalSpeed * 0.5f; // Du kan justera detta
+        playerSpeed = normalSpeed * 0.5f;
     }
 
     public void RemoveSlow()
@@ -208,6 +222,13 @@ public class Movement : MonoBehaviour
             slowCounter = 0;
             playerSpeed = normalSpeed;
         }
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        gfx.flipX = !facingRight;
+        PlayTurnTween();
     }
 
     void PlayTurnTween()
@@ -237,38 +258,26 @@ public class Movement : MonoBehaviour
         jumpSquash.Append(gfx.transform.DOScale(Vector3.one, 0.1f).SetEase(Ease.OutBack));
     }
 
-    void Flip()
-    {
-        facingRight = !facingRight;
-        gfx.flipX = !facingRight;
-        PlayTurnTween();
-    }
-
     void ResetScale()
     {
         gfx.transform.DOKill();
-        gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack); // error <- Max Tween Reached: Capacaity has been automatically increased.
+        gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
     }
 
     void ApplyFallStretch()
     {
         if (rb.linearVelocity.y < -0.1f && !isGrabingwall && !isGrounded)
         {
-            if (fallStretchTween == null || !fallStretchTween.IsActive() || !fallStretchTween.IsPlaying())
+            if (fallStretchTween == null || !fallStretchTween.IsPlaying())
             {
                 fallStretchTween?.Kill();
-                fallStretchTween = gfx.transform.DOScale(new Vector3(0.6f, 1.4f, 1f), 4f).SetEase(Ease.OutQuad);
+                fallStretchTween = gfx.transform.DOScale(new Vector3(0.6f, 1.4f, 1f), 0.2f).SetEase(Ease.OutQuad);
             }
         }
-        else
+        else if (fallStretchTween != null && fallStretchTween.IsActive() && !fallStretchTween.IsComplete())
         {
-            if (fallStretchTween != null && fallStretchTween.IsActive() && !fallStretchTween.IsComplete())
-            {
-                fallStretchTween.Kill();
-                fallStretchTween = gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
-            }
+            fallStretchTween.Kill();
+            fallStretchTween = gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
         }
     }
-
-
 }

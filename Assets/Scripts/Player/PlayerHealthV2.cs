@@ -8,52 +8,60 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
     public int maxLives = 3;
     public int currentLives;
 
-    public Image[] hearts;         // Dra in tre Image-objekt från Canvas
-    public Sprite emptyHeart;      // Grått/tomt hjärta
+    public Image[] hearts;
+    public Sprite emptyHeart;
     public Image death;
     public Image pause;
     public Image gameOver;
+
     private bool isInvincible = false;
-    public float invincibilityDuration = 0.8f; // hur länge man är odödlig
+    public float invincibilityDuration = 0.8f;
     private float invincibilityTimer;
 
     private SpriteRenderer spriteRenderer;
     private bool toggleWhite = false;
     private float blinkTimer = 0f;
-    public float blinkInterval = 0.1f; // hur snabbt det blinkar
+    public float blinkInterval = 0.1f;
 
-    public Material whiteFlashMaterial;  // Det vita materialet
-    private Material originalMaterial;   // För att spara spelarens normala material
+    public Material whiteFlashMaterial;
+    private Material originalMaterial;
     private Rigidbody2D rb;
 
     public Movement movementScript;
     private bool wasGroundedLastFrame = true;
     private float lastYVelocity;
-    public float fallLimit = -10f; // Gräns för fallskada, justera efter behov
+    public float fallLimit = -10f;
 
-    // Nytt för BoxCast
-    public LayerMask trapLayer;                // Fiendelayer
-    public Vector2 boxCastSizeT = new Vector2(1f, 1.5f);  // Storlek på boxen
-    public float boxCastDistanceT = 0.1f;        // Hur långt framför spelaren boxen kastas
+    public LayerMask trapLayer;
+    public Vector2 boxCastSizeT = new Vector2(1f, 1.5f);
+    public float boxCastDistanceT = 0.1f;
 
-    public LayerMask enemyLayer;                // Fiendelayer
-    public Vector2 boxCastSizeE = new Vector2(1f, 1.5f);  // Storlek på boxen
-    public float boxCastDistanceE = 0.1f;        // Hur långt framför spelaren boxen kastas
+    public LayerMask enemyLayer;
+    public Vector2 boxCastSizeE = new Vector2(1f, 1.5f);
+    public float boxCastDistanceE = 0.1f;
+
+    // 🔊 Ljud
+    public AudioClip hurtSound;
+    private AudioSource audioSource;
+
+    public InventoryManager inventoryManager;
 
     void Start()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         originalMaterial = spriteRenderer.material;
+
         currentLives = maxLives;
         UpdateHearts();
+
+        // 🎵 Initiera ljudkälla
+        audioSource = GetComponent<AudioSource>();
     }
-   
 
     void Update()
     {
-       float jumpforce = GetComponent<Movement>().jumpForce;
-        // BoxCast för att kolla fiender framför spelaren
+        float jumpforce = GetComponent<Movement>().jumpForce;
         Vector2 origin = rb.position;
         Vector2 direction = Vector2.right * Mathf.Sign(transform.localScale.x);
 
@@ -62,39 +70,20 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
 
         if (hitT.collider != null)
         {
-            //Debug.Log("BoxCast hit trap: " + hitT.collider.gameObject.layer);
-            
             Vector3 hitPoint = hitT.point;
             Vector3 playerPosition = transform.position;
 
-            if(playerPosition.y > hitPoint.y +0.48f ) 
+            if (playerPosition.y > hitPoint.y + 0.48f)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpforce * 3 / 5);
             }
 
-
-            /*
-            float groundY = GetComponent<Movement>().groundCheck.position.y;
-            &&Debug.Log(hitE.point.y, groundY);
-            // Viktigt: använd träffpunkten, inte objektets mittpunkt
-            if (hitT.point.y <= GetComponent<Movement>().groundCheck.position.y)
-            {
-                Debug.Log(rb.linearVelocity.y);
-
-                if (rb.linearVelocity.y <= 0.5f)
-                {
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpforce * 4 / 5);
-                }
-            }
-            */
             LoseLife();
         }
 
         if (hitE.collider != null)
         {
-            //Debug.Log("BoxCast hit enemy: " + hitE.collider.gameObject.layer);
             LoseLife();
-
         }
 
         if (Input.GetKeyDown(KeyCode.J))
@@ -104,12 +93,10 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
 
         bool isGrounded = movementScript.isGrounded;
 
-        // Kontrollera om vi just landade och tog fallskada
         if (isGrounded && !wasGroundedLastFrame)
         {
             if (lastYVelocity < fallLimit)
             {
-                //Debug.Log("Tog fallskada! Hastighet: " + lastYVelocity);
                 LoseLife();
             }
         }
@@ -126,7 +113,6 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             {
                 toggleWhite = !toggleWhite;
                 blinkTimer = blinkInterval;
-
                 spriteRenderer.color = toggleWhite ? Color.white : Color.clear;
             }
 
@@ -137,7 +123,6 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             }
         }
 
-        // Testknapp för att ta skada
         if (Input.GetKeyDown(KeyCode.H)) LoseLife();
     }
 
@@ -145,7 +130,9 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
     {
         if (isInvincible) return;
 
-        CameraFollow.Instance.TriggerShake(0.15f, 0.2f);
+        PlaySound(hurtSound); // 🔊 Spela skadeljud
+
+        CameraFollow.Instance?.TriggerShake(0.15f, 0.2f);
 
         currentLives--;
         UpdateHearts();
@@ -168,12 +155,10 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         if (maxLives < 4)
         {
             maxLives++;
-            
         }
         if (currentLives < maxLives)
         {
             currentLives++;
-            
         }
         UpdateHearts();
     }
@@ -198,29 +183,36 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             }
         }
     }
-    public InventoryManager inventoryManager;
+
     void Die()
     {
-        if (maxLives == 1) gameOver.gameObject.SetActive(true);
-        else death.gameObject.SetActive(true);
+        PlaySound(hurtSound); // 🔊 Spela dödsljud
+
+        if (maxLives == 1)
+            gameOver.gameObject.SetActive(true);
+        else
+            death.gameObject.SetActive(true);
+
         if (inventoryManager != null)
         {
             inventoryManager.DropWeaponOnDeath();
         }
-        Time.timeScale = 0; // Stoppa spelet
+
+        Time.timeScale = 0;
     }
 
     public void SuperRespawn()
     {
         Time.timeScale = 1;
         PlayerRespawn.Instance.RespawnAtSuperCheckpoint();
-        maxLives = 3; // Sätt tillbaka till max liv
+        maxLives = 3;
         currentLives = maxLives;
         UpdateHearts();
         gameOver.gameObject.SetActive(false);
         isInvincible = true;
         invincibilityTimer = invincibilityDuration * 2;
     }
+
     public void Respawn()
     {
         Time.timeScale = 1;
@@ -228,7 +220,6 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         maxLives--;
         currentLives = maxLives;
         UpdateHearts();
-
         death.gameObject.SetActive(false);
         isInvincible = true;
         invincibilityTimer = invincibilityDuration * 2;
@@ -246,5 +237,14 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameOver.gameObject.SetActive(false);
+    }
+
+    // 🔊 Hjälpfunktion för att spela ljud
+    private void PlaySound(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
     }
 }
