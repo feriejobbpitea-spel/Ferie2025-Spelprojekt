@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -56,31 +57,55 @@ public class Movement : MonoBehaviour
         keybinds["Jump"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Jump", KeyCode.Space.ToString()));
         keybinds["Sprint"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Sprint", KeyCode.LeftShift.ToString()));
         keybinds["Shoot"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString()));
+        platformEffector = GameObject.FindAnyObjectByType<PlatformEffector2D>();
+
     }
 
-   
     public float currentCharge = 1f;
     public float maxCharge = 1f;
     public float rechargeRate = 0.1f; // Långsammare laddning
 
     private BoxCollider2D boxCollider;
+
+    private PlatformEffector2D platformEffector;
+    public float dropDuration = 0.5f;  // Hur länge man kan gå igenom plattformen
+
+    private bool isDropping = false;
+    private IEnumerator Drop()
+    {
+        isDropping = true;
+        platformEffector.rotationalOffset = 180f; // Tillåt att gå igenom nerifrån
+        yield return new WaitForSeconds(dropDuration);
+        platformEffector.rotationalOffset = 0f; // Återställ effectorn till normal
+        isDropping = false;
+    }
     void Update()
     {
+        if (!isDropping && Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(Drop());
+        }
+
         boxCollider = GetComponent<BoxCollider2D>();
-        if (!IsGrounded) {
-            boxCollider.size = new Vector2(0.6f, 1f); 
-                                                      }
+        if (!IsGrounded)
+        {
+            boxCollider.size = new Vector2(0.6f, 1f);
+        }
 
-            //change colider in air
-
-
-            if (currentCharge < maxCharge)
+        if (currentCharge < maxCharge)
         {
             currentCharge = Mathf.Min(currentCharge + rechargeRate * Time.deltaTime, maxCharge);
         }
         ApplyFallStretch();
 
-        if (Input.GetKey(keybinds["Sprint"])) { if (isGrounded) { isRunning = 2; } } else { if (isGrounded) { isRunning = 1; } }
+        if (Input.GetKey(keybinds["Sprint"]))
+        {
+            if (isGrounded) { isRunning = 2; }
+        }
+        else
+        {
+            if (isGrounded) { isRunning = 1; }
+        }
 
         keybinds["Left"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Left", KeyCode.A.ToString()));
         keybinds["Right"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Right", KeyCode.D.ToString()));
@@ -99,16 +124,17 @@ public class Movement : MonoBehaviour
         else
         {
             wallJumpXMomentum = 0;
-          
+
             if (Input.GetKey(keybinds["Left"])) moveX = -1f;
             if (Input.GetKey(keybinds["Right"])) moveX = 1f;
-            
+
             float targetX = moveX * playerSpeed * isRunning * superSpeed;
             float smoothedX = Mathf.Lerp(rb.linearVelocity.x, targetX, 0.1f);
             movement = new Vector2(smoothedX, rb.linearVelocity.y);
         }
 
-        if (Input.GetKeyDown(keybinds["Jump"]))
+        // Här är ändringen för att inte kunna hoppa om S hålls ned
+        if (Input.GetKeyDown(keybinds["Jump"]) && !Input.GetKey(KeyCode.S))
         {
             if (isGrounded)
             {
@@ -140,9 +166,7 @@ public class Movement : MonoBehaviour
         rb.linearVelocity = movement;
 
         if (Input.GetKeyUp(keybinds["Jump"]) && rb.linearVelocity.y > 0)
-
         {
-            
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
         }
 
@@ -192,7 +216,7 @@ public class Movement : MonoBehaviour
         }
 
     }
-    
+
     // 🕸 Dessa två metoder behövs för spindelnätet
     public void ApplySlow()
     {
@@ -247,7 +271,7 @@ public class Movement : MonoBehaviour
     void ResetScale()
     {
         gfx.transform.DOKill();
-        gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack); // error <- Max Tween Reached: Capacaity has been automatically increased.
+        gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
     }
 
     void ApplyFallStretch()
@@ -269,6 +293,4 @@ public class Movement : MonoBehaviour
             }
         }
     }
-
-
 }

@@ -7,7 +7,7 @@ public class Gamblingwheel : MonoBehaviour
 {
     [Header("Wheel Settings")]
     public RectTransform wheel;
-    public int segmentCount = 8;
+    public int segmentCount = 9;  // 9 segment i hjulet
     public float spinDuration = 4f;
 
     [Header("UI References")]
@@ -18,22 +18,24 @@ public class Gamblingwheel : MonoBehaviour
     public TMP_Text costText;
 
     [Header("Gameplay Settings")]
-    public int spinCost = 1;
+    public int spinCost = 3;
 
-    // Belöningar per segment
-    public int[] rewardsPerSegment = { 0, 0, 0, 0, 150, 200, 300, 500 };
+    // Vinster per segment (kr)
+    public int[] rewardsPerSegment = { 0, 0, 0, 0, 3, 3, 5, 8, 15 };
 
-    // Namn per segment
+    // Namn per segment (valfritt)
     public string[] segmentNames = {
         "Förlust", "Förlust", "Förlust", "Förlust",
-        "150 Datachips", "200 Datachips", "300 Datachips", "Jackpot 500 Datachips"
+        "Win 3kr", "Win 3kr", "Win 5kr", "Win 8kr", "Jackpot 15kr"
     };
 
-    // Sannolikheter per segment – totalt 100%
+    // Sannolikheter per segment (totalt 100%)
     public float[] segmentChances = {
-        12.5f, 12.5f, 12.5f, 12.5f, 20f, 15f, 10f, 5f
+        11f, 11f, 11f, 11f,    // 44% förlust (0 kr)
+        12.5f, 12.5f,          // 25% vinst (3 kr + 5 kr)
+        10f,                   // 10% vinst (8 kr)
+        5f                     // 5% jackpot (15 kr)
     };
-
 
     void Start()
     {
@@ -50,7 +52,7 @@ public class Gamblingwheel : MonoBehaviour
     void UpdateMoneyUI()
     {
         if (moneyText != null)
-            moneyText.text = $"{PlayerMoney.Instance.money}";
+            moneyText.text = $"{PlayerMoney.Instance.money} DATACHIPS";
     }
 
     void ShowChancesUI()
@@ -58,11 +60,11 @@ public class Gamblingwheel : MonoBehaviour
         if (chancesText == null) return;
 
         string chanceDisplay = "Vinstchanser:\n";
-        chanceDisplay += "Förlust: 50%\n";
-        chanceDisplay += "150 Datachips: 20%\n";
-        chanceDisplay += "200 Datachips: 15%\n";
-        chanceDisplay += "300 Datachips: 10%\n";
-        chanceDisplay += "Jackpot 500 Datachips: 5%\n";
+
+        for (int i = 0; i < segmentNames.Length; i++)
+        {
+            chanceDisplay += $"{segmentNames[i]}: {segmentChances[i]}%\n";
+        }
 
         chancesText.text = chanceDisplay;
     }
@@ -92,7 +94,7 @@ public class Gamblingwheel : MonoBehaviour
         foreach (float chance in segmentChances)
             total += chance;
 
-        float random = Random.Range(0, total);
+        float random = Random.Range(0f, total);
         float cumulative = 0f;
 
         for (int i = 0; i < segmentChances.Length; i++)
@@ -107,11 +109,8 @@ public class Gamblingwheel : MonoBehaviour
 
     IEnumerator SpinAnimation(float targetAngle, int segmentIndex)
     {
-        // Snurra 5 hela varv + slumpat segment (medurs = minska rotation i z-axeln)
-        float totalAngle = 360f * 5 + targetAngle;
+        float totalAngle = 360f * 5 + targetAngle; // 5 varv + målsegment
         float elapsed = 0f;
-
-        // Hämta aktuell rotation i grader (0-360)
         float startRotation = wheel.eulerAngles.z;
 
         while (elapsed < spinDuration)
@@ -120,22 +119,21 @@ public class Gamblingwheel : MonoBehaviour
             float t = Mathf.Clamp01(elapsed / spinDuration);
             float easedT = EaseOut(t);
 
-            // Beräkna ny rotation med easing, minska z för medurs snurr
             float newRotation = startRotation - totalAngle * easedT;
             wheel.rotation = Quaternion.Euler(0f, 0f, newRotation);
 
             yield return null;
         }
 
-        // SäDatachipsa att hjulet stannar exakt där det ska
+        // Säkerställ att hjulet stannar exakt rätt
         wheel.rotation = Quaternion.Euler(0f, 0f, startRotation - totalAngle);
 
         // Ge belöning
         int reward = rewardsPerSegment[segmentIndex];
         PlayerMoney.Instance.money += reward;
 
-        resultText.text = $"Resultat: {segmentNames[segmentIndex]}";
-        Debug.Log($"Snurrade till segment {segmentIndex}: {segmentNames[segmentIndex]}");
+        resultText.text = $"Resultat: {segmentNames[segmentIndex]} (+{reward} Chip)";
+        Debug.Log($"Snurrade till segment {segmentIndex}: {segmentNames[segmentIndex]} (+{reward} Chip)");
 
         UpdateMoneyUI();
         spinButton.interactable = true;

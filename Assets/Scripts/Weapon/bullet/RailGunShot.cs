@@ -3,15 +3,17 @@ using UnityEngine.UI;
 
 public class RailgunShot : MonoBehaviour
 {
+    public static float globalCurrentEnergy;
+    public static float globalMaxEnergy = 100f;
+    public static float globalCooldownTimer = 0f;
+
+    public float globalCooldownTime = 1f;  // cooldown efter skjutning
+
     public LineRenderer lineRenderer;
     public Transform firePoint;
     public LayerMask hitMask;
-    
-    public float damagePerSecond = 10f;
 
-    [Header("Energy System")]
-    public float maxEnergy = 100f;
-    public float currentEnergy;
+    public float damagePerSecond = 10f;
     public float energyDrainPerSecond = 20f;
     public float energyRegenPerSecond = 15f;
     public Slider energySlider;
@@ -21,18 +23,26 @@ public class RailgunShot : MonoBehaviour
 
     void Start()
     {
-        currentEnergy = maxEnergy;
+        // Initiera global energi om den inte är satt
+        if (globalCurrentEnergy <= 0f)
+            globalCurrentEnergy = globalMaxEnergy;
+
         UpdateSlider();
     }
 
     void Update()
     {
+        if (globalCooldownTimer > 0f)
+            globalCooldownTimer -= Time.deltaTime;
+
         bool inputFire = Input.GetMouseButton(0);
-        bool canFire = inputFire && Time.timeScale > 0 && currentEnergy > 0f;
+        bool canFire = inputFire && Time.timeScale > 0 && globalCurrentEnergy > 0f && globalCooldownTimer <= 0f;
 
         if (canFire)
         {
-            isFiring = true;
+            if (!isFiring)
+                isFiring = true;
+
             FireLaser();
             DrainEnergy();
         }
@@ -43,13 +53,15 @@ public class RailgunShot : MonoBehaviour
                 lineRenderer.enabled = false;
                 damageBuffer = 0f;
                 isFiring = false;
+
+                // Starta cooldown efter skjutning
+                globalCooldownTimer = globalCooldownTime;
             }
 
-            // Endast regenerera om inte skjutning pågår
-            if (currentEnergy < maxEnergy && !inputFire)
+            if (globalCurrentEnergy < globalMaxEnergy && !inputFire)
             {
-                currentEnergy += energyRegenPerSecond * Time.deltaTime;
-                currentEnergy = Mathf.Min(currentEnergy, maxEnergy);
+                globalCurrentEnergy += energyRegenPerSecond * Time.deltaTime;
+                globalCurrentEnergy = Mathf.Min(globalCurrentEnergy, globalMaxEnergy);
                 UpdateSlider();
             }
         }
@@ -68,23 +80,19 @@ public class RailgunShot : MonoBehaviour
 
         float maxDistance = 10000f; // väldigt stort värde som fallback
 
-        // Lista med möjliga avstånd till kanter i riktningen
         System.Collections.Generic.List<float> distances = new System.Collections.Generic.List<float>();
 
-        // Funktion för att räkna ut avstånd längs ray mot en given x eller y gräns
         float DistanceToLine(float linePos, bool isVertical)
         {
             if (isVertical)
             {
-                // x = linePos, räkna t så att start.x + t*direction.x = linePos
                 if (Mathf.Approximately(direction.x, 0)) return -1f;
                 float t = (linePos - start.x) / direction.x;
-                if (t < 0) return -1f; // bakom start
+                if (t < 0) return -1f;
                 return t;
             }
             else
             {
-                // y = linePos, räkna t så att start.y + t*direction.y = linePos
                 if (Mathf.Approximately(direction.y, 0)) return -1f;
                 float t = (linePos - start.y) / direction.y;
                 if (t < 0) return -1f;
@@ -92,14 +100,12 @@ public class RailgunShot : MonoBehaviour
             }
         }
 
-        // Kolla mot vänster och höger skärmgränser
         float distLeft = DistanceToLine(screenBottomLeft.x, true);
         if (distLeft > 0) distances.Add(distLeft);
 
         float distRight = DistanceToLine(screenTopRight.x, true);
         if (distRight > 0) distances.Add(distRight);
 
-        // Kolla mot botten och topp skärmgränser
         float distBottom = DistanceToLine(screenBottomLeft.y, false);
         if (distBottom > 0) distances.Add(distBottom);
 
@@ -108,10 +114,8 @@ public class RailgunShot : MonoBehaviour
 
         if (distances.Count > 0)
         {
-            maxDistance = Mathf.Min(distances.ToArray()); // närmaste avstånd till skärmkant i riktningen
+            maxDistance = Mathf.Min(distances.ToArray());
         }
-
-         // lägg på lite extra räckvidd
 
         RaycastHit2D hit = Physics2D.Raycast(start, direction, maxDistance, hitMask);
 
@@ -140,17 +144,16 @@ public class RailgunShot : MonoBehaviour
         }
     }
 
-
     void DrainEnergy()
     {
-        currentEnergy -= energyDrainPerSecond * Time.deltaTime;
-        currentEnergy = Mathf.Max(currentEnergy, 0f);
+        globalCurrentEnergy -= energyDrainPerSecond * Time.deltaTime;
+        globalCurrentEnergy = Mathf.Max(globalCurrentEnergy, 0f);
         UpdateSlider();
     }
 
     void UpdateSlider()
     {
         if (energySlider != null)
-            energySlider.value = currentEnergy;
+            energySlider.value = globalCurrentEnergy;
     }
 }
