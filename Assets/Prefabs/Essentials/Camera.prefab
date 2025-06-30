@@ -903,5 +903,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd4d62632077f6048b5861f9cedaf28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothSpeed: 2
+  smoothSpeed: 1e+12
   offset: {x: 0, y: 0, z: 0}

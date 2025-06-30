@@ -75,7 +75,7 @@ public class SimpleShop : MonoBehaviour
                 case "RayGun":
                     InventoryManager.Instance.AddRayGun();
                     break;
-                case "Slangebella":
+                case "Slangbella":
                     InventoryManager.Instance.AddSlingshot();
                     break;
                 case "EmpVapen":
@@ -92,6 +92,9 @@ public class SimpleShop : MonoBehaviour
                     break;
                 case "Speed":
                     player.GetComponent<Movement>().superSpeed = 2;
+                    break;
+                case "Hjärta":
+                    player.GetComponent<PlayerHealthV2>().AddLife();
                     break;
                 default:
                     Debug.LogWarning("Okänt föremål: " + item.itemName);

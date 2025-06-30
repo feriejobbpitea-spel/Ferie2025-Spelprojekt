@@ -21,6 +21,11 @@ public class MusicZone : MonoBehaviour
         audioSource.volume = 0f; // Starta tyst
     }
 
+    private void OnDisable()
+    {
+        StopAllCoroutines(); // Stoppa alla fade-coroutines när zonen inaktiveras
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -42,7 +47,8 @@ public class MusicZone : MonoBehaviour
             if (fadeCoroutine != null)
                 StopCoroutine(fadeCoroutine);
 
-            fadeCoroutine = StartCoroutine(FadeOutAndStop());
+            if(this.isActiveAndEnabled == true)
+                fadeCoroutine = StartCoroutine(FadeOutAndStop());
         }
     }
 
