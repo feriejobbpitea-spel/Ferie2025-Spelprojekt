@@ -40,6 +40,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76cadcb4d511bf9448a3418690dd44ac
+    m_Address: Shop 3 before recovery text_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88eefdc7a25d7e74d89753c16975f10b
+    m_Address: Robot after recovery text_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cecef9d4df19edb4faa08f33ef2375bf
     m_Address: Cut Scene End Dialog1_en
     m_ReadOnly: 1

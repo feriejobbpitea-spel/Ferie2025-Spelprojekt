@@ -14,7 +14,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Assets-English (en)
   m_GUID: e1c0913faf38b834eb8be8f67d59a1d4
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 05cfc3814c81e4347ab547fa8013bf44
+    m_Address: InAddition
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7538d5673e255dc4d8b94632f14ad73a
+    m_Address: AtTheAgeof13
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 761681454588e8f42ae593067c2f7293
+    m_Address: AllTheyDoIs
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b990125705ad1574e86d5a09f3ad1eb9
+    m_Address: IHaveNoIDeaWhatThatAI
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4174d30505e9e24b8d6b8fa1a2b896d
+    m_Address: GrandWasTired
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb8af23fbf5eba24093d8737e5183dea
+    m_Address: HeCouldntStandAllHis
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 4183d6c41c6d0a045bfcd722e875f937, type: 2}
   m_SchemaSet:
