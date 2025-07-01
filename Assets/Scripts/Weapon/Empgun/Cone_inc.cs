@@ -4,9 +4,6 @@ using TMPro;
 
 public class Cone_inc : MonoBehaviour
 {
-    [Header("Charge Settings")]
-    public float maxCharge = 100f;
-
     [Header("Charge UI")]
     public Slider chargeSlider;
     public TextMeshProUGUI chargeText;
@@ -20,12 +17,8 @@ public class Cone_inc : MonoBehaviour
     public GameObject laserPrefab;
     public Transform firePoint;
 
-    private Movement playerMovement;
-
     void Start()
     {
-        playerMovement = GetComponentInParent<Movement>();
-
         if (chargeSlider != null)
         {
             chargeSlider.minValue = 0f;
@@ -38,10 +31,8 @@ public class Cone_inc : MonoBehaviour
 
     void Update()
     {
-        if (playerMovement == null) return;
-
-        float currentCharge = playerMovement.currentCharge;
-        float maxCharge = playerMovement.maxCharge;
+        float currentCharge = ChargeManager.currentCharge;
+        float maxCharge = ChargeManager.maxCharge;
 
         UpdateChargeUI(currentCharge, maxCharge);
 
@@ -56,7 +47,7 @@ public class Cone_inc : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 ShootLaser();
-                playerMovement.currentCharge = 0f;
+                ChargeManager.currentCharge = 0f;  // Reset laddningen via ChargeManager
             }
         }
         else

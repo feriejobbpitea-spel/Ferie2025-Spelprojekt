@@ -776,7 +776,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Player_Land
-  m_Speed: 0.6
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -9155980175791739488}
@@ -1246,7 +1246,7 @@ AnimatorStateMachine:
     m_Position: {x: 0, y: -240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1439264224950063581}
-    m_Position: {x: 230, y: -240, z: 0}
+    m_Position: {x: 280, y: -170, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7703169596306259222}
     m_Position: {x: 0, y: -290, z: 0}
@@ -1530,7 +1530,7 @@ AnimatorStateMachine:
     m_Position: {x: 240, y: -130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1696459919586102715}
-    m_Position: {x: 470, y: -130, z: 0}
+    m_Position: {x: 510, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7074493677874404457}
     m_Position: {x: 240, y: -180, z: 0}
@@ -1548,10 +1548,10 @@ AnimatorStateMachine:
     m_Position: {x: 510, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7919616562175878273}
-    m_Position: {x: 545, y: -115, z: 0}
+    m_Position: {x: 800, y: -110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6573581468949961069}
-    m_Position: {x: 580, y: -50, z: 0}
+    m_Position: {x: 770, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6305879585026743956}
     m_Position: {x: 615, y: 15, z: 0}

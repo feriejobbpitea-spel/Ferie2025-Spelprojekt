@@ -59,9 +59,6 @@ public class Movement : MonoBehaviour
     private float walkTimer = 0f;
 
     private BoxCollider2D boxCollider;
-    public float currentCharge = 1f;
-    public float maxCharge = 1f;
-    public float rechargeRate = 0.1f;
 
     void Start()
     {
@@ -87,6 +84,7 @@ public class Movement : MonoBehaviour
         platformEffector.rotationalOffset = 0f; // Återställ effectorn till normal
         isDropping = false;
     }
+
     void Update()
     {
         if (!isDropping && Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space))
@@ -97,157 +95,135 @@ public class Movement : MonoBehaviour
         if (!IsGrounded)
             boxCollider.size = new Vector2(0.6f, 1f);
 
-        if (currentCharge < maxCharge)
-            if (!IsGrounded)
-            {
-                boxCollider.size = new Vector2(0.6f, 1f);
-            }
+        ApplyFallStretch();
 
-        if (currentCharge < maxCharge)
+        if (Input.GetKey(keybinds["Sprint"]) && isGrounded)
+            isRunning = 2;
+        else if (isGrounded)
+            isRunning = 1;
+
+        keybinds["Left"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Left", KeyCode.A.ToString()));
+        keybinds["Right"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Right", KeyCode.D.ToString()));
+
+        float moveX = 0f;
+        if (Input.GetKey(keybinds["Left"])) moveX = -1f;
+        if (Input.GetKey(keybinds["Right"])) moveX = 1f;
+
+        Vector2 movement;
+
+        if (wallJumpTimer > 0)
         {
-            // Isak tog bort för detta orsakade problem
-            //currentCharge = Mathf.Min(currentCharge + rechargeRate * Time.deltaTime, maxCharge);
+            wallJumpTimer -= Time.deltaTime;
+            movement = new Vector2(wallJumpXMomentum, rb.linearVelocity.y);
+        }
+        else
+        {
+            wallJumpXMomentum = 0;
 
-            ApplyFallStretch();
-
-            if (Input.GetKey(keybinds["Sprint"]) && isGrounded)
-                isRunning = 2;
-            else if (isGrounded)
-                isRunning = 1;
-            if (Input.GetKey(keybinds["Sprint"]))
-            {
-                if (isGrounded) { isRunning = 2; }
-            }
-            else
-            {
-                if (isGrounded) { isRunning = 1; }
-            }
-
-            keybinds["Left"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Left", KeyCode.A.ToString()));
-            keybinds["Right"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Right", KeyCode.D.ToString()));
-
-            float moveX = 0f;
             if (Input.GetKey(keybinds["Left"])) moveX = -1f;
             if (Input.GetKey(keybinds["Right"])) moveX = 1f;
 
-            Vector2 movement;
+            float targetX = moveX * playerSpeed * isRunning * superSpeed;
+            float smoothedX = Mathf.Lerp(rb.linearVelocity.x, targetX, 0.1f);
+            movement = new Vector2(smoothedX, rb.linearVelocity.y);
+        }
 
-            if (wallJumpTimer > 0)
-            {
-                wallJumpTimer -= Time.deltaTime;
-                movement = new Vector2(wallJumpXMomentum, rb.linearVelocity.y);
-            }
-            else
-            {
-                wallJumpXMomentum = 0;
-
-                if (Input.GetKey(keybinds["Left"])) moveX = -1f;
-                if (Input.GetKey(keybinds["Right"])) moveX = 1f;
-
-                float targetX = moveX * playerSpeed * isRunning * superSpeed;
-                float smoothedX = Mathf.Lerp(rb.linearVelocity.x, targetX, 0.1f);
-                movement = new Vector2(smoothedX, rb.linearVelocity.y);
-            }
-
-            // Här är ändringen för att inte kunna hoppa om S hålls ned
-            if (Input.GetKeyDown(keybinds["Jump"]) && !Input.GetKey(KeyCode.S))
-            {
-                if (isGrounded)
-                {
-                    OnJump?.Invoke();
-                    PlayJumpTween();
-                    if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
-                    movement.y = bigJump ? bigJumpForce : jumpForce;
-                }
-                else if (doubleJump && !doubleJumpUsed)
-                {
-                    OnJump?.Invoke();
-                    PlayJumpTween();
-                    if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
-                    movement.y = bigJump ? bigJumpForce : jumpForce;
-                    doubleJumpUsed = true;
-                }
-                else if (isGrabingwall)
-                {
-                    OnJump?.Invoke();
-                    PlayJumpTween();
-                    if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
-                    wallJumpTimer = wallJumpLockTime;
-                    float direction = (!facingRight) ? 1f : -1f;
-                    float xForce = direction * playerSpeed * 1.5f;
-                    float yForce = jumpForce * 0.8f;
-                    rb.linearVelocity = new Vector2(xForce, yForce);
-                    wallJumpXMomentum = xForce;
-                    return;
-                }
-            }
-
-            rb.linearVelocity = movement;
-
-            if (Input.GetKeyUp(keybinds["Jump"]) && rb.linearVelocity.y > 0)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
-            }
-
-            // Kolla om spelaren är på marken
-            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-            // 👇 Landningsljud (om vi just landat)
-            if (isGrounded && !wasGrounded)
-            {
-                if (landSound != null)
-                    audioSource.PlayOneShot(landSound);
-            }
-            wasGrounded = isGrounded;
-
-            if (moveX < 0 && facingRight) Flip();
-            else if (moveX > 0 && !facingRight) Flip();
-
-            bool huggingLeftWall = Physics2D.OverlapCircle(wallCheckL.position, groundCheckRadius, wallLayer);
-            bool huggingRightWall = Physics2D.OverlapCircle(wallCheckR.position, groundCheckRadius, wallLayer);
-            isGrabingwall = ((huggingLeftWall && !facingRight) || (huggingRightWall && facingRight));
-            if (isGrabingwall && !wasGrabbingWall) PlayWallImpactTween();
-            wasGrabbingWall = isGrabingwall;
-
-            if (isGrabingwall && rb.linearVelocity.y < 0)
-            {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f);
-            }
-
+        if (Input.GetKeyDown(keybinds["Jump"]) && !Input.GetKey(KeyCode.S))
+        {
             if (isGrounded)
             {
-                doubleJumpUsed = false;
-                ResetScale();
+                OnJump?.Invoke();
+                PlayJumpTween();
+                if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
+                movement.y = bigJump ? bigJumpForce : jumpForce;
             }
-
-            // 🎵 Spela gång-/springljud
-            if (isGrounded && IsMoving)
+            else if (doubleJump && !doubleJumpUsed)
             {
-                walkTimer -= Time.deltaTime;
-                if (walkTimer <= 0f)
-                {
-                    AudioClip clipToPlay = (isRunning > 1f) ? runSound : walkSound;
-                    if (clipToPlay != null)
-                        audioSource.PlayOneShot(clipToPlay);
-                    walkTimer = walkSoundCooldown;
-                }
+                OnJump?.Invoke();
+                PlayJumpTween();
+                if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
+                movement.y = bigJump ? bigJumpForce : jumpForce;
+                doubleJumpUsed = true;
             }
-
-            if (Input.GetKeyDown(KeyCode.T) && timeSlow)
+            else if (isGrabingwall)
             {
-                Time.timeScale = (Time.timeScale == 1f) ? 0.3f : 1f;
-                Time.fixedDeltaTime = 0.02f * Time.timeScale;
-            }
-
-            if (isGrabingwall && Input.GetKeyDown(KeyCode.S))
-            {
-                isGrabingwall = false;
-                gfx.flipX = false;
-                facingRight = !facingRight;
+                OnJump?.Invoke();
+                PlayJumpTween();
+                if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
+                wallJumpTimer = wallJumpLockTime;
+                float direction = (!facingRight) ? 1f : -1f;
+                float xForce = direction * playerSpeed * 1.5f;
+                float yForce = jumpForce * 0.8f;
+                rb.linearVelocity = new Vector2(xForce, yForce);
+                wallJumpXMomentum = xForce;
+                return;
             }
         }
-    }
 
+        rb.linearVelocity = movement;
+
+        if (Input.GetKeyUp(keybinds["Jump"]) && rb.linearVelocity.y > 0)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
+        }
+
+        // Kolla om spelaren är på marken
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        // 👇 Landningsljud (om vi just landat)
+        if (isGrounded && !wasGrounded)
+        {
+            if (landSound != null)
+                audioSource.PlayOneShot(landSound);
+        }
+        wasGrounded = isGrounded;
+
+        if (moveX < 0 && facingRight) Flip();
+        else if (moveX > 0 && !facingRight) Flip();
+
+        bool huggingLeftWall = Physics2D.OverlapCircle(wallCheckL.position, groundCheckRadius, wallLayer);
+        bool huggingRightWall = Physics2D.OverlapCircle(wallCheckR.position, groundCheckRadius, wallLayer);
+        isGrabingwall = ((huggingLeftWall && !facingRight) || (huggingRightWall && facingRight));
+        if (isGrabingwall && !wasGrabbingWall) PlayWallImpactTween();
+        wasGrabbingWall = isGrabingwall;
+
+        if (isGrabingwall && rb.linearVelocity.y < 0)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -2f);
+        }
+
+        if (isGrounded)
+        {
+            doubleJumpUsed = false;
+            ResetScale();
+        }
+
+        // 🎵 Spela gång-/springljud
+        if (isGrounded && IsMoving)
+        {
+            walkTimer -= Time.deltaTime;
+            if (walkTimer <= 0f)
+            {
+                AudioClip clipToPlay = (isRunning > 1f) ? runSound : walkSound;
+                if (clipToPlay != null)
+                    audioSource.PlayOneShot(clipToPlay);
+                walkTimer = walkSoundCooldown;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.T) && timeSlow)
+        {
+            Time.timeScale = (Time.timeScale == 1f) ? 0.3f : 1f;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+        }
+
+        if (isGrabingwall && Input.GetKeyDown(KeyCode.S))
+        {
+            isGrabingwall = false;
+            gfx.flipX = false;
+            facingRight = !facingRight;
+        }
+    }
 
     // 🕸 Dessa två metoder behövs för spindelnätet
     public void ApplySlow()
@@ -295,15 +271,9 @@ public class Movement : MonoBehaviour
     {
         gfx.transform.DOKill();
         Sequence jumpSquash = DOTween.Sequence();
-        jumpSquash.Append(gfx.transform.DOScaleY(0.7f, 0.05f));
-        jumpSquash.Join(gfx.transform.DOScaleX(1.3f, 0.05f));
+        jumpSquash.Append(gfx.transform.DOScaleX(1.4f, 0.1f));
+        jumpSquash.Join(gfx.transform.DOScaleY(0.8f, 0.1f));
         jumpSquash.Append(gfx.transform.DOScale(Vector3.one, 0.1f).SetEase(Ease.OutBack));
-    }
-
-    void ResetScale()
-    {
-        gfx.transform.DOKill();
-        gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
     }
 
     void ApplyFallStretch()
@@ -320,6 +290,31 @@ public class Movement : MonoBehaviour
         {
             fallStretchTween.Kill();
             fallStretchTween = gfx.transform.DOScale(Vector3.one, 0.15f).SetEase(Ease.OutBack);
+        }
+    }
+
+    void ResetScale()
+    {
+        gfx.transform.DOKill();
+        gfx.transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBack);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
+        if (wallCheckL != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(wallCheckL.position, groundCheckRadius);
+        }
+        if (wallCheckR != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(wallCheckR.position, groundCheckRadius);
         }
     }
 }

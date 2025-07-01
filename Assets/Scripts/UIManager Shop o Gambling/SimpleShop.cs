@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SimpleShop : MonoBehaviour
+public class SimpleShop : Singleton<SimpleShop>
 {
     [System.Serializable]
     public class ShopItem
@@ -20,10 +20,12 @@ public class SimpleShop : MonoBehaviour
     public GameObject itemPrefab;
     public Transform itemContainer;
     public TMP_Text playerMoneyText;
+    
 
     void Start()
     {
         BuildShop();
+        
     }
 
     void BuildShop()
@@ -63,13 +65,16 @@ public class SimpleShop : MonoBehaviour
         if (PlayerMoney.Instance.money >= item.price)
         {
             GameObject player = GameObject.Find("Player");
-            PlayerMoney.Instance.money -= item.price;
+
+            // Dra pengar via RemoveMoney som även uppdaterar UI
+            PlayerMoney.Instance.RemoveMoney(item.price);
+
             Debug.Log("Du köpte: " + item.itemName);
-            UpdateMoneyUI();
+
             switch (item.itemName)
             {
                 case "Konfetti":
-                    Debug.Log("´du fick konfetti!");
+                    Debug.Log("Du fick konfetti!");
                     InventoryManager.Instance.AddConfettiGun();
                     break;
                 case "RayGun":
@@ -105,9 +110,11 @@ public class SimpleShop : MonoBehaviour
         {
             Debug.Log("Inte tillräckligt med pengar!");
         }
+        UpdateMoneyUI();
     }
 
-    void UpdateMoneyUI()
+
+    public void UpdateMoneyUI()
     {
         if (playerMoneyText != null)
         {
