@@ -14,8 +14,14 @@ public class Slingshot : MonoBehaviour
 
     public Animator animator; // Dra in Animator i Inspector
 
+    [Header("Audio")]
+    public AudioClip chargeSound;
+    public AudioClip shootSound;
+    private AudioSource audioSource;
+
     private float currentForce = 0f;
     private bool isCharging = false;
+    private bool isChargeSoundPlaying = false;
 
     private float fireCooldown = 0.5f; // Max 2 skott per sekund
     private float nextFireTime = 0f;
@@ -34,6 +40,12 @@ public class Slingshot : MonoBehaviour
             animator.SetBool("isCharging", false);
             animator.speed = 1f;
         }
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.loop = false;
     }
 
     void Update()
@@ -48,6 +60,14 @@ public class Slingshot : MonoBehaviour
                 animator.SetBool("isCharging", true);
                 animator.speed = chargeRate / (maxForce - minForce);
             }
+
+            if (chargeSound != null && !isChargeSoundPlaying)
+            {
+                audioSource.clip = chargeSound;
+                audioSource.loop = true;  // Loopa laddningsljudet medan knappen hålls nere
+                audioSource.Play();
+                isChargeSoundPlaying = true;
+            }
         }
 
         if (Input.GetMouseButton(0) && isCharging)
@@ -59,6 +79,13 @@ public class Slingshot : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && isCharging)
         {
+            if (audioSource.isPlaying && audioSource.clip == chargeSound)
+            {
+                audioSource.Stop();  // Stoppa laddningsljudet direkt när vi släpper knappen
+                audioSource.loop = false;
+                isChargeSoundPlaying = false;
+            }
+
             if (Time.time >= nextFireTime)
             {
                 Shoot(currentForce);
@@ -86,6 +113,9 @@ public class Slingshot : MonoBehaviour
             Vector2 shootDirection = weaponTip.right;
             rb.linearVelocity = shootDirection * force;
         }
+
+        if (shootSound != null)
+            audioSource.PlayOneShot(shootSound);
     }
 
     void UpdateTrajectoryLine(float force)

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using static BossStateController;
-using DG.Tweening; 
+using DG.Tweening;
 
 public class BossAttackHandler : MonoBehaviour
 {
@@ -46,6 +46,11 @@ public class BossAttackHandler : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
 
+    [Header("Audio")]
+    public AudioClip flySound;
+    public AudioClip slamSound;
+    private AudioSource audioSource;
+
     public delegate void AttackEvent();
     public event AttackEvent OnSlam;
     public event AttackEvent OnFly;
@@ -59,8 +64,15 @@ public class BossAttackHandler : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
         stateController = GetComponent<BossStateController>();
+
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     public IEnumerator PerformRandomAttack()
@@ -89,6 +101,10 @@ public class BossAttackHandler : MonoBehaviour
         LookAtPlayer();
         OnFly?.Invoke();
 
+        // Spela flyg-ljudet när bossen börjar flyga upp
+        if (flySound != null)
+            audioSource.PlayOneShot(flySound);
+
         yield return new WaitForSeconds(jumpChargeTime);
 
         float cameraTop = Camera.main.transform.position.y + Camera.main.orthographicSize;
@@ -112,6 +128,11 @@ public class BossAttackHandler : MonoBehaviour
         rb.gravityScale = 1f;
 
         yield return new WaitUntil(() => IsGrounded());
+
+        // Spela slam-ljudet när bossen slammar i marken
+        if (slamSound != null)
+            audioSource.PlayOneShot(slamSound);
+
         SetCollisionStatus(true);
 
         OnSlam?.Invoke();

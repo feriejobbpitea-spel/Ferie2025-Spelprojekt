@@ -11,13 +11,23 @@ public class MeleeAttack : MonoBehaviour
 
     public Animator playerAnimator;  // Animator på spelaren
 
+    public AudioClip swingSound;     // Ljudklipp för sving
+    private AudioSource audioSource; // AudioSource-komponent
+
     private float cooldownTimer = 0f;
     private Collider2D hitCollider;
 
     void Start()
     {
         hitCollider = hitArea.GetComponentInChildren<Collider2D>();
-        playerAnimator =  transform.parent.GetComponentInChildren<Animator>();
+        playerAnimator = transform.parent.GetComponentInChildren<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogWarning("AudioSource saknas på " + gameObject.name + ", lägger till en automatiskt.");
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
 
         if (!hitCollider.isTrigger)
         {
@@ -48,6 +58,12 @@ public class MeleeAttack : MonoBehaviour
         {
             playerAnimator.SetBool("isAttacking", true);
             playerAnimator.SetLayerWeight(1, 1f);
+        }
+
+        // Spela svingljudet
+        if (swingSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(swingSound);
         }
 
         hitArea.SetActive(true);

@@ -6,28 +6,30 @@ public class CoinPickup : MonoBehaviour
     private bool _collected = false;
     private Animator _animator;
 
-    public float pickupDelay = 0f;      // Delay innan man kan plocka upp
-    public float lifetime = 5f;         // Totala livstiden
-    public float blinkDuration = 2f;    // Sista sekunderna den blinkar
+    public float pickupDelay = 0f;
+    public float lifetime = 5f;
+    public float blinkDuration = 2f;
 
     private float spawnTime;
     private SpriteRenderer spriteRenderer;
     private bool isBlinking = false;
 
+    [Header("Audio")]
+    public AudioClip pickupSound;              // Dra in ljudfilen i Inspector
+    private AudioSource audioSource;
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
         spawnTime = Time.time;
 
-        // Starta nedräkning för självdöd
         Invoke(nameof(SelfDestruct), lifetime);
-
-        // Starta blinkning strax innan försvinnandet
         InvokeRepeating(nameof(Blink), lifetime - blinkDuration, 0.2f);
     }
 
@@ -35,7 +37,7 @@ public class CoinPickup : MonoBehaviour
     {
         if (!_collected && other.CompareTag("Player") && Time.time >= spawnTime + pickupDelay)
         {
-            if(TryGetComponent(out Rigidbody2D rb)) 
+            if (TryGetComponent(out Rigidbody2D rb))
             {
                 Destroy(rb);
             }
@@ -66,7 +68,7 @@ public class CoinPickup : MonoBehaviour
 
         if (spriteRenderer != null)
         {
-            spriteRenderer.color = Color.white; // Återställ färg
+            spriteRenderer.color = Color.white;
         }
 
         if (_animator != null)
@@ -74,8 +76,15 @@ public class CoinPickup : MonoBehaviour
             _animator.SetTrigger("Collected");
         }
 
+        // Spela ljudet om det finns
+        if (pickupSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(pickupSound);
+        }
+
         PlayerMoney.Instance.AddMoney(coinValue);
 
+        // Fördröj destruction så att ljudet hinner spelas upp
         Destroy(gameObject, 0.7f);
     }
 
@@ -88,9 +97,9 @@ public class CoinPickup : MonoBehaviour
     {
         if (spriteRenderer == null) return;
 
-        // Växla mellan synlig och genomskinlig
         Color c = spriteRenderer.color;
         c.a = (c.a == 1f) ? 0.3f : 1f;
         spriteRenderer.color = c;
     }
 }
+
