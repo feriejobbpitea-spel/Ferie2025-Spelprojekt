@@ -38,4 +38,10 @@ public class Inventory : MonoBehaviour
     {
         return items.Contains(item);
     }
+
+    // NY: Kolla om det finns plats för ett till vapen (eller item)
+    public bool HasInventorySpaceForWeapon()
+    {
+        return items.Count < maxItems;
+    }
 }
