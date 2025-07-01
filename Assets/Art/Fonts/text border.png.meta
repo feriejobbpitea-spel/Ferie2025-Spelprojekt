@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: fa4a98cc437fc9e488a51a92c4f2afec
+guid: 9e6fdeb9feb617841b1069527a841989
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6899718100470854415
-    second: ny obsidian_0
+      213: 4542223983801505608
+    second: text border_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -101,7 +101,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ny obsidian_0
+      name: datachip_0
       rect:
         serializedVersion: 2
         x: 0
@@ -126,10 +126,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1fc0a13a1f64f30a0800000000000000
-      internalID: -6899718100470854415
+      spriteID: 8046c11f59656984fb420dc5bb342edb
+      internalID: -379241700
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 91e6fb391ded04f469ba75cb03edfd9b
     internalID: 0
     vertices: []
     indices: 
@@ -146,9 +146,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      ny obsidian_0: -6899718100470854415
+      datachip_0: -379241700
+      datachip_1: 1504862249
+      datachip_2: 1285114238
+      datachip_3: 1372960043
+      datachip_4: -1555381538
+      datachip_5: 2145868726
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
