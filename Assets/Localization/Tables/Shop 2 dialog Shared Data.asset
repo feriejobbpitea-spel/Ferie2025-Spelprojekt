@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shop 2 dialog Shared Data
   m_EditorClassIdentifier: 
   m_TableCollectionName: Shop 2 dialog
-  m_TableCollectionNameGuidString: 00000000000000000000000000000000
+  m_TableCollectionNameGuidString: 3b56f7140589dd04690597ea85d97a05
   m_Entries: []
   m_Metadata:
     m_Items: []

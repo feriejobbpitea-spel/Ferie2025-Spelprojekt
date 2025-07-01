@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Swedish (sv)
   m_GUID: 6be0661dac0a0844ca53c0117979c728
   m_SerializeEntries:
+  - m_GUID: 0d223727cc260924db84354a25ed92a2
+    m_Address: Shop 2 dialog_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 585f104987755564ebc231e1c5c42a07
     m_Address: Cut Scene End Dialog1_sv
     m_ReadOnly: 1
