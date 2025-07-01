@@ -40,6 +40,11 @@ public class BiomeHandler : Singleton<BiomeHandler>
             // Explicitly set to final color to avoid rounding errors or drift
             Camera.main.backgroundColor = newBiome.backgroundColor;
         });
+
+        // Update parallax
+        ParallaxManager.Instance.UpdateParallaxSprites(newBiome);
+
+        // Update heart UI
         PlayerHealthV2.Instance.UpdateHearts();
     }
 }

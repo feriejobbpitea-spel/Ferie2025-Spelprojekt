@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4c04b1748421424ab644694f3a06140, type: 3}
-  m_Name: Grass
+  m_Name: Obsidian
   m_EditorClassIdentifier: 
-  biomeName: Grass
-  backgroundColor: {r: 0.21568629, g: 0.41176474, b: 0.7254902, a: 1}
+  biomeName: Obsidian
+  backgroundColor: {r: 0.20495069, g: 0.18049128, b: 0.2264151, a: 1}
   HeartUI: {fileID: 2150585771334873267, guid: 575c31afa4014004eb5edfcd6f1a8e76, type: 3}
-  layer1: {fileID: 21300000, guid: b25c6f568ea529a408391ec6c1c5d393, type: 3}
-  layer2: {fileID: 0}
-  layer3: {fileID: 0}
+  layer1: {fileID: 21300000, guid: 8c8038cc4c56fbc4eb5757b44e442c20, type: 3}
+  layer2: {fileID: 21300000, guid: 08ef76d5e928a654890f8b91fc50506e, type: 3}
+  layer3: {fileID: 21300000, guid: a32aaba4ad36e3546859c70e6b491b39, type: 3}

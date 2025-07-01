@@ -489,10 +489,10 @@ MonoBehaviour:
   throwablePrefab: {fileID: 6964891685908431941, guid: 245cdf86751d73b4b9b00e33b607ea26, type: 3}
   earthWavePrefab: {fileID: 3819795789127177674, guid: 4dd1083e6ed33be449968bc656ae7096, type: 3}
   platformPrefab: {fileID: 0}
-  jumpChargeTime: 1
-  jumpForce: 5
-  slamDelay: 1.75
-  throwForce: 8
+  jumpChargeTime: 1.5
+  jumpForce: 7
+  slamDelay: 1.3
+  throwForce: 9
   attackCooldown: 3
   hoverDuration: 1
   hoverSpeed: 2
