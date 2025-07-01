@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic; // valfritt men bra att ha
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -45,6 +46,9 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
     private AudioSource audioSource;
 
     public InventoryManager inventoryManager;
+
+    // *** NYTT: Flagga för att veta om extra hjärta är köpt ***
+    public bool hasBoughtExtraHeart = false;
 
     void Start()
     {
@@ -155,6 +159,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         if (maxLives < 4)
         {
             maxLives++;
+            hasBoughtExtraHeart = true;  // *** Här sätts flaggan ***
         }
         if (currentLives < maxLives)
         {
@@ -196,6 +201,13 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         if (inventoryManager != null)
         {
             inventoryManager.DropWeaponOnDeath();
+        }
+
+        // Återställ hälsan för alla levande fiender när spelaren dör
+        EnemyHealth[] allEnemies = Object.FindObjectsByType<EnemyHealth>(FindObjectsSortMode.None);
+        foreach (EnemyHealth enemy in allEnemies)
+        {
+            enemy.ResetHealth();
         }
 
         Time.timeScale = 0;
@@ -246,5 +258,10 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         {
             audioSource.PlayOneShot(clip);
         }
+    }
+
+    public bool IsAtMaxHealth()
+    {
+        return currentLives >= maxLives;
     }
 }

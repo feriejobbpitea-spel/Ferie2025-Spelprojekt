@@ -65,7 +65,6 @@ public class InventoryManager : Singleton<InventoryManager>
             return key;
         }
 
-        // Här sätter du dina default-bindningar för varje action, om ingen sparad bindning finns
         switch (action)
         {
             case "WeaponSlot1": return KeyCode.Alpha1;
@@ -76,7 +75,7 @@ public class InventoryManager : Singleton<InventoryManager>
         }
     }
 
-    void WeaponSlot (int index)
+    void WeaponSlot(int index)
     {
         if (index < 0 || index >= inventoryWeapons.Length) return;
         if (inventoryWeapons[index] == null)
@@ -128,7 +127,6 @@ public class InventoryManager : Singleton<InventoryManager>
                 slots[i].color = Color.white;
                 parentSlot.SetActive(true);
 
-                // Highlight bara den aktiva sloten
                 if (i < slotHighlights.Count)
                     slotHighlights[i].SetActive(i == activeSlotIndex);
             }
@@ -146,7 +144,6 @@ public class InventoryManager : Singleton<InventoryManager>
 
     // ----- Hantera plockade items -----
 
-    // Lägger till plockat item (exempelvis en bild eller liknande)
     public void AddItem(PickupItem item)
     {
         if (item == null) return;
@@ -155,7 +152,6 @@ public class InventoryManager : Singleton<InventoryManager>
         {
             collectedItems.Add(item);
             Debug.Log($"Lagt till item i inventory: {item.itemName}");
-            // Här kan du lägga till UI-uppdatering för dessa items om du vill
         }
         else
         {
@@ -163,7 +159,6 @@ public class InventoryManager : Singleton<InventoryManager>
         }
     }
 
-    // Ge item till butiksägare och ta bort det från inventory
     public bool GiveItemToShop(string itemName)
     {
         PickupItem item = collectedItems.Find(i => i.itemName == itemName);
@@ -199,18 +194,68 @@ public class InventoryManager : Singleton<InventoryManager>
         AddWeaponToNextSlot(confettiGunPrefab, confettiGunIcon);
     }
 
+    // ----- NYA METODER för att kolla om spelaren redan har vapnet -----
+
+    public bool HasEmpGun()
+    {
+        return HasWeapon(empPrefab);
+    }
+
+    public bool HasRayGun()
+    {
+        return HasWeapon(rayGunPrefab);
+    }
+
+    public bool HasSlingshot()
+    {
+        return HasWeapon(slingshotPrefab);
+    }
+
+    public bool HasConfettiGun()
+    {
+        return HasWeapon(confettiGunPrefab);
+    }
+
+    // Privat hjälpfunktion som kollar om weaponPrefab finns i inventoryWeapons-arrayen
+    private bool HasWeapon(GameObject weaponPrefab)
+    {
+        foreach (var w in inventoryWeapons)
+        {
+            if (w == weaponPrefab)
+                return true;
+        }
+        return false;
+    }
+
+    // NY metod som kollar om det finns plats i inventory (för vapen)
+    public bool HasInventorySpaceForWeapon()
+    {
+        for (int i = 1; i < inventoryWeapons.Length; i++) // Hoppa över slot 0 som är melee
+        {
+            if (inventoryWeapons[i] == null)
+                return true;
+        }
+        return false;
+    }
+
+    // ÄNDRA DENNA METOD (lägg till kontroll innan tillägg)
     private void AddWeaponToNextSlot(GameObject weaponPrefab, Sprite icon)
     {
         if (weaponPrefab == null)
             return;
 
-        for (int i = 0; i < inventoryWeapons.Length; i++)
+        // Kolla om det finns plats först
+        if (!HasInventorySpaceForWeapon())
         {
-            if (inventoryWeapons[i] == weaponPrefab)
-            {
-                Debug.Log("Du har redan detta vapen.");
-                return;
-            }
+            Debug.Log("Inventory fullt – kunde inte lägga till nytt vapen.");
+            return;
+        }
+
+        // Kolla om spelaren redan har vapnet
+        if (HasWeapon(weaponPrefab))
+        {
+            Debug.Log("Du har redan detta vapen.");
+            return;
         }
 
         for (int i = 1; i < inventoryWeapons.Length; i++)
@@ -223,8 +268,6 @@ public class InventoryManager : Singleton<InventoryManager>
                 return;
             }
         }
-
-        Debug.Log("Inventory fullt – kunde inte lägga till nytt vapen.");
     }
 
     public void DropWeaponOnDeath()
@@ -241,7 +284,7 @@ public class InventoryManager : Singleton<InventoryManager>
             currentWeapon = null;
         }
 
-        // ❌ Ta INTE bort vapen från inventory – bara återgå till melee
+        // Ta INTE bort vapen från inventory – bara återgå till melee
         WeaponSlot(0); // Växla till melee
     }
 }

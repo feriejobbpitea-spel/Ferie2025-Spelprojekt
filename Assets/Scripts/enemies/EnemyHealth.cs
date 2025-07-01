@@ -30,6 +30,7 @@ public class EnemyHealth : MonoBehaviour
         {
             healthSlider.maxValue = maxHealth;
             healthSlider.value = currentHealth;
+            Debug.Log($"{gameObject.name} Start(): maxHealth={maxHealth}, currentHealth={currentHealth}");
         }
 
         spriteRenderer = (spriteRendererOverride != null) ? spriteRendererOverride : GetComponent<SpriteRenderer>();
@@ -48,6 +49,8 @@ public class EnemyHealth : MonoBehaviour
         {
             healthSlider.value = currentHealth;
         }
+
+        Debug.Log($"{gameObject.name} TakeDamage(): took {amount} damage, currentHealth={currentHealth}", gameObject);
 
         PlayDamageSound();
         BlinkRed();
@@ -112,5 +115,30 @@ public class EnemyHealth : MonoBehaviour
         aSource.Play();
 
         Destroy(tempGO, clip.length);
+    }
+
+    // Ny metod för att återställa hälsa och uppdatera UI
+    public void ResetHealth()
+    {
+        currentHealth = maxHealth;
+
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;  // Viktigt att maxValue är rätt
+            healthSlider.value = currentHealth;
+
+            Debug.Log($"{gameObject.name} ResetHealth(): maxHealth={maxHealth}, currentHealth={currentHealth}, slider.value={healthSlider.value}");
+        }
+
+        if (!gameObject.activeInHierarchy)
+        {
+            gameObject.SetActive(true);
+        }
+    }
+
+    // Ny metod för att kolla om fienden lever
+    public bool IsAlive()
+    {
+        return currentHealth > 0 && gameObject.activeInHierarchy;
     }
 }
