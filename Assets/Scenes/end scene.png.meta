@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: d348a8d9dc8f58f40a7e07c647c742fa
+guid: e15540d9a844cda4bbf61ab6fe58a4ca
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2666224697891052504
-    second: "dubbel d\xF6tt tr\xE4d_0"
-  - first:
-      213: 8691662552188851975
-    second: "dubbel d\xF6tt tr\xE4d_1"
+      213: -2512420747674556339
+    second: end scene_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:

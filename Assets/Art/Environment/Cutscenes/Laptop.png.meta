@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: d348a8d9dc8f58f40a7e07c647c742fa
+guid: e06b02480ba53af4397a681f86ce0be6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2666224697891052504
-    second: "dubbel d\xF6tt tr\xE4d_0"
-  - first:
-      213: 8691662552188851975
-    second: "dubbel d\xF6tt tr\xE4d_1"
+      213: -7773165393155189300
+    second: Laptop_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
