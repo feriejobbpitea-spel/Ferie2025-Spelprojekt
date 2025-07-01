@@ -20,6 +20,10 @@ public class Cone_inc : MonoBehaviour
     public GameObject laserPrefab;
     public Transform firePoint;
 
+    [Header("Audio")]
+    public AudioClip shootSound;
+    private AudioSource audioSource;
+
     private Movement playerMovement;
 
     void Start()
@@ -34,6 +38,13 @@ public class Cone_inc : MonoBehaviour
 
         if (sliderFillImage != null)
             sliderFillImage.color = normalColor;
+
+        // Lägg till AudioSource-komponenten om den inte finns
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     void Update()
@@ -71,6 +82,12 @@ public class Cone_inc : MonoBehaviour
         if (laserPrefab != null && firePoint != null)
         {
             Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
+
+            // Spela upp ljudet när man skjuter
+            if (shootSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(shootSound);
+            }
         }
         else
         {

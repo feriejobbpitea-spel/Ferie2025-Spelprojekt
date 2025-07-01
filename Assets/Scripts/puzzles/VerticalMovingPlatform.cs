@@ -63,6 +63,10 @@ public class VerticalMovingPlatform : MonoBehaviour
 
     void FixedUpdate()
     {
+        // 🛡️ Skydda alltid mot projektiler
+        ClearProjectiles();
+
+        // Kolla om spelaren är inom aktiveringsradie
         if (!isActive && playerTransform != null)
         {
             float distanceToPlayer = Vector2.Distance(rb.position, playerTransform.position);
@@ -73,7 +77,7 @@ public class VerticalMovingPlatform : MonoBehaviour
             }
             else
             {
-                return;
+                return; // Avsluta om spelaren är för långt bort
             }
         }
 
@@ -104,10 +108,8 @@ public class VerticalMovingPlatform : MonoBehaviour
 
         rb.MovePosition(newPosition);
         previousPosition = rb.position;
-
-        // 🔍 Rensa projektiler med BoxCast
-        ClearProjectiles();
     }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {

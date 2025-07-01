@@ -16,7 +16,7 @@ public class CrushingWalls : MonoBehaviour
     private bool isActivated = false;
     private bool isSoundPlaying = false;
 
-    private float startY; // Spara startpositionens Y
+    private float startY;
     private Vector2 targetPosition;
 
     private void Start()
@@ -28,9 +28,8 @@ public class CrushingWalls : MonoBehaviour
             return;
         }
 
-        startY = ceiling.position.y; // Spara startpositionens Y-koordinat
-
-        targetPosition = new Vector2(ceiling.position.x, startY - floorY);
+        startY = ceiling.position.y;
+        targetPosition = new Vector2(ceiling.position.x, startY + floorY);
 
         if (audioSource != null && movingSound != null)
         {
@@ -43,28 +42,18 @@ public class CrushingWalls : MonoBehaviour
     {
         if (!isActivated) return;
 
-        ceiling.position = Vector2.MoveTowards(ceiling.position, targetPosition, speed * Time.deltaTime);
-
         float distance = Vector2.Distance(ceiling.position, targetPosition);
 
         if (distance > 0.01f)
         {
-            if (!isSoundPlaying && audioSource != null)
-            {
-                audioSource.Play();
-                isSoundPlaying = true;
-            }
+            StartMovingSound(); // Bara i Update, som styr nedåtgående rörelse
         }
         else
         {
-            if (isSoundPlaying && audioSource != null)
-            {
-                audioSource.Stop();
-                isSoundPlaying = false;
-                isActivated = false; // Stoppar rörelsen efter att målet nåtts
-            }
+            StopMovingSound();
+            isActivated = false;
         }
-        // Flytta neråt mot floorY
+
         ceiling.position = Vector3.MoveTowards(ceiling.position, targetPosition, speed * Time.deltaTime);
     }
 
@@ -79,17 +68,43 @@ public class CrushingWalls : MonoBehaviour
         isActivated = true;
 
         // Vänta tills taket nått botten
-        while (ceiling.position.y > startY - floorY) // Liten tolerans för flyttal
+        while (Vector3.Distance(ceiling.position, new Vector3(ceiling.position.x, startY + floorY, ceiling.position.z)) > 0.01f)
         {
+            ceiling.position = Vector3.MoveTowards(ceiling.position, new Vector3(ceiling.position.x, startY + floorY, ceiling.position.z), speed * Time.deltaTime);
             yield return null;
         }
+
+        StopMovingSound(); // Sluta spela när botten nåtts
 
         // Vänta 5 sekunder innan reset
         yield return new WaitForSeconds(5);
 
-        // Återställ taket till startposition
-        ceiling.position = new Vector3(ceiling.position.x, startY, ceiling.position.z);
+        // Flytta upp igen till startposition — men spela INTE ljud
+        while (Vector3.Distance(ceiling.position, new Vector3(ceiling.position.x, startY, ceiling.position.z)) > 0.01f)
+        {
+            ceiling.position = Vector3.MoveTowards(ceiling.position, new Vector3(ceiling.position.x, startY, ceiling.position.z), speed * Time.deltaTime);
+            yield return null;
+        }
+
         isActivated = false;
+    }
+
+    private void StartMovingSound()
+    {
+        if (audioSource != null && !audioSource.isPlaying)
+        {
+            audioSource.Play();
+            isSoundPlaying = true;
+        }
+    }
+
+    private void StopMovingSound()
+    {
+        if (audioSource != null && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+            isSoundPlaying = false;
+        }
     }
 
     private void OnDrawGizmos()
@@ -102,3 +117,4 @@ public class CrushingWalls : MonoBehaviour
         Gizmos.DrawWireSphere(targetPos, 0.5f);
     }
 }
+

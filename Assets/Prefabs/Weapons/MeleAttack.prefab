@@ -187,3 +187,4 @@ MonoBehaviour:
   attackCooldown: 1
   attackAnimationDuration: 0.5
   playerAnimator: {fileID: 0}
+  swingSound: {fileID: 8300000, guid: 8c08180ce28a045409ad2ec802767b5c, type: 3}
