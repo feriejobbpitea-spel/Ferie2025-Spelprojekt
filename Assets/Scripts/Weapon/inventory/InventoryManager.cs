@@ -46,6 +46,7 @@ public class InventoryManager : Singleton<InventoryManager>
         inventoryIcons[0] = meleeIcon;
 
         UpdateInventoryUI();
+        WeaponSlot(0); 
     }
 
     void Update()
