@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SimpleShop : MonoBehaviour
+public class SimpleShop : Singleton<SimpleShop>
 {
     [System.Serializable]
     public class ShopItem
@@ -202,7 +202,7 @@ public class SimpleShop : MonoBehaviour
     }
 
 
-    void UpdateMoneyUI()
+    public void UpdateMoneyUI()
     {
         if (playerMoneyText != null)
         {

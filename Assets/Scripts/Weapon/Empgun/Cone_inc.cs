@@ -4,9 +4,6 @@ using TMPro;
 
 public class Cone_inc : MonoBehaviour
 {
-    [Header("Charge Settings")]
-    public float maxCharge = 100f;
-
     [Header("Charge UI")]
     public Slider chargeSlider;
     public TextMeshProUGUI chargeText;
@@ -20,16 +17,8 @@ public class Cone_inc : MonoBehaviour
     public GameObject laserPrefab;
     public Transform firePoint;
 
-    [Header("Audio")]
-    public AudioClip shootSound;
-    private AudioSource audioSource;
-
-    private Movement playerMovement;
-
     void Start()
     {
-        playerMovement = GetComponentInParent<Movement>();
-
         if (chargeSlider != null)
         {
             chargeSlider.minValue = 0f;
@@ -38,21 +27,12 @@ public class Cone_inc : MonoBehaviour
 
         if (sliderFillImage != null)
             sliderFillImage.color = normalColor;
-
-        // Lägg till AudioSource-komponenten om den inte finns
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
     }
 
     void Update()
     {
-        if (playerMovement == null) return;
-
-        float currentCharge = playerMovement.currentCharge;
-        float maxCharge = playerMovement.maxCharge;
+        float currentCharge = ChargeManager.currentCharge;
+        float maxCharge = ChargeManager.maxCharge;
 
         UpdateChargeUI(currentCharge, maxCharge);
 
@@ -67,7 +47,7 @@ public class Cone_inc : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 ShootLaser();
-                playerMovement.currentCharge = 0f;
+                ChargeManager.currentCharge = 0f;  // Reset laddningen via ChargeManager
             }
         }
         else
@@ -82,12 +62,6 @@ public class Cone_inc : MonoBehaviour
         if (laserPrefab != null && firePoint != null)
         {
             Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
-
-            // Spela upp ljudet när man skjuter
-            if (shootSound != null && audioSource != null)
-            {
-                audioSource.PlayOneShot(shootSound);
-            }
         }
         else
         {

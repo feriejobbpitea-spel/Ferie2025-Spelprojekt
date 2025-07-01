@@ -3,6 +3,7 @@ using TMPro;
 
 public class PlayerMoney : Singleton<PlayerMoney>
 {
+   
     public int money = 0;
     public TMP_Text moneyText;
 

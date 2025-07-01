@@ -11,7 +11,7 @@ public class InventoryManager : Singleton<InventoryManager>
     public List<Image> slots;
 
     [Header("Highlight Objects")]
-    public List<GameObject> slotHighlights;  // Dra in highlight-objekten i Unity
+    public List<GameObject> slotHighlights;
 
     [Header("Prefabs")]
     public GameObject meleePrefab;
@@ -35,18 +35,22 @@ public class InventoryManager : Singleton<InventoryManager>
     private GameObject[] inventoryWeapons = new GameObject[4];
     private Sprite[] inventoryIcons = new Sprite[4];
 
-    private int activeSlotIndex = 0;  // Håll koll på vilken slot som är aktiv
+    private int activeSlotIndex = 0;
 
-    // Ny lista för plockade items (t.ex bilder, andra objekt)
     private List<PickupItem> collectedItems = new List<PickupItem>();
 
     void Start()
     {
         inventoryWeapons[0] = meleePrefab;
         inventoryIcons[0] = meleeIcon;
-
+        WeaponSlot(0);
         UpdateInventoryUI();
         WeaponSlot(0); 
+    }
+
+    public List<PickupItem> GetCollectedItems()
+    {
+        return collectedItems;
     }
 
     void Update()
@@ -75,7 +79,7 @@ public class InventoryManager : Singleton<InventoryManager>
         }
     }
 
-    void WeaponSlot(int index)
+    public void WeaponSlot(int index)
     {
         if (index < 0 || index >= inventoryWeapons.Length) return;
         if (inventoryWeapons[index] == null)
@@ -99,18 +103,39 @@ public class InventoryManager : Singleton<InventoryManager>
         currentWeapon.transform.localPosition = Vector3.zero;
         currentWeapon.transform.localRotation = Quaternion.identity;
 
-        activeSlotIndex = index;  // Uppdatera aktiv slot
+        activeSlotIndex = index;
 
         UpdateInventoryUI();
     }
 
-    public void SetActiveBeam(GameObject beam)
+    public GameObject[] GetInventoryWeapons()
+    {
+        return inventoryWeapons;
+    }
+
+    public void DestroyCurrentWeapon()
     {
         if (activeBeam != null)
         {
             Destroy(activeBeam);
+            activeBeam = null;
         }
-        activeBeam = beam;
+
+        if (currentWeapon != null)
+        {
+            Destroy(currentWeapon);
+            currentWeapon = null;
+        }
+    }
+
+    public int GetWeaponIndex(GameObject prefab)
+    {
+        for (int i = 0; i < inventoryWeapons.Length; i++)
+        {
+            if (inventoryWeapons[i] == prefab)
+                return i;
+        }
+        return -1;
     }
 
     void UpdateInventoryUI()
@@ -171,8 +196,6 @@ public class InventoryManager : Singleton<InventoryManager>
         Debug.Log($"Item {itemName} finns inte i inventory.");
         return false;
     }
-
-    // ----- Befintliga metoder för vapen -----
 
     public void AddEmpGun()
     {
@@ -284,6 +307,7 @@ public class InventoryManager : Singleton<InventoryManager>
             currentWeapon = null;
         }
 
+        WeaponSlot(0);
         // Ta INTE bort vapen från inventory – bara återgå till melee
         WeaponSlot(0); // Växla till melee
     }
