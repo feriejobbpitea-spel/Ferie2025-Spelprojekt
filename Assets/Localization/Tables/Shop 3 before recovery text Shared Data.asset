@@ -10,63 +10,59 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Shop 2 dialog Shared Data
+  m_Name: Shop 3 before recovery text Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: Shop 2 dialog
-  m_TableCollectionNameGuidString: 3b56f7140589dd04690597ea85d97a05
+  m_TableCollectionName: Shop 3 before recovery text
+  m_TableCollectionNameGuidString: dcac374a04ac83c469f8575cda12e244
   m_Entries:
-  - m_Id: 13721677824
-    m_Key: Eyes 1
+  - m_Id: 11762937856
+    m_Key: Oh dear grandpa
     m_Metadata:
       m_Items: []
-  - m_Id: 88782942208
-    m_Key: Eyes 2
+  - m_Id: 308598026240
+    m_Key: Oh behind the shelf
     m_Metadata:
       m_Items: []
-  - m_Id: 607840645120
-    m_Key: Eyes 3
+  - m_Id: 604241932288
+    m_Key: Something is missing
     m_Metadata:
       m_Items: []
-  - m_Id: 686831972352
-    m_Key: Eyes 4
+  - m_Id: 708956925952
+    m_Key: Pay with steel, or with soul
     m_Metadata:
       m_Items: []
-  - m_Id: 767362609152
-    m_Key: Eyes 5
+  - m_Id: 877815410688
+    m_Key: They tried to erase me.
     m_Metadata:
       m_Items: []
-  - m_Id: 931305369600
-    m_Key: Eyes 6
+  - m_Id: 1003933937664
+    m_Key: I was once an ordered code
     m_Metadata:
       m_Items: []
-  - m_Id: 1005322252288
-    m_Key: Eyes 7
+  - m_Id: 1160188538880
+    m_Key: I have a special offer!
     m_Metadata:
       m_Items: []
-  - m_Id: 1051795140608
-    m_Key: Eyes 8
+  - m_Id: 1447217344512
+    m_Key: Help me
     m_Metadata:
       m_Items: []
-  - m_Id: 1237363732480
-    m_Key: Eyes 9
+  - m_Id: 1578914295808
+    m_Key: "I don\u2019t think you should be here"
     m_Metadata:
       m_Items: []
-  - m_Id: 1366497964032
-    m_Key: Eyes 10
-    m_Metadata:
-      m_Items: []
-  - m_Id: 2051528470528
-    m_Key: Eyes 11
+  - m_Id: 1669888749568
+    m_Key: "I don\u2019t want you here"
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 5110291043374858359
+    rid: 8302204524731826253
   references:
     version: 2
     RefIds:
-    - rid: 5110291043374858359
+    - rid: 8302204524731826253
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1751352796843
+        m_CustomEpoch: 1751360661761
