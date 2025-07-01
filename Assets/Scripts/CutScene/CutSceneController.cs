@@ -16,17 +16,27 @@ public class CutsceneSlide
 
 public class CutSceneController : MonoBehaviour
 {
+    [Header("Cutscene Content")]
     public CutsceneSlide[] slides;
     public Image cutsceneImage;
     public TextMeshProUGUI cutsceneText;
     public TextFader textFader;
+
+    [Header("UI Elements")]
     public CanvasGroup continueText;
     public CanvasGroup skipText;
     public Image skipProgressBar;
+
+    public TextMeshProUGUI continueTextLabel;
+    public TextMeshProUGUI skipTextLabel;
+
+    public string TableReference = "Cut Scene Dialog"; // NY: Tabellreferens för lokalisering
+
+    [Header("Audio")]
     public AudioSource audioSource;
 
-    public TextMeshProUGUI continueTextLabel;  // NY: Text-komponent för "Press ENTER to Continue"
-    public TextMeshProUGUI skipTextLabel;      // NY: Text-komponent för "Hold ENTER to skip"
+    [Header("Scene Settings")]
+    public string sceneToLoadAfterCutscene = "MainGame"; // NY: målscen efter cutscene
 
     private int currentSlideIndex = 0;
     private bool isFading = false;
@@ -38,30 +48,22 @@ public class CutSceneController : MonoBehaviour
     private LocalizedString localizedString;
     private Coroutine updateTextCoroutine;
 
-    private KeyCode skipKey;  // Keybind för skip
-    private KeyCode nextSlideKey; // Keybind för nästa slide
+    private KeyCode skipKey;
+    private KeyCode nextSlideKey;
 
     IEnumerator Start()
     {
         localizedString = new LocalizedString();
-        localizedString.TableReference = "Cut Scene Dialog";
+        localizedString.TableReference = TableReference;
 
         yield return LocalizationSettings.InitializationOperation;
 
-        // Läs in keybinds från PlayerPrefs, fallback till Return
         string savedSkipKey = PlayerPrefs.GetString("bind_SkipCutscene", KeyCode.Return.ToString());
-        if (!System.Enum.TryParse(savedSkipKey, out skipKey))
-        {
-            skipKey = KeyCode.Return;
-        }
+        if (!System.Enum.TryParse(savedSkipKey, out skipKey)) skipKey = KeyCode.Return;
 
         string savedNextKey = PlayerPrefs.GetString("bind_NextSlide", KeyCode.Return.ToString());
-        if (!System.Enum.TryParse(savedNextKey, out nextSlideKey))
-        {
-            nextSlideKey = KeyCode.Return;
-        }
+        if (!System.Enum.TryParse(savedNextKey, out nextSlideKey)) nextSlideKey = KeyCode.Return;
 
-        // Uppdatera UI-texten med rätt knappnamn
         UpdateContinueTextLabel();
         UpdateSkipTextLabel();
 
@@ -80,14 +82,11 @@ public class CutSceneController : MonoBehaviour
         {
             holdTimer += Time.deltaTime;
             float progress = Mathf.Clamp01(holdTimer / skipHoldTime);
-
             if (skipProgressBar != null)
                 skipProgressBar.fillAmount = progress;
 
             if (holdTimer >= skipHoldTime)
-            {
                 SkipCutscene();
-            }
         }
         else
         {
@@ -105,7 +104,7 @@ public class CutSceneController : MonoBehaviour
             }
             else
             {
-                SceneLoader.Instance.LoadScene("MainGame");
+                SceneLoader.Instance.LoadScene(sceneToLoadAfterCutscene); // NYTT
             }
         }
     }
@@ -113,30 +112,21 @@ public class CutSceneController : MonoBehaviour
     void UpdateContinueTextLabel()
     {
         if (continueTextLabel != null)
-        {
             continueTextLabel.text = $"Press {KeyCodeToString(nextSlideKey)} to Continue";
-        }
     }
 
     void UpdateSkipTextLabel()
     {
         if (skipTextLabel != null)
-        {
             skipTextLabel.text = $"Hold {KeyCodeToString(skipKey)} to skip";
-        }
     }
 
     string KeyCodeToString(KeyCode key)
     {
-        // Anpassa sträng om du vill, t.ex. ersätt KeyCode.Return med "ENTER"
         if (key == KeyCode.Return) return "ENTER";
         if (key == KeyCode.Escape) return "ESC";
-        // Lägg till fler specialfall vid behov
-
         return key.ToString().ToUpper();
     }
-
-    // Resten av din kod är oförändrad, här är resten av klassen för referens:
 
     void ShowSlide(int index)
     {
@@ -157,15 +147,7 @@ public class CutSceneController : MonoBehaviour
         var handle = localizedString.GetLocalizedStringAsync();
         yield return handle;
 
-        if (handle.Status == AsyncOperationStatus.Succeeded)
-        {
-            cutsceneText.text = handle.Result;
-        }
-        else
-        {
-            cutsceneText.text = "[Missing Text]";
-        }
-
+        cutsceneText.text = handle.Status == AsyncOperationStatus.Succeeded ? handle.Result : "[Missing Text]";
         yield return new WaitForSeconds(0.2f);
 
         if (voiceClip != null)
@@ -235,6 +217,6 @@ public class CutSceneController : MonoBehaviour
 
     void SkipCutscene()
     {
-        SceneLoader.Instance.LoadScene("MainGame");
+        SceneLoader.Instance.LoadScene(sceneToLoadAfterCutscene); // NYTT
     }
 }

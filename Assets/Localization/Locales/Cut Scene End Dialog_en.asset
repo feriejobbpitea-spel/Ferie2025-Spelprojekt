@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Cut Scene End Dialog_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 2bb8e5faf8ed6ea4ab6e0bfe05e69b28, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 5173870592
+    m_Localized: "Grandpa is still fucking tired, he\u2019s not used to all this
+      fighting."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8021803008
+    m_Localized: But he feels alot better now when the evil has been defeated.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10202841088
+    m_Localized: His grandchildren will finally have time for him.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 495135686656
+    m_Localized: "(children laughing, \u201CI love you grandpa\u201D)"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

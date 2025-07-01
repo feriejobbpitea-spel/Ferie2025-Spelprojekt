@@ -248,7 +248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: -0.000061035156, y: 50}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!1 &594626296
@@ -386,7 +386,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 20.854, y: -176}
+  m_AnchoredPosition: {x: 0, y: -176}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &594626300
@@ -444,40 +444,70 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slides:
   - image: {fileID: -2307006551632423868, guid: f704bb26f448f2d48a73d62f4ca6f15f, type: 3}
-    localizationKey: EntryAH1
+    localizationKey: EntryAHH1
     voiceLine:
       m_TableReference:
-        m_TableCollectionName: GUID:e37181e35d2155a4f8f1f681d10550ff
+        m_TableCollectionName: 
       m_TableEntryReference:
         m_KeyId: 0
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
   - image: {fileID: -379241700, guid: ab516be893e387b4cbe0c932e2f046c2, type: 3}
-    localizationKey: EntryAH2
+    localizationKey: EntryAHH2
     voiceLine:
       m_TableReference:
-        m_TableCollectionName: GUID:e37181e35d2155a4f8f1f681d10550ff
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+  - image: {fileID: -379241700, guid: ab516be893e387b4cbe0c932e2f046c2, type: 3}
+    localizationKey: EntryAHH3
+    voiceLine:
+      m_TableReference:
+        m_TableCollectionName: 
       m_TableEntryReference:
         m_KeyId: 0
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
   - image: {fileID: 2798047460436315396, guid: 33279788196df204ea745a7d869cad44, type: 3}
-    localizationKey: EntryAH3
+    localizationKey: EntryAHH4
     voiceLine:
       m_TableReference:
-        m_TableCollectionName: GUID:e37181e35d2155a4f8f1f681d10550ff
+        m_TableCollectionName: 
       m_TableEntryReference:
         m_KeyId: 0
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
-  - image: {fileID: 2798047460436315396, guid: 33279788196df204ea745a7d869cad44, type: 3}
-    localizationKey: EntryAH4
+  - image: {fileID: -3736903775432963038, guid: f2d1eae8d1dfd22428c741364ea3c964, type: 3}
+    localizationKey: EntryAHH5
     voiceLine:
       m_TableReference:
-        m_TableCollectionName: GUID:e37181e35d2155a4f8f1f681d10550ff
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+  - image: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
+    localizationKey: EntryAHH6
+    voiceLine:
+      m_TableReference:
+        m_TableCollectionName: 
+      m_TableEntryReference:
+        m_KeyId: 0
+        m_Key: 
+      m_FallbackState: 0
+      m_WaitForCompletion: 0
+  - image: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
+    localizationKey: EntryAHH7
+    voiceLine:
+      m_TableReference:
+        m_TableCollectionName: 
       m_TableEntryReference:
         m_KeyId: 0
         m_Key: 
@@ -491,9 +521,9 @@ MonoBehaviour:
   skipProgressBar: {fileID: 359571888}
   continueTextLabel: {fileID: 1567350314}
   skipTextLabel: {fileID: 1400643361}
-  TableReference: Cut Scene End Dialog
+  TableReference: Cut Scene End Dialog1
   audioSource: {fileID: 0}
-  sceneToLoadAfterCutscene: MainMenu
+  sceneToLoadAfterCutscene: MainGame
 --- !u!4 &1050734647
 Transform:
   m_ObjectHideFlags: 0

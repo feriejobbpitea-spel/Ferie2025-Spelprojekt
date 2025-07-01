@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryManager : Singleton<InventoryManager>
 {
@@ -44,19 +45,37 @@ public class InventoryManager : Singleton<InventoryManager>
         inventoryWeapons[0] = meleePrefab;
         inventoryIcons[0] = meleeIcon;
 
-        EquipWeapon(0);
         UpdateInventoryUI();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) EquipWeapon(0);
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) EquipWeapon(1);
-        else if (Input.GetKeyDown(KeyCode.Alpha3)) EquipWeapon(2);
-        else if (Input.GetKeyDown(KeyCode.Alpha4)) EquipWeapon(3);
+        if (Input.GetKeyDown(GetBoundKey("WeaponSlot1"))) WeaponSlot(0);
+        else if (Input.GetKeyDown(GetBoundKey("WeaponSlot2"))) WeaponSlot(1);
+        else if (Input.GetKeyDown(GetBoundKey("WeaponSlot3"))) WeaponSlot(2);
+        else if (Input.GetKeyDown(GetBoundKey("WeaponSlot4"))) WeaponSlot(3);
     }
 
-    void EquipWeapon(int index)
+    KeyCode GetBoundKey(string action)
+    {
+        string keyStr = PlayerPrefs.GetString("bind_" + action, "");
+        if (Enum.TryParse<KeyCode>(keyStr, out KeyCode key))
+        {
+            return key;
+        }
+
+        // Här sätter du dina default-bindningar för varje action, om ingen sparad bindning finns
+        switch (action)
+        {
+            case "WeaponSlot1": return KeyCode.Alpha1;
+            case "WeaponSlot2": return KeyCode.Alpha2;
+            case "WeaponSlot3": return KeyCode.Alpha3;
+            case "WeaponSlot4": return KeyCode.Alpha4;
+            default: return KeyCode.None;
+        }
+    }
+
+    void WeaponSlot (int index)
     {
         if (index < 0 || index >= inventoryWeapons.Length) return;
         if (inventoryWeapons[index] == null)
@@ -221,6 +240,7 @@ public class InventoryManager : Singleton<InventoryManager>
             currentWeapon = null;
         }
 
-        EquipWeapon(0);
+        // ❌ Ta INTE bort vapen från inventory – bara återgå till melee
+        WeaponSlot(0); // Växla till melee
     }
 }

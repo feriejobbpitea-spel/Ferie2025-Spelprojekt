@@ -15,6 +15,30 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: 2a23ce10e77f89b4a8f01c6ad66e0d23
   m_SerializeEntries:
+  - m_GUID: 25f1993ac05ae5b40b8ccc258a0926f3
+    m_Address: Assets/Localization/Locales/Cut Scene End Dialog1 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2bb8e5faf8ed6ea4ab6e0bfe05e69b28
+    m_Address: Assets/Localization/Locales/Cut Scene End Dialog Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 329d8e92eb9de7b4c805658cb84edff0
+    m_Address: Audio 7
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3ce4c3f0b060cbf41988d9b74e802338
+    m_Address: Audio 4
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 40c72d228a56c764aa88ec1606e2da93
     m_Address: Assets/Localization/Tables/ShopDialogue Audio Shared Data.asset
     m_ReadOnly: 1
@@ -22,11 +46,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 647361db4f093ca4b89d89914dccf343
     m_Address: Assets/Localization/Tables/Main Menu Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a7ddbee4271e18749b8571f444f670a9
-    m_Address: Assets/Localization/Tables/Cut Scene Audio/Shop 2 Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -44,6 +63,13 @@ MonoBehaviour:
     m_Address: Assets/Localization/Tables/Cut Scene Audio/Cutscene audio Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: de31fd32957dab34284983f827c18b24
+    m_Address: Audio 1
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e37181e35d2155a4f8f1f681d10550ff
     m_Address: Assets/Localization/Tables/Cut Scene Audio/Cut scene audio Shared
