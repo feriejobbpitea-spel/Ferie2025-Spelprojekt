@@ -488,12 +488,13 @@ MonoBehaviour:
   - {fileID: 6265906871615660965}
   throwablePrefab: {fileID: 6964891685908431941, guid: 245cdf86751d73b4b9b00e33b607ea26, type: 3}
   earthWavePrefab: {fileID: 3819795789127177674, guid: 4dd1083e6ed33be449968bc656ae7096, type: 3}
+  platformPrefab: {fileID: 0}
   jumpChargeTime: 1
   jumpForce: 5
   slamDelay: 1.75
   throwForce: 8
   attackCooldown: 3
-  hoverDuration: 2
+  hoverDuration: 1
   hoverSpeed: 2
   earthWaveCount: 16
   earthWaveSpacing: 2
@@ -502,6 +503,11 @@ MonoBehaviour:
   disappearDelay: 0.6
   distanceUp: 4
   startDistanceDown: 4
+  platformCount: 3
+  platformSpacing: 2
+  platformYPosition: 3
+  platformFadeDuration: 0.5
+  platformLifeTime: 5
   groundCheck: {fileID: 5459211683806485481}
   groundLayer:
     serializedVersion: 2
@@ -647,6 +653,8 @@ MonoBehaviour:
   coinForce: 5
   toRemove: {fileID: 3598016814301857601}
   spriteRendererOverride: {fileID: 3593701465027202884}
+  damageSound: {fileID: 0}
+  audioSource: {fileID: 0}
   Animator: {fileID: 8197920517632837075}
   GameCompleteScene: CutScene slut
 --- !u!1 &4618493260406493589

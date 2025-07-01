@@ -52,7 +52,6 @@ public class PlayerAnimations : MonoBehaviour
         bool isHoldingMelee = currentWeapon != null &&
             currentWeapon.name.Contains("MeleAttack", System.StringComparison.OrdinalIgnoreCase);
 
-        // 🔁 Kolla om vapnet ändrats
         if (_lastWeapon != currentWeapon)
         {
             _lastWeapon = currentWeapon;

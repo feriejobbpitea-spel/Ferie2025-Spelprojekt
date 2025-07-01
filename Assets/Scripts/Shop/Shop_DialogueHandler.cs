@@ -3,24 +3,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Localization;
 
-[System.Serializable]
-public class Dialogue
-{
-    public LocalizedString LocalizedText;   // Text från localization table
-    public AudioClip AudioClip_English;     // Engelskt ljud
-    public AudioClip AudioClip_Swedish;     // Svenskt ljud
-}
 
 [System.Serializable]
 
-public class Shop_DialogueHandler
+public class Shop_DialogueHandler : IShopDialogueHandler
 {
     public string ShopKeeperName = "John";
     public Dialogue[] EnterShop;
     public Dialogue[] ExitShop;
+    public Dialogue[] AlternativeRandomDialogue;
     public Dialogue[] RandomDialogue;
 
     public Button TalkButton;
+    public bool UseAlternativeRandomDialogue = false;
+
+    string IShopDialogueHandler.ShopKeeperName => ShopKeeperName;
 
     public void Initialize()
     {
@@ -44,8 +41,16 @@ public class Shop_DialogueHandler
 
     public void PlayRandomShopDialogue()
     {
-        var dialogue = RandomDialogue[Random.Range(0, RandomDialogue.Length)];
-        ShopDialogueManager.Instance.StartCoroutine(PlayLocalizedDialogue(dialogue));
+        if (UseAlternativeRandomDialogue)
+        {
+            var dialogue = AlternativeRandomDialogue[Random.Range(0, AlternativeRandomDialogue.Length)];
+            ShopDialogueManager.Instance.StartCoroutine(PlayLocalizedDialogue(dialogue));
+        }
+        else
+        {
+            var dialogue = RandomDialogue[Random.Range(0, RandomDialogue.Length)];
+            ShopDialogueManager.Instance.StartCoroutine(PlayLocalizedDialogue(dialogue));
+        }
     }
 
     private IEnumerator PlayLocalizedDialogue(Dialogue dialogue)

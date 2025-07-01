@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: FlickeringLights
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 1274430792, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: -277294176, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: -2136348737, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: 2011323347, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: 1346653107, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: 1624989547, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: -1521614387, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: -680740378, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: -1396602417, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: -51179945, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: 455644644, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: -795575725, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: -1480468485, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: -2142865329, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: -196064661, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: 541983594, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: 604228958, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: 896370270, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: 766715744, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: -1062187920, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: 1320370931, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  - {fileID: 664514549, guid: deacc8f1f4977d442bd06cf1a9c7f3c7, type: 3}
+  m_MinSpeed: 0.5
+  m_MaxSpeed: 1
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
