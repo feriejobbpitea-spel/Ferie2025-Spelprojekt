@@ -15,6 +15,20 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: 2a23ce10e77f89b4a8f01c6ad66e0d23
   m_SerializeEntries:
+  - m_GUID: 06beeb10427c9cc41aaa1f071569acf4
+    m_Address: AlbertExitShop
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 229485a6a9589ed44a4209eaed478614
+    m_Address: AlbertTalk08
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 25f1993ac05ae5b40b8ccc258a0926f3
     m_Address: Assets/Localization/Locales/Cut Scene End Dialog1 Shared Data.asset
     m_ReadOnly: 1
@@ -25,12 +39,31 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 30e949458846d4a40af3ecfba445de2e
+    m_Address: AlbertEnterShop
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 329d8e92eb9de7b4c805658cb84edff0
     m_Address: Audio 7
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3aa7cc41cda40774dac6904c53ac9f3f
+    m_Address: AlbertTalk05
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3b56f7140589dd04690597ea85d97a05
+    m_Address: Assets/Localization/Tables/Shop 2 dialog Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3ce4c3f0b060cbf41988d9b74e802338
     m_Address: Audio 4
@@ -49,6 +82,39 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72d30f636c7b80f42b82df36775f74a8
+    m_Address: AlbertTalk02
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7970a5d8a1b3e874da708d097ba36e76
+    m_Address: AlbertTalk04
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0202b91544cfdc4494e16f21cb9707e
+    m_Address: AlbertTalk07
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a394f78a0147e7a48a9630db4415d420
+    m_Address: AlbertTalk03
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7ddbee4271e18749b8571f444f670a9
+    m_Address: Assets/Localization/Tables/Cut Scene Audio/Shop 2 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a9fcbbae91553f441a7fbc67e61eb121
     m_Address: Assets/Localization/Tables/Cut Scene Dialog Shared Data.asset
     m_ReadOnly: 1
@@ -58,6 +124,13 @@ MonoBehaviour:
     m_Address: Assets/Localization/Tables/ShopDialogue translater Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf7532d7834d4334c8b1a7a28690c6a3
+    m_Address: AlbertTalk
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bfcff2bcc9678fc46b43e639e1d6a559
     m_Address: Assets/Localization/Tables/Cut Scene Audio/Cutscene audio Shared Data.asset
@@ -76,6 +149,20 @@ MonoBehaviour:
       Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5ada8d953fdbbd4d8008cf46a73386c
+    m_Address: AlbertTalk06
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6bcdd298c112cc41a922a9220502aec
+    m_Address: AlbertRandom
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 4183d6c41c6d0a045bfcd722e875f937, type: 2}
