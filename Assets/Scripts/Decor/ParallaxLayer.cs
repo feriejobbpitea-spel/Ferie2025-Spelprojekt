@@ -23,7 +23,7 @@ public class ParallaxLayer : MonoBehaviour
         lastCameraPosition = cameraTransform.position;
 
         SpriteRenderer sr = tilePrefab.GetComponent<SpriteRenderer>();
-        if (sr == null || sr.sprite == null)
+        if (sr == null)
         {
             Debug.LogError("Tile prefab must have a SpriteRenderer with a sprite.");
             return;
