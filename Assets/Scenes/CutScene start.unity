@@ -423,6 +423,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1050734647}
   - component: {fileID: 1050734646}
+  - component: {fileID: 1050734648}
   m_Layer: 0
   m_Name: CutSceneManager
   m_TagString: Untagged
@@ -443,7 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slides:
-  - image: {fileID: -2307006551632423868, guid: f704bb26f448f2d48a73d62f4ca6f15f, type: 3}
+  - image: {fileID: -2049002776, guid: 2816e6f5cb9c06640bc0f4bd741305b2, type: 3}
     localizationKey: Element1_Key
     voiceLine:
       m_TableReference:
@@ -463,7 +464,7 @@ MonoBehaviour:
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
-  - image: {fileID: -379241700, guid: ab516be893e387b4cbe0c932e2f046c2, type: 3}
+  - image: {fileID: 21300000, guid: ae1c04d3f8b208f4a88b19788f2e73a6, type: 3}
     localizationKey: Element3_Key
     voiceLine:
       m_TableReference:
@@ -529,6 +530,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1050734648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1050734645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69beb381e244f92449b8c4cf954630e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TrackedObjects:
+  - rid: 8302204527695888463
+  references:
+    version: 2
+    RefIds:
+    - rid: 8302204527695888463
+      type: {class: TrackedMonoBehaviourObject, ns: UnityEngine.Localization.PropertyVariants.TrackedObjects, asm: Unity.Localization}
+      data:
+        m_Target: {fileID: 1050734646}
+        m_TrackedProperties:
+          items:
+          - rid: 8302204527695888464
+        m_UpdateType: 1
+        m_Changed:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 8302204527695888464
+      type: {class: LocalizedAssetProperty, ns: UnityEngine.Localization.PropertyVariants.TrackedProperties, asm: Unity.Localization}
+      data:
+        m_Localized:
+          rid: 8302204527695888465
+        m_PropertyPath: slides.Array.data[0].image
+    - rid: 8302204527695888465
+      type: {class: LocalizedSprite, ns: UnityEngine.Localization, asm: Unity.Localization}
+      data:
+        m_TableReference:
+          m_TableCollectionName: 
+        m_TableEntryReference:
+          m_KeyId: 0
+          m_Key: 
+        m_FallbackState: 0
+        m_WaitForCompletion: 0
 --- !u!1 &1178537423
 GameObject:
   m_ObjectHideFlags: 0

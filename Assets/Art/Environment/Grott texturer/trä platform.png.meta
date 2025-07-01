@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: d348a8d9dc8f58f40a7e07c647c742fa
+guid: 717b40dce1bccfb46a021db182daed46
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2666224697891052504
-    second: "dubbel d\xF6tt tr\xE4d_0"
+      213: 1691819132194506898
+    second: "tr\xE4 platform_0"
   - first:
-      213: 8691662552188851975
-    second: "dubbel d\xF6tt tr\xE4d_1"
+      213: 950861160331192763
+    second: "tr\xE4 platform_1"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,10 +116,120 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: datachip_0
+      name: "tr\xE4 platform_0"
       rect:
         serializedVersion: 2
         x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdb065c814801554eadc8e80bc593b05
+      internalID: 867327792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "tr\xE4 platform_1"
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca29de57c22a8f94e8c9ff32730a8a0b
+      internalID: 46081393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "tr\xE4 platform_2"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 164a1a9be4210c8469ee3b41e81d1558
+      internalID: -435210861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "tr\xE4 platform_3"
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e50988e05b9c29c42be507259a666dac
+      internalID: 2072220040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "tr\xE4 platform_4"
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc372731e50f95448ad1b7dd9179a4ee
+      internalID: 414312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "tr\xE4 platform_5"
+      rect:
+        serializedVersion: 2
+        x: 16
         y: 0
         width: 16
         height: 16
@@ -131,8 +241,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8046c11f59656984fb420dc5bb342edb
-      internalID: -379241700
+      spriteID: 29cf7f1150d151642b9aeef42cae62a9
+      internalID: -942135265
       vertices: []
       indices: 
       edges: []
@@ -153,12 +263,12 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      datachip_0: -379241700
-      datachip_1: 1504862249
-      datachip_2: 1285114238
-      datachip_3: 1372960043
-      datachip_4: -1555381538
-      datachip_5: 2145868726
+      "tr\xE4 platform_0": 867327792
+      "tr\xE4 platform_1": 46081393
+      "tr\xE4 platform_2": -435210861
+      "tr\xE4 platform_3": 2072220040
+      "tr\xE4 platform_4": 414312
+      "tr\xE4 platform_5": -942135265
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
