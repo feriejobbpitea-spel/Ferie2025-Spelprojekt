@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7ddbee4271e18749b8571f444f670a9
+    m_Address: Assets/Localization/Tables/Cut Scene Audio/Shop 2 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a9fcbbae91553f441a7fbc67e61eb121
     m_Address: Assets/Localization/Tables/Cut Scene Dialog Shared Data.asset
     m_ReadOnly: 1

@@ -7129,7 +7129,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 97f556cd7234e374a989a1990a55ed7b, type: 3}
   landSound: {fileID: 8300000, guid: c0ff2a0e7771e3d4caab81a019abff49, type: 3}
   audioSource: {fileID: 8531052822871432464}
-  currentCharge: 1
+  currentCharge: 0.5
   maxCharge: 1
   rechargeRate: 0.1
   dropDuration: 0.5

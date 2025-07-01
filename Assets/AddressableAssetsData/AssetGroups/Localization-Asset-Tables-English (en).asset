@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b90fe9383512284dbb761fd3637e0dd
+    m_Address: Shop 2_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3aee786387068164e8290d0119912d76
     m_Address: Cut scene audio_en
     m_ReadOnly: 1

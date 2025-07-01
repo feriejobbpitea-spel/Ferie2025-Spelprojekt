@@ -72,7 +72,7 @@ public class Movement : MonoBehaviour
         keybinds["Sprint"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Sprint", KeyCode.LeftShift.ToString()));
         keybinds["Shoot"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString()));
         platformEffector = GameObject.FindAnyObjectByType<PlatformEffector2D>();
-
+        boxCollider = GetComponent<BoxCollider2D>();
     }
 
     private PlatformEffector2D platformEffector;
@@ -94,8 +94,6 @@ public class Movement : MonoBehaviour
             StartCoroutine(Drop());
         }
 
-        boxCollider = GetComponent<BoxCollider2D>();
-
         if (!IsGrounded)
             boxCollider.size = new Vector2(0.6f, 1f);
 
@@ -107,7 +105,8 @@ public class Movement : MonoBehaviour
 
         if (currentCharge < maxCharge)
         {
-            currentCharge = Mathf.Min(currentCharge + rechargeRate * Time.deltaTime, maxCharge);
+            // Isak tog bort för detta orsakade problem
+            //currentCharge = Mathf.Min(currentCharge + rechargeRate * Time.deltaTime, maxCharge);
 
             ApplyFallStretch();
 
