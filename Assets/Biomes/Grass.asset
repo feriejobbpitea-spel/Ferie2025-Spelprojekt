@@ -16,4 +16,7 @@ MonoBehaviour:
   backgroundColor: {r: 0.21568629, g: 0.41176474, b: 0.7254902, a: 1}
   HeartUI: {fileID: 2150585771334873267, guid: 575c31afa4014004eb5edfcd6f1a8e76, type: 3}
   parallaxTint: {r: 1, g: 1, b: 1, a: 1}
-  layers: []
+  layers:
+  - {fileID: 432450861, guid: c3a521d8e74991d41bf98f27a139a49d, type: 3}
+  - {fileID: 21300000, guid: ae1c04d3f8b208f4a88b19788f2e73a6, type: 3}
+  - {fileID: -4136378046484077177, guid: 07f9e6304226b674e9d8d840d7399a17, type: 3}

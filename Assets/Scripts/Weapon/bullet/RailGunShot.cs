@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,16 +8,20 @@ public class RailgunShot : MonoBehaviour
     public static float globalMaxEnergy = 100f;
     public static float globalCooldownTimer = 0f;
 
+    public float knockbackForce = 2;
+
     public float globalCooldownTime = 1f;  // cooldown efter skjutning
 
     public LineRenderer lineRenderer;
     public Transform firePoint;
     public LayerMask hitMask;
+    public LayerMask groundMask;
 
     public float damagePerSecond = 10f;
     public float energyDrainPerSecond = 20f;
     public float energyRegenPerSecond = 15f;
     public Slider energySlider;
+    public TMP_Text energyAmount;
 
     public AudioSource shootingAudioSource;  // Ljudkomponenten
 
@@ -35,6 +40,8 @@ public class RailgunShot : MonoBehaviour
             shootingAudioSource.loop = true; // Loopande ljud så länge man skjuter
             shootingAudioSource.Stop();      // Se till att ljudet inte spelar från start
         }
+
+        energySlider.maxValue = globalMaxEnergy;
     }
 
     void Update()
@@ -93,6 +100,7 @@ public class RailgunShot : MonoBehaviour
         Vector3 start = firePoint.position;
         Vector3 direction = firePoint.right.normalized;
 
+
         Vector3 screenBottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
         Vector3 screenTopRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.nearClipPlane));
 
@@ -136,6 +144,13 @@ public class RailgunShot : MonoBehaviour
         }
 
         RaycastHit2D hit = Physics2D.Raycast(start, direction, maxDistance, hitMask);
+        RaycastHit2D hitGroud = Physics2D.Raycast(start, direction, maxDistance / 4, groundMask);
+
+        if (hitGroud.collider != null) 
+        {
+            Movement.Instance.ApplyKnockback(-direction * knockbackForce); // Använd en liten knockback för spelaren
+
+        }
 
         if (hit.collider != null)
         {
@@ -173,5 +188,9 @@ public class RailgunShot : MonoBehaviour
     {
         if (energySlider != null)
             energySlider.value = globalCurrentEnergy;
+
+        float energyPercentage = globalCurrentEnergy / globalMaxEnergy; 
+        int convertedPercentage = Mathf.RoundToInt(energyPercentage * 100f);
+        energyAmount.text = $"{convertedPercentage}%";
     }
 }

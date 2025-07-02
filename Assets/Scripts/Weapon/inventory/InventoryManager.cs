@@ -150,39 +150,37 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         if (slots == null || slotHighlights == null) return;
 
-        // Disable all highlights first (stop any ongoing tweens as well)
+        // Disable all highlights first and reset scale
         for (int i = 0; i < slotHighlights.Count; i++)
         {
-            slotHighlights[i].transform.DOKill();  // kill any running tweens
+            slotHighlights[i].transform.DOKill();
             slotHighlights[i].SetActive(false);
-            slotHighlights[i].transform.localScale = Vector3.one; // reset scale
+            slotHighlights[i].transform.localScale = Vector3.one;
         }
 
         for (int i = 0; i < slots.Count; i++)
         {
             GameObject parentSlot = slots[i].transform.parent.gameObject;
 
-            Sprite newIcon = inventoryIcons[i];
-            Sprite currentIcon = slots[i].sprite;
-
-            if (newIcon != null)
+            // Only show the slot if we have a weapon assigned
+            if (inventoryWeapons[i] != null && inventoryIcons[i] != null)
             {
+                Sprite newIcon = inventoryIcons[i];
+                Sprite currentIcon = slots[i].sprite;
+
                 parentSlot.SetActive(true);
 
                 if (currentIcon != newIcon)
                 {
-                    // New icon assigned — set sprite and fade in
                     slots[i].sprite = newIcon;
                     slots[i].color = new Color(1, 1, 1, 0);
                     slots[i].DOFade(1f, 0.3f).SetEase(Ease.InOutQuad);
                 }
                 else
                 {
-                    // Same icon — ensure fully visible without fading
                     slots[i].color = Color.white;
                 }
 
-                // Animate highlight only for active slot
                 if (i == activeSlotIndex && i < slotHighlights.Count)
                 {
                     slotHighlights[i].SetActive(true);
@@ -192,7 +190,7 @@ public class InventoryManager : Singleton<InventoryManager>
             }
             else
             {
-                // No icon: fade out if visible and disable slot
+                // No weapon in slot — hide the slot UI immediately
                 if (slots[i].color.a > 0)
                 {
                     slots[i].DOFade(0f, 0.3f).OnComplete(() =>
