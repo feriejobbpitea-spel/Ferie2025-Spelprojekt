@@ -197,7 +197,7 @@ public class BossAttackHandler : MonoBehaviour
 
     private void SpawnPlatforms()
     {
-        Debug.Log("Spawning platforms...");
+        /*Debug.Log("Spawning platforms...");
 
         float centerX = transform.position.x;
         float y = transform.position.y - 1f; // Lite under bossens mitt
@@ -228,7 +228,7 @@ public class BossAttackHandler : MonoBehaviour
                 Debug.LogWarning("Spawned platform has no SpriteRenderer!");
                 Destroy(platform, platformLifeTime);
             }
-        }
+        }*/
     }
     private IEnumerator FadeOutAndDestroy(GameObject obj, SpriteRenderer sr)
     {

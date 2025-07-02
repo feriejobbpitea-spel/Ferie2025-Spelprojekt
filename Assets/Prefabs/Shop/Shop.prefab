@@ -36,8 +36,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 111.471756, y: -12.5}
-  m_SizeDelta: {x: 222.94351, y: 25}
+  m_AnchoredPosition: {x: 115.60225, y: -12.5}
+  m_SizeDelta: {x: 231.2045, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8926931059517307835
 CanvasRenderer:
@@ -1062,7 +1062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2908438862406297006, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 66742.21
+      value: 72884.19
       objectReference: {fileID: 0}
     - target: {fileID: 3065667124483742348, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1074,7 +1074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3065667124483742348, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 222.94351
+      value: 231.2045
       objectReference: {fileID: 0}
     - target: {fileID: 3065667124483742348, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1082,7 +1082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3065667124483742348, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 810.3023
+      value: 839.21576
       objectReference: {fileID: 0}
     - target: {fileID: 3065667124483742348, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1158,7 +1158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4227491974576890341, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 222.94351
+      value: 231.2045
       objectReference: {fileID: 0}
     - target: {fileID: 4227491974576890341, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1166,7 +1166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4227491974576890341, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 344.41528
+      value: 356.80676
       objectReference: {fileID: 0}
     - target: {fileID: 4227491974576890341, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1206,7 +1206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5013396500038324044, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 222.94351
+      value: 231.2045
       objectReference: {fileID: 0}
     - target: {fileID: 5013396500038324044, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1214,7 +1214,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5013396500038324044, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 577.35876
+      value: 598.0112
       objectReference: {fileID: 0}
     - target: {fileID: 5013396500038324044, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1241,32 +1241,40 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
+      propertyPath: 'segmentNames.Array.data[0]'
+      value: "F\xF6rlust (-3 Chips)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[1]'
-      value: "F\xF6rlust"
+      value: "F\xF6rlust (-3 Chips)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
+      propertyPath: 'segmentNames.Array.data[2]'
+      value: "F\xF6rlust (-3 Chips)"
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[3]'
-      value: "F\xF6rlust"
+      value: "F\xF6rlust (-3 Chips)"
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[4]'
-      value: 'WIN '
+      value: WIN (+3 Chips)
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[5]'
-      value: 'WIN '
+      value: WIN (+3 Chips)
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[6]'
-      value: 'BIG WIN '
+      value: BIG WIN (+5 Chips)
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[7]'
-      value: MEGA WIN
+      value: MEGA WIN (+8 Chips)
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[8]'
-      value: JACKPOT
+      value: JACKPOT (+15 Chips)
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: rewardsPerSegment.Array.size

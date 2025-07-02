@@ -28,9 +28,9 @@ public class Sten : MonoBehaviour
     {
         Debug.Log($"Sten krockade med {collision.collider.name}");
         EnemyHealth enemyHealth = collision.collider.GetComponent<EnemyHealth>();
-        if (enemyHealth != null) 
+        if (enemyHealth == null) 
         {
-            enemyHealth = collision.collider.GetComponentInChildren<EnemyHealth>();
+            enemyHealth = collision.collider.GetComponent<BossHealth>();
         }
 
             if (enemyHealth != null)

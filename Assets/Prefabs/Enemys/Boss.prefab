@@ -488,12 +488,13 @@ MonoBehaviour:
   - {fileID: 6265906871615660965}
   throwablePrefab: {fileID: 6964891685908431941, guid: 245cdf86751d73b4b9b00e33b607ea26, type: 3}
   earthWavePrefab: {fileID: 3819795789127177674, guid: 4dd1083e6ed33be449968bc656ae7096, type: 3}
-  jumpChargeTime: 1
-  jumpForce: 5
-  slamDelay: 1.75
-  throwForce: 8
+  platformPrefab: {fileID: 0}
+  jumpChargeTime: 1.5
+  jumpForce: 7
+  slamDelay: 1.3
+  throwForce: 9
   attackCooldown: 3
-  hoverDuration: 2
+  hoverDuration: 1
   hoverSpeed: 2
   earthWaveCount: 16
   earthWaveSpacing: 2
@@ -502,10 +503,17 @@ MonoBehaviour:
   disappearDelay: 0.6
   distanceUp: 4
   startDistanceDown: 4
+  platformCount: 3
+  platformSpacing: 2
+  platformYPosition: 3
+  platformFadeDuration: 0.5
+  platformLifeTime: 10
   groundCheck: {fileID: 5459211683806485481}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  flySound: {fileID: 8300000, guid: 587f5148a66876a4d9960cfe326b3858, type: 3}
+  slamSound: {fileID: 8300000, guid: 35145d82a1a97ee4d876c077d81dce68, type: 3}
 --- !u!114 &8228788430379448623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,6 +655,8 @@ MonoBehaviour:
   coinForce: 5
   toRemove: {fileID: 3598016814301857601}
   spriteRendererOverride: {fileID: 3593701465027202884}
+  damageSound: {fileID: 0}
+  audioSource: {fileID: 0}
   Animator: {fileID: 8197920517632837075}
   GameCompleteScene: CutScene slut
 --- !u!1 &4618493260406493589
@@ -710,7 +720,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.432
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -809,18 +819,18 @@ PrefabInstance:
     - target: {fileID: 82767288634838898, guid: 75006f6cff471ae45b7c1b6c35932157, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a5adb6011e6707a41a2a6bdf7d8fad0a, type: 3}
+      objectReference: {fileID: 21300000, guid: 5c83918f19d64d8418843449d7d75d78, type: 3}
     - target: {fileID: 82767288634838898, guid: 75006f6cff471ae45b7c1b6c35932157, type: 3}
       propertyPath: m_Color.b
-      value: 0.4528302
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 82767288634838898, guid: 75006f6cff471ae45b7c1b6c35932157, type: 3}
       propertyPath: m_Color.g
-      value: 0.4528302
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 82767288634838898, guid: 75006f6cff471ae45b7c1b6c35932157, type: 3}
       propertyPath: m_Color.r
-      value: 0.4528302
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 90708402104833534, guid: 75006f6cff471ae45b7c1b6c35932157, type: 3}
       propertyPath: m_AnchorMax.x
@@ -885,7 +895,7 @@ PrefabInstance:
     - target: {fileID: 1754191340609527978, guid: 75006f6cff471ae45b7c1b6c35932157, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a5adb6011e6707a41a2a6bdf7d8fad0a, type: 3}
+      objectReference: {fileID: 21300000, guid: be8fad435e9937d41ab7cb5beb47cfcb, type: 3}
     - target: {fileID: 1754191340609527978, guid: 75006f6cff471ae45b7c1b6c35932157, type: 3}
       propertyPath: m_Color.b
       value: 1
