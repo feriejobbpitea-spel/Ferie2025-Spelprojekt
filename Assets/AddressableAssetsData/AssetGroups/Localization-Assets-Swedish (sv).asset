@@ -15,8 +15,32 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Swedish (sv)
   m_GUID: 01427adb3ba3dec499f21f714943f57f
   m_SerializeEntries:
+  - m_GUID: 00b873adf970d074eae989fa98cab366
+    m_Address: "AlltJagVilleVarBetydeN\xE5t"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 04cb99a1f2220e349a7cedb7fda21e42
+    m_Address: "VarjeG\xE5ngJagFlyger"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0b4fad80723c2c14f988ed8d824a2c59
+    m_Address: "Tror du det h\xE4r r\xE4cker"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 17cc6e9a403f70b47a8c272f5becbd44
     m_Address: boss music loop
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2416b309d79627b44ab8ad861ad8a182
+    m_Address: "MerKanDuV\xE4ll"
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv
@@ -27,8 +51,38 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 32a4a997f15890540938355b50abf599
+    m_Address: "DenH\xE4rF\xF6ljerDigHem"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3b600478776b93045b91e1e689613f60
     m_Address: boss music start
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44b5daa27688ea24994c7f0a8a1c0262
+    m_Address: "DuKanInteG\xF6mmaDig"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 60c32be0914cd9c4f9c2ccaa4d4852c9
+    m_Address: KliadeLite
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 619cc1173e5935f49a36ee1f64ec068f
+    m_Address: Inkommande
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7718f97cc6551cc43ad5a71b0b530963
+    m_Address: "D\xF6\xF6"
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv
@@ -39,8 +93,32 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ce178c01d70a2848aac3f3dd6acc0c5
+    m_Address: "JagKmrAlltidHa\xD6vertaget"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 838474e5bafd44849aa46f32e220419f
+    m_Address: "K\xE4ndesKnappas"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 87fbb969c981bca46a17683a229d4ad4
     m_Address: Dessutom
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f822c7295dcb2a4c9dee724bda41824
+    m_Address: Nej
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a85cd49fd400bd4eb5fabbec80d8d21
+    m_Address: "DomSkapadeMigInteF\xF6rAttD\xF6"
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv
@@ -51,8 +129,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: accd53ec549595d4293669d1047f4b7a
+    m_Address: "\xC4rDetAlltDuHar"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af1ce1ad08a608c449a99d378c4f79c1
+    m_Address: SeUpp
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e05239c0780beb7448ffb67bf7f1a4dc
     m_Address: "FarfarVarTr\xF6tt"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9ed947738bf78c4891455f3c55670f8
+    m_Address: BlinkadeInteEns
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv

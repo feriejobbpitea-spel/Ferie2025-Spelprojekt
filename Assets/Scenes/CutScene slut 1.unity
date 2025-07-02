@@ -523,7 +523,7 @@ MonoBehaviour:
   skipTextLabel: {fileID: 1400643361}
   TableReference: Cut Scene End Dialog1
   audioSource: {fileID: 0}
-  sceneToLoadAfterCutscene: MainGame
+  sceneToLoadAfterCutscene: MainMenu
 --- !u!4 &1050734647
 Transform:
   m_ObjectHideFlags: 0

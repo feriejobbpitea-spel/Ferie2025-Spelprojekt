@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Boss voicelines Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Boss voicelines
+  m_TableCollectionNameGuidString: f480b8b2595e8294c8b7bbc29cdefab2
+  m_Entries:
+  - m_Id: 1391793995776
+    m_Key: Damage1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1475604578304
+    m_Key: Damage2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1478699974656
+    m_Key: Damage3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1480742600704
+    m_Key: Damage4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1483439538176
+    m_Key: Damage5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1564263776256
+    m_Key: Damage6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2089315139584
+    m_Key: Die1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2130050220032
+    m_Key: Die2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2142767349760
+    m_Key: Die3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1026986016768
+    m_Key: Fly1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1046317563904
+    m_Key: Fly2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 504853889024
+    m_Key: Kasta1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 506795851776
+    m_Key: Kasta2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 789022179328
+    m_Key: kasta3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 44365447168
+    m_Key: Slam1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 503109058560
+    m_Key: Slam2
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items:
+    - rid: 1883525042781290586
+  m_KeyGenerator:
+    rid: 1883525042781290569
+  references:
+    version: 2
+    RefIds:
+    - rid: 1883525042781290569
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1751447737269
+    - rid: 1883525042781290586
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 44365447168
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 503109058560
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 504853889024
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 506795851776
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 789022179328
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 1026986016768
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 1046317563904
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 1391793995776
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 1475604578304
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 1478699974656
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 1480742600704
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 1483439538176
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 1564263776256
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 2089315139584
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 2130050220032
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 2142767349760
+          m_TableCodes:
+          - en
+          - sv
+        m_TypeString: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
