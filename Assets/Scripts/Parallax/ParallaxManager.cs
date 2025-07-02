@@ -13,7 +13,7 @@ public class ParallaxManager : Singleton<ParallaxManager>
             ParallaxLayer newLayer = GameObject.Instantiate(parallaxLayerPrefab, transform);
             newLayer.transform.SetParent(transform);
             newLayer.SetSprite(item, biome.parallaxTint);
-            newLayer.parallaxFactor = 1f / (biome.layers.Length - 1); // Adjust parallax factor based on layer index
+            newLayer.parallaxFactor = (0.7f / i); // Adjust parallax factor based on layer index
             newLayer.SetSortingLayer(-100 - i);
         }
         /*
