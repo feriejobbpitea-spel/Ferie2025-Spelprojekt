@@ -17,8 +17,11 @@ public class Cone_inc : MonoBehaviour
     public GameObject laserPrefab;
     public Transform firePoint;
 
+    private float _defaultFontSize;
+
     void Start()
     {
+        _defaultFontSize = chargeText.fontSize;
         if (chargeSlider != null)
         {
             chargeSlider.minValue = 0f;
@@ -79,14 +82,12 @@ public class Cone_inc : MonoBehaviour
             if (currentCharge >= maxCharge)
             {
                 chargeText.text = "Ready";
-                chargeText.fontSize = 40;
-                chargeText.rectTransform.anchoredPosition = new Vector2(30, -235);
+                chargeText.fontSize = _defaultFontSize + 5;
             }
             else
             {
                 chargeText.text = $"{(currentCharge / maxCharge) * 100f:0}%";
-                chargeText.fontSize = 50;
-                chargeText.rectTransform.anchoredPosition = new Vector2(45, -225);
+                chargeText.fontSize = _defaultFontSize;
             }
         }
     }

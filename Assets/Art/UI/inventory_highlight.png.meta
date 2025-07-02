@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0d3f2a83f43f02641a9b56ef248e4d6f
+guid: 5ace0b1df909b094e94e6b0d430c187f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4985403914672482749
-    second: "inventory bl\xE5_0"
+      213: 3348966774692650369
+    second: inventory_highlight_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -101,7 +101,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: datachip_0
+      name: inventory_highlight_0
       rect:
         serializedVersion: 2
         x: 0
@@ -126,10 +126,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 8046c11f59656984fb420dc5bb342edb
-      internalID: -379241700
+      spriteID: 18d142ab98be97e20800000000000000
+      internalID: 3348966774692650369
       vertices: []
       indices: 
       edges: []
@@ -138,24 +138,17 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 91e6fb391ded04f469ba75cb03edfd9b
-    internalID: 2088579674
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      datachip_0: -379241700
-      datachip_1: 1504862249
-      datachip_2: 1285114238
-      datachip_3: 1372960043
-      datachip_4: -1555381538
-      datachip_5: 2145868726
+      inventory_highlight_0: 3348966774692650369
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

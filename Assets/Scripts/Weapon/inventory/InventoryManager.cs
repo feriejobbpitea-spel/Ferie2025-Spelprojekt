@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -55,6 +56,13 @@ public class InventoryManager : Singleton<InventoryManager>
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.PageDown)) {
+            AddConfettiGun();
+            AddEmpGun();
+            AddRayGun();
+            AddSlingshot();
+        }
+        
         if (Input.GetKeyDown(GetBoundKey("WeaponSlot1"))) WeaponSlot(0);
         else if (Input.GetKeyDown(GetBoundKey("WeaponSlot2"))) WeaponSlot(1);
         else if (Input.GetKeyDown(GetBoundKey("WeaponSlot3"))) WeaponSlot(2);
@@ -142,27 +150,62 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         if (slots == null || slotHighlights == null) return;
 
+        // Disable all highlights first (stop any ongoing tweens as well)
+        for (int i = 0; i < slotHighlights.Count; i++)
+        {
+            slotHighlights[i].transform.DOKill();  // kill any running tweens
+            slotHighlights[i].SetActive(false);
+            slotHighlights[i].transform.localScale = Vector3.one; // reset scale
+        }
+
         for (int i = 0; i < slots.Count; i++)
         {
             GameObject parentSlot = slots[i].transform.parent.gameObject;
 
-            if (inventoryIcons[i] != null)
+            Sprite newIcon = inventoryIcons[i];
+            Sprite currentIcon = slots[i].sprite;
+
+            if (newIcon != null)
             {
-                slots[i].sprite = inventoryIcons[i];
-                slots[i].color = Color.white;
                 parentSlot.SetActive(true);
 
-                if (i < slotHighlights.Count)
-                    slotHighlights[i].SetActive(i == activeSlotIndex);
+                if (currentIcon != newIcon)
+                {
+                    // New icon assigned — set sprite and fade in
+                    slots[i].sprite = newIcon;
+                    slots[i].color = new Color(1, 1, 1, 0);
+                    slots[i].DOFade(1f, 0.3f).SetEase(Ease.InOutQuad);
+                }
+                else
+                {
+                    // Same icon — ensure fully visible without fading
+                    slots[i].color = Color.white;
+                }
+
+                // Animate highlight only for active slot
+                if (i == activeSlotIndex && i < slotHighlights.Count)
+                {
+                    slotHighlights[i].SetActive(true);
+                    slotHighlights[i].transform.localScale = Vector3.zero;
+                    slotHighlights[i].transform.DOScale(1.2f, 0.3f).SetEase(Ease.OutBack);
+                }
             }
             else
             {
-                slots[i].sprite = null;
-                slots[i].color = new Color(1, 1, 1, 0);
-                parentSlot.SetActive(false);
-
-                if (i < slotHighlights.Count)
-                    slotHighlights[i].SetActive(false);
+                // No icon: fade out if visible and disable slot
+                if (slots[i].color.a > 0)
+                {
+                    slots[i].DOFade(0f, 0.3f).OnComplete(() =>
+                    {
+                        slots[i].sprite = null;
+                        parentSlot.SetActive(false);
+                    });
+                }
+                else
+                {
+                    slots[i].sprite = null;
+                    parentSlot.SetActive(false);
+                }
             }
         }
     }
