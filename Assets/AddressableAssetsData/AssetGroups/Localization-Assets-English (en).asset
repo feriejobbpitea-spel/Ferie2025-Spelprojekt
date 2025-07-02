@@ -21,6 +21,66 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11f2ff800b7e8224cb97bdfdd5909693
+    m_Address: YouThinkThisIsEnough
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 14c3efde45850384586da7632d2f0fa1
+    m_Address: Die
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1aa9a51d56557444eb38f574b49ffce6
+    m_Address: DidntEvenFlinch
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2fbff21606e98a84786f3268678e0bb8
+    m_Address: IsThatAllYouveGot
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 476b88cedfa5e9f4bbbef05ff19e7060
+    m_Address: EverytimeIFly
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4903b5425fc38034aa7ba29c4972764c
+    m_Address: ThisWillFollowYouHome
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 517c58facc797004abe8173148ef3141
+    m_Address: IWillAlways
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61d1906a4b2d44c4a9fd8139972f31cb
+    m_Address: ItchedALittle
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61f5450368d115846bd2e6c395f23b12
+    m_Address: IDidntEvenFeelAnything
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71df7bc95ccb4744fbbbb55ce02cbf81
+    m_Address: Incoming
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7538d5673e255dc4d8b94632f14ad73a
     m_Address: AtTheAgeof13
     m_ReadOnly: 1
@@ -33,14 +93,50 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78799a7779adabb419446270bfae3905
+    m_Address: YouHaveGotMoreRight
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 85a880899c52da0489c6750b03bbe79c
+    m_Address: LookOut
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e2d6d91e5d325244b12c9a8d5015d17
+    m_Address: AllIWantedWasToMatter
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b990125705ad1574e86d5a09f3ad1eb9
     m_Address: IHaveNoIDeaWhatThatAI
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c248de268650b35489f67f9509636837
+    m_Address: YouCannotHide
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c4174d30505e9e24b8d6b8fa1a2b896d
     m_Address: GrandWasTired
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c662e2712cbd4e04f927c18964f952df
+    m_Address: Noo
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e39f8ad57504cd042b89ff039360bd14
+    m_Address: TheyNeverCreatedMeToDie
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

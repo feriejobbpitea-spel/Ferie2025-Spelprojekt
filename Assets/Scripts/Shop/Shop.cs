@@ -96,6 +96,7 @@ public class Shop : MonoBehaviour
         {
             Debug.Log($"Gav {itemToGive.itemName} till shoppen.");
             InventoryManager.Instance.AddConfettiGun();
+            DialogueHandler.UseAlternativeRandomDialogue = true;
         }
         else
         {

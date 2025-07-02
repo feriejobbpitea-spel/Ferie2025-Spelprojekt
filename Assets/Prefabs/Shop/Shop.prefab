@@ -1395,10 +1395,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6244660424069441653, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
-      propertyPath: itemsForSale.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 6244660424069441653, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: itemsForSale.Array.data[0].price
       value: 3
       objectReference: {fileID: 0}
@@ -1411,24 +1407,12 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6244660424069441653, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
-      propertyPath: itemsForSale.Array.data[3].price
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6244660424069441653, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: itemsForSale.Array.data[4].price
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6244660424069441653, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: itemsForSale.Array.data[5].price
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6244660424069441653, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
-      propertyPath: itemsForSale.Array.data[6].price
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6244660424069441653, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
-      propertyPath: itemsForSale.Array.data[7].price
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6244660424069441653, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: itemsForSale.Array.data[8].price

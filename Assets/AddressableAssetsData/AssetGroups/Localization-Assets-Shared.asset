@@ -152,6 +152,11 @@ MonoBehaviour:
     - Locale-en
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f480b8b2595e8294c8b7bbc29cdefab2
+    m_Address: Assets/Localization/Tables/Boss voice lines Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f6bcdd298c112cc41a922a9220502aec
     m_Address: AlbertRandom
     m_ReadOnly: 1

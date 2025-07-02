@@ -898,7 +898,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wheel: {fileID: 8798859836907046307}
   segmentCount: 8
-  spinDuration: 4
+  spinDuration: 2
   resultText: {fileID: 254044685917108802}
   spinButton: {fileID: 3616039364880153596}
   moneyText: {fileID: 230578006266058908}
@@ -906,6 +906,10 @@ MonoBehaviour:
   costText: {fileID: 4079316784833723164}
   spinCost: 1
   rewardsPerSegment: 00000000c80000000000000096000000000000002c01000000000000f4010000
+  audioSource: {fileID: 0}
+  spinSound: {fileID: 0}
+  winSound: {fileID: 0}
+  loseSound: {fileID: 0}
   segmentNames:
   - "F\xF6rlust"
   - Vinn 200 kr
@@ -1099,6 +1103,10 @@ MonoBehaviour:
   costText: {fileID: 0}
   spinCost: 1
   rewardsPerSegment: 00000000c80000000000000096000000000000002c01000000000000f4010000
+  audioSource: {fileID: 0}
+  spinSound: {fileID: 0}
+  winSound: {fileID: 0}
+  loseSound: {fileID: 0}
   segmentNames:
   - "F\xF6rlust"
   - Vinn 200 kr
@@ -2276,7 +2284,7 @@ MonoBehaviour:
     price: 23
   - itemName: EmpVapen
     itemIcon: {fileID: -3424780418405362961, guid: 63abe869c9dfdb14aa5b2dd3bcbb33be, type: 3}
-    price: 22
+    price: 1
   - itemName: RayGun
     itemIcon: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
     price: 21
@@ -2285,13 +2293,14 @@ MonoBehaviour:
     price: 20
   - itemName: Time slow
     itemIcon: {fileID: -1557981131, guid: 340dec31a89f1814292ab81588e650c2, type: 3}
-    price: 19
-  - itemName: Konfetti
-    itemIcon: {fileID: -379241700, guid: 3139102f4dde16245a99f67496d96825, type: 3}
-    price: 1
+    price: 6
+  - itemName: "Hj\xE4rta"
+    itemIcon: {fileID: 2150585771334873267, guid: 575c31afa4014004eb5edfcd6f1a8e76, type: 3}
+    price: 4
   itemPrefab: {fileID: 2843723940921800422, guid: 8d1cae4b5fc105e47a7205bb69008757, type: 3}
   itemContainer: {fileID: 2908438862406297006}
   playerMoneyText: {fileID: 230578006266058908}
+  feedbackText: {fileID: 0}
 --- !u!1 &6013998835295304332
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,7 +40,7 @@ public class SimpleShop : Singleton<SimpleShop>
 
             // Hämta komponenterna direkt från prefab-roten
             go.transform.Find("ItemName").GetComponent<TMP_Text>().text = item.itemName;
-            go.transform.Find("ItemPrice").GetComponent<TMP_Text>().text = item.price + " coins";
+            go.transform.Find("ItemPrice").GetComponent<TMP_Text>().text = item.price + " datachips"; // <-- Uppdaterat här
             go.transform.Find("ItemHolder").Find("ItemIcon").GetComponent<Image>().sprite = item.itemIcon;
 
             // Köpknapp
