@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEditor.Rendering;
 using System.ComponentModel;
 using Unity.Mathematics;
 

@@ -46,11 +46,6 @@ public class InventoryManager : Singleton<InventoryManager>
         inventoryIcons[0] = meleeIcon;
         WeaponSlot(0);
         UpdateInventoryUI();
-        WeaponSlot(0);
-
-
-        AddConfettiGun();
-        AddRayGun();
     }
 
     public List<PickupItem> GetCollectedItems()

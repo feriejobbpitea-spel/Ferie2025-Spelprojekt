@@ -23,8 +23,8 @@ public class CrushingWalls : MonoBehaviour
     {
         if (ceiling == null)
         {
-            Debug.LogError("Ceiling är inte tilldelad!");
-            enabled = false;
+/*            Debug.LogError("Ceiling är inte tilldelad!");
+*/            enabled = false;
             return;
         }
 

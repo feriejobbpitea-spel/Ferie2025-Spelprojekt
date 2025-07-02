@@ -147,7 +147,7 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: 9e5f540411cfe97479c4b9507cb48249, type: 3}
   visionMask:
     serializedVersion: 2
-    m_Bits: 576
+    m_Bits: 131648
   healthBar: {fileID: 8434426802587631480}
 --- !u!114 &7394445667949276825
 MonoBehaviour:
@@ -255,7 +255,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 9e5f540411cfe97479c4b9507cb48249, type: 3}
   m_Resource: {fileID: 8300000, guid: 9e5f540411cfe97479c4b9507cb48249, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.556
+  m_Volume: 0.324
   m_Pitch: 1
   Loop: 0
   Mute: 0

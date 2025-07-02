@@ -20,7 +20,6 @@ public class PortCloser : MonoBehaviour
     {
         if (port == null)
         {
-            Debug.LogError("Port är inte tilldelad!");
             enabled = false;
             return;
         }
