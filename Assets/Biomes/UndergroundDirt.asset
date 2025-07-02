@@ -15,6 +15,7 @@ MonoBehaviour:
   biomeName: Underground Dirt
   backgroundColor: {r: 0.3207547, g: 0.2202436, b: 0.18307225, a: 1}
   HeartUI: {fileID: 2150585771334873267, guid: 575c31afa4014004eb5edfcd6f1a8e76, type: 3}
-  parallaxTint: {r: 1, g: 1, b: 1, a: 1}
+  parallaxTint: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
   layers:
-  - {fileID: 21300000, guid: cb3740b30a6cc1942afc40814eb08bba, type: 3}
+  - {fileID: 21300000, guid: 42b37d1e6efffb247adc1a99d3b43456, type: 3}
+  - {fileID: 21300000, guid: b09b5a2b29830d447bb70b4aa0703825, type: 3}

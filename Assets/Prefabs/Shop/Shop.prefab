@@ -568,7 +568,7 @@ MonoBehaviour:
   ShopHUDHandler:
     ShopHUD: {fileID: 3232732030432509322}
   DialogueHandler:
-    ShopKeeperName: Mortis
+    ShopKeeperName: Morran
     EnterShop:
     - LocalizedText:
         m_TableReference:
@@ -604,6 +604,7 @@ MonoBehaviour:
         m_LocalVariables: []
       AudioClip_English: {fileID: 8300000, guid: 1e53ecf67026c904caa6ec03bf784ba1, type: 3}
       AudioClip_Swedish: {fileID: 8300000, guid: fab75dfbfe4c812439314b522b38a70d, type: 3}
+    AlternativeRandomDialogue: []
     RandomDialogue:
     - LocalizedText:
         m_TableReference:
@@ -628,6 +629,7 @@ MonoBehaviour:
       AudioClip_English: {fileID: 8300000, guid: 160fad62840182f41a6c451a172d5522, type: 3}
       AudioClip_Swedish: {fileID: 8300000, guid: 38be80e1c6da77141a1dc05ec875edb3, type: 3}
     TalkButton: {fileID: 7178236499101279291}
+    UseAlternativeRandomDialogue: 0
   references:
     version: 2
     RefIds: []

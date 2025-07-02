@@ -109,6 +109,10 @@ PrefabInstance:
       value: Shop 2 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.ShopKeeperName
+      value: Mortis
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.EnterShop.Array.size
       value: 1
       objectReference: {fileID: 0}
