@@ -7524,6 +7524,7 @@ MonoBehaviour:
   boxCastDistanceE: 0.1
   hurtSound: {fileID: 8300000, guid: 8415d34ed7c237e40b8a0d4d66122583, type: 3}
   inventoryManager: {fileID: 7214375957433315167}
+  heartWrapper: {fileID: 3751940325715433557}
 --- !u!114 &2934233217691040914
 MonoBehaviour:
   m_ObjectHideFlags: 0

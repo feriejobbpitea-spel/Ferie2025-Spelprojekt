@@ -7,7 +7,6 @@ public class ParallaxLayer : MonoBehaviour
     public float parallaxFactor = 0.5f;
     public Transform cameraTransform;
     public GameObject tilePrefab;
-    public int SortingOrder = -10;
     public float Scale = 10;
     public float TransitionDuration = 0.5f; // Duration for sprite transition
 
@@ -103,6 +102,13 @@ public class ParallaxLayer : MonoBehaviour
         return maxX;
     }
 
+    public void SetSortingLayer(int sorting) 
+    {
+        foreach (var item in tiles)
+        {
+            item.GetComponent<SpriteRenderer>().sortingOrder = sorting; // Set to your desired sorting layer
+        }
+    }
 
     public void SetSprite(Sprite newSprite, Color tint)
     {
@@ -136,7 +142,6 @@ public class ParallaxLayer : MonoBehaviour
                 // Fade in new sprite
                 sr.color = new Color(tint.r, tint.g, tint.b, 0);
                 sr.sprite = newSprite;
-                sr.sortingOrder = SortingOrder;
                 sr.flipX = (i % 2 != 0);
 
                 sr.DOFade(tint.a, TransitionDuration); // fade in

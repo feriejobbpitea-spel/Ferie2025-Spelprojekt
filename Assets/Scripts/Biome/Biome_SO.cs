@@ -9,7 +9,5 @@ public class Biome_SO : ScriptableObject
 
     [Header("Parallax Layers")]
     public Color parallaxTint = Color.white;
-    public Sprite layer1; // furthest (e.g. mountains)
-    public Sprite layer2; // middle (e.g. trees)
-    public Sprite layer3; // closest (e.g. bushes)
+    public Sprite[] layers;
 }

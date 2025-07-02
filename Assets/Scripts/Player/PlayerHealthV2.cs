@@ -146,7 +146,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         currentLives--;
         if (currentLives < hearts.Length && currentLives >= 0)
         {
-            StartCoroutine(AnimateLostHeart(hearts[currentLives]));
+            StartCoroutine(AnimateHeartWrapperLoss());
         }
         UpdateHearts();
 
@@ -174,6 +174,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             currentLives++;
         }
         UpdateHearts();
+        StartCoroutine(AnimateHeartWrapperGain());
     }
 
     public void UpdateHearts()
@@ -265,36 +266,44 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         transform.position = lastSafePosition;
         Debug.Log($"Teleporterad till senaste säkra plats: {lastSafePosition}");
 
-        // 🔒 Lås rörelse i 0.2 sekunder
         StartCoroutine(LockMovementTemporarily(0.2f));
     }
-
-    private IEnumerator AnimateLostHeart(Image heart)
+    private IEnumerator AnimateHeartWrapperLoss()
     {
-        // Clone the heart for animation
-        GameObject animHeart = Instantiate(heart.gameObject, heart.canvas.transform);
-        RectTransform animRect = animHeart.GetComponent<RectTransform>();
+        if (currentLives >= 0 && currentLives < hearts.Length)
+        {
+            Image heart = hearts[currentLives];
+            var rt = heart.rectTransform;
 
-        // Match position and size from the original
-        Vector3 worldPos = heart.rectTransform.position;
-        animRect.position = worldPos;
-        animRect.localScale = heart.rectTransform.lossyScale;
+            Sequence seq = DOTween.Sequence();
 
-        Image animImage = animHeart.GetComponent<Image>();
-        animImage.sprite = heart.sprite;
-        animImage.SetNativeSize();
-        animImage.color = Color.white;
-        animHeart.transform.SetAsLastSibling(); // Ensure it's on top
+            // Punch scale (quick pop smaller then back)
+            seq.Append(rt.DOPunchScale(new Vector3(-0.3f, 0.3f, 0), 0.3f, 10, 1));
 
-        // Animate to screen center
-        Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
-        animRect.DOMove(screenCenter, 0.5f).SetEase(Ease.OutQuad);
-        animRect.DOScale(0.5f, 0.5f).SetEase(Ease.InOutCubic);
-        animImage.DOFade(0f, 0.5f).SetEase(Ease.InExpo);
+            // Flash red color then back
+            seq.Join(heart.DOColor(Color.red, 0.15f).SetLoops(2, LoopType.Yoyo));
 
-        yield return new WaitForSeconds(0.55f);
-        Destroy(animHeart);
+            yield return seq.WaitForCompletion();
+        }
     }
+
+    private IEnumerator AnimateHeartWrapperGain()
+    {
+        if (currentLives - 1 >= 0 && currentLives - 1 < hearts.Length)
+        {
+            Image heart = hearts[currentLives - 1];
+            heart.rectTransform.localScale = Vector3.one * 0.5f;
+
+            yield return heart.rectTransform
+                .DOScale(Vector3.one, 0.3f)
+                .SetEase(Ease.OutBack)
+                .WaitForCompletion();
+
+            heart.rectTransform
+                .DOPunchScale(Vector3.one * 0.2f, 0.2f, 5, 1);
+        }
+    }
+
 
 
     private IEnumerator LockMovementTemporarily(float duration)
