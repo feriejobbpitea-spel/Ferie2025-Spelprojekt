@@ -568,7 +568,7 @@ MonoBehaviour:
   ShopHUDHandler:
     ShopHUD: {fileID: 3232732030432509322}
   DialogueHandler:
-    ShopKeeperName: Mortis
+    ShopKeeperName: Morran
     EnterShop:
     - LocalizedText:
         m_TableReference:

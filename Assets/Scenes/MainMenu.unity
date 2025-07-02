@@ -633,7 +633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 4060396532416831427, guid: 171598e85fccb1c4cb1785060b81069b, type: 3}
   tileCount: 5
-  moveSpeed: 3
+  moveSpeed: 0.3
   SortingCount: 3
   sprite: {fileID: 21300000, guid: f64885531a567b3448e3f78dbc0e48d7, type: 3}
 --- !u!1 &105960660
@@ -2592,7 +2592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 4060396532416831427, guid: 171598e85fccb1c4cb1785060b81069b, type: 3}
   tileCount: 5
-  moveSpeed: 1
+  moveSpeed: 0.1
   SortingCount: 1
   sprite: {fileID: 21300000, guid: e7e8bfafe34f4a845a4868904601cbdb, type: 3}
 --- !u!1 &462168209
@@ -3500,7 +3500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 4060396532416831427, guid: 171598e85fccb1c4cb1785060b81069b, type: 3}
   tileCount: 5
-  moveSpeed: 2
+  moveSpeed: 0.2
   SortingCount: 2
   sprite: {fileID: 21300000, guid: e0ed3a37e0bae274bb0cdcdab07ff2e9, type: 3}
 --- !u!1 &821000536
