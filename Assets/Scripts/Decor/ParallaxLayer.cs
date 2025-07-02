@@ -109,45 +109,61 @@ public class ParallaxLayer : MonoBehaviour
             item.GetComponent<SpriteRenderer>().sortingOrder = sorting; // Set to your desired sorting layer
         }
     }
-
     public void SetSprite(Sprite newSprite, Color tint)
     {
-        spriteWidth = newSprite.bounds.size.x * Scale;
+        if (newSprite != null)
+        {
+            spriteWidth = newSprite.bounds.size.x * Scale;
+        }
 
         for (int i = 0; i < tiles.Count; i++)
         {
             Transform tile = tiles[i];
             SpriteRenderer sr = tile.GetComponent<SpriteRenderer>();
 
-            if (sr != null && newSprite != null)
+            if (sr != null)
             {
-                // Setup fade-out of old sprite
-                if (sr.sprite != null)
+                if (newSprite != null)
                 {
-                    GameObject fadeObj = new GameObject("FadeSprite");
-                    fadeObj.transform.SetParent(tile);
-                    fadeObj.transform.localPosition = Vector3.zero;
-                    fadeObj.transform.localRotation = Quaternion.identity;
-                    fadeObj.transform.localScale = Vector3.one;
+                    // Setup fade-out of old sprite if any
+                    if (sr.sprite != null)
+                    {
+                        GameObject fadeObj = new GameObject("FadeSprite");
+                        fadeObj.transform.SetParent(tile);
+                        fadeObj.transform.localPosition = Vector3.zero;
+                        fadeObj.transform.localRotation = Quaternion.identity;
+                        fadeObj.transform.localScale = Vector3.one;
 
-                    SpriteRenderer fadeSr = fadeObj.AddComponent<SpriteRenderer>();
-                    fadeSr.sprite = sr.sprite;
-                    fadeSr.sortingOrder = sr.sortingOrder - 1;
-                    fadeSr.flipX = sr.flipX;
-                    fadeSr.color = sr.color;
+                        SpriteRenderer fadeSr = fadeObj.AddComponent<SpriteRenderer>();
+                        fadeSr.sprite = sr.sprite;
+                        fadeSr.sortingOrder = sr.sortingOrder - 1;
+                        fadeSr.flipX = sr.flipX;
+                        fadeSr.color = sr.color;
 
-                    fadeSr.DOFade(0, TransitionDuration).OnComplete(() => Destroy(fadeObj));
+                        fadeSr.DOFade(0, TransitionDuration).OnComplete(() => Destroy(fadeObj));
+                    }
+
+                    // Fade in new sprite
+                    sr.color = new Color(tint.r, tint.g, tint.b, 0);
+                    sr.sprite = newSprite;
+                    sr.flipX = (i % 2 != 0);
+
+                    sr.DOFade(tint.a, TransitionDuration); // fade in
                 }
-
-                // Fade in new sprite
-                sr.color = new Color(tint.r, tint.g, tint.b, 0);
-                sr.sprite = newSprite;
-                sr.flipX = (i % 2 != 0);
-
-                sr.DOFade(tint.a, TransitionDuration); // fade in
+                else
+                {
+                    // New sprite is null — fade out current sprite then clear it
+                    if (sr.sprite != null)
+                    {
+                        // Fade out current sprite
+                        sr.DOFade(0, TransitionDuration).OnComplete(() =>
+                        {
+                            sr.sprite = null;
+                            sr.color = new Color(tint.r, tint.g, tint.b, 1f); // reset color tint alpha
+                        });
+                    }
+                }
             }
-
-
 
             tile.localScale = Vector3.one * Scale;
         }

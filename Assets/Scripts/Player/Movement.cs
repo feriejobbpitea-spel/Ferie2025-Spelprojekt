@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Movement : Singleton<Movement>
 {
     public float playerSpeed;
     public float jumpForce;
@@ -57,6 +57,9 @@ public class Movement : MonoBehaviour
 
     private float walkSoundCooldown = 0.5f;
     private float walkTimer = 0f;
+    private Vector2 knockbackVelocity = Vector2.zero;
+    private float knockbackDecaySpeed = 50f;  // How fast knockback velocity fades out
+    private float maxKnockbackMagnitude = 1f;
 
     private BoxCollider2D boxCollider;
 
@@ -87,6 +90,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
+        // Handle platform drop through
         if (!isDropping && Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(Drop());
@@ -120,14 +124,23 @@ public class Movement : MonoBehaviour
         {
             wallJumpXMomentum = 0;
 
-            if (Input.GetKey(keybinds["Left"])) moveX = -1f;
-            if (Input.GetKey(keybinds["Right"])) moveX = 1f;
-
             float targetX = moveX * playerSpeed * isRunning * superSpeed;
             float smoothedX = Mathf.Lerp(rb.linearVelocity.x, targetX, 0.1f);
             movement = new Vector2(smoothedX, rb.linearVelocity.y);
         }
 
+        // Add knockback velocity here
+        movement += knockbackVelocity;
+
+        // Apply movement velocity to Rigidbody
+        rb.linearVelocity = movement;
+
+        // Smoothly reduce knockback velocity towards zero each frame
+        knockbackVelocity = Vector2.Lerp(knockbackVelocity, Vector2.zero, knockbackDecaySpeed * Time.deltaTime);
+        if (knockbackVelocity.magnitude > maxKnockbackMagnitude)
+        {
+            knockbackVelocity = knockbackVelocity.normalized * maxKnockbackMagnitude;
+        }
         if (Input.GetKeyDown(keybinds["Jump"]) && !Input.GetKey(KeyCode.S))
         {
             if (isGrounded)
@@ -136,6 +149,7 @@ public class Movement : MonoBehaviour
                 PlayJumpTween();
                 if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
                 movement.y = bigJump ? bigJumpForce : jumpForce;
+                rb.linearVelocity = movement;  // Make sure to apply jump velocity immediately
             }
             else if (doubleJump && !doubleJumpUsed)
             {
@@ -144,6 +158,7 @@ public class Movement : MonoBehaviour
                 if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
                 movement.y = bigJump ? bigJumpForce : jumpForce;
                 doubleJumpUsed = true;
+                rb.linearVelocity = movement;
             }
             else if (isGrabingwall)
             {
@@ -160,17 +175,15 @@ public class Movement : MonoBehaviour
             }
         }
 
-        rb.linearVelocity = movement;
-
         if (Input.GetKeyUp(keybinds["Jump"]) && rb.linearVelocity.y > 0)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
         }
 
-        // Kolla om spelaren är på marken
+        // Check grounded state
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        // 👇 Landningsljud (om vi just landat)
+        // Play landing sound when just landed
         if (isGrounded && !wasGrounded)
         {
             if (landSound != null)
@@ -198,7 +211,7 @@ public class Movement : MonoBehaviour
             ResetScale();
         }
 
-        // 🎵 Spela gång-/springljud
+        // Play walk/run sounds
         if (isGrounded && IsMoving)
         {
             walkTimer -= Time.deltaTime;
@@ -225,7 +238,18 @@ public class Movement : MonoBehaviour
         }
     }
 
-    // 🕸 Dessa två metoder behövs för spindelnätet
+    public void ApplyKnockback(Vector2 force)
+    {
+        if (force.magnitude > maxKnockbackMagnitude)
+        {
+            knockbackVelocity = force.normalized * maxKnockbackMagnitude;
+        }
+        else
+        {
+            knockbackVelocity = force;
+        }
+    }
+
     public void ApplySlow()
     {
         slowCounter++;
