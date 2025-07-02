@@ -618,10 +618,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44bce72fb715e44c975d2788001c040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxLayers:
-  - {fileID: 735450648}
-  - {fileID: 1574124311}
-  - {fileID: 2071580120}
+  parallaxLayerPrefab: {fileID: 6183954610520463147, guid: 7004c3aa0afc3b74db54219496737996, type: 3}
 --- !u!4 &90845014
 Transform:
   m_ObjectHideFlags: 0
@@ -634,10 +631,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 735450650}
-  - {fileID: 1574124313}
-  - {fileID: 2071580118}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &127189016
@@ -5053,7 +5047,7 @@ Tilemap:
       - {fileID: -213216512, guid: e683b834af87c104f854666cab4cac74, type: 3}
       - {fileID: 495690325, guid: e683b834af87c104f854666cab4cac74, type: 3}
       - {fileID: -2049841909, guid: e683b834af87c104f854666cab4cac74, type: 3}
-      m_AnimationSpeed: 7
+      m_AnimationSpeed: 7.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 267, y: 41, z: 0}
@@ -5728,56 +5722,6 @@ Transform:
   - {fileID: 1751836117}
   - {fileID: 326775252}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &735450647
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 735450650}
-  - component: {fileID: 735450648}
-  m_Layer: 0
-  m_Name: ParalaxLayer (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &735450648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735450647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cacedcb259c847428872745505cc2cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parallaxFactor: 0.7
-  cameraTransform: {fileID: 0}
-  tilePrefab: {fileID: 4060396532416831427, guid: 171598e85fccb1c4cb1785060b81069b, type: 3}
-  SortingOrder: -12
-  Scale: 3
-  TransitionDuration: 4
---- !u!4 &735450650
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735450647}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 90845014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &754130456
 GameObject:
@@ -8539,56 +8483,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7960524146709953869, guid: f4a60a949910b824bb4a1374a902ddae, type: 3}
   m_PrefabInstance: {fileID: 1496308761}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1574124310
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1574124313}
-  - component: {fileID: 1574124311}
-  m_Layer: 0
-  m_Name: ParalaxLayer (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1574124311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574124310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cacedcb259c847428872745505cc2cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parallaxFactor: 0.5
-  cameraTransform: {fileID: 0}
-  tilePrefab: {fileID: 4060396532416831427, guid: 171598e85fccb1c4cb1785060b81069b, type: 3}
-  SortingOrder: -11
-  Scale: 3
-  TransitionDuration: 4
---- !u!4 &1574124313
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574124310}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 90845014}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1579881282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -427413,56 +427307,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5650268167832076890, guid: 3159fb8ede09675479302fd5f250eb36, type: 3}
   m_PrefabInstance: {fileID: 2024929655}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2071580117
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2071580118}
-  - component: {fileID: 2071580120}
-  m_Layer: 0
-  m_Name: ParalaxLayer (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2071580118
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2071580117}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 20, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 90845014}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2071580120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2071580117}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cacedcb259c847428872745505cc2cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parallaxFactor: 0.3
-  cameraTransform: {fileID: 0}
-  tilePrefab: {fileID: 4060396532416831427, guid: 171598e85fccb1c4cb1785060b81069b, type: 3}
-  SortingOrder: -10
-  Scale: 3
-  TransitionDuration: 4
 --- !u!114 &2098935955
 MonoBehaviour:
   m_ObjectHideFlags: 0
