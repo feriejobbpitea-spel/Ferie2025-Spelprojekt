@@ -140,9 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5e2a93ad462d143894dbe1da92d3a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 2
+  pickupDistance: 7
   coinValue: 1
   pickupDelay: 0.1
-  lifetime: 5
+  lifetime: 7
   blinkDuration: 2
   pickupSound: {fileID: 8300000, guid: 5536256497e67854ca42dd14d421d861, type: 3}
 --- !u!95 &3713877745715595488

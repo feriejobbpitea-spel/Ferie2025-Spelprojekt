@@ -74,7 +74,7 @@ public class Shop : MonoBehaviour
         ShopHUDHandler.CloseShopHUD();
         DialogueHandler.PlayExitShopDialogue();
 
-        PlayerMoney.Instance.UpdateMoneyUI();
+        PlayerMoney.Instance.UpdateMoneyUIInstant();
 
         // Spawna tillbaka vapnet när du lämnar shoppen
         RespawnSavedWeapon();

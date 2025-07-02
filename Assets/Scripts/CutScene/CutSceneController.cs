@@ -131,6 +131,7 @@ public class CutSceneController : MonoBehaviour
     void ShowSlide(int index)
     {
         cutsceneImage.sprite = slides[index].image;
+        cutsceneImage.preserveAspect = true;
         localizedString.TableEntryReference = slides[index].localizationKey;
 
         if (updateTextCoroutine != null)
