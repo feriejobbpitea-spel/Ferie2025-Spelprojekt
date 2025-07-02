@@ -15,6 +15,18 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Swedish (sv)
   m_GUID: 6be0661dac0a0844ca53c0117979c728
   m_SerializeEntries:
+  - m_GUID: 0d223727cc260924db84354a25ed92a2
+    m_Address: Shop 2 dialog_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1636d596b209b0f448a8b78fb76ebc26
+    m_Address: Robot after recovery text_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 585f104987755564ebc231e1c5c42a07
     m_Address: Cut Scene End Dialog1_sv
     m_ReadOnly: 1
@@ -23,6 +35,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 61a5aef252b59c642adabad576e1e9ca
     m_Address: ShopDialogue translater_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 740f3e98fb01c724fa777cf3e150f198
+    m_Address: Shop 3 before recovery text_sv
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv

@@ -67,6 +67,8 @@ MonoBehaviour:
   shootPoint: {fileID: 4997732779448710738}
   shootForce: 15
   cooldownTime: 1
+  shootLoopSound: {fileID: 8300000, guid: f6f213abbe031834bb5db7bf5ab2769a, type: 3}
+  explosionSound: {fileID: 8300000, guid: f588fbfcbb5cdb447baf5efe5d741b3f, type: 3}
 --- !u!1 &7021944868750311713
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +96,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.078, y: -0.0191, z: -1.262}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4997732779448710738}
@@ -142,14 +144,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1462508015
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 6
-  m_Sprite: {fileID: -379241700, guid: 3139102f4dde16245a99f67496d96825, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3139102f4dde16245a99f67496d96825, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

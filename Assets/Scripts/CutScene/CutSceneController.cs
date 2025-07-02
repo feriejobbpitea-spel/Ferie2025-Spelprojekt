@@ -154,13 +154,23 @@ public class CutSceneController : MonoBehaviour
         {
             var audioHandle = voiceClip.LoadAssetAsync();
             yield return audioHandle;
-
             if (audioHandle.Status == AsyncOperationStatus.Succeeded && audioHandle.Result != null)
             {
+                AudioClip clip = audioHandle.Result as AudioClip;
+                if (clip == null)
+                {
+                    Debug.LogError("Loaded asset is not an AudioClip!");
+                    yield break;
+                }
+
                 audioSource.Stop();
-                audioSource.clip = audioHandle.Result;
+                audioSource.clip = clip;
                 audioSource.Play();
                 yield return new WaitWhile(() => audioSource.isPlaying);
+            }
+            else
+            {
+                Debug.LogError("Failed to load AudioClip from localized voiceLine.");
             }
         }
 

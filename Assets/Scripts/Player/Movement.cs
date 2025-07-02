@@ -73,17 +73,46 @@ public class Movement : MonoBehaviour
     }
 
     private PlatformEffector2D platformEffector;
-    public float dropDuration = 0.5f;  // Hur länge man kan gå igenom plattformen
+    public float dropDuration = 1f;  // Hur länge man kan gå igenom plattformen
 
     private bool isDropping = false;
+    private bool IsTouchingOnGoTrough()
+    {
+        ContactFilter2D filter = new ContactFilter2D();
+        filter.SetLayerMask(groundLayer);
+        filter.useTriggers = false;
+
+        Collider2D[] results = new Collider2D[5];
+        int count = boxCollider.Overlap(filter, results);
+
+        for (int i = 0; i < count; i++)
+        {
+            if (results[i] != null && results[i].CompareTag("goTrough"))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
     private IEnumerator Drop()
     {
         isDropping = true;
-        platformEffector.rotationalOffset = 180f; // Tillåt att gå igenom nerifrån
-        yield return new WaitForSeconds(dropDuration);
-        platformEffector.rotationalOffset = 0f; // Återställ effectorn till normal
+        platformEffector.rotationalOffset = 180f;
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, -10f); // Tryck neråt
+
+        yield return new WaitUntil(() => !IsTouchingOnGoTrough());
+
+        platformEffector.rotationalOffset = 0f;
         isDropping = false;
     }
+
+
+
+
+
 
     void Update()
     {
@@ -152,7 +181,7 @@ public class Movement : MonoBehaviour
                 if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
                 wallJumpTimer = wallJumpLockTime;
                 float direction = (!facingRight) ? 1f : -1f;
-                float xForce = direction * playerSpeed * 1.5f;
+                float xForce = direction * playerSpeed * 1f;
                 float yForce = jumpForce * 0.8f;
                 rb.linearVelocity = new Vector2(xForce, yForce);
                 wallJumpXMomentum = xForce;
@@ -283,7 +312,7 @@ public class Movement : MonoBehaviour
             if (fallStretchTween == null || !fallStretchTween.IsPlaying())
             {
                 fallStretchTween?.Kill();
-                fallStretchTween = gfx.transform.DOScale(new Vector3(0.6f, 1.4f, 1f), 0.2f).SetEase(Ease.OutQuad);
+                fallStretchTween = gfx.transform.DOScale(new Vector3(0.6f, 1.4f, 1f), 5f).SetEase(Ease.OutQuad);
             }
         }
         else if (fallStretchTween != null && fallStretchTween.IsActive() && !fallStretchTween.IsComplete())

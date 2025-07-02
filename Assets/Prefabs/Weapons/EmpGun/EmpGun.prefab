@@ -211,7 +211,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1462508015
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 1990391963032567807, guid: 63abe869c9dfdb14aa5b2dd3bcbb33be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -499,6 +499,7 @@ MonoBehaviour:
   blinkSpeed: 2
   laserPrefab: {fileID: 2963307903092986637, guid: 94e02ebac2018be4e82e79297ddff6ae, type: 3}
   firePoint: {fileID: 6943675719694473024}
+  shootSound: {fileID: 8300000, guid: a76d18b75ba2c914dba949d60f5c5689, type: 3}
 --- !u!33 &519449505772095784
 MeshFilter:
   m_ObjectHideFlags: 0

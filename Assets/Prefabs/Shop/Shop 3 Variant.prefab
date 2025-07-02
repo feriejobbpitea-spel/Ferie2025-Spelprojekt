@@ -16,6 +16,146 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop 3 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.ExitShop.Array.data[0].AudioClip_English
+      value: 
+      objectReference: {fileID: 8300000, guid: f9da9c8d92c3dfd478ec2205a894522e, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.ExitShop.Array.data[0].AudioClip_Swedish
+      value: 
+      objectReference: {fileID: 8300000, guid: 2b34b85edff7bd241a3ca3e06ba757fe, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.EnterShop.Array.data[0].AudioClip_English
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c33c3bac6e235e42a2fb948809a45ae, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.EnterShop.Array.data[0].AudioClip_Swedish
+      value: 
+      objectReference: {fileID: 8300000, guid: 6fdf9791da35c184fb62f4f4cc953f58, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.EnterShop.Array.data[1].AudioClip_English
+      value: 
+      objectReference: {fileID: 8300000, guid: 69bbc90272e0fc14d94725b65058c3a3, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.EnterShop.Array.data[1].AudioClip_Swedish
+      value: 
+      objectReference: {fileID: 8300000, guid: be71e43b3fa50f849b3a30870bc0d8a3, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[0].AudioClip_English
+      value: 
+      objectReference: {fileID: 8300000, guid: f8b0473c00c978e49a95772b61e8fc8d, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[0].AudioClip_Swedish
+      value: 
+      objectReference: {fileID: 8300000, guid: e96dbe8c028b69b4a9e8e85fb8b88576, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[1].AudioClip_English
+      value: 
+      objectReference: {fileID: 8300000, guid: 9bb76f8ce2c21dd42bdad20f4920d799, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[1].AudioClip_Swedish
+      value: 
+      objectReference: {fileID: 8300000, guid: 912c4b9d6c3bf7a489a1700b56bdc3ef, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[2].AudioClip_English
+      value: 
+      objectReference: {fileID: 8300000, guid: 9bb76f8ce2c21dd42bdad20f4920d799, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[2].AudioClip_Swedish
+      value: 
+      objectReference: {fileID: 8300000, guid: 912c4b9d6c3bf7a489a1700b56bdc3ef, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[3].AudioClip_English
+      value: 
+      objectReference: {fileID: 8300000, guid: ae2953a50a635b04e800013765cf9ce1, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[3].AudioClip_Swedish
+      value: 
+      objectReference: {fileID: 8300000, guid: 96bda94069fa3c24587b3803e7af0d60, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[4].AudioClip_English
+      value: 
+      objectReference: {fileID: 8300000, guid: 65df7702e25b4ff4a9b66e0a03e3e296, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[4].AudioClip_Swedish
+      value: 
+      objectReference: {fileID: 8300000, guid: 2ab7eaf87dfd0f64cbee72b88ab530cf, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[5].AudioClip_English
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a277d428cba5e14fa5875e77fee06b6, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[5].AudioClip_Swedish
+      value: 
+      objectReference: {fileID: 8300000, guid: 46c3ab28832ba144ea0251c225a6bd5d, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[6].AudioClip_English
+      value: 
+      objectReference: {fileID: 8300000, guid: 107db8148d1169b4b8bac6ffde3b7e91, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[6].AudioClip_Swedish
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e68f6c418bcbe04fbc1d3dee790cb9d, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[7].AudioClip_English
+      value: 
+      objectReference: {fileID: 8300000, guid: 107db8148d1169b4b8bac6ffde3b7e91, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[7].AudioClip_Swedish
+      value: 
+      objectReference: {fileID: 8300000, guid: 380c07167dc67ab459fb135b4e0987c8, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[2].LocalizedText.m_TableEntryReference.m_KeyId
+      value: 7338131456
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[3].LocalizedText.m_TableEntryReference.m_KeyId
+      value: 7338131456
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[4].LocalizedText.m_TableEntryReference.m_KeyId
+      value: 7338131456
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[5].LocalizedText.m_TableEntryReference.m_KeyId
+      value: 7338131456
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[6].LocalizedText.m_TableEntryReference.m_KeyId
+      value: 7338131456
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[7].LocalizedText.m_TableEntryReference.m_KeyId
+      value: 7338131456
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[2].LocalizedText.m_TableReference.m_TableCollectionName
+      value: GUID:b8f403256989f9146bce84d2256096f8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[3].LocalizedText.m_TableReference.m_TableCollectionName
+      value: GUID:b8f403256989f9146bce84d2256096f8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[4].LocalizedText.m_TableReference.m_TableCollectionName
+      value: GUID:b8f403256989f9146bce84d2256096f8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[5].LocalizedText.m_TableReference.m_TableCollectionName
+      value: GUID:b8f403256989f9146bce84d2256096f8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[6].LocalizedText.m_TableReference.m_TableCollectionName
+      value: GUID:b8f403256989f9146bce84d2256096f8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.RandomDialogue.Array.data[7].LocalizedText.m_TableReference.m_TableCollectionName
+      value: GUID:b8f403256989f9146bce84d2256096f8
+      objectReference: {fileID: 0}
     - target: {fileID: 7453546461471657067, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 319.49

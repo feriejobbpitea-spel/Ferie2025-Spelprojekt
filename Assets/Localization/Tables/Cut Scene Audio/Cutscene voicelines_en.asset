@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97269afb30aa84742ae3f3342603618a, type: 3}
+  m_Name: Cutscene voicelines_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: cc716ad458397004fbfbda7593f197d8, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 57535377408
+    m_Localized: c4174d30505e9e24b8d6b8fa1a2b896d
+    m_Metadata:
+      m_Items: []
+  - m_Id: 237370355712
+    m_Localized: eb8af23fbf5eba24093d8737e5183dea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 448759083008
+    m_Localized: 7538d5673e255dc4d8b94632f14ad73a
+    m_Metadata:
+      m_Items: []
+  - m_Id: 570108686336
+    m_Localized: 761681454588e8f42ae593067c2f7293
+    m_Metadata:
+      m_Items: []
+  - m_Id: 633702723584
+    m_Localized: 05cfc3814c81e4347ab547fa8013bf44
+    m_Metadata:
+      m_Items: []
+  - m_Id: 699238723584
+    m_Localized: b990125705ad1574e86d5a09f3ad1eb9
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

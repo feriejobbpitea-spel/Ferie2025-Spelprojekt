@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using UnityEditor.Rendering;
+using System.ComponentModel;
+using Unity.Mathematics;
 
 public class MeleeAttack : MonoBehaviour
 {
@@ -11,13 +14,23 @@ public class MeleeAttack : MonoBehaviour
 
     public Animator playerAnimator;  // Animator på spelaren
 
+    public AudioClip swingSound;     // Ljudklipp för sving
+    private AudioSource audioSource; // AudioSource-komponent
+
     private float cooldownTimer = 0f;
     private Collider2D hitCollider;
 
     void Start()
     {
         hitCollider = hitArea.GetComponentInChildren<Collider2D>();
-        playerAnimator =  transform.parent.GetComponentInChildren<Animator>();
+        playerAnimator = transform.parent.GetComponentInChildren<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogWarning("AudioSource saknas på " + gameObject.name + ", lägger till en automatiskt.");
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
 
         if (!hitCollider.isTrigger)
         {
@@ -41,13 +54,30 @@ public class MeleeAttack : MonoBehaviour
             cooldownTimer = attackCooldown;
         }
     }
+    public GameObject airAttackEffectPrefab;
+    public Transform attackSpawnPoint; // T.ex. en empty GameObject vid sidan av spelaren
 
     void PerformAttack()
     {
+        GameObject.Instantiate(airAttackEffectPrefab, transform.position +new Vector3(1f,0), Quaternion.identity);
+        GameObject.Instantiate(airAttackEffectPrefab, transform.position- new Vector3(1f, 0), Quaternion.Euler(0,0,180));
+
+
+
+
+
+
+        Debug.Log("PerformAttack() called on ");
         if (playerAnimator != null)
         {
             playerAnimator.SetBool("isAttacking", true);
             playerAnimator.SetLayerWeight(1, 1f);
+        }
+
+        // Spela svingljudet
+        if (swingSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(swingSound);
         }
 
         hitArea.SetActive(true);
@@ -61,17 +91,17 @@ public class MeleeAttack : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
+            Debug.Log($"Hit {results[i].name} with MeleeAttack");
 
-            EnemyHealth enemy = results[i].GetComponent<EnemyHealth>();
-            if (enemy != null)
+            EnemyHealth enemyHealth = results[i].GetComponent<EnemyHealth>();
+            if (enemyHealth == null)
             {
-                enemy.TakeDamage(damage);
-            } else { enemy = results[i].GetComponentInParent<BossHealth>();
-                if (enemy != null)
-                {
-                    enemy.TakeDamage(damage);
-                }
+                enemyHealth = results[i].GetComponentInChildren<EnemyHealth>();
             }
+
+            enemyHealth?.TakeDamage(damage);
+
+
         }
 
         StartCoroutine(EndAttackAfterDelay());

@@ -28,8 +28,26 @@ MonoBehaviour:
     - Locale-en
     - Preload
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 43520e649745d0c4ead706a3c0eabec0
+    m_Address: Shop 2 dialog_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 508e9accdc6316d41a53cb5d784a41a3
     m_Address: Cut Scene End Dialog_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76cadcb4d511bf9448a3418690dd44ac
+    m_Address: Shop 3 before recovery text_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88eefdc7a25d7e74d89753c16975f10b
+    m_Address: Robot after recovery text_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

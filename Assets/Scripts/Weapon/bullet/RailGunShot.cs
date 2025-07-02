@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,16 +19,23 @@ public class RailgunShot : MonoBehaviour
     public float energyRegenPerSecond = 15f;
     public Slider energySlider;
 
+    public AudioSource shootingAudioSource;  // Ljudkomponenten
+
     private float damageBuffer = 0f;
     private bool isFiring = false;
 
     void Start()
     {
-        // Initiera global energi om den inte är satt
         if (globalCurrentEnergy <= 0f)
             globalCurrentEnergy = globalMaxEnergy;
 
         UpdateSlider();
+
+        if (shootingAudioSource != null)
+        {
+            shootingAudioSource.loop = true; // Loopande ljud så länge man skjuter
+            shootingAudioSource.Stop();      // Se till att ljudet inte spelar från start
+        }
     }
 
     void Update()
@@ -41,7 +49,13 @@ public class RailgunShot : MonoBehaviour
         if (canFire)
         {
             if (!isFiring)
+            {
                 isFiring = true;
+                if (shootingAudioSource != null && !shootingAudioSource.isPlaying)
+                {
+                    shootingAudioSource.Play(); // Starta ljudet när man börjar skjuta
+                }
+            }
 
             FireLaser();
             DrainEnergy();
@@ -54,7 +68,12 @@ public class RailgunShot : MonoBehaviour
                 damageBuffer = 0f;
                 isFiring = false;
 
-                // Starta cooldown efter skjutning
+                // Stoppa ljudet direkt när man slutar skjuta
+                if (shootingAudioSource != null && shootingAudioSource.isPlaying)
+                {
+                    shootingAudioSource.Stop();
+                }
+
                 globalCooldownTimer = globalCooldownTime;
             }
 
@@ -69,16 +88,16 @@ public class RailgunShot : MonoBehaviour
 
     void FireLaser()
     {
+        // Din befintliga kod för laser-skjutning
         lineRenderer.enabled = true;
 
         Vector3 start = firePoint.position;
         Vector3 direction = firePoint.right.normalized;
 
-        // Skärmens hörn i världskordinater
         Vector3 screenBottomLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
         Vector3 screenTopRight = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.nearClipPlane));
 
-        float maxDistance = 10000f; // väldigt stort värde som fallback
+        float maxDistance = 10000f;
 
         System.Collections.Generic.List<float> distances = new System.Collections.Generic.List<float>();
 
@@ -126,6 +145,7 @@ public class RailgunShot : MonoBehaviour
             lineRenderer.SetPosition(1, hitPoint);
 
             EnemyHealth enemy = hit.collider.GetComponent<EnemyHealth>();
+            if (enemy == null) { enemy = hit.collider.GetComponentInChildren<EnemyHealth>(); }
             if (enemy != null)
             {
                 damageBuffer += damagePerSecond * Time.deltaTime;

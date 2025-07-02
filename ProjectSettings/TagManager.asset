@@ -8,6 +8,10 @@ TagManager:
   - EnemyWarning
   - Traps
   - Ladder
+  - SFX
+  - Music
+  - goTrough
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX

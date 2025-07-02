@@ -274,6 +274,7 @@ GameObject:
   - component: {fileID: 1947611036806048825}
   - component: {fileID: 7286582907538063541}
   - component: {fileID: 3290045558263266924}
+  - component: {fileID: 3182469669171236178}
   m_Layer: 0
   m_Name: Railgun
   m_TagString: Untagged
@@ -310,17 +311,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fac74cb1ec35b4f8b8fb8a97b12370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  globalCooldownTime: 1
   lineRenderer: {fileID: 5664562773184347661}
   firePoint: {fileID: 2178608462338326662}
   hitMask:
     serializedVersion: 2
     m_Bits: 328
   damagePerSecond: 40
-  maxEnergy: 100
-  currentEnergy: 0
   energyDrainPerSecond: 20
   energyRegenPerSecond: 15
   energySlider: {fileID: 5968587361122196840}
+  shootingAudioSource: {fileID: 3182469669171236178}
 --- !u!114 &3290045558263266924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +339,103 @@ MonoBehaviour:
   bulletPrefab: {fileID: 0}
   firePoint: {fileID: 0}
   fireRate: 0.2
+--- !u!82 &3182469669171236178
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689554879932518867}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 72fc822047664e64f9fbc331cc9032db, type: 3}
+  m_Resource: {fileID: 8300000, guid: 72fc822047664e64f9fbc331cc9032db, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4081964206435415100
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +586,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1462508015
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
