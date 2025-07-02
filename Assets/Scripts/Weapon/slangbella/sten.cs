@@ -30,7 +30,7 @@ public class Sten : MonoBehaviour
         EnemyHealth enemyHealth = collision.collider.GetComponent<EnemyHealth>();
         if (enemyHealth == null) 
         {
-            enemyHealth = collision.collider.GetComponent<BossHealth>();
+            enemyHealth = collision.collider.GetComponentInChildren<EnemyHealth>();
         }
 
             if (enemyHealth != null)

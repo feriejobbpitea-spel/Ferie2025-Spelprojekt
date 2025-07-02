@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -159,6 +160,7 @@ public class RailgunShot : MonoBehaviour
             lineRenderer.SetPosition(1, hitPoint);
 
             EnemyHealth enemy = hit.collider.GetComponent<EnemyHealth>();
+            if (enemy == null) { enemy = hit.collider.GetComponentInChildren<EnemyHealth>(); }
             if (enemy != null)
             {
                 damageBuffer += damagePerSecond * Time.deltaTime;

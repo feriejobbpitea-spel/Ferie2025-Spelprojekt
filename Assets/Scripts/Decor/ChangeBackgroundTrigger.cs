@@ -12,7 +12,6 @@ public class ChangeBackgroundTrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             StartCoroutine(FadeOut(hide, 1f)); // Starta Coroutine för fade-out
-            Camera.main.backgroundColor = NewBackgroundColor;
             foreach (var item in ToEnable)
             {
                 if (item != null)

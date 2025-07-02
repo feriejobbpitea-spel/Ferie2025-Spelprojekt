@@ -9,7 +9,7 @@ public class MovingPlatform : MonoBehaviour
     private Vector2 previousPosition;
 
     private GameObject player;
-    private bool hasBeenActivated = false;
+    public bool hasBeenActivated = false;
 
     private SpriteRenderer spriteRenderer;
     private Collider2D platformCollider;

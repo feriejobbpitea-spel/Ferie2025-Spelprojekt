@@ -7297,6 +7297,9 @@ MonoBehaviour:
     m_Bits: 4352
   boxCastSizeE: {x: 1.2, y: 1.1}
   boxCastDistanceE: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   hurtSound: {fileID: 8300000, guid: 8415d34ed7c237e40b8a0d4d66122583, type: 3}
   inventoryManager: {fileID: 7214375957433315167}
 --- !u!114 &2934233217691040914
@@ -17608,7 +17611,7 @@ MonoBehaviour:
   slingshotPrefab: {fileID: 2966429678390243854, guid: 93b3dcd5c4ad9ec498873bc1d960a856, type: 3}
   slingshotIcon: {fileID: 7675122728916957637, guid: e24305870847dd24b9b35e100b455102, type: 3}
   confettiGunPrefab: {fileID: 4441914280489922357, guid: b7eb7afe8cd51e242b8548a365b34fe6, type: 3}
-  confettiGunIcon: {fileID: -379241700, guid: 3139102f4dde16245a99f67496d96825, type: 3}
+  confettiGunIcon: {fileID: 21300000, guid: 3139102f4dde16245a99f67496d96825, type: 3}
   currentWeapon: {fileID: 0}
 --- !u!1 &6904900899113050040
 GameObject:
