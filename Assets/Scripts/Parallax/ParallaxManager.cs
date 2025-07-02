@@ -6,12 +6,9 @@ public class ParallaxManager : Singleton<ParallaxManager>
 
     public void UpdateParallaxSprites(Biome_SO biome)
     {
-        if (biome == null || parallaxLayers == null || parallaxLayers.Length < 3)
-            return;
-
-        if(biome.layer1 != null)
+        if (biome.layer1 != null)
             parallaxLayers[0].SetSprite(biome.layer1);
-        if (biome.layer2 != null)
+        if(biome.layer2 != null)
             parallaxLayers[1].SetSprite(biome.layer2);
         if (biome.layer3 != null)
             parallaxLayers[2].SetSprite(biome.layer3);

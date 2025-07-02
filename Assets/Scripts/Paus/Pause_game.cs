@@ -4,9 +4,7 @@ using UnityEngine.UI;
 
 public class Pause_game : MonoBehaviour
 {
-
-    public Menu menu; // Reference to the Menu component for the pause men
-                     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Menu PauseMenu;
 
     private void Update()
     {
@@ -35,9 +33,9 @@ public class Pause_game : MonoBehaviour
         {
             pause.gameObject.SetActive(false);
             Time.timeScale = 1f; // Resume the game
-            menu.HideMenu(); // Hide the pause menu
         }
 
+        PauseMenu.ShowMenu();
 
 
 

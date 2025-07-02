@@ -30,7 +30,6 @@ public class EnemyHealth : MonoBehaviour
         {
             healthSlider.maxValue = maxHealth;
             healthSlider.value = currentHealth;
-            Debug.Log($"{gameObject.name} Start(): maxHealth={maxHealth}, currentHealth={currentHealth}");
         }
 
         spriteRenderer = (spriteRendererOverride != null) ? spriteRendererOverride : GetComponent<SpriteRenderer>();

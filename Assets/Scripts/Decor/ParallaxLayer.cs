@@ -15,7 +15,7 @@ public class ParallaxLayer : MonoBehaviour
     private List<Transform> tiles = new List<Transform>();
     private Vector3 lastCameraPosition;
 
-    private void Start()
+    private void Awake()
     {
         if (!cameraTransform)
             cameraTransform = Camera.main.transform;
@@ -29,17 +29,20 @@ public class ParallaxLayer : MonoBehaviour
             return;
         }
 
-        spriteWidth = sr.bounds.size.x;
+        spriteWidth = sr.bounds.size.x * Scale;
 
         // Calculate how many tiles are needed to cover screen width + buffer
         float screenWidth = Camera.main.orthographicSize * 2f * Camera.main.aspect;
         int neededTiles = Mathf.CeilToInt(screenWidth / spriteWidth) + 2;
+
 
         // Create tiles centered around camera
         for (int i = -neededTiles / 2; i <= neededTiles / 2; i++)
         {
             GameObject tile = Instantiate(tilePrefab, transform);
             tile.transform.localScale = Vector3.one * Scale;
+
+            tile.GetComponent<SpriteRenderer>().sprite = null;
             tile.transform.position = new Vector3(
                 cameraTransform.position.x + i * spriteWidth,
                 transform.position.y,

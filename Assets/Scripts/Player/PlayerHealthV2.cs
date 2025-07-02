@@ -71,7 +71,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         RaycastHit2D hitT = Physics2D.BoxCast(origin, boxCastSizeT, 0f, direction, boxCastDistanceT, trapLayer);
         RaycastHit2D hitE = Physics2D.BoxCast(origin, boxCastSizeE, 0f, direction, boxCastDistanceE, enemyLayer);
 
-        if (movementScript.isGrounded)
+        if (movementScript.isGrounded && hitT.collider == null)
         {
             lastSafePosition = transform.position;
         }
@@ -84,12 +84,12 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             
             if (currentLives >= 2)
             {
-                Debug.Log(currentLives);
-                TeleportToLastSafePosition();
+/*                Debug.Log(currentLives);
+*/                TeleportToLastSafePosition();
             } 
             
             LoseLife();
-            Debug.Log(currentLives);
+  /*          Debug.Log(currentLives);*/
 
         }
 
