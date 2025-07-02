@@ -80,17 +80,11 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         {
             Vector3 hitPoint = hitT.point;
             Vector3 playerPosition = transform.position;
-
-            
-            if (currentLives >= 2)
+            if (currentLives > 1 && !isInvincible)
             {
-                Debug.Log(currentLives);
                 TeleportToLastSafePosition();
-            } 
-            
+            }
             LoseLife();
-            Debug.Log(currentLives);
-
         }
 
         if (hitE.collider != null)
