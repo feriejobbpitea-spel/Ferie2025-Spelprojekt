@@ -129,7 +129,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Grass background 1
     originalName: 
-    pivot: {x: 0.5, y: -0.6}
+    pivot: {x: 0.5, y: -0.046153847}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -138,7 +138,7 @@ ScriptedImporter:
       x: 4
       y: 4
       width: 128
-      height: 80
+      height: 65
     spriteID: edf1c3a304e5b2e44aafd7fdae421552
     spriteBone: []
     spriteOutline: []
@@ -168,9 +168,9 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 0
-        y: 48
+        y: 3
         width: 128
-        height: 80
+        height: 65
       spriteId: edf1c3a304e5b2e44aafd7fdae421552
     linkedCells: []
     tileCells: []
