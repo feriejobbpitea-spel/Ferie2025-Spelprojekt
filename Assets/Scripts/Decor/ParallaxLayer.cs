@@ -55,7 +55,6 @@ public class ParallaxLayer : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
-        transform.position += new Vector3(deltaMovement.x * parallaxFactor, 0, 0);
         lastCameraPosition = cameraTransform.position;
 
         float camLeftEdge = cameraTransform.position.x - Camera.main.orthographicSize * Camera.main.aspect;
@@ -64,6 +63,9 @@ public class ParallaxLayer : MonoBehaviour
         for (int i = 0; i < tiles.Count; i++)
         {
             Transform tile = tiles[i];
+
+            // Apply parallax movement
+            tile.position += new Vector3(deltaMovement.x * parallaxFactor, 0f, 0f);
 
             // Always match camera Y
             tile.position = new Vector3(tile.position.x, cameraTransform.position.y, tile.position.z);
@@ -80,8 +82,8 @@ public class ParallaxLayer : MonoBehaviour
                 tile.position = new Vector3(leftMostX - spriteWidth, cameraTransform.position.y, tile.position.z);
             }
         }
-
     }
+
 
     private float GetLeftMostTileX()
     {
@@ -102,7 +104,7 @@ public class ParallaxLayer : MonoBehaviour
     }
 
 
-    public void SetSprite(Sprite newSprite)
+    public void SetSprite(Sprite newSprite, Color tint)
     {
         spriteWidth = newSprite.bounds.size.x * Scale;
 
@@ -111,30 +113,36 @@ public class ParallaxLayer : MonoBehaviour
             Transform tile = tiles[i];
             SpriteRenderer sr = tile.GetComponent<SpriteRenderer>();
 
-            if (sr != null)
+            if (sr != null && newSprite != null)
             {
-                // Create a temporary GameObject for fading old sprite
-                GameObject fadeObj = new GameObject("FadeSprite");
-                fadeObj.transform.SetParent(tile);
-                fadeObj.transform.localPosition = Vector3.zero;
-                fadeObj.transform.localRotation = Quaternion.identity;
-                fadeObj.transform.localScale = Vector3.one;
+                // Setup fade-out of old sprite
+                if (sr.sprite != null)
+                {
+                    GameObject fadeObj = new GameObject("FadeSprite");
+                    fadeObj.transform.SetParent(tile);
+                    fadeObj.transform.localPosition = Vector3.zero;
+                    fadeObj.transform.localRotation = Quaternion.identity;
+                    fadeObj.transform.localScale = Vector3.one;
 
-                SpriteRenderer fadeSr = fadeObj.AddComponent<SpriteRenderer>();
-                fadeSr.sprite = sr.sprite;            // old sprite
-                fadeSr.sortingOrder = sr.sortingOrder - 1;
-                fadeSr.flipX = sr.flipX;
-                fadeSr.color = new Color(1, 1, 1, 1);
+                    SpriteRenderer fadeSr = fadeObj.AddComponent<SpriteRenderer>();
+                    fadeSr.sprite = sr.sprite;
+                    fadeSr.sortingOrder = sr.sortingOrder - 1;
+                    fadeSr.flipX = sr.flipX;
+                    fadeSr.color = sr.color;
 
-                // Tween alpha to 0, then destroy the fadeObj
-                fadeSr.DOFade(0, TransitionDuration).OnComplete(() => Destroy(fadeObj));
+                    fadeSr.DOFade(0, TransitionDuration).OnComplete(() => Destroy(fadeObj));
+                }
 
-                // Update main sprite immediately
+                // Fade in new sprite
+                sr.color = new Color(tint.r, tint.g, tint.b, 0);
                 sr.sprite = newSprite;
                 sr.sortingOrder = SortingOrder;
                 sr.flipX = (i % 2 != 0);
-                sr.color = Color.white;  // reset color in case it was changed
+
+                sr.DOFade(tint.a, TransitionDuration); // fade in
             }
+
+
 
             tile.localScale = Vector3.one * Scale;
         }

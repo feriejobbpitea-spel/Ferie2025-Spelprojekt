@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -143,6 +144,10 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         CameraFollow.Instance?.TriggerShake(0.15f, 0.2f);
 
         currentLives--;
+        if (currentLives < hearts.Length && currentLives >= 0)
+        {
+            StartCoroutine(AnimateLostHeart(hearts[currentLives]));
+        }
         UpdateHearts();
 
         isInvincible = true;
@@ -263,6 +268,34 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         // 🔒 Lås rörelse i 0.2 sekunder
         StartCoroutine(LockMovementTemporarily(0.2f));
     }
+
+    private IEnumerator AnimateLostHeart(Image heart)
+    {
+        // Clone the heart for animation
+        GameObject animHeart = Instantiate(heart.gameObject, heart.canvas.transform);
+        RectTransform animRect = animHeart.GetComponent<RectTransform>();
+
+        // Match position and size from the original
+        Vector3 worldPos = heart.rectTransform.position;
+        animRect.position = worldPos;
+        animRect.localScale = heart.rectTransform.lossyScale;
+
+        Image animImage = animHeart.GetComponent<Image>();
+        animImage.sprite = heart.sprite;
+        animImage.SetNativeSize();
+        animImage.color = Color.white;
+        animHeart.transform.SetAsLastSibling(); // Ensure it's on top
+
+        // Animate to screen center
+        Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
+        animRect.DOMove(screenCenter, 0.5f).SetEase(Ease.OutQuad);
+        animRect.DOScale(0.5f, 0.5f).SetEase(Ease.InOutCubic);
+        animImage.DOFade(0f, 0.5f).SetEase(Ease.InExpo);
+
+        yield return new WaitForSeconds(0.55f);
+        Destroy(animHeart);
+    }
+
 
     private IEnumerator LockMovementTemporarily(float duration)
     {
