@@ -20,7 +20,14 @@ public class EnemyHealth : MonoBehaviour
     public AudioClip damageSound;
     public AudioSource audioSource;
 
+    [Header("Freeze Settings")]
+    public float freezeDuration = 1f; // Fryser fienden i 1 sekund
+
     private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
+    private Animator enemyAnimator;
+    private float originalGravityScale;
+    private bool isEnemyFrozen = false;
 
     void Start()
     {
@@ -33,6 +40,17 @@ public class EnemyHealth : MonoBehaviour
         }
 
         spriteRenderer = (spriteRendererOverride != null) ? spriteRendererOverride : GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        enemyAnimator = GetComponent<Animator>();
+
+        if (rb != null)
+        {
+            originalGravityScale = rb.gravityScale;
+        }
+        else
+        {
+            Debug.LogWarning($"Ingen Rigidbody2D på {gameObject.name}");
+        }
 
         if (audioSource == null)
         {
@@ -54,10 +72,50 @@ public class EnemyHealth : MonoBehaviour
         PlayDamageSound();
         BlinkRed();
 
+        FreezeEnemy(); // Fryser fienden när den tar skada
+
         if (currentHealth <= 0)
         {
             Die();
         }
+    }
+
+    public void FreezeEnemy()
+    {
+        Debug.Log($"[Freeze] {gameObject.name} fryses nu i {freezeDuration} sekunder");
+        isEnemyFrozen = true;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.bodyType = RigidbodyType2D.Static; ; // Gör fienden statisk
+        }
+
+        if (enemyAnimator != null)
+        {
+            enemyAnimator.speed = 0f; // Stoppa animationen
+        }
+
+        Invoke(nameof(UnfreezeEnemy), freezeDuration);
+    }
+
+    void UnfreezeEnemy()
+    {
+        Debug.Log($"[Freeze] {gameObject.name} återupptas");
+
+        if (rb != null)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.gravityScale = originalGravityScale;
+        }
+
+        if (enemyAnimator != null)
+        {
+            enemyAnimator.speed = 1f; // Återuppta animation
+        }
+
+        isEnemyFrozen = false;
     }
 
     void PlayDamageSound()
@@ -92,11 +150,11 @@ public class EnemyHealth : MonoBehaviour
         if (coinPrefab != null)
         {
             GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
-            Rigidbody2D rb = coin.AddComponent<Rigidbody2D>();
-            if (rb != null)
+            Rigidbody2D rbCoin = coin.AddComponent<Rigidbody2D>();
+            if (rbCoin != null)
             {
                 Vector2 randomDirection = new Vector2(Random.Range(-1f, 1f), 1f).normalized;
-                rb.AddForce(randomDirection * coinForce, ForceMode2D.Impulse);
+                rbCoin.linearVelocity = randomDirection * coinForce;
             }
         }
 
@@ -116,14 +174,13 @@ public class EnemyHealth : MonoBehaviour
         Destroy(tempGO, clip.length);
     }
 
-    // Ny metod för att återställa hälsa och uppdatera UI
     public void ResetHealth()
     {
         currentHealth = maxHealth;
 
         if (healthSlider != null)
         {
-            healthSlider.maxValue = maxHealth;  // Viktigt att maxValue är rätt
+            healthSlider.maxValue = maxHealth;
             healthSlider.value = currentHealth;
 
             Debug.Log($"{gameObject.name} ResetHealth(): maxHealth={maxHealth}, currentHealth={currentHealth}, slider.value={healthSlider.value}");
@@ -135,7 +192,11 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    // Ny metod för att kolla om fienden lever
+    public bool IsEnemyFrozen()
+    {
+        return isEnemyFrozen;
+    }
+
     public bool IsAlive()
     {
         return currentHealth > 0 && gameObject.activeInHierarchy;

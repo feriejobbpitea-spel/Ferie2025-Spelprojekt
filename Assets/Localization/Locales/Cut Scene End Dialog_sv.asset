@@ -24,16 +24,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 8021803008
-    m_Localized: "Men nu m\xE5r han mycket b\xE4ttre eftersom ondskan har blivit
-      besegrad."
+    m_Localized: "Men nu m\xE5r han mycket b\xE4ttre eftersom ondskan har besegrats.
+      Hans barnbarn kommer \xE4ntligen ha tid f\xF6r honom."
     m_Metadata:
       m_Items: []
-  - m_Id: 10202841088
-    m_Localized: "Hans barnbarn kommer \xE4ntligen ha tid f\xF6r honom."
-    m_Metadata:
-      m_Items: []
-  - m_Id: 495135686656
-    m_Localized: "(barn som skrattar((\u201Cvi/jag \xE4lskar dig farfar\u201D)"
+  - m_Id: 1153107146846208
+    m_Localized: (barn som skrattar)
     m_Metadata:
       m_Items: []
   references:

@@ -20,27 +20,13 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 389288230912
-    m_Key: EntryAH2
+    m_Key: 'EntryAH3
+
+'
     m_Metadata:
       m_Items: []
-  - m_Id: 391569932288
+  - m_Id: 2949307055484928
     m_Key: EntryAH3
-    m_Metadata:
-      m_Items: []
-  - m_Id: 393478340608
-    m_Key: EntryAH4
-    m_Metadata:
-      m_Items: []
-  - m_Id: 397706199040
-    m_Key: EntryAH5
-    m_Metadata:
-      m_Items: []
-  - m_Id: 399824322560
-    m_Key: EntryAH6
-    m_Metadata:
-      m_Items: []
-  - m_Id: 402005360640
-    m_Key: EntryAH7
     m_Metadata:
       m_Items: []
   m_Metadata:
@@ -64,26 +50,6 @@ MonoBehaviour:
           - en
           - sv
         - m_KeyId: 389288230912
-          m_TableCodes:
-          - en
-          - sv
-        - m_KeyId: 391569932288
-          m_TableCodes:
-          - en
-          - sv
-        - m_KeyId: 393478340608
-          m_TableCodes:
-          - en
-          - sv
-        - m_KeyId: 397706199040
-          m_TableCodes:
-          - en
-          - sv
-        - m_KeyId: 399824322560
-          m_TableCodes:
-          - en
-          - sv
-        - m_KeyId: 402005360640
           m_TableCodes:
           - en
           - sv

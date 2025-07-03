@@ -57,6 +57,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48aca9c3c3b995a4fb9c3ec15bde78f1
+    m_Address: ButHeFeelsALotBetterNow
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4903b5425fc38034aa7ba29c4972764c
     m_Address: ThisWillFollowYouHome
     m_ReadOnly: 1
@@ -77,6 +83,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 61f5450368d115846bd2e6c395f23b12
     m_Address: IDidntEvenFeelAnything
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6b41a3e05c2c580438872ed568170d19
+    m_Address: GrandpaIsStill
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

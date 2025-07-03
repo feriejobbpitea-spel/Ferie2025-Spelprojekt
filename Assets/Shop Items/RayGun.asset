@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4c7c1f54c7f3148abf91339b86e655, type: 3}
   m_Name: RayGun
   m_EditorClassIdentifier: 
-  ItemName: Ray Gun
-  ItemSprite: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
-  ItemCost: 9
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: 
+    m_TableEntryReference:
+      m_KeyId: 0
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemSprite: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
+  itemCost: 9
   itemType: 0
-  isUnique: 1
   internalID: Railgun
+  references:
+    version: 2
+    RefIds: []
