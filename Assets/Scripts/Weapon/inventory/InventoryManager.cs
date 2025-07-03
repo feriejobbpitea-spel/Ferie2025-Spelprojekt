@@ -30,6 +30,10 @@ public class InventoryManager : Singleton<InventoryManager>
     public GameObject confettiGunPrefab;
     public Sprite confettiGunIcon;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip weaponSwitchClip;
+
     public GameObject currentWeapon;
     private GameObject activeBeam;
 
@@ -55,13 +59,14 @@ public class InventoryManager : Singleton<InventoryManager>
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.PageDown)) {
+        if (Input.GetKeyDown(KeyCode.PageDown))
+        {
             AddConfettiGun();
             AddEmpGun();
             AddRayGun();
             AddSlingshot();
         }
-        
+
         if (Input.GetKeyDown(GetBoundKey("WeaponSlot1"))) WeaponSlot(0);
         else if (Input.GetKeyDown(GetBoundKey("WeaponSlot2"))) WeaponSlot(1);
         else if (Input.GetKeyDown(GetBoundKey("WeaponSlot3"))) WeaponSlot(2);
@@ -112,6 +117,12 @@ public class InventoryManager : Singleton<InventoryManager>
 
         activeSlotIndex = index;
 
+        // Spela upp ljud vid byte
+        if (audioSource != null && weaponSwitchClip != null)
+        {
+            audioSource.PlayOneShot(weaponSwitchClip);
+        }
+
         UpdateInventoryUI();
     }
 
@@ -149,7 +160,6 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         if (slots == null || slotHighlights == null) return;
 
-        // Disable all highlights first and reset scale
         for (int i = 0; i < slotHighlights.Count; i++)
         {
             slotHighlights[i].transform.DOKill();
@@ -161,7 +171,6 @@ public class InventoryManager : Singleton<InventoryManager>
         {
             GameObject parentSlot = slots[i].transform.parent.gameObject;
 
-            // Only show the slot if we have a weapon assigned
             if (inventoryWeapons[i] != null && inventoryIcons[i] != null)
             {
                 Sprite newIcon = inventoryIcons[i];
@@ -189,7 +198,6 @@ public class InventoryManager : Singleton<InventoryManager>
             }
             else
             {
-                // No weapon in slot — hide the slot UI immediately
                 if (slots[i].color.a > 0)
                 {
                     slots[i].DOFade(0f, 0.3f).OnComplete(() =>
@@ -257,8 +265,6 @@ public class InventoryManager : Singleton<InventoryManager>
         AddWeaponToNextSlot(confettiGunPrefab, confettiGunIcon);
     }
 
-    // ----- NYA METODER för att kolla om spelaren redan har vapnet -----
-
     public bool HasEmpGun()
     {
         return HasWeapon(empPrefab);
@@ -279,7 +285,6 @@ public class InventoryManager : Singleton<InventoryManager>
         return HasWeapon(confettiGunPrefab);
     }
 
-    // Privat hjälpfunktion som kollar om weaponPrefab finns i inventoryWeapons-arrayen
     private bool HasWeapon(GameObject weaponPrefab)
     {
         foreach (var w in inventoryWeapons)
@@ -290,10 +295,9 @@ public class InventoryManager : Singleton<InventoryManager>
         return false;
     }
 
-    // NY metod som kollar om det finns plats i inventory (för vapen)
     public bool HasInventorySpaceForWeapon()
     {
-        for (int i = 1; i < inventoryWeapons.Length; i++) // Hoppa över slot 0 som är melee
+        for (int i = 1; i < inventoryWeapons.Length; i++) // Slot 0 är melee
         {
             if (inventoryWeapons[i] == null)
                 return true;
@@ -301,20 +305,17 @@ public class InventoryManager : Singleton<InventoryManager>
         return false;
     }
 
-    // ÄNDRA DENNA METOD (lägg till kontroll innan tillägg)
     private void AddWeaponToNextSlot(GameObject weaponPrefab, Sprite icon)
     {
         if (weaponPrefab == null)
             return;
 
-        // Kolla om det finns plats först
         if (!HasInventorySpaceForWeapon())
         {
             Debug.Log("Inventory fullt – kunde inte lägga till nytt vapen.");
             return;
         }
 
-        // Kolla om spelaren redan har vapnet
         if (HasWeapon(weaponPrefab))
         {
             Debug.Log("Du har redan detta vapen.");
@@ -347,8 +348,7 @@ public class InventoryManager : Singleton<InventoryManager>
             currentWeapon = null;
         }
 
-        WeaponSlot(0);
-        // Ta INTE bort vapen från inventory – bara återgå till melee
-        WeaponSlot(0); // Växla till melee
+        WeaponSlot(0); // Återgå till melee
     }
 }
+
