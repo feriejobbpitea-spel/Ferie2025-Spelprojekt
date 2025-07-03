@@ -15,6 +15,14 @@ public class PlayerMoney : Singleton<PlayerMoney>
         UpdateMoneyUIInstant();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.PageDown)) 
+        {
+            AddMoney(9999);
+        }
+    }
+
     public void AddMoney(int amount)
     {
         int oldMoney = money;
