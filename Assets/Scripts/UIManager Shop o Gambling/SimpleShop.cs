@@ -66,9 +66,11 @@ public class SimpleShop : Singleton<SimpleShop>
         UpdateMoneyUI();
         ClearFeedback();
     }
-
+    
     void BuyItem(ShopItem item)
     {
+
+        transform.parent.parent.GetComponent<Shop>().DialogueHandler.PlayBuyItem();
         if (PlayerMoney.Instance.money < item.price)
         {
             ShowFeedback("Inte tillräckligt med pengar!");

@@ -39,8 +39,10 @@ public class Checkpoint : MonoBehaviour
                 {
                     _audioSource.PlayOneShot(checkpointSound);
                 }
+                SetNewCheckpoint();
+                PlayerHealthV2.Instance.AddSingleLife();
             }
-            SetNewCheckpoint();
+            
         }
     }
 

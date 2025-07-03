@@ -628,6 +628,7 @@ MonoBehaviour:
         m_LocalVariables: []
       AudioClip_English: {fileID: 8300000, guid: 160fad62840182f41a6c451a172d5522, type: 3}
       AudioClip_Swedish: {fileID: 8300000, guid: 38be80e1c6da77141a1dc05ec875edb3, type: 3}
+    BuyItem: []
     TalkButton: {fileID: 7178236499101279291}
     UseAlternativeRandomDialogue: 0
   references:
@@ -1276,79 +1277,83 @@ PrefabInstance:
       objectReference: {fileID: 6288562525174630620}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: segmentNames.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: segmentChances.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[0]'
-      value: "F\xF6rlust (-3 Chips)"
+      value: "F\xF6rlust "
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[1]'
-      value: "F\xF6rlust (-3 Chips)"
+      value: "F\xF6rlust"
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[2]'
-      value: "F\xF6rlust (-3 Chips)"
+      value: "F\xF6rlust "
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[3]'
-      value: "F\xF6rlust (-3 Chips)"
+      value: "F\xF6rlust "
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[4]'
-      value: WIN (+3 Chips)
+      value: Refund(+3 Chips)
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[5]'
-      value: WIN (+3 Chips)
+      value: WIN (+4 Chips)
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[6]'
-      value: BIG WIN (+5 Chips)
+      value: BIG WIN (+6 Chips)
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[7]'
-      value: MEGA WIN (+8 Chips)
+      value: MEGA WIN (+8Chips)
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentNames.Array.data[8]'
-      value: JACKPOT (+15 Chips)
+      value: JACKPOT (+10 Chips)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
+      propertyPath: 'segmentNames.Array.data[9]'
+      value: MEGA JACKPOT (+50 Chips)
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: rewardsPerSegment.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentChances.Array.data[0]'
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentChances.Array.data[1]'
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentChances.Array.data[2]'
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentChances.Array.data[3]'
-      value: 11
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentChances.Array.data[4]'
-      value: 12.5
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentChances.Array.data[5]'
-      value: 12.5
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentChances.Array.data[6]'
-      value: 20
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentChances.Array.data[7]'
@@ -1357,6 +1362,10 @@ PrefabInstance:
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'segmentChances.Array.data[8]'
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
+      propertyPath: 'segmentChances.Array.data[9]'
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'rewardsPerSegment.Array.data[1]'
@@ -1368,23 +1377,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'rewardsPerSegment.Array.data[4]'
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'rewardsPerSegment.Array.data[5]'
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'rewardsPerSegment.Array.data[6]'
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'rewardsPerSegment.Array.data[7]'
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: 'rewardsPerSegment.Array.data[8]'
-      value: 15
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076062592469096719, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
+      propertyPath: 'rewardsPerSegment.Array.data[9]'
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5265837561966931554, guid: 124af31381ed6674cbd8f47293314c19, type: 3}
       propertyPath: m_fontSize

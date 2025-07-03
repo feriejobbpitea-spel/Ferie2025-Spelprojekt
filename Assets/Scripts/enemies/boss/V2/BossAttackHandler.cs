@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.UI;
 using static BossStateController;
 
 public class BossAttackHandler : MonoBehaviour
@@ -159,45 +160,64 @@ public class BossAttackHandler : MonoBehaviour
             item.enabled = enabled;
         }
     }
+    [SerializeField] private GameObject shadow;  // Dra in skuggan i inspector
+    [SerializeField] private float shadowYPosition = 0f; // Höjden på marken/skuggan ska ligga på
 
     private IEnumerator SlamAttack()
     {
-        SpawnPlatforms(); // Spawna plattformar när bossen hoppar
+        SpawnPlatforms();
         LookAtPlayer();
         OnFly?.Invoke();
-        PlayRandomJumpVoiceline(); // Spela voiceline vid jump
+        PlayRandomJumpVoiceline();
 
         if (flySound != null)
             audioSource.PlayOneShot(flySound);
 
+        
+
         yield return new WaitForSeconds(jumpChargeTime);
 
-        float cameraTop = Camera.main.transform.position.y + Camera.main.orthographicSize;
         float offScreenY = transform.position.y + 15;
         rb.linearVelocity = new Vector2(0, jumpForce);
         rb.gravityScale = 0f;
         SetCollisionStatus(false);
 
-        yield return new WaitUntil(() => transform.position.y >= offScreenY);
+        // Kör en loop för att uppdatera skuggans position under flygningen
+        while (transform.position.y < offScreenY)
+        {
+            shadow.transform.position = new Vector3(transform.position.x, shadowYPosition, shadow.transform.position.z);
+            yield return null;
+        }
 
         Vector2 targetPosition = player.position;
         rb.linearVelocity = Vector2.zero;
+
         yield return new WaitForSeconds(0.5f);
 
-        var hit = Physics2D.Raycast(player.transform.position, Vector2.up, 100, groundLayer);
+        var hit = Physics2D.Raycast(player.position, Vector2.up, 100, groundLayer);
         rb.position = new Vector3(targetPosition.x, hit.point.y - 1, transform.position.z);
 
+        // Se till att skuggan följer bossen även vid positionuppdateringen
+        shadow.transform.position = new Vector3(rb.position.x, shadowYPosition, shadow.transform.position.z);
+        shadow.SetActive(true);  // Visa skuggan när bossen hoppar
         yield return new WaitForSeconds(0.3f);
 
         rb.linearVelocity = new Vector2(0, -jumpForce);
         rb.gravityScale = 1f;
 
-        yield return new WaitUntil(() => IsGrounded());
+        // Skuggan kan vara kvar medan bossen faller ner
+        while (!IsGrounded())
+        {
+            shadow.transform.position = new Vector3(transform.position.x, shadowYPosition, shadow.transform.position.z);
+            yield return null;
+        }
+
+        shadow.SetActive(false);  // Dölj skuggan när bossen landat
 
         if (slamSound != null)
             audioSource.PlayOneShot(slamSound);
 
-        PlayRandomSlamVoiceline(); // Spela voiceline vid slam
+        PlayRandomSlamVoiceline();
 
         SetCollisionStatus(true);
         OnSlam?.Invoke();
@@ -210,6 +230,7 @@ public class BossAttackHandler : MonoBehaviour
 
         stateController.SetState(BossState.Vulnerable);
     }
+
 
     private IEnumerator ThrowAttack()
     {

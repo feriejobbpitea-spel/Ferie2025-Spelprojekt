@@ -55,6 +55,10 @@ public class InventoryManager : Singleton<InventoryManager>
 
     void Update()
     {
+
+       
+
+
         if (Input.GetKeyDown(KeyCode.PageDown)) {
             AddConfettiGun();
             AddEmpGun();
@@ -208,7 +212,7 @@ public class InventoryManager : Singleton<InventoryManager>
     }
 
     // ----- Hantera plockade items -----
-
+    public Canvas Foto;
     public void AddItem(PickupItem item)
     {
         if (item == null) return;
@@ -216,6 +220,7 @@ public class InventoryManager : Singleton<InventoryManager>
         if (!collectedItems.Contains(item))
         {
             collectedItems.Add(item);
+            Foto.enabled = true;
             Debug.Log($"Lagt till item i inventory: {item.itemName}");
         }
         else
@@ -230,6 +235,7 @@ public class InventoryManager : Singleton<InventoryManager>
         if (item != null)
         {
             collectedItems.Remove(item);
+            Foto.enabled = false;
             Debug.Log($"Gav {itemName} till butiksägaren.");
             return true;
         }

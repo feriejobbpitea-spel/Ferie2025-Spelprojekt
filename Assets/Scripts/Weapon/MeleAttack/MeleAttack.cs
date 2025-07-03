@@ -58,9 +58,15 @@ public class MeleeAttack : MonoBehaviour
 
     void PerformAttack()
     {
-        GameObject.Instantiate(airAttackEffectPrefab, transform.position +new Vector3(1f,0), Quaternion.identity);
-        GameObject.Instantiate(airAttackEffectPrefab, transform.position- new Vector3(1f, 0), Quaternion.Euler(0,0,180));
-
+        GameObject.Instantiate(airAttackEffectPrefab, transform.position +new Vector3(1.2f,0), Quaternion.identity);
+        GameObject effect = GameObject.Instantiate(
+     airAttackEffectPrefab,
+     transform.position - new Vector3(1.2f, 0),
+     Quaternion.identity // Ingen rotation
+            );
+        Vector3 scale = effect.transform.localScale;
+        scale.x = -Mathf.Abs(scale.x); // Se till att det blir spegelvänt åt vänster
+        effect.transform.localScale = scale;
 
 
 

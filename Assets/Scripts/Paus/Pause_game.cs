@@ -4,19 +4,26 @@ using UnityEngine.UI;
 
 public class Pause_game : MonoBehaviour
 {
+    public Canvas PauseMenuCanvas;
     public Menu PauseMenu;
-
+    public Canvas settingsUI;
     private void Update()
     {
         // Check for the Escape key press to toggle pause
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)  ) 
         {
-            Debug.Log("Escape key pressed, toggling pause.");
-            Pause();
+            if (!settingsUI.enabled)
+            {
+                Debug.Log("Escape key pressed, toggling pause.");
+                Pause();
+            }
+            else { settingsUI.enabled = false; PauseMenuCanvas.enabled = true; }
+            
         }
+        
     }
-
-
+    
+    public void ShowPauseCanvas() { PauseMenuCanvas.enabled = true; }
     // Update is called once per frame
 
     public void Pause()
@@ -37,7 +44,7 @@ public class Pause_game : MonoBehaviour
 
         PauseMenu.ShowMenu();
 
-
+       
 
 
     }
