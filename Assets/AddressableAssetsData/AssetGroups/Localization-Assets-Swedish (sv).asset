@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0f5613fa9788f0f4a809e8b91dd625c0
+    m_Address: "Sn\xE4llaD\xF6daOssInte"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1a7cd4e187f1ca1479ef4ca2e001b990
     m_Address: "FarfarH\xE5llerP\xE5AttBliGalen"
     m_ReadOnly: 1
@@ -95,6 +101,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 838474e5bafd44849aa46f32e220419f
     m_Address: "K\xE4ndesKnappas"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 85d924decf98fb848840c620f88cd891
+    m_Address: "\xC4lskadDigFarfar"
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv

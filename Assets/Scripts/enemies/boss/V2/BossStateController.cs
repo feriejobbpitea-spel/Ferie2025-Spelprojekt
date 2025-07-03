@@ -74,6 +74,12 @@ public class BossStateController : MonoBehaviour
     public void SetState(BossState newState)
     {
         currentState = newState;
+        if(newState == BossState.Dead) 
+        {
+            StopAllCoroutines();
+            Destroy(attackHandler);
+        }
+    
     }
 
     public BossState GetCurrentState()

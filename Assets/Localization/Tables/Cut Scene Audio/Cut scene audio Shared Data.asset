@@ -20,9 +20,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 389288230912
-    m_Key: 'EntryAH3
-
-'
+    m_Key: EntryAH2
     m_Metadata:
       m_Items: []
   - m_Id: 2949307055484928
@@ -51,7 +49,11 @@ MonoBehaviour:
           - sv
         - m_KeyId: 389288230912
           m_TableCodes:
-          - en
           - sv
+          - en
+        - m_KeyId: 2949307055484928
+          m_TableCodes:
+          - sv
+          - en
         m_TypeString: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null

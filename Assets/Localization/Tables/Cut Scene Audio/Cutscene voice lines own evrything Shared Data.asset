@@ -24,7 +24,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 11737772032
-    m_Key: Stoppahan
+    m_Key: EntryAHH3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18864228282368
+    m_Key: Please dont kill us
     m_Metadata:
       m_Items: []
   m_Metadata:
@@ -52,6 +56,10 @@ MonoBehaviour:
           - en
           - sv
         - m_KeyId: 11737772032
+          m_TableCodes:
+          - sv
+          - en
+        - m_KeyId: 18864228282368
           m_TableCodes:
           - en
           - sv

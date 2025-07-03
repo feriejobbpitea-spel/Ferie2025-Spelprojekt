@@ -20,7 +20,7 @@ MonoBehaviour:
   m_TableData:
   - m_Id: 8726446080
     m_Localized: "With everything in his hands, he beat AI. All the power Grandpa\u2019s
-      got is beyond his understanding."
+      got, is beyond his understanding."
     m_Metadata:
       m_Items: []
   - m_Id: 10672603136
@@ -30,6 +30,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 12446793728
     m_Localized: "Stop him. Stop Grandpa. Right now. Before it\u2019s too late."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1164464420302848
+    m_Localized: We're scared of you grandpa, please don't kill us!!!!
     m_Metadata:
       m_Items: []
   references:

@@ -33,6 +33,10 @@ MonoBehaviour:
       sent."
     m_Metadata:
       m_Items: []
+  - m_Id: 1164464420302848
+    m_Localized: "Du skr\xE4mmer oss farfar, sn\xE4lla d\xF6da oss inte!!!!!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -123,6 +123,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8720118d7045d114b8b483d0926f6a06
+    m_Address: WeLoveYouGrandpa
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 98eecfd562305454ea29eb4961630d9f
     m_Address: WithEverythingInHisHand
     m_ReadOnly: 1
@@ -137,6 +143,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9e2d6d91e5d325244b12c9a8d5015d17
     m_Address: AllIWantedWasToMatter
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a843c1d4b7c2d844d896e68ae3f81c8d
+    m_Address: PleaseDontKillsUS
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

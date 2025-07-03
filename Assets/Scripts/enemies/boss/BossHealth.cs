@@ -15,10 +15,10 @@ public class BossHealth : EnemyHealth
         if (isDead) return;
         isDead = true;
 
-        BossAttackHandler attackHandler = GetComponent<BossAttackHandler>();
-        if (attackHandler != null)
+        BossStateController stateController = transform.parent.GetComponent<BossStateController>();
+        if (stateController != null)
         {
-            attackHandler.StopAttackLoop();
+            stateController.SetState(BossStateController.BossState.Dead);
         }
 
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
