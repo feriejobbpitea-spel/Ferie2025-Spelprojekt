@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slides:
-  - image: {fileID: -2307006551632423868, guid: f704bb26f448f2d48a73d62f4ca6f15f, type: 3}
+  - image: {fileID: 1956263971004277040, guid: c80901b6abab13d4ca858e1ffcb6af63, type: 3}
     localizationKey: EntryAHH1
     voiceLine:
       m_TableReference:

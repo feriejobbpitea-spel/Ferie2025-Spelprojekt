@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ae1c04d3f8b208f4a88b19788f2e73a6
+guid: 9b9a0a0aafa305c429253f2e0d101d16
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2047169304767758708
-    second: "bok som sm\xE5glin l\xE4ser_0"
+      213: 2199332170778291695
+    second: Grandpa family_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0

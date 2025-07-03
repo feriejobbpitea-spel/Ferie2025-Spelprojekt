@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Localization;
+using UnityEngine.Audio;
 using UnityEngine.Localization.Settings;
 
 public class Settings : MonoBehaviour
@@ -9,87 +9,105 @@ public class Settings : MonoBehaviour
     [Header("UI Elements")]
     public Button fullscreenToggle;
     public TMP_Text fullscreenToggleText;
-    public Slider volumeSlider;
-    public Button applyButton;
 
+    public Slider MasterVolumeSlider;
+    public Slider SFXVolumeSlider;
+    public Slider MusicVolumeSlider;
+
+    public Button applyButton;
     public Button resetButton;
 
-    // Temporary Settings
-    private bool pendingFullscreen;
-    private float pendingVolume;
+    [Header("Audio")]
+    public AudioMixer audioMixer;
 
-    // PlayerPrefs keys
     private const string FullscreenKey = "Settings.Fullscreen";
-    private const string VolumeKey = "Settings.Volume";
+    private const string MasterVolumeKey = "Settings.MasterVolume";
+    private const string SFXVolumeKey = "Settings.SfxVolume";
+    private const string MusicVolumeKey = "Settings.MusicVolume";
+    private const string LanguageKey = "Settings.Language";
 
-    // --- NYTT: Språk ---
-    private const string LanguageKey = "Settings.Language";  // PlayerPrefs-nyckel för språk
+    private bool pendingFullscreen;
 
-    // NYTT: Variabel för att tracka extern fullscreen-ändring
-    private bool lastFullscreenState;
+    private float pendingMasterVolume;
+    private float pendingSfxVolume;
+    private float pendingMusicVolume;
 
-    private async void Start()
+    private void Start()
     {
         LoadInitialSettings();
 
-        lastFullscreenState = Screen.fullScreen;
-
-        await LocalizationSettings.InitializationOperation.Task;
-
-        int savedLocaleIndex = PlayerPrefs.GetInt(LanguageKey, 0);
-        var locales = LocalizationSettings.AvailableLocales.Locales;
-
-        if (savedLocaleIndex >= 0 && savedLocaleIndex < locales.Count)
+        LocalizationSettings.InitializationOperation.Completed += op =>
         {
-            LocalizationSettings.SelectedLocale = locales[savedLocaleIndex];
-        }
+            int savedLocaleIndex = PlayerPrefs.GetInt(LanguageKey, 0);
+            var locales = LocalizationSettings.AvailableLocales.Locales;
+            if (savedLocaleIndex >= 0 && savedLocaleIndex < locales.Count)
+                LocalizationSettings.SelectedLocale = locales[savedLocaleIndex];
+        };
     }
-
-    void Update()
-    {
-        // Kolla om fullscreen-läget ändrats externt (inte via din knapp)
-        if (Screen.fullScreen != lastFullscreenState)
-        {
-            lastFullscreenState = Screen.fullScreen;
-            pendingFullscreen = lastFullscreenState;
-            fullscreenToggleText.text = pendingFullscreen ? "On" : "Off";
-        }
-    }
-
-    void OnEnable() => AddListeners();
-    void OnDisable() => RemoveListeners();
-
-    // === Initialization ===
 
     private void LoadInitialSettings()
     {
         pendingFullscreen = PlayerPrefs.GetInt(FullscreenKey, Screen.fullScreen ? 1 : 0) == 1;
-        pendingVolume = PlayerPrefs.GetFloat(VolumeKey, AudioListener.volume);
-
         fullscreenToggleText.text = pendingFullscreen ? "On" : "Off";
-        volumeSlider.value = pendingVolume;
+
+        pendingMasterVolume = PlayerPrefs.GetFloat(MasterVolumeKey, 1f);
+        pendingSfxVolume = PlayerPrefs.GetFloat(SFXVolumeKey, 1f);
+        pendingMusicVolume = PlayerPrefs.GetFloat(MusicVolumeKey, 1f);
+
+        MasterVolumeSlider.value = pendingMasterVolume;
+        SFXVolumeSlider.value = pendingSfxVolume;
+        MusicVolumeSlider.value = pendingMusicVolume;
+
+        UpdateAllVolumes();
     }
 
-    // === Event Handlers ===
+    private void UpdateAllVolumes()
+    {
+        SetMixerVolume("MasterVolume", pendingMasterVolume);
+        SetMixerVolume("MusicVolume", pendingMusicVolume);
+        SetMixerVolume("SFXVolume", pendingSfxVolume);
+    }
+
+    private void SetMixerVolume(string exposedParam, float linearVolume)
+    {
+        // Konverterar 0.0001–1.0 till -80 dB till 0 dB
+        float dB = Mathf.Log10(Mathf.Clamp(linearVolume, 0.0001f, 1f)) * 20f;
+        audioMixer.SetFloat(exposedParam, dB);
+    }
+
     public void ToggleFullscreen()
     {
         pendingFullscreen = !pendingFullscreen;
         fullscreenToggleText.text = pendingFullscreen ? "On" : "Off";
     }
 
-    public void OnVolumeChanged(float value) => pendingVolume = value;
+    public void OnMasterVolumeChanged(float value)
+    {
+        pendingMasterVolume = value;
+        UpdateAllVolumes();
+    }
+
+    public void OnSfxVolumeChanged(float value)
+    {
+        pendingSfxVolume = value;
+        UpdateAllVolumes();
+    }
+
+    public void OnMusicVolumeChanged(float value)
+    {
+        pendingMusicVolume = value;
+        UpdateAllVolumes();
+    }
 
     public void ApplySettings()
     {
-        // Apply to system
         Screen.fullScreen = pendingFullscreen;
-        AudioListener.volume = pendingVolume;
 
-        // Save to PlayerPrefs
         PlayerPrefs.SetInt(FullscreenKey, pendingFullscreen ? 1 : 0);
-        PlayerPrefs.SetFloat(VolumeKey, pendingVolume);
+        PlayerPrefs.SetFloat(MasterVolumeKey, pendingMasterVolume);
+        PlayerPrefs.SetFloat(SFXVolumeKey, pendingSfxVolume);
+        PlayerPrefs.SetFloat(MusicVolumeKey, pendingMusicVolume);
 
-        // NYTT: Spara valt språk i PlayerPrefs
         int localeIndex = LocalizationSettings.AvailableLocales.Locales.IndexOf(LocalizationSettings.SelectedLocale);
         PlayerPrefs.SetInt(LanguageKey, localeIndex);
 
@@ -98,11 +116,24 @@ public class Settings : MonoBehaviour
 
     public void ResetSettings()
     {
-        // Återställ till standard
-        pendingFullscreen = false;      // Fönsterläge av
-        pendingVolume = 1.0f;           // Max volym
+        pendingFullscreen = false;
+        fullscreenToggleText.text = "Off";
 
-        // NYTT: Återställ språk till engelska (index 0 antaget engelska)
+        pendingMasterVolume = 1f;
+        pendingSfxVolume = 1f;
+        pendingMusicVolume = 1f;
+
+        MasterVolumeSlider.value = pendingMasterVolume;
+        SFXVolumeSlider.value = pendingSfxVolume;
+        MusicVolumeSlider.value = pendingMusicVolume;
+
+        UpdateAllVolumes();
+
+        PlayerPrefs.SetInt(FullscreenKey, 0);
+        PlayerPrefs.SetFloat(MasterVolumeKey, 1f);
+        PlayerPrefs.SetFloat(SFXVolumeKey, 1f);
+        PlayerPrefs.SetFloat(MusicVolumeKey, 1f);
+
         var locales = LocalizationSettings.AvailableLocales.Locales;
         if (locales.Count > 0)
         {
@@ -110,38 +141,26 @@ public class Settings : MonoBehaviour
             PlayerPrefs.SetInt(LanguageKey, 0);
         }
 
-        // Tillämpa direkt
-        Screen.fullScreen = pendingFullscreen;
-        AudioListener.volume = pendingVolume;
-
-        // Uppdatera UI
-        fullscreenToggleText.text = "Off";
-        volumeSlider.value = pendingVolume;
-
-        // Spara till PlayerPrefs
-        PlayerPrefs.SetInt(FullscreenKey, 0);
-        PlayerPrefs.SetFloat(VolumeKey, 1.0f);
         PlayerPrefs.Save();
-
-        Debug.Log("Settings have been reset to default.");
     }
 
-    // === UI Event Binding ===
-    private void AddListeners()
+    private void OnEnable()
     {
         fullscreenToggle?.onClick.AddListener(ToggleFullscreen);
-        volumeSlider?.onValueChanged.AddListener(OnVolumeChanged);
+        MasterVolumeSlider?.onValueChanged.AddListener(OnMasterVolumeChanged);
+        SFXVolumeSlider?.onValueChanged.AddListener(OnSfxVolumeChanged);
+        MusicVolumeSlider?.onValueChanged.AddListener(OnMusicVolumeChanged);
         applyButton?.onClick.AddListener(ApplySettings);
-
-        resetButton?.onClick.AddListener(ResetSettings);  // Här kopplar vi reset-knappen!
+        resetButton?.onClick.AddListener(ResetSettings);
     }
 
-    private void RemoveListeners()
+    private void OnDisable()
     {
         fullscreenToggle?.onClick.RemoveListener(ToggleFullscreen);
-        volumeSlider?.onValueChanged.RemoveListener(OnVolumeChanged);
+        MasterVolumeSlider?.onValueChanged.RemoveListener(OnMasterVolumeChanged);
+        SFXVolumeSlider?.onValueChanged.RemoveListener(OnSfxVolumeChanged);
+        MusicVolumeSlider?.onValueChanged.RemoveListener(OnMusicVolumeChanged);
         applyButton?.onClick.RemoveListener(ApplySettings);
-
         resetButton?.onClick.RemoveListener(ResetSettings);
     }
 }

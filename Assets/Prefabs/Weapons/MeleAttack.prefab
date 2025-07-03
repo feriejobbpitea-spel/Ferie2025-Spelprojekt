@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7299662943457944405}
@@ -187,3 +187,4 @@ MonoBehaviour:
   attackCooldown: 1
   attackAnimationDuration: 0.5
   playerAnimator: {fileID: 0}
+  swingSound: {fileID: 8300000, guid: 8c08180ce28a045409ad2ec802767b5c, type: 3}

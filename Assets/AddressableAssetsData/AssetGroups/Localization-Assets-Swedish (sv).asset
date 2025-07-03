@@ -21,8 +21,44 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28c39ed90ff761f4387997db6075e353
+    m_Address: JagHarIngenAningOmVad
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3b600478776b93045b91e1e689613f60
     m_Address: boss music start
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a9754daa1055cb4080b6f1a58b8e86f
+    m_Address: HanStodInteUtMed
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87fbb969c981bca46a17683a229d4ad4
+    m_Address: Dessutom
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a13b561206088814ba858bb6c3fff6ff
+    m_Address: "AlltDeG\xF6r\xC4rAtt"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e05239c0780beb7448ffb67bf7f1a4dc
+    m_Address: "FarfarVarTr\xF6tt"
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f91c62514b396b44f82fbb9292588509
+    m_Address: "Vid13\xC5rs\xC5lder"
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv

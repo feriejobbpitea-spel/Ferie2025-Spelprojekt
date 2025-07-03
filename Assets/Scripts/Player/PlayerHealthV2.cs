@@ -40,11 +40,12 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
     public Vector2 boxCastSizeE = new Vector2(1f, 1.5f);
     public float boxCastDistanceE = 0.1f;
 
-    // 🔊 Ljud
     public AudioClip hurtSound;
     private AudioSource audioSource;
 
     public InventoryManager inventoryManager;
+
+    private Vector3 lastSafePosition;
 
     void Start()
     {
@@ -55,30 +56,41 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         currentLives = maxLives;
         UpdateHearts();
 
-        // 🎵 Initiera ljudkälla
         audioSource = GetComponent<AudioSource>();
+
+        // Initiera startposition som säker
+        lastSafePosition = transform.position;
     }
 
     void Update()
     {
-        float jumpforce = GetComponent<Movement>().jumpForce;
+        float jumpforce = movementScript.jumpForce;
         Vector2 origin = rb.position;
         Vector2 direction = Vector2.right * Mathf.Sign(transform.localScale.x);
 
         RaycastHit2D hitT = Physics2D.BoxCast(origin, boxCastSizeT, 0f, direction, boxCastDistanceT, trapLayer);
         RaycastHit2D hitE = Physics2D.BoxCast(origin, boxCastSizeE, 0f, direction, boxCastDistanceE, enemyLayer);
 
+        if (movementScript.isGrounded)
+        {
+            lastSafePosition = transform.position;
+        }
+
         if (hitT.collider != null)
         {
             Vector3 hitPoint = hitT.point;
             Vector3 playerPosition = transform.position;
 
-            if (playerPosition.y > hitPoint.y + 0.48f)
+            
+            if (currentLives >= 2)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpforce * 3 / 5);
-            }
-
+                Debug.Log(currentLives);
+                TeleportToLastSafePosition();
+            } 
+            
             LoseLife();
+            Debug.Log(currentLives);
+
         }
 
         if (hitE.collider != null)
@@ -86,10 +98,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             LoseLife();
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            AddLife();
-        }
+        if (Input.GetKeyDown(KeyCode.J)) AddLife();
 
         bool isGrounded = movementScript.isGrounded;
 
@@ -130,8 +139,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
     {
         if (isInvincible) return;
 
-        PlaySound(hurtSound); // 🔊 Spela skadeljud
-
+        PlaySound(hurtSound);
         CameraFollow.Instance?.TriggerShake(0.15f, 0.2f);
 
         currentLives--;
@@ -186,7 +194,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
 
     void Die()
     {
-        PlaySound(hurtSound); // 🔊 Spela dödsljud
+        PlaySound(hurtSound);
 
         if (maxLives == 1)
             gameOver.gameObject.SetActive(true);
@@ -239,12 +247,36 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         gameOver.gameObject.SetActive(false);
     }
 
-    // 🔊 Hjälpfunktion för att spela ljud
     private void PlaySound(AudioClip clip)
     {
         if (clip != null && audioSource != null)
         {
             audioSource.PlayOneShot(clip);
+        }
+    }
+
+    private void TeleportToLastSafePosition()
+    {
+        transform.position = lastSafePosition;
+        Debug.Log($"Teleporterad till senaste säkra plats: {lastSafePosition}");
+
+        // 🔒 Lås rörelse i 0.2 sekunder
+        StartCoroutine(LockMovementTemporarily(0.2f));
+    }
+
+    private IEnumerator LockMovementTemporarily(float duration)
+    {
+        if (movementScript != null)
+        {
+            movementScript.enabled = false;
+            rb.linearVelocity = Vector2.zero;
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        if (movementScript != null)
+        {
+            movementScript.enabled = true;
         }
     }
 }
