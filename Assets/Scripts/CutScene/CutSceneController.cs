@@ -30,6 +30,8 @@ public class CutSceneController : MonoBehaviour
     public TextMeshProUGUI continueTextLabel;
     public TextMeshProUGUI skipTextLabel;
 
+    private bool isSceneLoading = false;
+
     public string TableReference = "Cut Scene Dialog"; // NY: Tabellreferens för lokalisering
 
     [Header("Audio")]
@@ -95,7 +97,7 @@ public class CutSceneController : MonoBehaviour
                 skipProgressBar.fillAmount = 0f;
         }
 
-        if (Input.GetKeyDown(nextSlideKey) && !isFading && canContinue)
+if (Input.GetKeyDown(nextSlideKey) && !isFading && canContinue)
         {
             currentSlideIndex++;
             if (currentSlideIndex < slides.Length)
@@ -104,7 +106,11 @@ public class CutSceneController : MonoBehaviour
             }
             else
             {
-                SceneLoader.Instance.LoadScene(sceneToLoadAfterCutscene); // NYTT
+                if (!isSceneLoading)
+                {
+                    isSceneLoading = true;
+                    SceneLoader.Instance.LoadScene(sceneToLoadAfterCutscene);
+                }
             }
         }
     }

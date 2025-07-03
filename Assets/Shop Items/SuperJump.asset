@@ -21,7 +21,7 @@ MonoBehaviour:
     m_FallbackState: 0
     m_WaitForCompletion: 0
     m_LocalVariables: []
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: -2307006551632423868, guid: c3d01a8fb8728f64b924901239224b0a, type: 3}
   itemCost: 5
   itemType: 0
   internalID: SuperJump
