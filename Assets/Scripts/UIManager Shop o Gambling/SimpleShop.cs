@@ -1,4 +1,4 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -17,8 +17,15 @@ public class SimpleShop : Singleton<SimpleShop>
     public TMP_Text playerMoneyText;
     public TMP_Text feedbackText;
 
+    [Header("Ljud")]
+    public AudioClip purchaseSound;
+    private AudioSource audioSource;
+
     void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+
         BuildShop();
     }
 
@@ -111,7 +118,13 @@ public class SimpleShop : Singleton<SimpleShop>
             case "Heart":
                 PlayerHealthV2.Instance.AddLife(); break;
             default:
-                Debug.LogWarning("Ok�nt f�rem�l: " + item.internalID); break;
+                Debug.LogWarning("Okänt föremål: " + item.internalID); break;
+        }
+
+        // 🔊 Spela upp köp-ljud
+        if (purchaseSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(purchaseSound);
         }
 
         ShowLocalizedFeedback("shop.purchase.success", item.ItemName.GetLocalizedString());
