@@ -74,7 +74,7 @@ public class Shop : MonoBehaviour
         ShopHUDHandler.CloseShopHUD();
         DialogueHandler.PlayExitShopDialogue();
 
-        PlayerMoney.Instance.UpdateMoneyUI();
+        PlayerMoney.Instance.UpdateMoneyUIInstant();
 
         // Spawna tillbaka vapnet när du lämnar shoppen
         RespawnSavedWeapon();
@@ -96,6 +96,7 @@ public class Shop : MonoBehaviour
         {
             Debug.Log($"Gav {itemToGive.itemName} till shoppen.");
             InventoryManager.Instance.AddConfettiGun();
+            DialogueHandler.UseAlternativeRandomDialogue = true;
         }
         else
         {

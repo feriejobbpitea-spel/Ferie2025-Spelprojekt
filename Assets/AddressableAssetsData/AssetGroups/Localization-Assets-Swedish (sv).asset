@@ -33,12 +33,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 17cc6e9a403f70b47a8c272f5becbd44
-    m_Address: boss music loop
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2416b309d79627b44ab8ad861ad8a182
     m_Address: "MerKanDuV\xE4ll"
     m_ReadOnly: 1
@@ -53,12 +47,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 32a4a997f15890540938355b50abf599
     m_Address: "DenH\xE4rF\xF6ljerDigHem"
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3b600478776b93045b91e1e689613f60
-    m_Address: boss music start
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv

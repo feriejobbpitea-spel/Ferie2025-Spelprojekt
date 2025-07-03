@@ -15,6 +15,10 @@ MonoBehaviour:
   biomeName: Grass
   backgroundColor: {r: 0.21568629, g: 0.41176474, b: 0.7254902, a: 1}
   HeartUI: {fileID: 2150585771334873267, guid: 575c31afa4014004eb5edfcd6f1a8e76, type: 3}
-  layer1: {fileID: 0}
-  layer2: {fileID: 0}
-  layer3: {fileID: 0}
+  parallaxTint: {r: 1, g: 1, b: 1, a: 1}
+  layers:
+  - {fileID: 21300000, guid: bab7010657b08db4ebe00ab0629a092c, type: 3}
+  - {fileID: 21300000, guid: 71e02c4d24f43b44cb67e434fd8a6b27, type: 3}
+  - {fileID: 21300000, guid: fe259b24d1aa6d04bb43a4d1d36a895b, type: 3}
+  - {fileID: 21300000, guid: 7aa78742db0ee214ea45405cd7b4654a, type: 3}
+  - {fileID: 21300000, guid: c6f1c0b98cb7bf149abcffcb0153a5e2, type: 3}

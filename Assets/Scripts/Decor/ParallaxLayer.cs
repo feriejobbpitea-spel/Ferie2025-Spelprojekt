@@ -7,7 +7,6 @@ public class ParallaxLayer : MonoBehaviour
     public float parallaxFactor = 0.5f;
     public Transform cameraTransform;
     public GameObject tilePrefab;
-    public int SortingOrder = -10;
     public float Scale = 10;
     public float TransitionDuration = 0.5f; // Duration for sprite transition
 
@@ -55,7 +54,6 @@ public class ParallaxLayer : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 deltaMovement = cameraTransform.position - lastCameraPosition;
-        transform.position += new Vector3(deltaMovement.x * parallaxFactor, 0, 0);
         lastCameraPosition = cameraTransform.position;
 
         float camLeftEdge = cameraTransform.position.x - Camera.main.orthographicSize * Camera.main.aspect;
@@ -64,6 +62,9 @@ public class ParallaxLayer : MonoBehaviour
         for (int i = 0; i < tiles.Count; i++)
         {
             Transform tile = tiles[i];
+
+            // Apply parallax movement
+            tile.position += new Vector3(deltaMovement.x * parallaxFactor, 0f, 0f);
 
             // Always match camera Y
             tile.position = new Vector3(tile.position.x, cameraTransform.position.y, tile.position.z);
@@ -80,8 +81,8 @@ public class ParallaxLayer : MonoBehaviour
                 tile.position = new Vector3(leftMostX - spriteWidth, cameraTransform.position.y, tile.position.z);
             }
         }
-
     }
+
 
     private float GetLeftMostTileX()
     {
@@ -101,10 +102,19 @@ public class ParallaxLayer : MonoBehaviour
         return maxX;
     }
 
-
-    public void SetSprite(Sprite newSprite)
+    public void SetSortingLayer(int sorting) 
     {
-        spriteWidth = newSprite.bounds.size.x * Scale;
+        foreach (var item in tiles)
+        {
+            item.GetComponent<SpriteRenderer>().sortingOrder = sorting; // Set to your desired sorting layer
+        }
+    }
+    public void SetSprite(Sprite newSprite, Color tint)
+    {
+        if (newSprite != null)
+        {
+            spriteWidth = newSprite.bounds.size.x * Scale;
+        }
 
         for (int i = 0; i < tiles.Count; i++)
         {
@@ -113,27 +123,46 @@ public class ParallaxLayer : MonoBehaviour
 
             if (sr != null)
             {
-                // Create a temporary GameObject for fading old sprite
-                GameObject fadeObj = new GameObject("FadeSprite");
-                fadeObj.transform.SetParent(tile);
-                fadeObj.transform.localPosition = Vector3.zero;
-                fadeObj.transform.localRotation = Quaternion.identity;
-                fadeObj.transform.localScale = Vector3.one;
+                if (newSprite != null)
+                {
+                    // Setup fade-out of old sprite if any
+                    if (sr.sprite != null)
+                    {
+                        GameObject fadeObj = new GameObject("FadeSprite");
+                        fadeObj.transform.SetParent(tile);
+                        fadeObj.transform.localPosition = Vector3.zero;
+                        fadeObj.transform.localRotation = Quaternion.identity;
+                        fadeObj.transform.localScale = Vector3.one;
 
-                SpriteRenderer fadeSr = fadeObj.AddComponent<SpriteRenderer>();
-                fadeSr.sprite = sr.sprite;            // old sprite
-                fadeSr.sortingOrder = sr.sortingOrder - 1;
-                fadeSr.flipX = sr.flipX;
-                fadeSr.color = new Color(1, 1, 1, 1);
+                        SpriteRenderer fadeSr = fadeObj.AddComponent<SpriteRenderer>();
+                        fadeSr.sprite = sr.sprite;
+                        fadeSr.sortingOrder = sr.sortingOrder - 1;
+                        fadeSr.flipX = sr.flipX;
+                        fadeSr.color = sr.color;
 
-                // Tween alpha to 0, then destroy the fadeObj
-                fadeSr.DOFade(0, TransitionDuration).OnComplete(() => Destroy(fadeObj));
+                        fadeSr.DOFade(0, TransitionDuration).OnComplete(() => Destroy(fadeObj));
+                    }
 
-                // Update main sprite immediately
-                sr.sprite = newSprite;
-                sr.sortingOrder = SortingOrder;
-                sr.flipX = (i % 2 != 0);
-                sr.color = Color.white;  // reset color in case it was changed
+                    // Fade in new sprite
+                    sr.color = new Color(tint.r, tint.g, tint.b, 0);
+                    sr.sprite = newSprite;
+                    sr.flipX = (i % 2 != 0);
+
+                    sr.DOFade(tint.a, TransitionDuration); // fade in
+                }
+                else
+                {
+                    // New sprite is null — fade out current sprite then clear it
+                    if (sr.sprite != null)
+                    {
+                        // Fade out current sprite
+                        sr.DOFade(0, TransitionDuration).OnComplete(() =>
+                        {
+                            sr.sprite = null;
+                            sr.color = new Color(tint.r, tint.g, tint.b, 1f); // reset color tint alpha
+                        });
+                    }
+                }
             }
 
             tile.localScale = Vector3.one * Scale;

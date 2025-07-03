@@ -15,6 +15,8 @@ MonoBehaviour:
   biomeName: Cave
   backgroundColor: {r: 0.105882354, g: 0.1254902, b: 0.1882353, a: 1}
   HeartUI: {fileID: -7628474057703728873, guid: b32e8366b2bd78c4c978b01e86ce9e74, type: 3}
-  layer1: {fileID: 21300000, guid: 7464ee26309db4d4d98196ec75d786de, type: 3}
-  layer2: {fileID: 21300000, guid: 98cd5ac91d499cb439e4b6c7115afa61, type: 3}
-  layer3: {fileID: 21300000, guid: cb3740b30a6cc1942afc40814eb08bba, type: 3}
+  parallaxTint: {r: 0.27450982, g: 0.27450982, b: 0.27450982, a: 1}
+  layers:
+  - {fileID: 21300000, guid: cb3740b30a6cc1942afc40814eb08bba, type: 3}
+  - {fileID: 21300000, guid: 98cd5ac91d499cb439e4b6c7115afa61, type: 3}
+  - {fileID: 21300000, guid: 7464ee26309db4d4d98196ec75d786de, type: 3}

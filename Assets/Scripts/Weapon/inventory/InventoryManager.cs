@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,7 +46,6 @@ public class InventoryManager : Singleton<InventoryManager>
         inventoryIcons[0] = meleeIcon;
         WeaponSlot(0);
         UpdateInventoryUI();
-        WeaponSlot(0); 
     }
 
     public List<PickupItem> GetCollectedItems()
@@ -55,6 +55,13 @@ public class InventoryManager : Singleton<InventoryManager>
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.PageDown)) {
+            AddConfettiGun();
+            AddEmpGun();
+            AddRayGun();
+            AddSlingshot();
+        }
+        
         if (Input.GetKeyDown(GetBoundKey("WeaponSlot1"))) WeaponSlot(0);
         else if (Input.GetKeyDown(GetBoundKey("WeaponSlot2"))) WeaponSlot(1);
         else if (Input.GetKeyDown(GetBoundKey("WeaponSlot3"))) WeaponSlot(2);
@@ -142,27 +149,60 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         if (slots == null || slotHighlights == null) return;
 
+        // Disable all highlights first and reset scale
+        for (int i = 0; i < slotHighlights.Count; i++)
+        {
+            slotHighlights[i].transform.DOKill();
+            slotHighlights[i].SetActive(false);
+            slotHighlights[i].transform.localScale = Vector3.one;
+        }
+
         for (int i = 0; i < slots.Count; i++)
         {
             GameObject parentSlot = slots[i].transform.parent.gameObject;
 
-            if (inventoryIcons[i] != null)
+            // Only show the slot if we have a weapon assigned
+            if (inventoryWeapons[i] != null && inventoryIcons[i] != null)
             {
-                slots[i].sprite = inventoryIcons[i];
-                slots[i].color = Color.white;
+                Sprite newIcon = inventoryIcons[i];
+                Sprite currentIcon = slots[i].sprite;
+
                 parentSlot.SetActive(true);
 
-                if (i < slotHighlights.Count)
-                    slotHighlights[i].SetActive(i == activeSlotIndex);
+                if (currentIcon != newIcon)
+                {
+                    slots[i].sprite = newIcon;
+                    slots[i].color = new Color(1, 1, 1, 0);
+                    slots[i].DOFade(1f, 0.3f).SetEase(Ease.InOutQuad);
+                }
+                else
+                {
+                    slots[i].color = Color.white;
+                }
+
+                if (i == activeSlotIndex && i < slotHighlights.Count)
+                {
+                    slotHighlights[i].SetActive(true);
+                    slotHighlights[i].transform.localScale = Vector3.zero;
+                    slotHighlights[i].transform.DOScale(1.2f, 0.3f).SetEase(Ease.OutBack);
+                }
             }
             else
             {
-                slots[i].sprite = null;
-                slots[i].color = new Color(1, 1, 1, 0);
-                parentSlot.SetActive(false);
-
-                if (i < slotHighlights.Count)
-                    slotHighlights[i].SetActive(false);
+                // No weapon in slot — hide the slot UI immediately
+                if (slots[i].color.a > 0)
+                {
+                    slots[i].DOFade(0f, 0.3f).OnComplete(() =>
+                    {
+                        slots[i].sprite = null;
+                        parentSlot.SetActive(false);
+                    });
+                }
+                else
+                {
+                    slots[i].sprite = null;
+                    parentSlot.SetActive(false);
+                }
             }
         }
     }

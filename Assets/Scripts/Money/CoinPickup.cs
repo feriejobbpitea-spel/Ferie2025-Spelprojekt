@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class CoinPickup : MonoBehaviour
 {
+    public float moveSpeed = 5f; // speed at which coin moves toward player
+    public float pickupDistance = 3f; // speed at which coin moves toward player
+
     public int coinValue = 1;
     private bool _collected = false;
     private Animator _animator;
@@ -14,6 +17,8 @@ public class CoinPickup : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isBlinking = false;
 
+    private Transform player;
+
     [Header("Audio")]
     public AudioClip pickupSound;              // Dra in ljudfilen i Inspector
     private AudioSource audioSource;
@@ -23,6 +28,7 @@ public class CoinPickup : MonoBehaviour
         _animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
 
     private void Start()
@@ -33,6 +39,23 @@ public class CoinPickup : MonoBehaviour
         InvokeRepeating(nameof(Blink), lifetime - blinkDuration, 0.2f);
     }
 
+    private void Update()
+    {
+        if (_collected) return; // do not move if already collected
+
+        if (player == null) return;
+
+        float distance = Vector2.Distance(player.position, transform.position);
+        if (distance < pickupDistance)
+        {
+            if (TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
+            {
+                Vector2 direction = (player.position - transform.position).normalized;
+                rb.AddForce(direction * moveSpeed);
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!_collected && other.CompareTag("Player") && Time.time >= spawnTime + pickupDelay)
@@ -41,7 +64,6 @@ public class CoinPickup : MonoBehaviour
             {
                 Destroy(rb);
             }
-            Destroy(GetComponent<CircleCollider2D>());
             Collect();
         }
     }
@@ -54,7 +76,6 @@ public class CoinPickup : MonoBehaviour
             {
                 Destroy(rb);
             }
-            Destroy(GetComponent<CircleCollider2D>());
             Collect();
         }
     }
@@ -65,6 +86,7 @@ public class CoinPickup : MonoBehaviour
 
         CancelInvoke(nameof(SelfDestruct));
         CancelInvoke(nameof(Blink));
+        Destroy(GetComponent<CircleCollider2D>());
 
         if (spriteRenderer != null)
         {
@@ -84,7 +106,7 @@ public class CoinPickup : MonoBehaviour
 
         PlayerMoney.Instance.AddMoney(coinValue);
 
-        // Fördröj destruction så att ljudet hinner spelas upp
+        // Fï¿½rdrï¿½j destruction sï¿½ att ljudet hinner spelas upp
         Destroy(gameObject, 0.7f);
     }
 

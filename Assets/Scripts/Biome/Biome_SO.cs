@@ -8,7 +8,6 @@ public class Biome_SO : ScriptableObject
     public Sprite HeartUI;
 
     [Header("Parallax Layers")]
-    public Sprite layer1; // furthest (e.g. mountains)
-    public Sprite layer2; // middle (e.g. trees)
-    public Sprite layer3; // closest (e.g. bushes)
+    public Color parallaxTint = Color.white;
+    public Sprite[] layers;
 }
