@@ -16,22 +16,24 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: b8f403256989f9146bce84d2256096f8, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 8302204568147066882
   m_TableData:
   - m_Id: 5333254144
     m_Localized: DO YOU WANT A CIGGARETTE?
     m_Metadata:
       m_Items: []
   - m_Id: 7338131456
-    m_Localized: HURRY UP
+    m_Localized: HURRY UP!!!!!!!
     m_Metadata:
       m_Items: []
   - m_Id: 9246539776
-    m_Localized: TO SELL IS MY MOTTO
+    m_Localized: TO SELL IT'S MY MOTTO
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - rid: 8302204568147066882
   - m_Id: 11092033536
-    m_Localized: THANK YOU, IM GONNA PUT THAT IN MY NOTEBOOK
+    m_Localized: THANK YOU, IM GOING TO PUT THAT IN MY NOTEBOOK!
     m_Metadata:
       m_Items: []
   - m_Id: 531118620672
@@ -39,13 +41,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 566313025536
-    m_Localized: SO NIIIIIIIIICEEEEEE
+    m_Localized: SO NIIIIIIIIICEEEEEE!!!!!!!!
     m_Metadata:
       m_Items: []
   - m_Id: 612785913856
-    m_Localized: "S\xC5 J\xC4VLA LEJDDDDDD"
+    m_Localized: HURRY UPPP!!!
     m_Metadata:
       m_Items: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 8302204568147066882
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 9246539776
