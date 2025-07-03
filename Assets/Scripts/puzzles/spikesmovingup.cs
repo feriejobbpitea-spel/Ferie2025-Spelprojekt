@@ -39,9 +39,14 @@ public class spikesmovingup : MonoBehaviour
         moveUp = true;
     }
 
-    private void ResetPlatform()
+    public void ResetPlatform()
     {
         transform.position = startPos;
         moveUp = false;
+    }
+
+    public bool IsAtStartPosition()
+    {
+        return Vector3.Distance(transform.position, startPos) < 0.01f;
     }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
@@ -12,7 +12,7 @@ public class Shop : MonoBehaviour
     private bool _inShop = false;
     private Transform _player;
 
-    // Sparar vilket vapen som var aktivt innan shoppen öppnades
+    // Sparar vilket vapen som var aktivt innan shoppen Ã¶ppnades
     private GameObject _savedWeaponPrefab;
 
     private void Awake()
@@ -76,7 +76,7 @@ public class Shop : MonoBehaviour
 
         PlayerMoney.Instance.UpdateMoneyUIInstant();
 
-        // Spawna tillbaka vapnet när du lämnar shoppen
+        // Spawna tillbaka vapnet nÃ¤r du lÃ¤mnar shoppen
         RespawnSavedWeapon();
     }
 
@@ -121,7 +121,7 @@ public class Shop : MonoBehaviour
         {
             if (prefab == null) continue;
 
-            // Jämför namn (kan justeras om du har unika ID:n)
+            // JÃ¤mfÃ¶r namn (kan justeras om du har unika ID:n)
             if (currentWeapon.name.Contains(prefab.name))
             {
                 _savedWeaponPrefab = prefab;
@@ -156,3 +156,4 @@ public class Shop : MonoBehaviour
         _savedWeaponPrefab = null;
     }
 }
+

@@ -8,8 +8,13 @@ public class spikesmovinguptrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (!platform.IsAtStartPosition())
+            {
+                platform.ResetPlatform();
+            }
             platform.ActivatePlatform();
         }
     }
 }
+
 
