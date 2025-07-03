@@ -3,21 +3,27 @@ using TMPro;
 
 public class BestTimeDisplay : MonoBehaviour
 {
-    public TextMeshProUGUI bestTimeText;
+    [SerializeField] private TMP_Text bestTimeText; // Drag dit din TextMeshProUGUI
 
     void Start()
     {
-        float savedTime = PlayerPrefs.GetFloat("BestTime", -1f);
-
-        if (savedTime >= 0f)
+        if (bestTimeText == null)
         {
-            int minutes = Mathf.FloorToInt(savedTime / 60f);
-            int seconds = Mathf.FloorToInt(savedTime % 60f);
-            bestTimeText.text = $"Highscore: {minutes:00}:{seconds:00}";
+            Debug.LogError("BestTimeText är inte satt i BestTimeDisplay.");
+            return;
+        }
+
+        float savedBestTime = LevelTimer.GetBestTime();
+
+        Debug.Log($"[BestTimeDisplay] Hämtad tid från PlayerPrefs: {LevelTimer.FormatTime(savedBestTime)}");
+
+        if (savedBestTime > 0f)
+        {
+            bestTimeText.text = $"Best Time: {LevelTimer.FormatTime(savedBestTime)}";
         }
         else
         {
-            bestTimeText.text = "Highscore: --:--";
+            bestTimeText.text = "Best Time: --:--";
         }
     }
 }

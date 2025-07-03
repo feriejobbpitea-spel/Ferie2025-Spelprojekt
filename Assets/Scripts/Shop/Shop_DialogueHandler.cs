@@ -11,9 +11,12 @@ public class Shop_DialogueHandler : IShopDialogueHandler
     public string ShopKeeperName = "John";
     public Dialogue[] EnterShop;
     public Dialogue[] ExitShop;
-    public Dialogue[] AlternativeRandomDialogue;
     public Dialogue[] RandomDialogue;
     public Dialogue[] BuyItem; 
+
+    public Dialogue[] AlternativeEnterShop;
+    public Dialogue[] AlternativeExitShop;
+    public Dialogue[] AlternativeRandomDialogue;
 
     public Button TalkButton;
     public bool UseAlternativeRandomDialogue = false;
@@ -38,13 +41,29 @@ public class Shop_DialogueHandler : IShopDialogueHandler
     }
     public void PlayEnterShopDialogue()
     {
-        var dialogue = EnterShop[Random.Range(0, EnterShop.Length)];
+        Dialogue[] dialoguesToUse = UseAlternativeRandomDialogue ? AlternativeEnterShop : EnterShop;
+        string dialogueType = UseAlternativeRandomDialogue ? "alternative" : "standard";
+        if (dialoguesToUse.Length == 0)
+        {
+            Debug.LogWarning($"No {dialogueType} enter dialogue available.");
+            return;
+        }
+
+        var dialogue = dialoguesToUse[Random.Range(0, dialoguesToUse.Length)];
         ShopDialogueManager.Instance.StartCoroutine(PlayLocalizedDialogue(dialogue));
     }
 
     public void PlayExitShopDialogue()
     {
-        var dialogue = ExitShop[Random.Range(0, ExitShop.Length)];
+        Dialogue[] dialoguesToUse = UseAlternativeRandomDialogue ? AlternativeExitShop : ExitShop;
+        string dialogueType = UseAlternativeRandomDialogue ? "alternative" : "standard";
+        if (dialoguesToUse.Length == 0)
+        {
+            Debug.LogWarning($"No {dialogueType} exit dialogue available.");
+            return;
+        }
+
+        var dialogue = dialoguesToUse[Random.Range(0, dialoguesToUse.Length)];
         ShopDialogueManager.Instance.StartCoroutine(PlayLocalizedDialogue(dialogue));
     }
 

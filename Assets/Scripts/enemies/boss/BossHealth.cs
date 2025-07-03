@@ -37,8 +37,13 @@ public class BossHealth : EnemyHealth
 
         if (Animator != null)
         {
-            Animator.ResetTrigger("Hit"); // Rensar andra triggers om nödvändigt
+            Animator.ResetTrigger("Hit");
             Animator.SetTrigger("Die");
+        }
+
+        if (LevelTimer.Instance != null)
+        {
+            LevelTimer.Instance.StopTimer(); // Sparar automatiskt bästa tid
         }
 
         StartCoroutine(WaitForDeathAnimation());
@@ -51,7 +56,7 @@ public class BossHealth : EnemyHealth
 
     private IEnumerator WaitForDeathAnimation()
     {
-        yield return new WaitForSeconds(3f); // Anpassa efter hur lång animationen är
+        yield return new WaitForSeconds(3f); // Vänta på animationen
         SceneLoader.Instance.LoadScene(GameCompleteScene);
     }
 }

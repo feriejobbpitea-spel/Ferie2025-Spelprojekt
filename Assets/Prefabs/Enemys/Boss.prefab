@@ -609,6 +609,8 @@ MonoBehaviour:
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
+  shadow: {fileID: 689622958071179079, guid: cd66aaba3de4a2e4ab32247ff5d18a7b, type: 3}
+  shadowYPosition: 37
 --- !u!114 &8228788430379448623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,7 +757,6 @@ MonoBehaviour:
   freezeDuration: 1
   Animator: {fileID: 8197920517632837075}
   GameCompleteScene: CutScene slut
-  deathVoicelines: []
 --- !u!1 &4618493260406493589
 GameObject:
   m_ObjectHideFlags: 0
