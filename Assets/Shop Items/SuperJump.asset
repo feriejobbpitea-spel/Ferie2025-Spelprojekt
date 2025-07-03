@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4c7c1f54c7f3148abf91339b86e655, type: 3}
   m_Name: SuperJump
   m_EditorClassIdentifier: 
-  ItemName: Super jump
-  ItemSprite: {fileID: -379241700, guid: 2288ac988800fc144b9a0b00128c13a3, type: 3}
-  ItemCost: 0
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bda1490e3dfb1c14cbd8195d1b32cac4
+    m_TableEntryReference:
+      m_KeyId: 1051441553408
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemSprite: {fileID: 21300000, guid: 17a1523d2f531514987f2d01605c050b, type: 3}
+  itemCost: 5
   itemType: 0
-  isUnique: 0
   internalID: SuperJump
+  references:
+    version: 2
+    RefIds: []

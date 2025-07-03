@@ -1,8 +1,11 @@
 using UnityEngine;
+
 public class PlayerLadderClimb : MonoBehaviour
 {
     public float climbSpeed = 4f;
     public float jumpForce = 7f;
+    public AudioSource climbAudio;  // <-- Lägg till denna i Unity och tilldela ett ljud
+
     private Rigidbody2D rb;
     private bool isClimbing = false;
     private float inputVertical;
@@ -23,10 +26,24 @@ public class PlayerLadderClimb : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, inputVertical * climbSpeed);
             rb.gravityScale = 0f;
 
+            // Spela ljud om man rör sig upp eller ner på stegen
+            if (Mathf.Abs(inputVertical) > 0.1f)
+            {
+                if (!climbAudio.isPlaying)
+                    climbAudio.Play();
+            }
+            else
+            {
+                if (climbAudio.isPlaying)
+                    climbAudio.Stop();
+            }
+
             if (Input.GetButtonDown("Jump"))
             {
                 ExitLadder();
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                if (climbAudio.isPlaying)
+                    climbAudio.Stop();  // Stoppa ljudet direkt när man hoppar
             }
         }
     }
@@ -52,5 +69,8 @@ public class PlayerLadderClimb : MonoBehaviour
     {
         isClimbing = false;
         rb.gravityScale = originalGravity;
+        if (climbAudio.isPlaying)
+            climbAudio.Stop();  // Stoppa ljudet när man lämnar stegen
     }
 }
+

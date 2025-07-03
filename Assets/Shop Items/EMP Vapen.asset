@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4c7c1f54c7f3148abf91339b86e655, type: 3}
   m_Name: EMP Vapen
   m_EditorClassIdentifier: 
-  ItemName: EMP Vapen
-  ItemSprite: {fileID: -3424780418405362961, guid: 63abe869c9dfdb14aa5b2dd3bcbb33be, type: 3}
-  ItemCost: 1
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bda1490e3dfb1c14cbd8195d1b32cac4
+    m_TableEntryReference:
+      m_KeyId: 286870265856
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemSprite: {fileID: -3424780418405362961, guid: 63abe869c9dfdb14aa5b2dd3bcbb33be, type: 3}
+  itemCost: 1
   itemType: 0
-  isUnique: 1
   internalID: EmpGun
+  references:
+    version: 2
+    RefIds: []

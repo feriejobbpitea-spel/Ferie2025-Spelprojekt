@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4c7c1f54c7f3148abf91339b86e655, type: 3}
   m_Name: ExtraHeart
   m_EditorClassIdentifier: 
-  ItemName: "Extra Hj\xE4rta"
-  ItemSprite: {fileID: 2150585771334873267, guid: 575c31afa4014004eb5edfcd6f1a8e76, type: 3}
-  ItemCost: 4
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bda1490e3dfb1c14cbd8195d1b32cac4
+    m_TableEntryReference:
+      m_KeyId: 361361104896
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemSprite: {fileID: 2150585771334873267, guid: 575c31afa4014004eb5edfcd6f1a8e76, type: 3}
+  itemCost: 4
   itemType: 2
-  isUnique: 0
   internalID: Heart
+  references:
+    version: 2
+    RefIds: []

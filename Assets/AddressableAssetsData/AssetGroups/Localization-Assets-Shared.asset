@@ -123,6 +123,11 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bda1490e3dfb1c14cbd8195d1b32cac4
+    m_Address: Assets/Localization/Tables/ShopItems/Shop_Items Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bf7532d7834d4334c8b1a7a28690c6a3
     m_Address: AlbertTalk
     m_ReadOnly: 1

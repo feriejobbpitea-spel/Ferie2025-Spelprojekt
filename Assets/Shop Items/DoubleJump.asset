@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4c7c1f54c7f3148abf91339b86e655, type: 3}
   m_Name: DoubleJump
   m_EditorClassIdentifier: 
-  ItemName: Dubbel Hopp
-  ItemSprite: {fileID: -379241700, guid: 171d24b81158ed24cb6914155ede3bcb, type: 3}
-  ItemCost: 4
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bda1490e3dfb1c14cbd8195d1b32cac4
+    m_TableEntryReference:
+      m_KeyId: 67470417920
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemSprite: {fileID: 21300000, guid: 171d24b81158ed24cb6914155ede3bcb, type: 3}
+  itemCost: 4
   itemType: 1
-  isUnique: 1
   internalID: DoubleJump
+  references:
+    version: 2
+    RefIds: []

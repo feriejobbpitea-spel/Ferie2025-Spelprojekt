@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4c7c1f54c7f3148abf91339b86e655, type: 3}
   m_Name: Slangbella
   m_EditorClassIdentifier: 
-  ItemName: Slangbella
-  ItemSprite: {fileID: 7675122728916957637, guid: e24305870847dd24b9b35e100b455102, type: 3}
-  ItemCost: 3
+  itemName:
+    m_TableReference:
+      m_TableCollectionName: GUID:bda1490e3dfb1c14cbd8195d1b32cac4
+    m_TableEntryReference:
+      m_KeyId: 910852677632
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  itemSprite: {fileID: 2077936855, guid: 25dd7236479e53642b142790e5f883fb, type: 3}
+  itemCost: 3
   itemType: 0
-  isUnique: 1
   internalID: Slingshot
+  references:
+    version: 2
+    RefIds: []

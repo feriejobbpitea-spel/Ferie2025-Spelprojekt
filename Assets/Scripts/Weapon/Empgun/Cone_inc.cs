@@ -16,12 +16,15 @@ public class Cone_inc : MonoBehaviour
     [Header("Shooting")]
     public GameObject laserPrefab;
     public Transform firePoint;
+    public AudioClip shootSound; // Lägg till detta
+    private AudioSource audioSource; // Och detta
 
     private float _defaultFontSize;
 
     void Start()
     {
         _defaultFontSize = chargeText.fontSize;
+
         if (chargeSlider != null)
         {
             chargeSlider.minValue = 0f;
@@ -30,6 +33,13 @@ public class Cone_inc : MonoBehaviour
 
         if (sliderFillImage != null)
             sliderFillImage.color = normalColor;
+
+        // Hämta AudioSource-komponenten
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogWarning("Ingen AudioSource-komponent hittades på detta GameObject.");
+        }
     }
 
     void Update()
@@ -65,6 +75,12 @@ public class Cone_inc : MonoBehaviour
         if (laserPrefab != null && firePoint != null)
         {
             Instantiate(laserPrefab, firePoint.position, firePoint.rotation);
+
+            // Spela ljud
+            if (shootSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(shootSound);
+            }
         }
         else
         {
@@ -92,3 +108,4 @@ public class Cone_inc : MonoBehaviour
         }
     }
 }
+

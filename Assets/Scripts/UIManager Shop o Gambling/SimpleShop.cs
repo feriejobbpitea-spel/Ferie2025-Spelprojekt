@@ -1,8 +1,10 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.Settings;
 
 public class SimpleShop : Singleton<SimpleShop>
 {
@@ -13,11 +15,17 @@ public class SimpleShop : Singleton<SimpleShop>
     public GameObject itemPrefab;
     public Transform itemContainer;
     public TMP_Text playerMoneyText;
-
     public TMP_Text feedbackText;
+
+    [Header("Ljud")]
+    public AudioClip purchaseSound;
+    private AudioSource audioSource;
 
     void Start()
     {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+
         BuildShop();
     }
 
@@ -30,9 +38,9 @@ public class SimpleShop : Singleton<SimpleShop>
         {
             GameObject go = Instantiate(itemPrefab, itemContainer);
 
-            go.transform.Find("ItemName").GetComponent<TMP_Text>().text = item.ItemName;
-            go.transform.Find("ItemPrice").GetComponent<TMP_Text>().text = item.ItemCost + " datachips";
-            go.transform.Find("ItemHolder").Find("ItemIcon").GetComponent<Image>().sprite = item.ItemSprite;
+            go.transform.Find("ItemHolder").Find("ItemIcon").GetComponent<Image>().sprite = item.itemSprite;
+            go.transform.Find("ItemPrice").GetComponent<TMP_Text>().text = $"{item.itemCost} Datachips";
+            go.transform.Find("ItemName").GetComponent<TMP_Text>().text = $"{item.ItemName.GetLocalizedString()}";
 
             Button buyButton = go.transform.Find("BuyButton")?.GetComponent<Button>();
             if (buyButton != null)
@@ -57,29 +65,38 @@ public class SimpleShop : Singleton<SimpleShop>
         ClearFeedback();
     }
 
+    void SetLocalizedText(LocalizeStringEvent localizeEvent, string key)
+    {
+        if (localizeEvent != null)
+        {
+            localizeEvent.StringReference.TableEntryReference = key;
+            localizeEvent.RefreshString();
+        }
+    }
+
+
     void BuyItem(ShopItem_SO item)
     {
-        if (PlayerMoney.Instance.money < item.ItemCost)
+        if (PlayerMoney.Instance.money < item.itemCost)
         {
-            ShowFeedback("Inte tillräckligt med pengar!");
+            ShowLocalizedFeedback("shop.insufficient.money");
             return;
         }
 
         if (HasItemAlready(item.internalID))
         {
-            ShowFeedback("Du har redan denna!");
+            ShowLocalizedFeedback("shop.already.own");
             return;
         }
 
         if (item.itemType == ItemType.Weapon && !InventoryManager.Instance.HasInventorySpaceForWeapon())
         {
-            ShowFeedback("Ingen plats i inventory för fler vapen!");
+            ShowLocalizedFeedback("shop.no.inventory.space");
             return;
         }
 
-        PlayerMoney.Instance.money -= item.ItemCost;
-        UpdateMoneyUI();
-
+        PlayerMoney.Instance.money -= item.itemCost;
+        UpdateMoneyUI(true); // Animated update
 
         switch (item.internalID)
         {
@@ -102,22 +119,36 @@ public class SimpleShop : Singleton<SimpleShop>
             case "Heart":
                 PlayerHealthV2.Instance.AddLife(); break;
             default:
-                Debug.LogWarning("Okänt föremål: " + item.internalID); break;
+                Debug.LogWarning("OkÃ¤nt fÃ¶remÃ¥l: " + item.internalID); break;
         }
 
-        ShowFeedback("Du köpte: " + item.ItemName);
+        // ðŸ”Š Spela upp kÃ¶p-ljud
+        if (purchaseSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(purchaseSound);
+        }
+
+        ShowLocalizedFeedback("shop.purchase.success", item.ItemName.GetLocalizedString());
         BuildShop();
+    }
+
+    void ShowLocalizedFeedback(string key, string itemName = "")
+    {
+        if (feedbackText != null)
+        {
+            string localizedText = LocalizationSettings.StringDatabase.GetLocalizedString("ShopStrings", key).Replace("{item}", itemName);
+            feedbackText.text = localizedText;
+
+            feedbackText.DOKill();
+            feedbackText.alpha = 0;
+            feedbackText.DOFade(1f, 0.3f).SetEase(Ease.InOutQuad).SetUpdate(true);
+            CancelInvoke(nameof(ClearFeedback));
+            Invoke(nameof(ClearFeedback), 2f);
+        }
     }
 
     bool HasItemAlready(string internalID)
     {
-        GameObject player = GameObject.Find("Player");
-        if (player == null)
-        {
-            Debug.LogWarning("Player hittades inte!");
-            return false;
-        }
-
         var movement = Movement.Instance;
         var health = PlayerHealthV2.Instance;
 
@@ -146,8 +177,6 @@ public class SimpleShop : Singleton<SimpleShop>
         }
     }
 
-
-
     public void UpdateMoneyUI(bool animated = false)
     {
         if (playerMoneyText != null)
@@ -156,24 +185,10 @@ public class SimpleShop : Singleton<SimpleShop>
 
             if (animated)
             {
-                // Animate money text pop
-                playerMoneyText.transform.DOKill(); // Stop previous tweens
+                playerMoneyText.transform.DOKill();
                 playerMoneyText.transform.localScale = Vector3.one * 1.2f;
                 playerMoneyText.transform.DOScale(1f, 0.3f).SetUpdate(true).SetEase(Ease.OutBack);
             }
-        }
-    }
-
-    void ShowFeedback(string message)
-    {
-        if (feedbackText != null)
-        {
-            feedbackText.text = message;
-            feedbackText.DOKill();
-            feedbackText.alpha = 0;
-            feedbackText.DOFade(1f, 0.3f).SetEase(Ease.InOutQuad).SetUpdate(true);
-            CancelInvoke(nameof(ClearFeedback));
-            Invoke(nameof(ClearFeedback), 2f);
         }
     }
 
