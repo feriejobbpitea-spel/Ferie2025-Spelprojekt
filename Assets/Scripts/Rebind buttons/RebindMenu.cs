@@ -16,7 +16,7 @@ public class RebindMenu : MonoBehaviour
 
     private List<string> actions = new List<string> {
         "Jump", "Sprint", "Shoot", "Left", "Right", "SkipCutscene", "NextSlide",
-        "WeaponSlot1", "WeaponSlot2", "WeaponSlot3", "WeaponSlot4"
+        "WeaponSlot1", "WeaponSlot2", "WeaponSlot3", "WeaponSlot4", "WeaponSlot5", "Interact"
     };
 
     private bool isWaitingForKey = false;
@@ -37,7 +37,9 @@ public class RebindMenu : MonoBehaviour
         { "WeaponSlot1", KeyCode.Alpha1 },
         { "WeaponSlot2", KeyCode.Alpha2 },
         { "WeaponSlot3", KeyCode.Alpha3 },
-        { "WeaponSlot4", KeyCode.Alpha4 }
+        { "WeaponSlot4", KeyCode.Alpha4 },
+        { "WeaponSlot5", KeyCode.Alpha5 },
+        { "Interact", KeyCode.E}
     };
 
     void Start()

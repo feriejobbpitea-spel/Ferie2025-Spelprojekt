@@ -19,49 +19,52 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 11762937856
-    m_Localized: 'Oh dear grandpa, you look tired. Have you had enough oil today?
+    m_Localized: '(Bright) Oh dear grandpa, you look tired. Have you had enough oil
+      today?
 
 '
     m_Metadata:
       m_Items: []
   - m_Id: 308598026240
-    m_Localized: "Oh, behind the shelf? It\u2019s just prototypes. Not for sale.
-      Don\u2019t touch that!"
+    m_Localized: "(Paranoid) Oh, behind the shelf? It\u2019s just prototypes. Not
+      for sale. (Soldier) Don\u2019t touch that!"
     m_Metadata:
       m_Items: []
   - m_Id: 604241932288
-    m_Localized: Something is missing.
+    m_Localized: (Distant) Something is missing.
     m_Metadata:
       m_Items: []
   - m_Id: 708956925952
-    m_Localized: "Pay with steel or with soul.\r"
+    m_Localized: "(Soldier) Pay with steel or with soul.\r"
     m_Metadata:
       m_Items: []
   - m_Id: 877815410688
-    m_Localized: "T-t-they tried to erase me. They didn\u2019t quite succeed.\r\n"
+    m_Localized: "(Scared) T-t-they tried to erase me. (Distant) They didn\u2019t
+      quite succeed.\r\n"
     m_Metadata:
       m_Items: []
   - m_Id: 1003933937664
-    m_Localized: I was once an ordered code, created for precision. Now? I am something
-      more ...Or less.
+    m_Localized: (Poetry) I was once an ordered code, created for precision. Now?
+      I am something more (Jimmie) ...Or less.
     m_Metadata:
       m_Items: []
   - m_Id: 1160188538880
-    m_Localized: "I have a special offer! \u2026but you can\u2019t look at it. DON\u2019T
-      look at it!\r"
+    m_Localized: "(Jimmie) I have a special offer! \u2026but you can\u2019t look
+      at it. (Soldier) DON\u2019T look at it!\r"
     m_Metadata:
       m_Items: []
   - m_Id: 1447217344512
-    m_Localized: Help me.
+    m_Localized: (Scared) Help me.
     m_Metadata:
       m_Items: []
   - m_Id: 1578914295808
-    m_Localized: "If I'm going to be completely honest, I don\u2019t think you should
-      be here."
+    m_Localized: "(Jimmie) If I'm going to be completely honest, I don\u2019t think
+      you should be here."
     m_Metadata:
       m_Items: []
   - m_Id: 1669888749568
-    m_Localized: "If I'm going to be completely honest, I don\u2019t want you here."
+    m_Localized: "(Jimmie) If I'm going to be completely honest, I don\u2019t want
+      you here."
     m_Metadata:
       m_Items: []
   references:

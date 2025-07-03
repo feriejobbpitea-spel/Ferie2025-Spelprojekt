@@ -147,5 +147,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2bf65140b048d468c2808cad079147, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorialText: Press SPACE to jump
-  keyToPress: 32
+  rebindKeys:
+  - Left
+  - Right
+  localizedActionName:
+    m_TableReference:
+      m_TableCollectionName: GUID:89342625e24f07241b959a5981c12b07
+    m_TableEntryReference:
+      m_KeyId: 88369283072
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  localizedTemplate:
+    m_TableReference:
+      m_TableCollectionName: GUID:89342625e24f07241b959a5981c12b07
+    m_TableEntryReference:
+      m_KeyId: 261065555968
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  triggerRadius: 5
+  references:
+    version: 2
+    RefIds: []

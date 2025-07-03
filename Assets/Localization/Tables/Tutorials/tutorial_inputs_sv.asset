@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: tutorial_inputs_sv
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: sv
+  m_SharedData: {fileID: 11400000, guid: 89342625e24f07241b959a5981c12b07, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 88369283072
+    m_Localized: "r\xF6ra dig"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261065555968
+    m_Localized: "Tryck {0} f\xF6r att {1}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1162106912768
+    m_Localized: hoppa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2192026648576
+    m_Localized: attackera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4830608769024
+    m_Localized: springa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5186218639360
+    m_Localized: "Tryck {0} och r\xF6r dig mot v\xE4ggarna f\xF6r att v\xE4ggstudsa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7970582183936
+    m_Localized: interagera
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

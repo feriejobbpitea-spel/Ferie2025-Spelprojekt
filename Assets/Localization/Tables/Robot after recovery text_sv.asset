@@ -19,27 +19,30 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 32084340736
-    m_Localized: "Minnet... fabriken... r\xF6sten som sa att jag var hel. Du... du
-      hj\xE4lpte mig att minnas.\r\n"
+    m_Localized: "(Distant) Minnet... (Sad) fabriken... (Poesi) r\xF6sten som sa
+      att jag var hel. (Glad) Du... du hj\xE4lpte mig att minnas.!"
     m_Metadata:
       m_Items: []
   - m_Id: 366118711296
-    m_Localized: "Min kod \xE4r fortfarande trasig... men du fixade n\xE5got viktigt.\r\n"
+    m_Localized: "(Ledsen) Min kod \xE4r fortfarande trasig... (Glad) men du fixade
+      n\xE5got viktigt.\r\n"
     m_Metadata:
       m_Items: []
   - m_Id: 512101462016
-    m_Localized: "Tack, f\xF6r att du stannade kvar. De flesta k\xF6per och g\xE5r.
-      Du gav tillbaka n\xE5got som jag f\xF6rlorat f\xF6r m\xE5nga \xE5r sedan."
+    m_Localized: "(Glad) Tack, f\xF6r att du stannade kvar. (Distant)De flesta k\xF6per
+      och g\xE5r. (Glad) Du gav tillbaka n\xE5got som jag f\xF6rlorat f\xF6r m\xE5nga
+      \xE5r sedan."
     m_Metadata:
       m_Items: []
   - m_Id: 776351002624
-    m_Localized: "Jag trodde ingen skulle bry sig om mig till den niv\xE5n att de
-      tar sin tid att hj\xE4lpa mig. Det v\xE4rmer mitt hj\xE4rta av st\xE5l.\r\n"
+    m_Localized: "(Poesi) Jag trodde ingen skulle bry sig om mig till den niv\xE5n
+      att de tar sin tid att hj\xE4lpa mig. (Soldat) Det v\xE4rmer mitt hj\xE4rta
+      av st\xE5l.\r\n"
     m_Metadata:
       m_Items: []
   - m_Id: 951463194624
-    m_Localized: "Min familj betydde allt f\xF6r mig, det \xE4r jobbigt att inte
-      ha dem h\xE4r."
+    m_Localized: "(Ledsen) Min familj betydde allt f\xF6r mig, det \xE4r jobbigt
+      att inte ha dem h\xE4r."
     m_Metadata:
       m_Items: []
   references:

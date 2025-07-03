@@ -52,7 +52,7 @@ public class Movement : Singleton<Movement>
     public AudioClip walkSound;
     public AudioClip runSound;
     public AudioClip jumpSound;
-    public AudioClip landSound; // 👈 Nytt ljud för landning
+    public AudioClip landSound; 
     public AudioSource audioSource;
 
     private float walkSoundCooldown = 0.5f;
@@ -176,7 +176,7 @@ public class Movement : Singleton<Movement>
             {
                 OnJump?.Invoke();
                 PlayJumpTween();
-                if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
+                if (jumpSound != null) audioSource.PlayOneShot(jumpSound, 0.3F);
                 movement.y = bigJump ? bigJumpForce : jumpForce;
                 rb.linearVelocity = movement;  // Make sure to apply jump velocity immediately
             }
@@ -184,7 +184,7 @@ public class Movement : Singleton<Movement>
             {
                 OnJump?.Invoke();
                 PlayJumpTween();
-                if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
+                if (jumpSound != null) audioSource.PlayOneShot(jumpSound, 0.3F);
                 movement.y = bigJump ? bigJumpForce : jumpForce;
                 doubleJumpUsed = true;
                 rb.linearVelocity = movement;
@@ -193,7 +193,7 @@ public class Movement : Singleton<Movement>
             {
                 OnJump?.Invoke();
                 PlayJumpTween();
-                if (jumpSound != null) audioSource.PlayOneShot(jumpSound);
+                if (jumpSound != null) audioSource.PlayOneShot(jumpSound, 0.3F);
                 wallJumpTimer = wallJumpLockTime;
                 float direction = (!facingRight) ? 1f : -1f;
                 float xForce = direction * playerSpeed * 1f;
@@ -220,7 +220,7 @@ public class Movement : Singleton<Movement>
         if (isGrounded && !wasGrounded)
         {
             if (landSound != null)
-                audioSource.PlayOneShot(landSound);
+                audioSource.PlayOneShot(landSound, 0.2F);
         }
         wasGrounded = isGrounded;
 
@@ -253,7 +253,7 @@ public class Movement : Singleton<Movement>
             {
                 AudioClip clipToPlay = (isRunning > 1f) ? runSound : walkSound;
                 if (clipToPlay != null)
-                    audioSource.PlayOneShot(clipToPlay);
+                    audioSource.PlayOneShot(clipToPlay, 0.3F);
                 walkTimer = walkSoundCooldown;
             }
         }

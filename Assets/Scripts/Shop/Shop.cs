@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Shop : MonoBehaviour
     public Shop_PlayerVisibility PlayerHandler;
     public Shop_DialogueHandler DialogueHandler;
 
+
+    private Dictionary<string, KeyCode> keybinds = new Dictionary<string, KeyCode>();
     private bool _inShop = false;
     private Transform _player;
 
@@ -31,13 +34,13 @@ public class Shop : MonoBehaviour
             return;
 
         // Lämna shoppen med Escape
-        if (_inShop && Input.GetKeyDown(KeyCode.Escape))
+        if (_inShop && Input.GetKeyDown(GetKey("Cancel")))
         {
             ExitShop();
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(GetKey("Interact")))
         {
             if (_inShop)
             {
@@ -45,11 +48,27 @@ public class Shop : MonoBehaviour
             }
             else
             {
-                EnterShop();
                 TryGiveItemToShop();
+                EnterShop();
                 SimpleShop.Instance.UpdateMoneyUI();
             }
         }
+    }
+
+    private KeyCode GetKey(string action)
+    {
+        if (keybinds != null && keybinds.TryGetValue(action, out KeyCode key))
+        {
+            return key;
+        }
+
+        // Fallback defaults if not found in keybinds dictionary
+        return action switch
+        {
+            "Interact" => KeyCode.E,
+            "Cancel" => KeyCode.Escape,
+            _ => KeyCode.None,
+        };
     }
     private void Start()
     {

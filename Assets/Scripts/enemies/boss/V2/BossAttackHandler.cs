@@ -54,6 +54,7 @@ public class BossAttackHandler : MonoBehaviour
     [Header("Audio")]
     public AudioClip flySound;
     public AudioClip slamSound;
+    public AudioClip spikeSound;
     private AudioSource audioSource;
     private AudioSource voiceAudioSource; // separat för tal
 
@@ -176,7 +177,7 @@ public class BossAttackHandler : MonoBehaviour
         PlayRandomJumpVoiceline();
 
         if (flySound != null)
-            audioSource.PlayOneShot(flySound);
+            audioSource.PlayOneShot(flySound, 0.2F);
 
         
 
@@ -229,6 +230,7 @@ public class BossAttackHandler : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         StartCoroutine(SpawnEarthWaves());
+        CameraFollow.Instance.TriggerShake();
         yield return new WaitForSeconds(1f);
         stateController.SetState(BossState.Vulnerable);
     }
@@ -266,6 +268,7 @@ public class BossAttackHandler : MonoBehaviour
             StartCoroutine(DisappearEarthWave(earthWave));
             yield return new WaitForSeconds(delayBetweenWaves);
         }
+        audioSource.PlayOneShot(spikeSound);
     }
 
     private IEnumerator DisappearEarthWave(GameObject earthWave)
@@ -326,7 +329,8 @@ public class BossAttackHandler : MonoBehaviour
         {
             if (op.Status == AsyncOperationStatus.Succeeded && op.Result != null)
             {
-                voiceAudioSource.PlayOneShot(op.Result);
+                voiceAudioSource.clip = op.Result;
+                voiceAudioSource.Play();
             }
             else
             {

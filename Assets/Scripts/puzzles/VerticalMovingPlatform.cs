@@ -113,9 +113,9 @@ public class VerticalMovingPlatform : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.TryGetComponent(out EnemyHealth health))
         {
-            Destroy(collision.gameObject);
+            health.TakeDamage(999);
         }
         if (collision.gameObject.layer == LayerMask.NameToLayer("EnemyProjectiles"))
         {

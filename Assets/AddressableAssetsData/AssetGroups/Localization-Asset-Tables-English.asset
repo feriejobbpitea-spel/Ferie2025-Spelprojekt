@@ -14,13 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Asset-Tables-English
   m_GUID: 37de12ba109f12743bea8d42fe048cd1
-  m_SerializeEntries:
-  - m_GUID: 0cbe4e7c7699ee44f8b0bb5238859945
-    m_Address: Boss voicelines_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 4183d6c41c6d0a045bfcd722e875f937, type: 2}
   m_SchemaSet:

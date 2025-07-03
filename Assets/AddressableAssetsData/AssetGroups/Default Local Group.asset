@@ -21,12 +21,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 027e5e4bbfd9a5c49b72a9e636c9e942
-    m_Address: Shop_Items_sv
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 04cb99a1f2220e349a7cedb7fda21e42
     m_Address: "VarjeG\xE5ngJagFlyger"
     m_ReadOnly: 0
@@ -39,12 +33,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0d223727cc260924db84354a25ed92a2
-    m_Address: Shop 2 dialog_sv
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 11f2ff800b7e8224cb97bdfdd5909693
     m_Address: YouThinkThisIsEnough
     m_ReadOnly: 0
@@ -53,18 +41,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 14c3efde45850384586da7632d2f0fa1
     m_Address: Die
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1636d596b209b0f448a8b78fb76ebc26
-    m_Address: Robot after recovery text_sv
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 19130af9e6abca846aaffb7a3006e975
-    m_Address: Cutscene audio_en
     m_ReadOnly: 0
     m_SerializedLabels:
     - Locale-en
@@ -99,12 +75,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 43520e649745d0c4ead706a3c0eabec0
-    m_Address: Shop 2 dialog_en
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 44b5daa27688ea24994c7f0a8a1c0262
     m_Address: "DuKanInteG\xF6mmaDig"
     m_ReadOnly: 0
@@ -123,12 +93,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 508e9accdc6316d41a53cb5d784a41a3
-    m_Address: Cut Scene End Dialog_en
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 517c58facc797004abe8173148ef3141
     m_Address: IWillAlways
     m_ReadOnly: 0
@@ -143,12 +107,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 619cc1173e5935f49a36ee1f64ec068f
     m_Address: Inkommande
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 61a5aef252b59c642adabad576e1e9ca
-    m_Address: ShopDialogue translater_sv
     m_ReadOnly: 0
     m_SerializedLabels:
     - Locale-sv
@@ -207,18 +165,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 88eefdc7a25d7e74d89753c16975f10b
-    m_Address: Robot after recovery text_en
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8c47b81c0af8bc244a04f2b347a14ec8
-    m_Address: Cutscene audio_sv
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8f822c7295dcb2a4c9dee724bda41824
     m_Address: Nej
     m_ReadOnly: 0
@@ -236,12 +182,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a4fc2a8317b03fd43898fcbb2450a18c
-    m_Address: Cut Scene End Dialog_sv
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: accd53ec549595d4293669d1047f4b7a
     m_Address: "\xC4rDetAlltDuHar"
@@ -272,18 +212,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf26364d6511cf34c9df8556f3e711fd
-    m_Address: Shop_Items_en
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d8f62582dbb1248429e536ba60458c30
-    m_Address: ShopDialogue translater_en
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e39f8ad57504cd042b89ff039360bd14
     m_Address: TheyNeverCreatedMeToDie

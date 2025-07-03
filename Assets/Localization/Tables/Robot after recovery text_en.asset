@@ -19,29 +19,31 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 32084340736
-    m_Localized: "The memory\u2026 the factory\u2026 the voice that said I was whole.
-      You\u2026 helped me remember.\r"
+    m_Localized: "(Distant) The memory\u2026 (Ledsen) the factory\u2026 (Poetry)
+      the voice that said I was whole. (Happy) You\u2026 you helped me remember!\r"
     m_Metadata:
       m_Items: []
   - m_Id: 366118711296
-    m_Localized: My code is still broken. But you, you fixed something important.
+    m_Localized: (Sad) My code is still broken. (Glad) But you, you fixed something
+      important.
     m_Metadata:
       m_Items: []
   - m_Id: 512101462016
-    m_Localized: 'Thank you for sticking around. Most people buy and leave. But you
-      are different, you gave me something I lost a long time ago.
+    m_Localized: '(Happy) Thank you for sticking around. (Distant) Most people buy
+      and leave. (Happy) But you are different, you gave me something I lost a long
+      time ago.
 
 '
     m_Metadata:
       m_Items: []
   - m_Id: 776351002624
-    m_Localized: I thought no one would care about me to the point of taking the
-      time to help me. It warms my heart of steel.
+    m_Localized: (Poetry) I thought no one would care about me to the point of taking
+      the time to help me. (Solider) It warms my heart of steel.
     m_Metadata:
       m_Items: []
   - m_Id: 951463194624
-    m_Localized: 'My family meant the world to me, it''s a pain to not have them
-      here.
+    m_Localized: '(Sad) My family meant the world to me, it''s a pain to not have
+      them here.
 
 '
     m_Metadata:

@@ -59,7 +59,9 @@ public class BossHealth : EnemyHealth
     {
         yield return new WaitForSeconds(3f); // Vänta på animationen
 
-        if (InventoryManager.Instance.HasAllItemsAndPhoto())
+        bool hasAllItems = InventoryManager.Instance.HasAllItems();
+        Debug.Log($"Has all items: {hasAllItems}");
+        if (InventoryManager.Instance.HasAllItems())
         {
             SceneLoader.Instance.LoadScene(AltEnding);
         }

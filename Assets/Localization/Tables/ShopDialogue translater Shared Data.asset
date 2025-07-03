@@ -43,6 +43,10 @@ MonoBehaviour:
     m_Key: Entry7
     m_Metadata:
       m_Items: []
+  - m_Id: 2347707938652160
+    m_Key: "Tack s\xE5 mycket!"
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

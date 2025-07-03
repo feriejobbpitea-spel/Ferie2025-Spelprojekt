@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Text goes here
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3785087aff1a0364bb034eaeb939a4e8, type: 2}
-  m_sharedMaterial: {fileID: 451533831596330625, guid: 3785087aff1a0364bb034eaeb939a4e8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a61a4a8828fc5c349881bbf4da7bd854, type: 2}
+  m_sharedMaterial: {fileID: 4163177401038753236, guid: a61a4a8828fc5c349881bbf4da7bd854, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -517,7 +517,7 @@ MonoBehaviour:
   DialogueMenu: {fileID: 2012424137094833449}
   enterDuration: 0.1
   exitDuration: 0.1
-  typingSpeed: 0.05
+  typingSpeed: 0.02
 --- !u!82 &6968212654694456301
 AudioSource:
   m_ObjectHideFlags: 0
@@ -682,8 +682,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name of Person
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3785087aff1a0364bb034eaeb939a4e8, type: 2}
-  m_sharedMaterial: {fileID: 451533831596330625, guid: 3785087aff1a0364bb034eaeb939a4e8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a61a4a8828fc5c349881bbf4da7bd854, type: 2}
+  m_sharedMaterial: {fileID: 4163177401038753236, guid: a61a4a8828fc5c349881bbf4da7bd854, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

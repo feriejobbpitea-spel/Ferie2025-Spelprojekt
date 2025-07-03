@@ -7423,7 +7423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   climbSpeed: 4
   jumpForce: 7
-  climbAudio: {fileID: 0}
+  climbAudio: {fileID: 8531052822871432464}
 --- !u!82 &8531052822871432464
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17787,13 +17787,13 @@ MonoBehaviour:
   - {fileID: 5087835962631174177}
   - {fileID: 3507263305151625211}
   meleePrefab: {fileID: 4341737245077582509, guid: eee01e5f0c594eb4f9cdd8f8914c5262, type: 3}
-  meleeIcon: {fileID: -5730937193342837537, guid: a19045c04e88bdb4e8e90082e5a2eb6b, type: 3}
+  meleeIcon: {fileID: -1042706412, guid: b9a97eedf65a213459bab26fb93c010f, type: 3}
   empPrefab: {fileID: 6911513226552144701, guid: 12a06cdd4e466ac4b90d37210dd82d96, type: 3}
   empIcon: {fileID: -3424780418405362961, guid: 63abe869c9dfdb14aa5b2dd3bcbb33be, type: 3}
   rayGunPrefab: {fileID: 3689554879932518867, guid: 443c2d42229628e4cb1467e226420012, type: 3}
   rayGunIcon: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
   slingshotPrefab: {fileID: 2966429678390243854, guid: 93b3dcd5c4ad9ec498873bc1d960a856, type: 3}
-  slingshotIcon: {fileID: 7675122728916957637, guid: e24305870847dd24b9b35e100b455102, type: 3}
+  slingshotIcon: {fileID: -1464513429, guid: 89c74cffab7314f43bd7f189bc5bb716, type: 3}
   confettiGunPrefab: {fileID: 4441914280489922357, guid: b7eb7afe8cd51e242b8548a365b34fe6, type: 3}
   confettiGunIcon: {fileID: 21300000, guid: 3139102f4dde16245a99f67496d96825, type: 3}
   photo: {fileID: 2647891376398082828, guid: d2b56b464105e8f4298618ecaf9bbece, type: 3}

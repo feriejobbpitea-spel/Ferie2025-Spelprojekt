@@ -82,6 +82,11 @@ MonoBehaviour:
     - Locale-en
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89342625e24f07241b959a5981c12b07
+    m_Address: Assets/Localization/Tables/Tutorials/tutorial_inputs Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a0202b91544cfdc4494e16f21cb9707e
     m_Address: AlbertTalk07
     m_ReadOnly: 1

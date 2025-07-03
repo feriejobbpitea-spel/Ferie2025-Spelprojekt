@@ -37,22 +37,25 @@ public class PromptManager : Singleton<PromptManager>
         }
     }
 
-    public void ShowTutorial(string text, KeyCode keyToPress)
+    public void ShowTutorial(string text, KeyCode[] keysToPress)
     {
         if (tutorialPanel != null && tutorialTextComponent != null && canvasGroup != null)
         {
             tutorialPanel.SetActive(true);
             tutorialTextComponent.text = text;
-            currentKeyToPress = keyToPress;
             isShowing = true;
 
-            // Fade in
+            // Store the first key for now (could update logic later to support multiple key input)
+            currentKeyToPress = keysToPress != null && keysToPress.Length > 0 ? keysToPress[0] : KeyCode.None;
+
+            // Fade in animation
             canvasGroup.alpha = 0f;
             tutorialPanel.transform.localScale = Vector3.zero;
             tutorialPanel.transform.DOScale(Vector3.one, fadeDuration).SetEase(Ease.OutBack);
             canvasGroup.DOFade(1f, fadeDuration);
         }
     }
+
 
     public void HideTutorial()
     {

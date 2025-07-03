@@ -102,6 +102,7 @@ public class MeleeAttack : MonoBehaviour
             {
                 enemyHealth = results[i].GetComponentInChildren<EnemyHealth>();
             }
+            enemyHealth?.TakeDamage(damage);
         }
 
         StartCoroutine(EndAttackAfterDelay());

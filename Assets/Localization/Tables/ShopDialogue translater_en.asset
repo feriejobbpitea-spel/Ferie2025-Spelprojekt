@@ -48,6 +48,10 @@ MonoBehaviour:
     m_Localized: HURRY UPPP!!!
     m_Metadata:
       m_Items: []
+  - m_Id: 2347707938652160
+    m_Localized: Thank you, I'm going to put that in my notebook!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:

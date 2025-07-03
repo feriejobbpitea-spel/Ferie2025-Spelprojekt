@@ -514,6 +514,7 @@ MonoBehaviour:
     m_Bits: 64
   flySound: {fileID: 8300000, guid: 587f5148a66876a4d9960cfe326b3858, type: 3}
   slamSound: {fileID: 8300000, guid: 35145d82a1a97ee4d876c077d81dce68, type: 3}
+  spikeSound: {fileID: 8300000, guid: 215627d3b2f8e174ba223b6e2eb46d03, type: 3}
   slamVoicelines:
   - m_TableReference:
       m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2

@@ -46,6 +46,10 @@ MonoBehaviour:
     m_Localized: "S\xC5 J\xC4VLA LEJDDDDDD"
     m_Metadata:
       m_Items: []
+  - m_Id: 2347707938652160
+    m_Localized: "Tack s\xE5 mycket, det d\xE4r ska jag l\xE4gga i min minnesbok!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

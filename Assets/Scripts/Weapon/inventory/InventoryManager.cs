@@ -39,8 +39,8 @@ public class InventoryManager : Singleton<InventoryManager>
     public GameObject currentWeapon;
     private GameObject activeBeam;
 
-    private GameObject[] inventoryWeapons = new GameObject[4];
-    private Sprite[] inventoryIcons = new Sprite[4];
+    private GameObject[] inventoryWeapons = new GameObject[5];
+    private Sprite[] inventoryIcons = new Sprite[5];
 
     private int activeSlotIndex = 0;
 
@@ -74,6 +74,7 @@ public class InventoryManager : Singleton<InventoryManager>
         else if (Input.GetKeyDown(GetBoundKey("WeaponSlot2"))) WeaponSlot(1);
         else if (Input.GetKeyDown(GetBoundKey("WeaponSlot3"))) WeaponSlot(2);
         else if (Input.GetKeyDown(GetBoundKey("WeaponSlot4"))) WeaponSlot(3);
+        else if (Input.GetKeyDown(GetBoundKey("WeaponSlot5"))) WeaponSlot(4);
     }
 
     KeyCode GetBoundKey(string action)
@@ -90,6 +91,7 @@ public class InventoryManager : Singleton<InventoryManager>
             case "WeaponSlot2": return KeyCode.Alpha2;
             case "WeaponSlot3": return KeyCode.Alpha3;
             case "WeaponSlot4": return KeyCode.Alpha4;
+            case "WeaponSlot5": return KeyCode.Alpha5;
             default: return KeyCode.None;
         }
     }
@@ -339,9 +341,9 @@ public class InventoryManager : Singleton<InventoryManager>
         }
     }
 
-    public bool HasAllItemsAndPhoto()
+    public bool HasAllItems()
     {
-        return Foto != null && Foto.enabled && collectedItems.Count > 0;
+        return HasEmpGun() && HasRayGun() && HasSlingshot() && HasConfettiGun();
     }
 
 

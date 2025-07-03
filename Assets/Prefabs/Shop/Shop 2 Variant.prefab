@@ -113,13 +113,25 @@ PrefabInstance:
       value: Mortis
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.BuyItem.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.EnterShop.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.size
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.BuyItem.Array.data[0].AudioClip_English
+      value: 
+      objectReference: {fileID: 8300000, guid: 229485a6a9589ed44a4209eaed478614, type: 3}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.BuyItem.Array.data[0].AudioClip_Swedish
+      value: 
+      objectReference: {fileID: 8300000, guid: 229485a6a9589ed44a4209eaed478614, type: 3}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.ExitShop.Array.data[0].AudioClip_English
       value: 
@@ -209,6 +221,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 229485a6a9589ed44a4209eaed478614, type: 3}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.BuyItem.Array.data[0].LocalizedText.m_TableEntryReference.m_KeyId
+      value: 2051528470528
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.ExitShop.Array.data[0].LocalizedText.m_TableEntryReference.m_KeyId
       value: 88782942208
       objectReference: {fileID: 0}
@@ -251,6 +267,10 @@ PrefabInstance:
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[8].LocalizedText.m_TableEntryReference.m_KeyId
       value: 2051528470528
+      objectReference: {fileID: 0}
+    - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: DialogueHandler.BuyItem.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName
+      value: GUID:3b56f7140589dd04690597ea85d97a05
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.ExitShop.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName

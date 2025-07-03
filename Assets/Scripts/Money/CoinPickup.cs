@@ -35,8 +35,11 @@ public class CoinPickup : MonoBehaviour
     {
         spawnTime = Time.time;
 
-        Invoke(nameof(SelfDestruct), lifetime);
-        InvokeRepeating(nameof(Blink), lifetime - blinkDuration, 0.2f);
+        if (GetComponent<Rigidbody2D>() != null)
+        {
+            Invoke(nameof(SelfDestruct), lifetime);
+            InvokeRepeating(nameof(Blink), lifetime - blinkDuration, 0.2f);
+        }
     }
 
     private void Update()
