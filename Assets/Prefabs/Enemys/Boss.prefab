@@ -514,6 +514,101 @@ MonoBehaviour:
     m_Bits: 64
   flySound: {fileID: 8300000, guid: 587f5148a66876a4d9960cfe326b3858, type: 3}
   slamSound: {fileID: 8300000, guid: 35145d82a1a97ee4d876c077d81dce68, type: 3}
+  slamVoicelines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 44365447168
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 503109058560
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  jumpVoicelines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 1026986016768
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 1046317563904
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  throwVoicelines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 504853889024
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 506795851776
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 789022179328
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  tauntVoicelines:
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 1391793995776
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 1475604578304
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 1478699974656
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 1480742600704
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 1483439538176
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+  - m_TableReference:
+      m_TableCollectionName: GUID:f480b8b2595e8294c8b7bbc29cdefab2
+    m_TableEntryReference:
+      m_KeyId: 1564263776256
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
 --- !u!114 &8228788430379448623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,8 +752,10 @@ MonoBehaviour:
   spriteRendererOverride: {fileID: 3593701465027202884}
   damageSound: {fileID: 0}
   audioSource: {fileID: 0}
+  freezeDuration: 1
   Animator: {fileID: 8197920517632837075}
   GameCompleteScene: CutScene slut
+  deathVoicelines: []
 --- !u!1 &4618493260406493589
 GameObject:
   m_ObjectHideFlags: 0

@@ -61,7 +61,6 @@ public class CutSceneController : MonoBehaviour
         string savedSkipKey = PlayerPrefs.GetString("bind_SkipCutscene", KeyCode.Space.ToString());
         if (!System.Enum.TryParse(savedSkipKey, out skipKey)) skipKey = KeyCode.Space;
 
-        // Nästa slide: Standard är fortfarande Return
         string savedNextKey = PlayerPrefs.GetString("bind_NextSlide", KeyCode.Return.ToString());
         if (!System.Enum.TryParse(savedNextKey, out nextSlideKey)) nextSlideKey = KeyCode.Return;
 

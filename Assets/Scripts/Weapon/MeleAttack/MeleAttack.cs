@@ -3,14 +3,15 @@ using System.Collections;
 
 public class MeleeAttack : MonoBehaviour
 {
+    [Header("Attack Settings")]
     public GameObject hitArea;
     public LayerMask enemyLayer;
     public int damage = 10;
     public float attackCooldown = 1f;
     public float attackAnimationDuration = 0.5f;
 
+    [Header("Components")]
     public Animator playerAnimator;  // Animator på spelaren
-
     public AudioClip swingSound;     // Ljudklipp för sving
     private AudioSource audioSource; // AudioSource-komponent
 
@@ -33,6 +34,7 @@ public class MeleeAttack : MonoBehaviour
         {
             Debug.LogWarning("HitArea collider måste vara Is Trigger för att inte putta fiender!");
         }
+
         hitArea.SetActive(false);
 
         if (playerAnimator != null)
@@ -77,22 +79,23 @@ public class MeleeAttack : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-
             EnemyHealth enemy = results[i].GetComponent<EnemyHealth>();
             if (enemy != null)
             {
-                enemy.TakeDamage(damage);
-            } else { enemy = results[i].GetComponentInParent<BossHealth>();
-                if (enemy != null)
+                enemy.TakeDamage(damage); // Innebär också FreezeEnemy()
+            }
+            else
+            {
+                BossHealth boss = results[i].GetComponentInParent<BossHealth>();
+                if (boss != null)
                 {
-                    enemy.TakeDamage(damage);
+                    boss.TakeDamage(damage); // Denna bör också frysa om BossHealth är liknande
                 }
             }
         }
 
         StartCoroutine(EndAttackAfterDelay());
     }
-
 
     IEnumerator EndAttackAfterDelay()
     {
