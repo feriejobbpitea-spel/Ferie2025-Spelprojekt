@@ -140,9 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac5e2a93ad462d143894dbe1da92d3a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 2
+  pickupDistance: 7
   coinValue: 1
   pickupDelay: 0.1
-  lifetime: 5
+  lifetime: 7
   blinkDuration: 2
   pickupSound: {fileID: 8300000, guid: 5536256497e67854ca42dd14d421d861, type: 3}
 --- !u!95 &3713877745715595488
@@ -222,7 +224,7 @@ AudioSource:
   m_GameObject: {fileID: 5694571281342612559}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1358229087104834852, guid: 906efdd429563674bb7ee9e888bf5851, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

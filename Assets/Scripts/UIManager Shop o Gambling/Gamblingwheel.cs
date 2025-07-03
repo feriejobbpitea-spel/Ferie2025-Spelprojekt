@@ -8,7 +8,7 @@ public class Gamblingwheel : MonoBehaviour
     [Header("Wheel Settings")]
     public RectTransform wheel;
     public int segmentCount = 9;  // 9 segment i hjulet
-    public float spinDuration = 4f;
+    public float spinDuration = 2f;
 
     [Header("UI References")]
     public TMP_Text resultText;

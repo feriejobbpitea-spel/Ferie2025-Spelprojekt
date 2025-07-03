@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: "Cut Scene End dialog n\xE4r man \xE4ger allt_sv"
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: sv
+  m_SharedData: {fileID: 11400000, guid: 25f1993ac05ae5b40b8ccc258a0926f3, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 8726446080
+    m_Localized: "Med allting i sina h\xE4nder besegrade han AI. All makt farfar
+      har \xE4r bortom hans f\xF6rst\xE5nd."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10672603136
+    m_Localized: "Farfar h\xE5ller p\xE5 att bli galen. Farfar har tappat all kontroll.
+      Vi alla hade fel om han."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12446793728
+    m_Localized: "Stoppa han. Stoppa farfar. Stoppa han, nu. Innan det \xE4r f\xF6r
+      sent."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

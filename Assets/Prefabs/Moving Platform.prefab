@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6276257139220952745}
   m_Layer: 6
   m_Name: Moving Platform
-  m_TagString: Untagged
+  m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   maxXPosition: 10
+  hasBeenActivated: 0
 --- !u!50 &6276257139220952745
 Rigidbody2D:
   serializedVersion: 5

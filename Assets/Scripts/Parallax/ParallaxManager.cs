@@ -34,7 +34,7 @@ public class ParallaxManager : Singleton<ParallaxManager>
             layer.SetSprite(item, biome.parallaxTint);
 
             // Interpolate between max and min strength (max for layer 0, min for last layer)
-            layer.parallaxFactor = Mathf.Lerp(maxParallaxStrength, minParallaxStrength, t);
+            layer.parallaxFactor = Mathf.Lerp(minParallaxStrength, maxParallaxStrength, t);
             layer.SetSortingLayer(-100 - i);
         }
 

@@ -111,6 +111,13 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af49b523cef5eb544bb1ca0fe7f23305
+    m_Address: Acid
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b8f403256989f9146bce84d2256096f8
     m_Address: Assets/Localization/Tables/ShopDialogue translater Shared Data.asset
     m_ReadOnly: 1
@@ -151,6 +158,17 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec7888c02530ecb44b922d0dc3987649
+    m_Address: Assets/Localization/Tables/Cut Scene Audio/Cutscene voice lines own
+      evrything Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f480b8b2595e8294c8b7bbc29cdefab2
+    m_Address: Assets/Localization/Tables/Boss voice lines Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f6bcdd298c112cc41a922a9220502aec
     m_Address: AlbertRandom

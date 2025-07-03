@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fac74cb1ec35b4f8b8fb8a97b12370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackForce: 0.1
+  knockbackForce: 0
   globalCooldownTime: 1
   lineRenderer: {fileID: 5664562773184347661}
   firePoint: {fileID: 2178608462338326662}
@@ -90,7 +90,7 @@ AudioSource:
   m_GameObject: {fileID: 3689554879932518867}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1358229087104834852, guid: 906efdd429563674bb7ee9e888bf5851, type: 2}
   m_audioClip: {fileID: 8300000, guid: 72fc822047664e64f9fbc331cc9032db, type: 3}
   m_Resource: {fileID: 8300000, guid: 72fc822047664e64f9fbc331cc9032db, type: 3}
   m_PlayOnAwake: 0

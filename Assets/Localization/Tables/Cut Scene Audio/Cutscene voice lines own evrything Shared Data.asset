@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Cutscene voice lines own evrything Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Cutscene voice lines own evrything
+  m_TableCollectionNameGuidString: ec7888c02530ecb44b922d0dc3987649
+  m_Entries:
+  - m_Id: 7270838272
+    m_Key: Witheverythingin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9095360512
+    m_Key: grandpaisgoinginsane
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11737772032
+    m_Key: Stoppahan
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items:
+    - rid: 8302204568147066988
+  m_KeyGenerator:
+    rid: 8302204568147066987
+  references:
+    version: 2
+    RefIds:
+    - rid: 8302204568147066987
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1751542749436
+    - rid: 8302204568147066988
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 7270838272
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 9095360512
+          m_TableCodes:
+          - en
+          - sv
+        - m_KeyId: 11737772032
+          m_TableCodes:
+          - en
+          - sv
+        m_TypeString: UnityEngine.AudioClip, UnityEngine.AudioModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null

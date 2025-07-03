@@ -53,7 +53,7 @@ MonoBehaviour:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cecef9d4df19edb4faa08f33ef2375bf
-    m_Address: Cut Scene End Dialog1_en
+    m_Address: "Cut Scene End dialog n\xE4r man \xE4ger allt_en"
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

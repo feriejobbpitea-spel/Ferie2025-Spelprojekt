@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using System.ComponentModel;
+using Unity.Mathematics;
 
 public class MeleeAttack : MonoBehaviour
 {
@@ -51,9 +53,20 @@ public class MeleeAttack : MonoBehaviour
             cooldownTimer = attackCooldown;
         }
     }
+    public GameObject airAttackEffectPrefab;
+    public Transform attackSpawnPoint; // T.ex. en empty GameObject vid sidan av spelaren
 
     void PerformAttack()
     {
+        GameObject.Instantiate(airAttackEffectPrefab, transform.position +new Vector3(1f,0), Quaternion.identity);
+        GameObject.Instantiate(airAttackEffectPrefab, transform.position- new Vector3(1f, 0), Quaternion.Euler(0,0,180));
+
+
+
+
+
+
+        Debug.Log("PerformAttack() called on ");
         if (playerAnimator != null)
         {
             playerAnimator.SetBool("isAttacking", true);
@@ -77,17 +90,17 @@ public class MeleeAttack : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
+            Debug.Log($"Hit {results[i].name} with MeleeAttack");
 
-            EnemyHealth enemy = results[i].GetComponent<EnemyHealth>();
-            if (enemy != null)
+            EnemyHealth enemyHealth = results[i].GetComponent<EnemyHealth>();
+            if (enemyHealth == null)
             {
-                enemy.TakeDamage(damage);
-            } else { enemy = results[i].GetComponentInParent<BossHealth>();
-                if (enemy != null)
-                {
-                    enemy.TakeDamage(damage);
-                }
+                enemyHealth = results[i].GetComponentInChildren<EnemyHealth>();
             }
+
+            enemyHealth?.TakeDamage(damage);
+
+
         }
 
         StartCoroutine(EndAttackAfterDelay());

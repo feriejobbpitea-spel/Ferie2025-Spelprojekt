@@ -207,7 +207,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -248,7 +248,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -10, y: 35}
+  m_AnchoredPosition: {x: -10, y: 45}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 1, y: 0}
 --- !u!1 &594626296
@@ -293,8 +293,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Filip
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3785087aff1a0364bb034eaeb939a4e8, type: 2}
-  m_sharedMaterial: {fileID: 451533831596330625, guid: 3785087aff1a0364bb034eaeb939a4e8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a61a4a8828fc5c349881bbf4da7bd854, type: 2}
+  m_sharedMaterial: {fileID: 4163177401038753236, guid: a61a4a8828fc5c349881bbf4da7bd854, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -318,12 +318,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
+  m_fontSize: 20
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 1
-  m_fontSizeMax: 30
+  m_fontSizeMax: 20
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
@@ -474,7 +474,7 @@ MonoBehaviour:
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
-  - image: {fileID: 2798047460436315396, guid: 33279788196df204ea745a7d869cad44, type: 3}
+  - image: {fileID: 21300000, guid: e06b02480ba53af4397a681f86ce0be6, type: 3}
     localizationKey: Element4_Key
     voiceLine:
       m_TableReference:
@@ -484,7 +484,7 @@ MonoBehaviour:
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
-  - image: {fileID: -3736903775432963038, guid: f2d1eae8d1dfd22428c741364ea3c964, type: 3}
+  - image: {fileID: 21300000, guid: 2d954d0e7a9e5f446b55a4ef79ad6676, type: 3}
     localizationKey: Element5_Key
     voiceLine:
       m_TableReference:
@@ -494,7 +494,7 @@ MonoBehaviour:
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
-  - image: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
+  - image: {fileID: -2307006551632423868, guid: f704bb26f448f2d48a73d62f4ca6f15f, type: 3}
     localizationKey: Element6_Key
     voiceLine:
       m_TableReference:
@@ -835,8 +835,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Hold BACKSPACE to skip
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3785087aff1a0364bb034eaeb939a4e8, type: 2}
-  m_sharedMaterial: {fileID: 451533831596330625, guid: 3785087aff1a0364bb034eaeb939a4e8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a61a4a8828fc5c349881bbf4da7bd854, type: 2}
+  m_sharedMaterial: {fileID: 4163177401038753236, guid: a61a4a8828fc5c349881bbf4da7bd854, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -1184,8 +1184,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press ENTER to Coninue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3785087aff1a0364bb034eaeb939a4e8, type: 2}
-  m_sharedMaterial: {fileID: 451533831596330625, guid: 3785087aff1a0364bb034eaeb939a4e8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a61a4a8828fc5c349881bbf4da7bd854, type: 2}
+  m_sharedMaterial: {fileID: 4163177401038753236, guid: a61a4a8828fc5c349881bbf4da7bd854, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1216,7 +1216,7 @@ MonoBehaviour:
   m_fontSizeMin: 1
   m_fontSizeMax: 15
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -1225,7 +1225,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -1277,7 +1277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -119.4, y: 0}
+  m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!225 &1567350317

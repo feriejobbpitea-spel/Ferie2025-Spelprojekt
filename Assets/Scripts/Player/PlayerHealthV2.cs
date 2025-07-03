@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -41,12 +42,15 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
     public Vector2 boxCastSizeE = new Vector2(1f, 1.5f);
     public float boxCastDistanceE = 0.1f;
 
+    public LayerMask groundLayer;
+
     public AudioClip hurtSound;
     private AudioSource audioSource;
 
     public InventoryManager inventoryManager;
 
     private Vector3 lastSafePosition;
+    private Transform currentMovingPlatform = null;
 
     void Start()
     {
@@ -59,13 +63,30 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
 
         audioSource = GetComponent<AudioSource>();
 
-        // Initiera startposition som säker
         lastSafePosition = transform.position;
     }
 
     void Update()
     {
-        float jumpforce = movementScript.jumpForce;
+        
+        if (currentMovingPlatform != null)
+        {
+            if (!currentMovingPlatform.GetComponent<SpriteRenderer>().enabled) { currentMovingPlatform = null; }
+
+
+            if (currentMovingPlatform.gameObject == null)
+            {
+                currentMovingPlatform = null;
+            }
+            else if (currentMovingPlatform.GetComponent<SpriteRenderer>() != null)
+            {
+                Debug.Log($"Current Moving Platform: {currentMovingPlatform.gameObject.activeInHierarchy}");
+                lastSafePosition = currentMovingPlatform.position;
+                lastSafePosition.y += 0.6f;
+            }
+
+        }
+       
         Vector2 origin = rb.position;
         Vector2 direction = Vector2.right * Mathf.Sign(transform.localScale.x);
 
@@ -79,18 +100,12 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
 
         if (hitT.collider != null)
         {
-            Vector3 hitPoint = hitT.point;
-            Vector3 playerPosition = transform.position;
-
-            
-            if (currentLives >= 2)
+            if (currentLives > 1 && !isInvincible)
             {
-/*                Debug.Log(currentLives);
-*/                TeleportToLastSafePosition();
-            } 
-            
+                SafeTeleportToLastSafePosition();
+                
+            }
             LoseLife();
-  /*          Debug.Log(currentLives);*/
 
         }
 
@@ -133,6 +148,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             }
         }
 
+        
         if (Input.GetKeyDown(KeyCode.H)) LoseLife();
     }
 
@@ -165,14 +181,8 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
 
     public void AddLife()
     {
-        if (maxLives < 4)
-        {
-            maxLives++;
-        }
-        if (currentLives < maxLives)
-        {
-            currentLives++;
-        }
+        if (maxLives < 4) maxLives++;
+        if (currentLives < maxLives) currentLives++;
         UpdateHearts();
         StartCoroutine(AnimateHeartWrapperGain());
     }
@@ -182,6 +192,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         for (int i = 0; i < hearts.Length; i++)
         {
             hearts[i].gameObject.SetActive(i < maxLives);
+            hearts[i].rectTransform.localScale = Vector3.one;
         }
 
         for (int i = 0; i < maxLives; i++)
@@ -207,11 +218,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         else
             death.gameObject.SetActive(true);
 
-        if (inventoryManager != null)
-        {
-            inventoryManager.DropWeaponOnDeath();
-        }
-
+        inventoryManager?.DropWeaponOnDeath();
         Time.timeScale = 0;
     }
 
@@ -261,12 +268,90 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         }
     }
 
-    private void TeleportToLastSafePosition()
+    private bool IsPositionFree(Vector2 position)
     {
-        transform.position = lastSafePosition;
-        Debug.Log($"Teleporterad till senaste säkra plats: {lastSafePosition}");
+        Collider2D playerCollider = GetComponent<Collider2D>();
+        if (playerCollider == null)
+        {
+            Debug.LogError("❌ Spelar-collider saknas!");
+            return false;
+        }
 
-        StartCoroutine(LockMovementTemporarily(0.2f));
+        Vector2 size = playerCollider.bounds.size * 0.85f;
+        Collider2D[] hits = Physics2D.OverlapBoxAll(position, size, 0f, groundLayer);
+
+        foreach (Collider2D hit in hits)
+        {
+            if (!hit.isTrigger)
+            {
+                Debug.LogWarning($"❌ Blockerad av {hit.name}");
+                DebugDrawBox(position, size, Color.red);
+                return false;
+            }
+        }
+
+        DebugDrawBox(position, size, Color.green);
+        return true;
+    }
+
+    private void DebugDrawBox(Vector2 center, Vector2 size, Color color)
+    {
+        Vector3 pos = new Vector3(center.x, center.y, 0f);
+        Vector3 halfSize = new Vector3(size.x, size.y, 0f) / 2f;
+
+        Debug.DrawLine(pos - halfSize, pos + new Vector3(-halfSize.x, halfSize.y, 0), color, 0.5f);
+        Debug.DrawLine(pos + new Vector3(-halfSize.x, halfSize.y, 0), pos + halfSize, color, 0.5f);
+        Debug.DrawLine(pos + halfSize, pos + new Vector3(halfSize.x, -halfSize.y, 0), color, 0.5f);
+        Debug.DrawLine(pos + new Vector3(halfSize.x, -halfSize.y, 0), pos - halfSize, color, 0.5f);
+    }
+
+    private bool SafeTeleportToLastSafePosition()
+    {
+        Collider2D playerCollider = GetComponent<Collider2D>();
+        if (playerCollider == null)
+        {
+            Debug.LogError("❌ Spelar-collider saknas!");
+            return false;
+        }
+
+        Vector2 originalSize = playerCollider.bounds.size;
+        Vector2 testSize = originalSize * 0.85f;
+        float verticalOffset = testSize.y / 2f + 0.05f;
+
+        Vector2 basePosition = new Vector2(lastSafePosition.x+((transform.position.x-lastSafePosition.x)/math.abs((transform.position.x-lastSafePosition.x))*-0.5f), lastSafePosition.y + verticalOffset);
+
+        
+        if (IsPositionFree(basePosition))
+        {
+            Teleport(basePosition);
+            return true;
+        }
+
+        int maxSteps = 40;
+        float step = 0.1f;
+
+        for (int i = 1; i <= maxSteps; i++)
+        {
+            Vector2 testPos = basePosition + Vector2.up * (i * step);
+            if (IsPositionFree(testPos))
+            {
+                Teleport(testPos);
+                return true;
+            }
+        }
+
+    
+
+        Debug.LogError("❌ Kunde inte hitta säker teleport-position.");
+        return false;
+    }
+
+    private void Teleport(Vector2 newPosition)
+    {
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        transform.position = newPosition;
+        StartCoroutine(LockMovementTemporarily(0.4f));
     }
     private IEnumerator AnimateHeartWrapperLoss()
     {
@@ -275,35 +360,36 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             Image heart = hearts[currentLives];
             var rt = heart.rectTransform;
 
+            // Reset scale first
+            rt.localScale = Vector3.one;
+
             Sequence seq = DOTween.Sequence();
-
-            // Punch scale (quick pop smaller then back)
             seq.Append(rt.DOPunchScale(new Vector3(-0.3f, 0.3f, 0), 0.3f, 10, 1));
-
-            // Flash red color then back
             seq.Join(heart.DOColor(Color.red, 0.15f).SetLoops(2, LoopType.Yoyo));
 
             yield return seq.WaitForCompletion();
+            rt.localScale = Vector3.one; // Ensure reset
         }
     }
+
 
     private IEnumerator AnimateHeartWrapperGain()
     {
         if (currentLives - 1 >= 0 && currentLives - 1 < hearts.Length)
         {
             Image heart = hearts[currentLives - 1];
-            heart.rectTransform.localScale = Vector3.one * 0.5f;
+            var rt = heart.rectTransform;
 
-            yield return heart.rectTransform
+            rt.localScale = Vector3.one * 0.5f;
+
+            yield return rt
                 .DOScale(Vector3.one, 0.3f)
                 .SetEase(Ease.OutBack)
                 .WaitForCompletion();
 
-            heart.rectTransform
-                .DOPunchScale(Vector3.one * 0.2f, 0.2f, 5, 1);
+            rt.DOPunchScale(Vector3.one * 0.2f, 0.2f, 5, 1);
         }
     }
-
 
 
     private IEnumerator LockMovementTemporarily(float duration)
@@ -311,7 +397,6 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         if (movementScript != null)
         {
             movementScript.enabled = false;
-            rb.linearVelocity = Vector2.zero;
         }
 
         yield return new WaitForSeconds(duration);
@@ -319,6 +404,17 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         if (movementScript != null)
         {
             movementScript.enabled = true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("MovingPlatform"))
+        {
+            if (currentMovingPlatform == null)
+            {
+                currentMovingPlatform = collision.transform;
+            }
         }
     }
 }

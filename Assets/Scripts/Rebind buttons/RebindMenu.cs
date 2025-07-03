@@ -15,9 +15,10 @@ public class RebindMenu : MonoBehaviour
     public Button resetButton;  // Här är knappen för att resetta keybinds
 
     private List<string> actions = new List<string> {
-    "Jump", "Sprint", "Shoot", "Left", "Right", "SkipCutscene", "NextSlide",
-    "WeaponSlot1", "WeaponSlot2", "WeaponSlot3", "WeaponSlot4"
-};
+        "Jump", "Sprint", "Shoot", "Left", "Right", "SkipCutscene", "NextSlide",
+        "WeaponSlot1", "WeaponSlot2", "WeaponSlot3", "WeaponSlot4"
+    };
+
     private bool isWaitingForKey = false;
     private string currentAction;
 
@@ -25,19 +26,19 @@ public class RebindMenu : MonoBehaviour
 
     // Standardbindningar
     private Dictionary<string, KeyCode> defaultBindings = new Dictionary<string, KeyCode>
-{
-    { "Jump", KeyCode.Space },
-    { "Sprint", KeyCode.LeftShift },
-    { "Shoot", KeyCode.Mouse0 },
-    { "Left", KeyCode.A },
-    { "Right", KeyCode.D },
-    { "SkipCutscene", KeyCode.Backspace },
-    { "NextSlide", KeyCode.Return },
-    { "WeaponSlot1", KeyCode.Alpha1 },
-    { "WeaponSlot2", KeyCode.Alpha2 },
-    { "WeaponSlot3", KeyCode.Alpha3 },
-    { "WeaponSlot4", KeyCode.Alpha4 }
-};
+    {
+        { "Jump", KeyCode.Space },
+        { "Sprint", KeyCode.LeftShift },
+        { "Shoot", KeyCode.Mouse0 },
+        { "Left", KeyCode.A },
+        { "Right", KeyCode.D },
+        { "SkipCutscene", KeyCode.Space },
+        { "NextSlide", KeyCode.Return },
+        { "WeaponSlot1", KeyCode.Alpha1 },
+        { "WeaponSlot2", KeyCode.Alpha2 },
+        { "WeaponSlot3", KeyCode.Alpha3 },
+        { "WeaponSlot4", KeyCode.Alpha4 }
+    };
 
     void Start()
     {
@@ -69,7 +70,6 @@ public class RebindMenu : MonoBehaviour
         rebindButton.onClick.AddListener(OnRebindButtonClicked);
         applyButton.onClick.AddListener(OnApplyClicked);
         backButton.onClick.AddListener(OnBackClicked);
-
         resetButton.onClick.AddListener(OnResetClicked);  // Lägg till denna rad för reset-knappen
     }
 
@@ -110,13 +110,28 @@ public class RebindMenu : MonoBehaviour
     {
         if (tempBindings.TryGetValue(currentAction, out KeyCode key))
         {
-            string keyName = key == KeyCode.None ? "Unbound" : key.ToString();
+            string keyName = FormatKeyName(key);
             rebindButtonText.text = "Current keybind: " + keyName;
         }
         else
         {
             rebindButtonText.text = "Current keybind: Unbound";
         }
+    }
+
+    string FormatKeyName(KeyCode key)
+    {
+        if (key == KeyCode.Mouse0) return "LMB";
+        if (key == KeyCode.Return) return "ENTER";
+        if (key == KeyCode.None) return "Unbound";
+
+        // Fler användarvänliga namn
+        if (key == KeyCode.LeftShift || key == KeyCode.RightShift) return "SHIFT";
+        if (key == KeyCode.LeftControl || key == KeyCode.RightControl) return "CTRL";
+        if (key == KeyCode.Space) return "SPACE";
+        if (key == KeyCode.Escape) return "ESC";
+
+        return key.ToString();
     }
 
     void OnApplyClicked()
@@ -153,7 +168,7 @@ public class RebindMenu : MonoBehaviour
 
     void OnResetClicked()
     {
-        // Sätt tempBindings till defaultbindningar
+        // Återställ till standardbindningar
         foreach (var kvp in defaultBindings)
         {
             tempBindings[kvp.Key] = kvp.Value;
