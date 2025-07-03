@@ -135,6 +135,7 @@ public class ParallaxLayer : MonoBehaviour
                         fadeObj.transform.localScale = Vector3.one;
 
                         SpriteRenderer fadeSr = fadeObj.AddComponent<SpriteRenderer>();
+                        fadeSr.sortingLayerID = sr.sortingLayerID;
                         fadeSr.sprite = sr.sprite;
                         fadeSr.sortingOrder = sr.sortingOrder - 1;
                         fadeSr.flipX = sr.flipX;
