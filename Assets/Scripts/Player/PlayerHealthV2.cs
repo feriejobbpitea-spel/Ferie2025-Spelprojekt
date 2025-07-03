@@ -192,6 +192,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         for (int i = 0; i < hearts.Length; i++)
         {
             hearts[i].gameObject.SetActive(i < maxLives);
+            hearts[i].rectTransform.localScale = Vector3.one;
         }
 
         for (int i = 0; i < maxLives; i++)
@@ -359,35 +360,36 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             Image heart = hearts[currentLives];
             var rt = heart.rectTransform;
 
+            // Reset scale first
+            rt.localScale = Vector3.one;
+
             Sequence seq = DOTween.Sequence();
-
-            // Punch scale (quick pop smaller then back)
             seq.Append(rt.DOPunchScale(new Vector3(-0.3f, 0.3f, 0), 0.3f, 10, 1));
-
-            // Flash red color then back
             seq.Join(heart.DOColor(Color.red, 0.15f).SetLoops(2, LoopType.Yoyo));
 
             yield return seq.WaitForCompletion();
+            rt.localScale = Vector3.one; // Ensure reset
         }
     }
+
 
     private IEnumerator AnimateHeartWrapperGain()
     {
         if (currentLives - 1 >= 0 && currentLives - 1 < hearts.Length)
         {
             Image heart = hearts[currentLives - 1];
-            heart.rectTransform.localScale = Vector3.one * 0.5f;
+            var rt = heart.rectTransform;
 
-            yield return heart.rectTransform
+            rt.localScale = Vector3.one * 0.5f;
+
+            yield return rt
                 .DOScale(Vector3.one, 0.3f)
                 .SetEase(Ease.OutBack)
                 .WaitForCompletion();
 
-            heart.rectTransform
-                .DOPunchScale(Vector3.one * 0.2f, 0.2f, 5, 1);
+            rt.DOPunchScale(Vector3.one * 0.2f, 0.2f, 5, 1);
         }
     }
-
 
 
     private IEnumerator LockMovementTemporarily(float duration)

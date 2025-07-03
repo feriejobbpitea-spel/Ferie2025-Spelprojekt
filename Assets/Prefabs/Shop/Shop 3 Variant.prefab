@@ -324,6 +324,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8526474642959231898, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: itemsForSale.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8526474642959231898, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: 'itemsForSale.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a9f1fbe66b105bc42b52030e26fcab81, type: 2}
+    - target: {fileID: 8526474642959231898, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: 'itemsForSale.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 782035c68b00ac641a6614c774366472, type: 2}
+    - target: {fileID: 8526474642959231898, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
+      propertyPath: 'itemsForSale.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 8265e3995f7960c44814f3a3cf64fb32, type: 2}
     - target: {fileID: 9221270403430007709, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: m_Sprite
       value: 

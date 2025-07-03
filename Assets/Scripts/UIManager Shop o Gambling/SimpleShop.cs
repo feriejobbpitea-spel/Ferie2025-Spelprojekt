@@ -1,20 +1,13 @@
+using DG.Tweening;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class SimpleShop : Singleton<SimpleShop>
 {
-    [System.Serializable]
-    public class ShopItem
-    {
-        public string itemName;
-        public Sprite itemIcon;
-        public int price;
-    }
-
     [Header("Butiksdata")]
-    public List<ShopItem> itemsForSale = new List<ShopItem>();
+    public List<ShopItem_SO> itemsForSale = new List<ShopItem_SO>();
 
     [Header("Referenser")]
     public GameObject itemPrefab;
@@ -30,7 +23,6 @@ public class SimpleShop : Singleton<SimpleShop>
 
     void BuildShop()
     {
-        // Rensa tidigare objekt i shopen
         foreach (Transform child in itemContainer)
             Destroy(child.gameObject);
 
@@ -38,16 +30,14 @@ public class SimpleShop : Singleton<SimpleShop>
         {
             GameObject go = Instantiate(itemPrefab, itemContainer);
 
-            // Hämta komponenterna direkt från prefab-roten
-            go.transform.Find("ItemName").GetComponent<TMP_Text>().text = item.itemName;
-            go.transform.Find("ItemPrice").GetComponent<TMP_Text>().text = item.price + " datachips"; // <-- Uppdaterat här
-            go.transform.Find("ItemHolder").Find("ItemIcon").GetComponent<Image>().sprite = item.itemIcon;
+            go.transform.Find("ItemName").GetComponent<TMP_Text>().text = item.ItemName;
+            go.transform.Find("ItemPrice").GetComponent<TMP_Text>().text = item.ItemCost + " datachips";
+            go.transform.Find("ItemHolder").Find("ItemIcon").GetComponent<Image>().sprite = item.ItemSprite;
 
-            // Köpknapp
             Button buyButton = go.transform.Find("BuyButton")?.GetComponent<Button>();
             if (buyButton != null)
             {
-                if (HasItemAlready(item.itemName) || (IsWeapon(item.itemName) && !InventoryManager.Instance.HasInventorySpaceForWeapon()))
+                if ((HasItemAlready(item.internalID)) || (item.itemType == ItemType.Weapon && !InventoryManager.Instance.HasInventorySpaceForWeapon()))
                 {
                     buyButton.interactable = false;
                 }
@@ -67,99 +57,59 @@ public class SimpleShop : Singleton<SimpleShop>
         ClearFeedback();
     }
 
-    void BuyItem(ShopItem item)
+    void BuyItem(ShopItem_SO item)
     {
-        if (PlayerMoney.Instance.money < item.price)
+        if (PlayerMoney.Instance.money < item.ItemCost)
         {
             ShowFeedback("Inte tillräckligt med pengar!");
             return;
         }
 
-        // Kontrollera om item är vapen
-        bool isWeapon = IsWeapon(item.itemName);
-
-        // Kontrollera om spelaren redan har item (vapen eller annat)
-        if (HasItemAlready(item.itemName))
+        if (HasItemAlready(item.internalID))
         {
             ShowFeedback("Du har redan denna!");
             return;
         }
 
-        // Om det är ett vapen, kolla om det finns plats i inventory
-        if (isWeapon && !InventoryManager.Instance.HasInventorySpaceForWeapon())
+        if (item.itemType == ItemType.Weapon && !InventoryManager.Instance.HasInventorySpaceForWeapon())
         {
             ShowFeedback("Ingen plats i inventory för fler vapen!");
             return;
         }
 
-        // Allt OK, dra pengar
-        PlayerMoney.Instance.money -= item.price;
+        PlayerMoney.Instance.money -= item.ItemCost;
         UpdateMoneyUI();
 
-        GameObject player = GameObject.Find("Player");
 
-        // Ge spelaren item / vapen / effekt
-        switch (item.itemName)
+        switch (item.internalID)
         {
-            case "Konfetti":
-                InventoryManager.Instance.AddConfettiGun();
-                break;
+            case "Confetti":
+                InventoryManager.Instance.AddConfettiGun(); break;
             case "RayGun":
-                InventoryManager.Instance.AddRayGun();
-                break;
-            case "Slangbella":
-                InventoryManager.Instance.AddSlingshot();
-                break;
-            case "EmpVapen":
-                InventoryManager.Instance.AddEmpGun();
-                break;
+                InventoryManager.Instance.AddRayGun(); break;
+            case "Slingshot":
+                InventoryManager.Instance.AddSlingshot(); break;
+            case "EmpGun":
+                InventoryManager.Instance.AddEmpGun(); break;
             case "DoubleJump":
-                if (player != null)
-                    player.GetComponent<Movement>().doubleJump = true;
-                break;
+                Movement.Instance.doubleJump = true; break;
             case "SuperJump":
-                if (player != null)
-                    player.GetComponent<Movement>().bigJump = true;
-                break;
-            case "Time slow":
-                if (player != null)
-                    player.GetComponent<Movement>().timeSlow = true;
-                break;
+                Movement.Instance.bigJump = true; break;
+            case "TimeSlow":
+                Movement.Instance.timeSlow = true; break;
             case "Speed":
-                if (player != null)
-                    player.GetComponent<Movement>().superSpeed = 2;
-                break;
-            case "Hjärta":
-                if (player != null)
-                    player.GetComponent<PlayerHealthV2>().AddLife();
-                break;
+                Movement.Instance.superSpeed = 2; break;
+            case "Heart":
+                PlayerHealthV2.Instance.AddLife(); break;
             default:
-                Debug.LogWarning("Okänt föremål: " + item.itemName);
-                break;
+                Debug.LogWarning("Okänt föremål: " + item.internalID); break;
         }
 
-        ShowFeedback("Du köpte: " + item.itemName);
-
-        // Uppdatera UI för att t.ex. gråa ut knappar igen
+        ShowFeedback("Du köpte: " + item.ItemName);
         BuildShop();
     }
 
-    // NY METOD: Kolla om item är ett vapen
-    bool IsWeapon(string itemName)
-    {
-        switch (itemName)
-        {
-            case "Konfetti":
-            case "RayGun":
-            case "Slangbella":
-            case "EmpVapen":
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    bool HasItemAlready(string itemName)
+    bool HasItemAlready(string internalID)
     {
         GameObject player = GameObject.Find("Player");
         if (player == null)
@@ -168,45 +118,49 @@ public class SimpleShop : Singleton<SimpleShop>
             return false;
         }
 
-        var movement = player.GetComponent<Movement>();
+        var movement = Movement.Instance;
+        var health = PlayerHealthV2.Instance;
 
-        switch (itemName)
+        switch (internalID)
         {
-            case "Konfetti":
+            case "Confetti":
                 return InventoryManager.Instance.HasConfettiGun();
             case "RayGun":
                 return InventoryManager.Instance.HasRayGun();
-            case "Slangbella":
+            case "Slingshot":
                 return InventoryManager.Instance.HasSlingshot();
-            case "EmpVapen":
+            case "EmpGun":
                 return InventoryManager.Instance.HasEmpGun();
             case "DoubleJump":
                 return movement != null && movement.doubleJump;
             case "SuperJump":
                 return movement != null && movement.bigJump;
-            case "Time slow":
+            case "TimeSlow":
                 return movement != null && movement.timeSlow;
             case "Speed":
                 return movement != null && movement.superSpeed > 1;
-            case "Hjärta":
-                PlayerHealthV2 health = player.GetComponent<PlayerHealthV2>();
-                if (health != null)
-                {
-                    // Här låser vi köpet till max 4 hjärtan (maxLives)
-                    return health.maxLives >= 4;
-                }
-                return false;
+            case "Heart":
+                return health != null && health.currentLives >= health.maxLives;
             default:
                 return false;
         }
     }
 
 
-    public void UpdateMoneyUI()
+
+    public void UpdateMoneyUI(bool animated = false)
     {
         if (playerMoneyText != null)
         {
             playerMoneyText.text = $"{PlayerMoney.Instance.money}";
+
+            if (animated)
+            {
+                // Animate money text pop
+                playerMoneyText.transform.DOKill(); // Stop previous tweens
+                playerMoneyText.transform.localScale = Vector3.one * 1.2f;
+                playerMoneyText.transform.DOScale(1f, 0.3f).SetUpdate(true).SetEase(Ease.OutBack);
+            }
         }
     }
 
@@ -215,6 +169,9 @@ public class SimpleShop : Singleton<SimpleShop>
         if (feedbackText != null)
         {
             feedbackText.text = message;
+            feedbackText.DOKill();
+            feedbackText.alpha = 0;
+            feedbackText.DOFade(1f, 0.3f).SetEase(Ease.InOutQuad).SetUpdate(true);
             CancelInvoke(nameof(ClearFeedback));
             Invoke(nameof(ClearFeedback), 2f);
         }
@@ -223,6 +180,8 @@ public class SimpleShop : Singleton<SimpleShop>
     void ClearFeedback()
     {
         if (feedbackText != null)
-            feedbackText.text = "";
+        {
+            feedbackText.DOFade(0f, 0.3f).SetEase(Ease.InOutQuad).SetUpdate(true);
+        }
     }
 }
