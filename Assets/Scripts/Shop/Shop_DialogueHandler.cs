@@ -13,6 +13,7 @@ public class Shop_DialogueHandler : IShopDialogueHandler
     public Dialogue[] ExitShop;
     public Dialogue[] AlternativeRandomDialogue;
     public Dialogue[] RandomDialogue;
+    public Dialogue[] BuyItem; 
 
     public Button TalkButton;
     public bool UseAlternativeRandomDialogue = false;
@@ -27,6 +28,14 @@ public class Shop_DialogueHandler : IShopDialogueHandler
         }
     }
 
+    public void PlayBuyItem()
+    {
+        if (BuyItem.Length > 0)
+        {
+            var dialogue = BuyItem[Random.Range(0, BuyItem.Length)];
+            ShopDialogueManager.Instance.StartCoroutine(PlayLocalizedDialogue(dialogue));
+        }
+    }
     public void PlayEnterShopDialogue()
     {
         var dialogue = EnterShop[Random.Range(0, EnterShop.Length)];

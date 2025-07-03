@@ -82,6 +82,7 @@ public class Shop : MonoBehaviour
 
     private void TryGiveItemToShop()
     {
+        if (gameObject.name != "Shop 3 Variant") return;
         var collectedItems = InventoryManager.Instance.GetCollectedItems();
 
         if (collectedItems.Count == 0)

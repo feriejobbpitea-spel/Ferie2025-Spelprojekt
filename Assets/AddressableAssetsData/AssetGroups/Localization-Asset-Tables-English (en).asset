@@ -15,12 +15,6 @@ MonoBehaviour:
   m_GroupName: Localization-Asset-Tables-English (en)
   m_GUID: bbd640dfad2aeb24ba5abe2754653247
   m_SerializeEntries:
-  - m_GUID: 0cbe4e7c7699ee44f8b0bb5238859945
-    m_Address: Boss voicelines_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 25cae409c9b02dd4cb59b5fd4c42cc81
     m_Address: ShopDialogue Audio_en
     m_ReadOnly: 1

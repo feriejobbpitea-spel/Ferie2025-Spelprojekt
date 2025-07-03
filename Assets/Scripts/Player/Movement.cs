@@ -120,7 +120,7 @@ public class Movement : Singleton<Movement>
     void Update()
     {
         // Handle platform drop through
-        if (!isDropping && Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space))
+        if (!isDropping && Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             StartCoroutine(Drop());
         }
@@ -180,7 +180,7 @@ public class Movement : Singleton<Movement>
                 movement.y = bigJump ? bigJumpForce : jumpForce;
                 rb.linearVelocity = movement;  // Make sure to apply jump velocity immediately
             }
-            else if (doubleJump && !doubleJumpUsed)
+            else if (doubleJump && !doubleJumpUsed && !isGrabingwall)
             {
                 OnJump?.Invoke();
                 PlayJumpTween();
@@ -197,14 +197,18 @@ public class Movement : Singleton<Movement>
                 wallJumpTimer = wallJumpLockTime;
                 float direction = (!facingRight) ? 1f : -1f;
                 float xForce = direction * playerSpeed * 1f;
-                float yForce = jumpForce * 0.8f;
+                float yForce = bigJump ? bigJumpForce*0.8f : jumpForce*0.8f;
                 rb.linearVelocity = new Vector2(xForce, yForce);
                 wallJumpXMomentum = xForce;
                 return;
             }
         }
 
-        if (Input.GetKeyUp(keybinds["Jump"]) && rb.linearVelocity.y > 0)
+        if (Input.GetKeyUp(keybinds["Jump"]) && rb.linearVelocity.y > 0 && wallJumpTimer != 0)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y );
+        }
+        if (Input.GetKeyUp(keybinds["Jump"]) && rb.linearVelocity.y > 0 && wallJumpTimer <=0)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * jumpCutMultiplier);
         }
@@ -239,6 +243,7 @@ public class Movement : Singleton<Movement>
             doubleJumpUsed = false;
             ResetScale();
         }
+        if (isGrabingwall) { doubleJumpUsed = false; }
 
         // Play walk/run sounds
         if (isGrounded && IsMoving)

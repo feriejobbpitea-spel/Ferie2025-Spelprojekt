@@ -17,6 +17,7 @@ public class MeleeAttack : MonoBehaviour
 
     private float cooldownTimer = 0f;
     private Collider2D hitCollider;
+    public GameObject airAttackEffectPrefab;
 
     void Start()
     {
@@ -56,6 +57,21 @@ public class MeleeAttack : MonoBehaviour
 
     void PerformAttack()
     {
+        GameObject.Instantiate(airAttackEffectPrefab, transform.position +new Vector3(1.2f,0), Quaternion.identity);
+        GameObject effect = GameObject.Instantiate(
+     airAttackEffectPrefab,
+     transform.position - new Vector3(1.2f, 0),
+     Quaternion.identity // Ingen rotation
+            );
+        Vector3 scale = effect.transform.localScale;
+        scale.x = -Mathf.Abs(scale.x); // Se till att det blir spegelvänt åt vänster
+        effect.transform.localScale = scale;
+
+
+
+
+
+        Debug.Log("PerformAttack() called on ");
         if (playerAnimator != null)
         {
             playerAnimator.SetBool("isAttacking", true);
@@ -79,18 +95,12 @@ public class MeleeAttack : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            EnemyHealth enemy = results[i].GetComponent<EnemyHealth>();
-            if (enemy != null)
+            Debug.Log($"Hit {results[i].name} with MeleeAttack");
+
+            EnemyHealth enemyHealth = results[i].GetComponent<EnemyHealth>();
+            if (enemyHealth == null)
             {
-                enemy.TakeDamage(damage); // Innebär också FreezeEnemy()
-            }
-            else
-            {
-                BossHealth boss = results[i].GetComponentInParent<BossHealth>();
-                if (boss != null)
-                {
-                    boss.TakeDamage(damage); // Denna bör också frysa om BossHealth är liknande
-                }
+                enemyHealth = results[i].GetComponentInChildren<EnemyHealth>();
             }
         }
 

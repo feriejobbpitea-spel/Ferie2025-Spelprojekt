@@ -4,7 +4,7 @@ public class Enemy_02 : MonoBehaviour
     [Header("Skjutinställningar")]
     public GameObject projectilePrefab;
     public Transform firePoint;
-    public float shootInterval = 2f;
+    public float shootInterval = 1.2f;
     public float projectileSpeed = 10f;
     public float aggroRange = 10f;
 
@@ -18,7 +18,7 @@ public class Enemy_02 : MonoBehaviour
     [Header("Referenser")]
     public Transform healthBar;
 
-    private float timer = 0f;
+    private float timer = 1.2f;
     private Transform player;
     private float stunTimer = 0f;
     private bool stunned = false;
@@ -70,10 +70,11 @@ public class Enemy_02 : MonoBehaviour
         }
 
         // Avstånd och siktkontroll
+        if(timer < shootInterval) { timer += Time.deltaTime; }
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         if (distanceToPlayer <= aggroRange && CanSeePlayer())
         {
-            timer += Time.deltaTime;
+            
             if (timer >= shootInterval)
             {
                 ShootAtPlayer();

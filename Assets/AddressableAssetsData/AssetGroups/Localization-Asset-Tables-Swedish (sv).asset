@@ -21,12 +21,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3af23135e3c329f4b941d02dd5f373e4
-    m_Address: Boss voicelines_sv
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 531f280ab60adeb499cc85ef3f147f2c
     m_Address: Cutscene voicelines_sv
     m_ReadOnly: 1

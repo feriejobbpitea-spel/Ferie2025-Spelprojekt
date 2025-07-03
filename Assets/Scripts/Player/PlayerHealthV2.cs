@@ -186,6 +186,10 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         UpdateHearts();
         StartCoroutine(AnimateHeartWrapperGain());
     }
+    public void AddSingleLife()
+    { if (currentLives < maxLives) currentLives++;
+        UpdateHearts();
+    }
 
     public void UpdateHearts()
     {

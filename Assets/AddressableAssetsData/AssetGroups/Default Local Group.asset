@@ -13,8 +13,98 @@ MonoBehaviour:
   m_Name: Default Local Group
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
-  m_GUID: 82e56b4ce955fb34ab04487c73838e2e
-  m_SerializeEntries: []
+  m_GUID: 5671780789f9e424eabc752e1c21a5e6
+  m_SerializeEntries:
+  - m_GUID: 027e5e4bbfd9a5c49b72a9e636c9e942
+    m_Address: Assets/Localization/Tables/ShopItems/Shop_Items_sv.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0d223727cc260924db84354a25ed92a2
+    m_Address: Assets/Localization/Tables/Shop 2 dialog_sv.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1636d596b209b0f448a8b78fb76ebc26
+    m_Address: Assets/Localization/Tables/Robot after recovery text_sv.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19130af9e6abca846aaffb7a3006e975
+    m_Address: Assets/Localization/Tables/Cut Scene Audio/Cutscene audio_en.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a42a408f1fd4de4993a8de15683856d
+    m_Address: Assets/Localization/Tables/Main Menu_en.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 43520e649745d0c4ead706a3c0eabec0
+    m_Address: Assets/Localization/Tables/Shop 2 dialog_en.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 508e9accdc6316d41a53cb5d784a41a3
+    m_Address: Assets/Localization/Locales/Cut Scene End Dialog_en.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 585f104987755564ebc231e1c5c42a07
+    m_Address: Assets/Localization/Locales/Cut Scene End Dialog1_sv.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61a5aef252b59c642adabad576e1e9ca
+    m_Address: Assets/Localization/Tables/ShopDialogue translater_sv.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 82214ef8d4ddcb843a00d57d90f62b9b
+    m_Address: Assets/Localization/Tables/Main Menu_sv.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88eefdc7a25d7e74d89753c16975f10b
+    m_Address: Assets/Localization/Tables/Robot after recovery text_en.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c47b81c0af8bc244a04f2b347a14ec8
+    m_Address: Assets/Localization/Tables/Cut Scene Audio/Cutscene audio_sv.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a4fc2a8317b03fd43898fcbb2450a18c
+    m_Address: Assets/Localization/Locales/Cut Scene End Dialog_sv.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cecef9d4df19edb4faa08f33ef2375bf
+    m_Address: Assets/Localization/Locales/Cut Scene End Dialog1_en.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ced7eec7fa49e674aa690d59c1c0e66b
+    m_Address: Assets/Localization/Tables/Cut Scene Dialog_sv.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf26364d6511cf34c9df8556f3e711fd
+    m_Address: Assets/Localization/Tables/ShopItems/Shop_Items_en.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8f62582dbb1248429e536ba60458c30
+    m_Address: Assets/Localization/Tables/ShopDialogue translater_en.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4ec2be45bea54a4d9e27757cd96197d
+    m_Address: Assets/Localization/Tables/Cut Scene Dialog_en.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4183d6c41c6d0a045bfcd722e875f937, type: 2}
   m_SchemaSet:

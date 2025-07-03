@@ -65,15 +65,6 @@ public class SimpleShop : Singleton<SimpleShop>
         ClearFeedback();
     }
 
-    void SetLocalizedText(LocalizeStringEvent localizeEvent, string key)
-    {
-        if (localizeEvent != null)
-        {
-            localizeEvent.StringReference.TableEntryReference = key;
-            localizeEvent.RefreshString();
-        }
-    }
-
 
     void BuyItem(ShopItem_SO item)
     {
@@ -97,6 +88,8 @@ public class SimpleShop : Singleton<SimpleShop>
 
         PlayerMoney.Instance.money -= item.itemCost;
         UpdateMoneyUI(true); // Animated update
+
+        transform.parent.parent.GetComponent<Shop>().DialogueHandler.PlayBuyItem();
 
         switch (item.internalID)
         {
