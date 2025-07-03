@@ -24,10 +24,18 @@ public class Shop : MonoBehaviour
         }
     }
 
+
     private void Update()
     {
-        if (!IsCloseToShop())
+        if (!IsCloseToShop() && !_inShop)
             return;
+
+        // Lämna shoppen med Escape
+        if (_inShop && Input.GetKeyDown(KeyCode.Escape))
+        {
+            ExitShop();
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -43,7 +51,6 @@ public class Shop : MonoBehaviour
             }
         }
     }
-
     private void Start()
     {
         ShopHUDHandler.CloseShopHUD();
