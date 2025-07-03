@@ -30,6 +30,8 @@ public class InventoryManager : Singleton<InventoryManager>
     public GameObject confettiGunPrefab;
     public Sprite confettiGunIcon;
 
+    public PickupItem photo;
+
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip weaponSwitchClip;
@@ -65,6 +67,7 @@ public class InventoryManager : Singleton<InventoryManager>
             AddEmpGun();
             AddRayGun();
             AddSlingshot();
+            AddItem(photo);
         }
 
         if (Input.GetKeyDown(GetBoundKey("WeaponSlot1"))) WeaponSlot(0);
@@ -335,6 +338,13 @@ public class InventoryManager : Singleton<InventoryManager>
             }
         }
     }
+
+    public bool HasAllItemsAndPhoto()
+    {
+        return Foto != null && Foto.enabled && collectedItems.Count > 0;
+    }
+
+
 
     public void DropWeaponOnDeath()
     {

@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: Localization-String-Tables-Swedish (sv)
   m_EditorClassIdentifier: 
   m_GroupName: Localization-String-Tables-Swedish (sv)
-  m_GUID: e06b6345565dba0408efeb99b1c451f8
+  m_GUID: 6be0661dac0a0844ca53c0117979c728
   m_SerializeEntries:
+  - m_GUID: 585f104987755564ebc231e1c5c42a07
+    m_Address: CutSceneAltEnding_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 740f3e98fb01c724fa777cf3e150f198
     m_Address: Shop 3 before recovery text_sv
     m_ReadOnly: 1

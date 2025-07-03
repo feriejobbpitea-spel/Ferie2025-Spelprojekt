@@ -15,8 +15,8 @@ MonoBehaviour:
   m_GroupName: Localization-Asset-Tables-Swedish (sv)
   m_GUID: 8aa23a780c438bb4387d4c1472b9c81f
   m_SerializeEntries:
-  - m_GUID: 15a05a4571afefb4aab4e052aed39c27
-    m_Address: ShopDialogue Audio_sv
+  - m_GUID: 3af23135e3c329f4b941d02dd5f373e4
+    m_Address: Boss voicelines_sv
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv
@@ -29,6 +29,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 790f9f2a4e1e4f54ca35059bb3948afa
     m_Address: Shop 2_sv
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9445b9d6ea1704345a2c89aea79b7bb7
+    m_Address: Cutscene voice lines own evrything_sv
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv

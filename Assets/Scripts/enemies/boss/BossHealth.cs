@@ -7,6 +7,7 @@ public class BossHealth : EnemyHealth
 {
     public Animator Animator; // Sätt i Unity Inspector
     public string GameCompleteScene = "GameComplete"; // Scene att ladda vid död    
+    public string AltEnding = "GameAltEnding"; // Scene att ladda vid död    
 
     private bool isDead = false;
 
@@ -57,6 +58,14 @@ public class BossHealth : EnemyHealth
     private IEnumerator WaitForDeathAnimation()
     {
         yield return new WaitForSeconds(3f); // Vänta på animationen
-        SceneLoader.Instance.LoadScene(GameCompleteScene);
+
+        if (InventoryManager.Instance.HasAllItemsAndPhoto())
+        {
+            SceneLoader.Instance.LoadScene(AltEnding);
+        }
+        else
+        {
+            SceneLoader.Instance.LoadScene(GameCompleteScene);
+        }
     }
 }

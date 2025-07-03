@@ -33,21 +33,21 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 708956925952
-    m_Localized: "Betala med st\xE5l eller med sj\xE4l."
+    m_Localized: "Betala med st\xE5l, eller med sj\xE4l."
     m_Metadata:
       m_Items: []
   - m_Id: 877815410688
-    m_Localized: "De f\xF6rs\xF6kte radera mig. De lyckades inte helt.\r\n"
+    m_Localized: "D-de f\xF6rs\xF6kte radera mig. De lyckades inte helt.\r\n"
     m_Metadata:
       m_Items: []
   - m_Id: 1003933937664
     m_Localized: "Jag var en g\xE5ng en ordnad kod, skapad f\xF6r precision. Nu?
-      Jag \xE4r n\xE5got mer. Eller mindre."
+      Jag \xE4r n\xE5got mer ...Eller mindre."
     m_Metadata:
       m_Items: []
   - m_Id: 1160188538880
     m_Localized: "Jag har ett specialerbjudande! \u2026men du f\xE5r inte titta p\xE5
-      det. Titta INTE p\xE5 det!\r\n"
+      det. TITTA INTE P\xC5 DET!"
     m_Metadata:
       m_Items: []
   - m_Id: 1447217344512
@@ -55,11 +55,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 1578914295808
-    m_Localized: "Herr talman, Jag tycker inte du ska va h\xE4r."
+    m_Localized: "Herr talman, om jag ska va helt rak och \xE4rlig. Jag tycker inte
+      du ska va h\xE4r."
     m_Metadata:
       m_Items: []
   - m_Id: 1669888749568
-    m_Localized: "Jag ska vara helt \xE4rlig, jag vill inte ha dig h\xE4r."
+    m_Localized: "Om jag ska vara helt \xE4rlig. Jag vill inte ha dig h\xE4r."
     m_Metadata:
       m_Items: []
   references:

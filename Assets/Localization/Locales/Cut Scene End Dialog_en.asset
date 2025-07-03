@@ -24,15 +24,12 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 8021803008
-    m_Localized: But he feels alot better now when the evil has been defeated.
+    m_Localized: But he feels alot better now when the evil has been defeated. His
+      grandchildren will finally have time for him.
     m_Metadata:
       m_Items: []
-  - m_Id: 10202841088
-    m_Localized: His grandchildren will finally have time for him.
-    m_Metadata:
-      m_Items: []
-  - m_Id: 495135686656
-    m_Localized: "(children laughing, \u201CI love you grandpa\u201D)"
+  - m_Id: 1153107146846208
+    m_Localized: We love you Grandpa
     m_Metadata:
       m_Items: []
   references:

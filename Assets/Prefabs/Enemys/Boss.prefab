@@ -609,7 +609,7 @@ MonoBehaviour:
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
-  shadow: {fileID: 689622958071179079, guid: cd66aaba3de4a2e4ab32247ff5d18a7b, type: 3}
+  shadow: {fileID: 0}
   shadowYPosition: 37
 --- !u!114 &8228788430379448623
 MonoBehaviour:
@@ -757,6 +757,7 @@ MonoBehaviour:
   freezeDuration: 1
   Animator: {fileID: 8197920517632837075}
   GameCompleteScene: CutScene slut
+  AltEnding: "Cutscene slut \xE4ger allt"
 --- !u!1 &4618493260406493589
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,7 +815,7 @@ AudioSource:
   m_GameObject: {fileID: 4618493260406493589}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1199720284272667034, guid: 906efdd429563674bb7ee9e888bf5851, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

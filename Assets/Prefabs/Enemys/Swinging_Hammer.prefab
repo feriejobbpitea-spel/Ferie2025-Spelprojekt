@@ -158,7 +158,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -168,7 +168,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 5}
+  m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &8575698372551768663
 Rigidbody2D:
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxAngle: 60
-  swingSpeed: 2
+  swingDuration: 2
   pauseDuration: 0.5
   swingSound: {fileID: 8300000, guid: 7f5333e22f72c5f45a20f9b133e66255, type: 3}
   activationRadius: 10

@@ -63,11 +63,6 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 40c72d228a56c764aa88ec1606e2da93
-    m_Address: Assets/Localization/Tables/ShopDialogue Audio Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 647361db4f093ca4b89d89914dccf343
     m_Address: Assets/Localization/Tables/Main Menu Shared Data.asset
     m_ReadOnly: 1
@@ -110,13 +105,6 @@ MonoBehaviour:
     m_Address: Assets/Localization/Tables/Cut Scene Dialog Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: af49b523cef5eb544bb1ca0fe7f23305
-    m_Address: Acid
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b8f403256989f9146bce84d2256096f8
     m_Address: Assets/Localization/Tables/ShopDialogue translater Shared Data.asset
@@ -163,6 +151,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     - Locale-sv
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ec7888c02530ecb44b922d0dc3987649
+    m_Address: Assets/Localization/Tables/Cut Scene Audio/Cutscene voice lines own
+      evrything Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f480b8b2595e8294c8b7bbc29cdefab2
     m_Address: Assets/Localization/Tables/Boss voice lines Shared Data.asset

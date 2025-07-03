@@ -17796,6 +17796,7 @@ MonoBehaviour:
   slingshotIcon: {fileID: 7675122728916957637, guid: e24305870847dd24b9b35e100b455102, type: 3}
   confettiGunPrefab: {fileID: 4441914280489922357, guid: b7eb7afe8cd51e242b8548a365b34fe6, type: 3}
   confettiGunIcon: {fileID: 21300000, guid: 3139102f4dde16245a99f67496d96825, type: 3}
+  photo: {fileID: 2647891376398082828, guid: d2b56b464105e8f4298618ecaf9bbece, type: 3}
   audioSource: {fileID: 3055414963289834556}
   weaponSwitchClip: {fileID: 8300000, guid: 1f31af0a3296a8340b6dff9b68b1516e, type: 3}
   currentWeapon: {fileID: 0}

@@ -13,10 +13,16 @@ MonoBehaviour:
   m_Name: Localization-String-Tables-English (en)
   m_EditorClassIdentifier: 
   m_GroupName: Localization-String-Tables-English (en)
-  m_GUID: a769267980fae96429447fc30d106e36
+  m_GUID: f1e19ed68df39d14bb20c44fadba7735
   m_SerializeEntries:
   - m_GUID: 76cadcb4d511bf9448a3418690dd44ac
     m_Address: Shop 3 before recovery text_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cecef9d4df19edb4faa08f33ef2375bf
+    m_Address: CutSceneAltEnding_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
