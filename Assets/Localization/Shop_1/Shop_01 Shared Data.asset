@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Shop_01 Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Shop_01
+  m_TableCollectionNameGuidString: acb4006a5ea6fe74eb1d609f941746c1
+  m_Entries:
+  - m_Id: 5333254144
+    m_Key: DO YOU WANT A CIGGARETTE?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7338131456
+    m_Key: HURRY UP!!!!!!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9246539776
+    m_Key: TO SELL IT'S MY MOTTO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11092033536
+    m_Key: THANK YOU, IM GOING TO PUT THAT IN MY NOTEBOOK!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 531118620672
+    m_Key: TONIGHT IM GONNA BAKE SOM BUNS, MJAAAA ITS GONNA BE GREAT.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 566313025536
+    m_Key: SO NIIIIIIIIICEEEEEE!!!!!!!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 612785913856
+    m_Key: HURRY UPPP!!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2347707938652160
+    m_Key: Thank you, I'm going to put that in my notebook!
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2078274988523651163
+  references:
+    version: 2
+    RefIds:
+    - rid: 2078274988523651163
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1751623529045

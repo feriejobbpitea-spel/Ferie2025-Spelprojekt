@@ -13,34 +13,28 @@ MonoBehaviour:
   m_Name: Localization-Asset-Tables-Swedish (sv)
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Asset-Tables-Swedish (sv)
-  m_GUID: 8aa23a780c438bb4387d4c1472b9c81f
+  m_GUID: 50ca315b228f5a9419dc4f77cf2599c3
   m_SerializeEntries:
-  - m_GUID: 3af23135e3c329f4b941d02dd5f373e4
-    m_Address: Boss voicelines_sv
+  - m_GUID: 422bea610fb49f64e8c9fa73fd7603eb
+    m_Address: Cutscene_Ending_02_Audio_sv
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 531f280ab60adeb499cc85ef3f147f2c
-    m_Address: Cutscene voicelines_sv
+  - m_GUID: 5a85c0a93d2c2dc41826407f66a6db27
+    m_Address: Cutscene_Start_Audio_sv
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 790f9f2a4e1e4f54ca35059bb3948afa
-    m_Address: Shop 2_sv
+  - m_GUID: 9dec87bc56f740540997f2d56a0f8a70
+    m_Address: Cutscene_Ending_01_Audio_sv
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9445b9d6ea1704345a2c89aea79b7bb7
-    m_Address: Cutscene voice lines own evrything_sv
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dcca644f38780b84dbc35bc80a8504dd
-    m_Address: Cut scene audio_sv
+  - m_GUID: e956829c573d8014c813a3a5534a9127
+    m_Address: Boss_Audio_sv
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-sv

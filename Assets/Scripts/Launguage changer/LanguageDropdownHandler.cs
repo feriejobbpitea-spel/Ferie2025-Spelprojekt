@@ -12,7 +12,7 @@ public class LanguageDropdownHandler : MonoBehaviour
     private Locale appliedLanguage;
     private Locale pendingLanguage;
 
-    void Start()
+    void Awake()
     {
         StartCoroutine(InitializeDropdown());
     }
@@ -51,11 +51,10 @@ public class LanguageDropdownHandler : MonoBehaviour
 
     public void ApplyLanguageChange()
     {
-        if (pendingLanguage != null && LocalizationSettings.SelectedLocale != pendingLanguage)
+        if (pendingLanguage != null && pendingLanguage != appliedLanguage)
         {
             LocalizationSettings.SelectedLocale = pendingLanguage;
             appliedLanguage = pendingLanguage;
-            Debug.Log("Language changed to: " + appliedLanguage.LocaleName);
         }
     }
 

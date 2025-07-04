@@ -474,19 +474,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.BuyItem.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:dcac374a04ac83c469f8575cda12e244
+      value: GUID:07e623de9d34be34696d1d1a2c0f20e0
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.ExitShop.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:dcac374a04ac83c469f8575cda12e244
+      value: GUID:07e623de9d34be34696d1d1a2c0f20e0
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.EnterShop.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:dcac374a04ac83c469f8575cda12e244
+      value: GUID:07e623de9d34be34696d1d1a2c0f20e0
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.EnterShop.Array.data[1].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:dcac374a04ac83c469f8575cda12e244
+      value: GUID:07e623de9d34be34696d1d1a2c0f20e0
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.AlternativeExitShop.Array.data[0].LocalizedText.m_TableEntryReference.m_KeyId
@@ -498,27 +498,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:dcac374a04ac83c469f8575cda12e244
+      value: GUID:07e623de9d34be34696d1d1a2c0f20e0
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[1].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:dcac374a04ac83c469f8575cda12e244
+      value: GUID:07e623de9d34be34696d1d1a2c0f20e0
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[2].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:dcac374a04ac83c469f8575cda12e244
+      value: GUID:07e623de9d34be34696d1d1a2c0f20e0
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[3].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:dcac374a04ac83c469f8575cda12e244
+      value: GUID:07e623de9d34be34696d1d1a2c0f20e0
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[4].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:dcac374a04ac83c469f8575cda12e244
+      value: GUID:07e623de9d34be34696d1d1a2c0f20e0
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[5].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:dcac374a04ac83c469f8575cda12e244
+      value: GUID:07e623de9d34be34696d1d1a2c0f20e0
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[6].LocalizedText.m_TableReference.m_TableCollectionName
@@ -550,23 +550,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.AlternativeExitShop.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3ee12e76cc4e3624eb25c4703baf0da2
+      value: GUID:3d3f880ec048b1b49be5f20e1336a8bb
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.AlternativeEnterShop.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3ee12e76cc4e3624eb25c4703baf0da2
+      value: GUID:3d3f880ec048b1b49be5f20e1336a8bb
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.AlternativeRandomDialogue.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3ee12e76cc4e3624eb25c4703baf0da2
+      value: GUID:3d3f880ec048b1b49be5f20e1336a8bb
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.AlternativeRandomDialogue.Array.data[1].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3ee12e76cc4e3624eb25c4703baf0da2
+      value: GUID:3d3f880ec048b1b49be5f20e1336a8bb
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.AlternativeRandomDialogue.Array.data[2].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3ee12e76cc4e3624eb25c4703baf0da2
+      value: GUID:3d3f880ec048b1b49be5f20e1336a8bb
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.AlternativeRandomDialogue.Array.data[3].LocalizedText.m_TableReference.m_TableCollectionName

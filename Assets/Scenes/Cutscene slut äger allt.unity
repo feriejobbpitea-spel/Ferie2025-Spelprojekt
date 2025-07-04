@@ -590,9 +590,9 @@ MonoBehaviour:
     localizationKey: ALTEND-01
     voiceLine:
       m_TableReference:
-        m_TableCollectionName: GUID:ec7888c02530ecb44b922d0dc3987649
+        m_TableCollectionName: GUID:86399391c0df6ec48802d5ca7d26b648
       m_TableEntryReference:
-        m_KeyId: 7270838272
+        m_KeyId: 7345070080
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -600,9 +600,9 @@ MonoBehaviour:
     localizationKey: ALTEND-02
     voiceLine:
       m_TableReference:
-        m_TableCollectionName: GUID:ec7888c02530ecb44b922d0dc3987649
+        m_TableCollectionName: GUID:86399391c0df6ec48802d5ca7d26b648
       m_TableEntryReference:
-        m_KeyId: 9095360512
+        m_KeyId: 33949540352
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -610,9 +610,9 @@ MonoBehaviour:
     localizationKey: ALTEND-03
     voiceLine:
       m_TableReference:
-        m_TableCollectionName: GUID:ec7888c02530ecb44b922d0dc3987649
+        m_TableCollectionName: GUID:86399391c0df6ec48802d5ca7d26b648
       m_TableEntryReference:
-        m_KeyId: 11737772032
+        m_KeyId: 36734558208
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -620,9 +620,9 @@ MonoBehaviour:
     localizationKey: ALTEND-04
     voiceLine:
       m_TableReference:
-        m_TableCollectionName: GUID:ec7888c02530ecb44b922d0dc3987649
+        m_TableCollectionName: GUID:86399391c0df6ec48802d5ca7d26b648
       m_TableEntryReference:
-        m_KeyId: 18864228282368
+        m_KeyId: 43143454720
         m_Key: 
       m_FallbackState: 0
       m_WaitForCompletion: 0
@@ -634,7 +634,7 @@ MonoBehaviour:
   skipProgressBar: {fileID: 359571888}
   continueTextLabel: {fileID: 1567350314}
   skipTextLabel: {fileID: 1400643361}
-  TableReference: CutSceneAltEnding
+  TableReference: Cutscene_Ending_02
   audioSource: {fileID: 1050734648}
   sceneToLoadAfterCutscene: MainMenu
 --- !u!4 &1050734647

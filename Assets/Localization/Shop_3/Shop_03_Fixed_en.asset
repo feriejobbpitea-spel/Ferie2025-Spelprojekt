@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Shop_03_Fixed_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 3d3f880ec048b1b49be5f20e1336a8bb, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 32084340736
+    m_Localized: "(Distant) The memory\u2026 (Ledsen) the factory\u2026 (Poetry)
+      the voice that said I was whole. (Happy) You\u2026 you helped me remember!\r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 366118711296
+    m_Localized: (Sad) My code is still broken. (Glad) But you, you fixed something
+      important.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 512101462016
+    m_Localized: '(Happy) Thank you for sticking around. (Distant) Most people buy
+      and leave. (Happy) But you are different, you gave me something I lost a long
+      time ago.
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 776351002624
+    m_Localized: (Poetry) I thought no one would care about me to the point of taking
+      the time to help me. (Solider) It warms my heart of steel.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 951463194624
+    m_Localized: '(Sad) My family meant the world to me, it''s a pain to not have
+      them here.
+
+'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

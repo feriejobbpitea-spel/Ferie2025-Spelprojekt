@@ -13,58 +13,64 @@ MonoBehaviour:
   m_Name: Localization-String-Tables-English (en)
   m_EditorClassIdentifier: 
   m_GroupName: Localization-String-Tables-English (en)
-  m_GUID: f1e19ed68df39d14bb20c44fadba7735
+  m_GUID: e97cde63abfcb6d489d622f4ff70d583
   m_SerializeEntries:
-  - m_GUID: 19130af9e6abca846aaffb7a3006e975
-    m_Address: Cutscene audio_en
+  - m_GUID: 0604db9d16eea024b836985147e8276d
+    m_Address: Shop_02_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 43520e649745d0c4ead706a3c0eabec0
-    m_Address: Shop 2 dialog_en
+  - m_GUID: 0bdb8894985d2684cb66cc6d75c40921
+    m_Address: Shop_03_Fixed_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 508e9accdc6316d41a53cb5d784a41a3
-    m_Address: Cut Scene End Dialog_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 76cadcb4d511bf9448a3418690dd44ac
-    m_Address: Shop 3 before recovery text_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 88eefdc7a25d7e74d89753c16975f10b
-    m_Address: Robot after recovery text_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cecef9d4df19edb4faa08f33ef2375bf
-    m_Address: CutSceneAltEnding_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cf26364d6511cf34c9df8556f3e711fd
+  - m_GUID: 1c18bb7b43e52304cac39aec57e39618
     m_Address: Shop_Items_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d8f62582dbb1248429e536ba60458c30
-    m_Address: ShopDialogue translater_en
+  - m_GUID: 4b9a02eb4c759cd46bf90a36d90df8fa
+    m_Address: Shop_03_PreFix_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e3f6f28e3b5de3f4c9b2b1ca63ba0ec2
-    m_Address: tutorial_inputs_en
+  - m_GUID: 5aa10ef774682db46a8d353d1e6c39e2
+    m_Address: Cutscene_Start_Text_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d0b4f45a41fa9248b46354a7bacca27
+    m_Address: Tutorial_Prompts_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c3eba8c7951e53428e04b196c0128a4
+    m_Address: Cutscene_Ending_01_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3967f54df95c9148918e852677f2891
+    m_Address: Shop_01_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dfbe1013afb1ed54c93f983168a9b37d
+    m_Address: MainMenu_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3900923d4162734085ba1b672ec6ba1
+    m_Address: Cutscene_Ending_02_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en

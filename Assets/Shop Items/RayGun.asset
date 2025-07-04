@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName:
     m_TableReference:
-      m_TableCollectionName: GUID:bda1490e3dfb1c14cbd8195d1b32cac4
+      m_TableCollectionName: GUID:af745280807fa414e99049443f0336c1
     m_TableEntryReference:
       m_KeyId: 420249133056
       m_Key: 
@@ -24,7 +24,7 @@ MonoBehaviour:
   itemSprite: {fileID: -4596942587763364830, guid: 8bd972bcf6d4b1a4aa53380317b38d3c, type: 3}
   itemCost: 9
   itemType: 0
-  internalID: Railgun
+  internalID: RayGun
   references:
     version: 2
     RefIds: []

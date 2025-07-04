@@ -368,8 +368,8 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             rt.localScale = Vector3.one;
 
             Sequence seq = DOTween.Sequence();
-            seq.Append(rt.DOPunchScale(new Vector3(-0.3f, 0.3f, 0), 0.3f, 10, 1));
-            seq.Join(heart.DOColor(Color.red, 0.15f).SetLoops(2, LoopType.Yoyo));
+            seq.Append(rt.DOPunchScale(new Vector3(-0.3f, 0.3f, 0), 0.3f, 10, 1)).SetUpdate(true);
+            seq.Join(heart.DOColor(Color.red, 0.15f).SetLoops(2, LoopType.Yoyo)).SetUpdate(true);
 
             yield return seq.WaitForCompletion();
             rt.localScale = Vector3.one; // Ensure reset

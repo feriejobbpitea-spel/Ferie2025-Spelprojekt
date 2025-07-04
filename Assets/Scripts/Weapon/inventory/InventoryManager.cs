@@ -296,8 +296,11 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         foreach (var w in inventoryWeapons)
         {
-            if (w == weaponPrefab)
+            if (w != null && w.name.Contains(weaponPrefab.name))
+            {
+                Debug.Log($"weapong found by {weaponPrefab}");
                 return true;
+            }
         }
         return false;
     }

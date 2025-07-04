@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97269afb30aa84742ae3f3342603618a, type: 3}
+  m_Name: Cutscene_Ending_02_Audio_sv
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: sv
+  m_SharedData: {fileID: 11400000, guid: 86399391c0df6ec48802d5ca7d26b648, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 43143454720
+    m_Localized: 0f5613fa9788f0f4a809e8b91dd625c0
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36734558208
+    m_Localized: 193afa78252f80f4f9186aa60878f2c4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33949540352
+    m_Localized: 1a7cd4e187f1ca1479ef4ca2e001b990
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7345070080
+    m_Localized: e5a9c1a5ce8769749b1300a0f5997ca4
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.Localization.Settings;
+using System.Collections.Generic;
+using System.Collections;
 
 public class Settings : MonoBehaviour
 {
@@ -34,16 +36,24 @@ public class Settings : MonoBehaviour
 
     private void Start()
     {
-        LoadInitialSettings();
-
-        LocalizationSettings.InitializationOperation.Completed += op =>
-        {
-            int savedLocaleIndex = PlayerPrefs.GetInt(LanguageKey, 0);
-            var locales = LocalizationSettings.AvailableLocales.Locales;
-            if (savedLocaleIndex >= 0 && savedLocaleIndex < locales.Count)
-                LocalizationSettings.SelectedLocale = locales[savedLocaleIndex];
-        };
+        StartCoroutine(InitializeSettings());
     }
+
+    private IEnumerator InitializeSettings()
+    {
+        // Wait until localization is ready
+        yield return LocalizationSettings.InitializationOperation;
+
+        // Now set the locale
+        int savedLocaleIndex = PlayerPrefs.GetInt(LanguageKey, 0);
+        var locales = LocalizationSettings.AvailableLocales.Locales;
+        if (savedLocaleIndex >= 0 && savedLocaleIndex < locales.Count)
+            LocalizationSettings.SelectedLocale = locales[savedLocaleIndex];
+
+        // Now it's safe to load settings and touch UI
+        LoadInitialSettings();
+    }
+
 
     private void LoadInitialSettings()
     {

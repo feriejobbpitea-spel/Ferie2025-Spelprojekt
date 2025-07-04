@@ -355,6 +355,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apply
       objectReference: {fileID: 0}
+    - target: {fileID: 7883574318886671448, guid: dd9f4733a0cf2924382aeba8372e1811, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883574318886671448, guid: dd9f4733a0cf2924382aeba8372e1811, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883574318886671448, guid: dd9f4733a0cf2924382aeba8372e1811, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1842889207}
+    - target: {fileID: 7883574318886671448, guid: dd9f4733a0cf2924382aeba8372e1811, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883574318886671448, guid: dd9f4733a0cf2924382aeba8372e1811, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ApplyLanguageChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883574318886671448, guid: dd9f4733a0cf2924382aeba8372e1811, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LanguageDropdownHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7883574318886671448, guid: dd9f4733a0cf2924382aeba8372e1811, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2435486683631406327, guid: dd9f4733a0cf2924382aeba8372e1811, type: 3}
     m_RemovedGameObjects: []
@@ -3895,6 +3923,10 @@ PrefabInstance:
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
       value: 56633786368
       objectReference: {fileID: 0}
+    - target: {fileID: 641755527159146650, guid: 70577ed1ecfa30a448020e5b1575adee, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:761d14a9d69389f4c896938a9649a115
+      objectReference: {fileID: 0}
     - target: {fileID: 1231991134768026610, guid: 70577ed1ecfa30a448020e5b1575adee, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6413,6 +6445,10 @@ PrefabInstance:
       propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
       value: 5666427305984
       objectReference: {fileID: 0}
+    - target: {fileID: 641755527159146650, guid: 70577ed1ecfa30a448020e5b1575adee, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:761d14a9d69389f4c896938a9649a115
+      objectReference: {fileID: 0}
     - target: {fileID: 1231991134768026610, guid: 70577ed1ecfa30a448020e5b1575adee, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7109,6 +7145,10 @@ PrefabInstance:
     - target: {fileID: 3951449249951288370, guid: 5b716c45c926e974d8facf35dacbf54c, type: 3}
       propertyPath: m_Name
       value: SceneFadeExe
+      objectReference: {fileID: 0}
+    - target: {fileID: 3951449249951288370, guid: 5b716c45c926e974d8facf35dacbf54c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4343078011366831747, guid: 5b716c45c926e974d8facf35dacbf54c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8382,50 +8422,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_IsOn: 1
---- !u!1 &1837162968
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1837162970}
-  - component: {fileID: 1837162969}
-  m_Layer: 0
-  m_Name: Translater
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1837162969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837162968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92d335b72a893ae45a12e4355fc9e325, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1837162970
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837162968}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 470.50638, y: 195.92093, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1839581150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10332,7 +10328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:647361db4f093ca4b89d89914dccf343
+      m_TableCollectionName: GUID:761d14a9d69389f4c896938a9649a115
     m_TableEntryReference:
       m_KeyId: 53676802048
       m_Key: 
@@ -10343,9 +10339,9 @@ MonoBehaviour:
   m_UpdateString:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 469817757}
+      - m_Target: {fileID: 2118437346}
         m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
-        m_MethodName: 
+        m_MethodName: set_text
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10358,6 +10354,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &2118437346 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2528695925679301848, guid: 70577ed1ecfa30a448020e5b1575adee, type: 3}
+  m_PrefabInstance: {fileID: 2118437335}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469817757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2122649513 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1231991134768026610, guid: 70577ed1ecfa30a448020e5b1575adee, type: 3}
@@ -11026,6 +11033,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartGame
       objectReference: {fileID: 0}
+    - target: {fileID: 641755527159146650, guid: 70577ed1ecfa30a448020e5b1575adee, type: 3}
+      propertyPath: m_StringReference.m_TableReference.m_TableCollectionName
+      value: GUID:761d14a9d69389f4c896938a9649a115
+      objectReference: {fileID: 0}
     - target: {fileID: 1231991134768026610, guid: 70577ed1ecfa30a448020e5b1575adee, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11125,7 +11136,6 @@ SceneRoots:
   - {fileID: 1593120611}
   - {fileID: 1098335063}
   - {fileID: 1319564265}
-  - {fileID: 1837162970}
   - {fileID: 1792621611}
   - {fileID: 1526593409}
   - {fileID: 1929525387}

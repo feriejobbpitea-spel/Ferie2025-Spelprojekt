@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: 6cdbee295caa38241a572ad9dd9e28ef
   - enabled: 1
     path: Assets/Scenes/MainGame.unity
-    guid: 7335dd2b2d9bfed4d86d554d6612d6f4
+    guid: 45ebac7da1565104ebd3e98d2348bee8
   - enabled: 1
     path: Assets/Scenes/CutScene slut.unity
     guid: a476807ea0fc2614aa4c25482a1f6372
@@ -23,5 +23,5 @@ EditorBuildSettings:
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 7f82f5211bb89ec4da7efcadab6ff488, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-    com.unity.localization.settings: {fileID: 11400000, guid: ef2a6f4f389c27a45a462eb4509eb1b5, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 12d1d68927cf8ff439c4980e122032bd, type: 2}
   m_UseUCBPForAssetBundles: 0

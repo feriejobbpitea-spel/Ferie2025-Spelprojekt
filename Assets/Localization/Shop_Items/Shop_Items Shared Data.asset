@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Shop_Items Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Shop_Items
+  m_TableCollectionNameGuidString: af745280807fa414e99049443f0336c1
+  m_Entries:
+  - m_Id: 67470417920
+    m_Key: Double Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 286870265856
+    m_Key: EMP Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 361361104896
+    m_Key: Extra Heart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 420249133056
+    m_Key: Raygun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 910852677632
+    m_Key: Slangbella
+    m_Metadata:
+      m_Items: []
+  - m_Id: 983191838720
+    m_Key: Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1051441553408
+    m_Key: Super Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1139517743104
+    m_Key: Time Slow
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 2078274988523651162
+  references:
+    version: 2
+    RefIds:
+    - rid: 2078274988523651162
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1751623451093

@@ -270,47 +270,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.BuyItem.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3b56f7140589dd04690597ea85d97a05
+      value: GUID:6760c595040bcac4ba42aa0c1c57658a
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.ExitShop.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3b56f7140589dd04690597ea85d97a05
+      value: GUID:6760c595040bcac4ba42aa0c1c57658a
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.EnterShop.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3b56f7140589dd04690597ea85d97a05
+      value: GUID:6760c595040bcac4ba42aa0c1c57658a
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[0].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3b56f7140589dd04690597ea85d97a05
+      value: GUID:6760c595040bcac4ba42aa0c1c57658a
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[1].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3b56f7140589dd04690597ea85d97a05
+      value: GUID:6760c595040bcac4ba42aa0c1c57658a
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[2].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3b56f7140589dd04690597ea85d97a05
+      value: GUID:6760c595040bcac4ba42aa0c1c57658a
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[3].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3b56f7140589dd04690597ea85d97a05
+      value: GUID:6760c595040bcac4ba42aa0c1c57658a
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[4].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3b56f7140589dd04690597ea85d97a05
+      value: GUID:6760c595040bcac4ba42aa0c1c57658a
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[5].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3b56f7140589dd04690597ea85d97a05
+      value: GUID:6760c595040bcac4ba42aa0c1c57658a
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[6].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3b56f7140589dd04690597ea85d97a05
+      value: GUID:6760c595040bcac4ba42aa0c1c57658a
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[7].LocalizedText.m_TableReference.m_TableCollectionName
-      value: GUID:3b56f7140589dd04690597ea85d97a05
+      value: GUID:6760c595040bcac4ba42aa0c1c57658a
       objectReference: {fileID: 0}
     - target: {fileID: 6455359445786131099, guid: db8afd04a786448488b093b1a107c3ba, type: 3}
       propertyPath: DialogueHandler.RandomDialogue.Array.data[8].LocalizedText.m_TableReference.m_TableCollectionName

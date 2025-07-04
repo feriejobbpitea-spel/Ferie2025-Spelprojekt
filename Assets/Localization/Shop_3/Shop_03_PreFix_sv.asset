@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Shop_03_PreFix_sv
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: sv
+  m_SharedData: {fileID: 11400000, guid: 07e623de9d34be34696d1d1a2c0f20e0, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 11762937856
+    m_Localized: "(Pip) \xC5h k\xE4ra farfar, du ser tr\xF6tt ut. Har du druckit
+      tillr\xE4ckligt med olja idag?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 308598026240
+    m_Localized: "(Paranoid) Bakom hyllan? Det \xE4r bara... prototyper. Inte till
+      salu. (Soldat) R\xF6r inte det d\xE4r!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 604241932288
+    m_Localized: "(Distant) Det saknas n\xE5gonting."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 708956925952
+    m_Localized: "(Soldat) Betala med st\xE5l, eller med sj\xE4l."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 877815410688
+    m_Localized: "(R\xE4dd) D-de f\xF6rs\xF6kte radera mig. (Distant) De lyckades
+      inte helt.\r\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1003933937664
+    m_Localized: "(Poesi) Jag var en g\xE5ng en ordnad kod, skapad f\xF6r precision.
+      Nu? Jag \xE4r n\xE5got mer (Jimmie) ...Eller mindre."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1160188538880
+    m_Localized: "(Jimmie) Jag har ett specialerbjudande! \u2026men du f\xE5r inte
+      titta p\xE5 det. (Soldat) TITTA INTE P\xC5 DET!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1447217344512
+    m_Localized: "(R\xE4dd) Hj\xE4lp mig."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1578914295808
+    m_Localized: "(Jimmie) Herr talman, om jag ska va helt rak och \xE4rlig. Jag
+      tycker inte du ska va h\xE4r."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1669888749568
+    m_Localized: "(Jimmie) Om jag ska vara helt \xE4rlig. Jag vill inte ha dig h\xE4r."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

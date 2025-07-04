@@ -13,167 +13,79 @@ MonoBehaviour:
   m_Name: Localization-Assets-Shared
   m_EditorClassIdentifier: 
   m_GroupName: Localization-Assets-Shared
-  m_GUID: 2a23ce10e77f89b4a8f01c6ad66e0d23
+  m_GUID: a542045a8fbaae44fb513ac14acf20b4
   m_SerializeEntries:
-  - m_GUID: 06beeb10427c9cc41aaa1f071569acf4
-    m_Address: AlbertExitShop
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 229485a6a9589ed44a4209eaed478614
-    m_Address: AlbertTalk08
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 25f1993ac05ae5b40b8ccc258a0926f3
-    m_Address: Assets/Localization/Locales/Cut Scene End Dialog1 Shared Data.asset
+  - m_GUID: 07e623de9d34be34696d1d1a2c0f20e0
+    m_Address: Assets/Localization/Shop_3/Shop_03 Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2bb8e5faf8ed6ea4ab6e0bfe05e69b28
-    m_Address: Assets/Localization/Locales/Cut Scene End Dialog Shared Data.asset
+  - m_GUID: 0e9716bab1cc1754e8448f84e406ee47
+    m_Address: Assets/Localization/Cutscene_Start/Cutscene_Start_Audio Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 30e949458846d4a40af3ecfba445de2e
-    m_Address: AlbertEnterShop
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3aa7cc41cda40774dac6904c53ac9f3f
-    m_Address: AlbertTalk05
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3b56f7140589dd04690597ea85d97a05
-    m_Address: Assets/Localization/Tables/Shop 2 dialog Shared Data.asset
+  - m_GUID: 1ae27312ea3db4741a576fc6bd5f41af
+    m_Address: Assets/Localization/Cutscene_End_01/Cutscene_Ending_01 Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3ee12e76cc4e3624eb25c4703baf0da2
-    m_Address: Assets/Localization/Tables/Robot after recovery text Shared Data.asset
+  - m_GUID: 39d7b86d1cf21cf48ba0e7da1477272c
+    m_Address: Assets/Localization/TutorialPrompts/Tutorial_Prompts Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 647361db4f093ca4b89d89914dccf343
-    m_Address: Assets/Localization/Tables/Main Menu Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 72d30f636c7b80f42b82df36775f74a8
-    m_Address: AlbertTalk02
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7970a5d8a1b3e874da708d097ba36e76
-    m_Address: AlbertTalk04
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 89342625e24f07241b959a5981c12b07
-    m_Address: Assets/Localization/Tables/Tutorials/tutorial_inputs Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a0202b91544cfdc4494e16f21cb9707e
-    m_Address: AlbertTalk07
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a394f78a0147e7a48a9630db4415d420
-    m_Address: AlbertTalk03
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a7ddbee4271e18749b8571f444f670a9
-    m_Address: Assets/Localization/Tables/Cut Scene Audio/Shop 2 Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a9fcbbae91553f441a7fbc67e61eb121
-    m_Address: Assets/Localization/Tables/Cut Scene Dialog Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b8f403256989f9146bce84d2256096f8
-    m_Address: Assets/Localization/Tables/ShopDialogue translater Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bda1490e3dfb1c14cbd8195d1b32cac4
-    m_Address: Assets/Localization/Tables/ShopItems/Shop_Items Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bf7532d7834d4334c8b1a7a28690c6a3
-    m_Address: AlbertTalk
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: bfcff2bcc9678fc46b43e639e1d6a559
-    m_Address: Assets/Localization/Tables/Cut Scene Audio/Cutscene audio Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cc716ad458397004fbfbda7593f197d8
-    m_Address: Assets/Localization/Tables/Cut Scene Audio/Cutscene voicelines Shared
+  - m_GUID: 3c2a3f2eccc19fa43909ee038a8ceb10
+    m_Address: Assets/Localization/Cutscene_End_01/Cutscene_Ending_01_Audio Shared
       Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dcac374a04ac83c469f8575cda12e244
-    m_Address: Assets/Localization/Tables/Robot 1 Shared Data.asset
+  - m_GUID: 3d3f880ec048b1b49be5f20e1336a8bb
+    m_Address: Assets/Localization/Shop_3/Shop_03_Fixed Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e37181e35d2155a4f8f1f681d10550ff
-    m_Address: Assets/Localization/Tables/Cut Scene Audio/Cut scene audio Shared
+  - m_GUID: 490fc49eda284514ea1996125bf803a5
+    m_Address: Assets/Localization/Cutscene_Start/Cutscene_Start Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6760c595040bcac4ba42aa0c1c57658a
+    m_Address: Assets/Localization/Shop_2/Shop_02 Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 761d14a9d69389f4c896938a9649a115
+    m_Address: Assets/Localization/MainMenu/MainMenu Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86399391c0df6ec48802d5ca7d26b648
+    m_Address: Assets/Localization/Cutscene_End_02/Cutscene_Ending_02_Audio Shared
       Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e5ada8d953fdbbd4d8008cf46a73386c
-    m_Address: AlbertTalk06
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Locale-sv
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ec7888c02530ecb44b922d0dc3987649
-    m_Address: Assets/Localization/Tables/Cut Scene Audio/Cutscene voice lines own
-      evrything Shared Data.asset
+  - m_GUID: a140450c150fed049a785a6d9cf23844
+    m_Address: Assets/Localization/Cutscene_End_02/Cutscene_Ending_02 Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f480b8b2595e8294c8b7bbc29cdefab2
-    m_Address: Assets/Localization/Tables/Boss voice lines Shared Data.asset
+  - m_GUID: acb4006a5ea6fe74eb1d609f941746c1
+    m_Address: Assets/Localization/Shop_1/Shop_01 Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f6bcdd298c112cc41a922a9220502aec
-    m_Address: AlbertRandom
+  - m_GUID: af745280807fa414e99049443f0336c1
+    m_Address: Assets/Localization/Shop_Items/Shop_Items Shared Data.asset
     m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Locale-sv
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bfcd481058078a748bb2c550e5c1acb2
+    m_Address: Assets/Localization/Boss/Boss_Audio Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 4183d6c41c6d0a045bfcd722e875f937, type: 2}
