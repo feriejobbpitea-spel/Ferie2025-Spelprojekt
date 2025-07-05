@@ -266,6 +266,8 @@ MonoBehaviour:
   spriteRendererOverride: {fileID: 0}
   damageSound: {fileID: 8300000, guid: 4eb457bfbab5cb349886b0c6fb149fd8, type: 3}
   audioSource: {fileID: 5380513221196677045}
+  freezeDuration: 1
+  group: {fileID: 1358229087104834852, guid: 906efdd429563674bb7ee9e888bf5851, type: 2}
 --- !u!82 &5380513221196677045
 AudioSource:
   m_ObjectHideFlags: 0

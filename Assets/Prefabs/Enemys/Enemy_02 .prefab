@@ -170,6 +170,7 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: 82274b9fe61f07247a5ded5d128d560f, type: 3}
   audioSource: {fileID: 39935220123256760}
   freezeDuration: 1
+  group: {fileID: 1358229087104834852, guid: 906efdd429563674bb7ee9e888bf5851, type: 2}
 --- !u!50 &2582465048990427335
 Rigidbody2D:
   serializedVersion: 5

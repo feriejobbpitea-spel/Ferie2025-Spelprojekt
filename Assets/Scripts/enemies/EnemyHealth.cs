@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
@@ -22,6 +23,8 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Freeze Settings")]
     public float freezeDuration = 1f; // Fryser fienden i 1 sekund
+
+    public AudioMixerGroup group;
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
@@ -120,9 +123,10 @@ public class EnemyHealth : MonoBehaviour
 
     void PlayDamageSound()
     {
-        if (audioSource != null && damageSound != null)
+        if (audioSource != null && damageSound != null && !audioSource.isPlaying)
         {
-            audioSource.PlayOneShot(damageSound);
+            audioSource.clip = damageSound;
+            audioSource.Play();
         }
     }
 
@@ -168,6 +172,7 @@ public class EnemyHealth : MonoBehaviour
         GameObject tempGO = new GameObject("TempAudio");
         tempGO.transform.position = position;
         AudioSource aSource = tempGO.AddComponent<AudioSource>();
+        aSource.outputAudioMixerGroup = group;
         aSource.clip = clip;
         aSource.Play();
 

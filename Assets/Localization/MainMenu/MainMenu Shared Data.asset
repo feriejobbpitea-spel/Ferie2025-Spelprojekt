@@ -30,7 +30,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5666427305984
-    m_Key: "Exit Fullscreen_Key\t\n"
+    m_Key: "Toggle Fullscreen_Key\t\n"
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -57,7 +57,7 @@ public class Gamblingwheel : MonoBehaviour
     void UpdateMoneyUI()
     {
         if (moneyText != null)
-            moneyText.text = $"{PlayerMoney.Instance.money} DATACHIPS";
+            moneyText.text = $"{PlayerMoney.Instance.money}";
     }
 
     void ShowChancesUI()

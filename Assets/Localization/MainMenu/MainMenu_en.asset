@@ -31,7 +31,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 5666427305984
-    m_Localized: "Exit Fullscreen\t"
+    m_Localized: "Toggle Fullscreen\t"
     m_Metadata:
       m_Items: []
   references:

@@ -23,7 +23,7 @@ public class SimpleShop : Singleton<SimpleShop>
 
     void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         audioSource.playOnAwake = false;
 
         BuildShop();
@@ -38,10 +38,25 @@ public class SimpleShop : Singleton<SimpleShop>
         {
             GameObject go = Instantiate(itemPrefab, itemContainer);
 
+            // Set item icon and price
             go.transform.Find("ItemHolder").Find("ItemIcon").GetComponent<Image>().sprite = item.itemSprite;
-            go.transform.Find("ItemPrice").GetComponent<TMP_Text>().text = $"{item.itemCost} Datachips";
-            go.transform.Find("ItemName").GetComponent<TMP_Text>().text = $"{item.ItemName.GetLocalizedString()}";
+            go.transform.Find("ItemPrice").GetComponent<TMP_Text>().text = $"{item.itemCost}";
 
+            var itemNameText = go.transform.Find("ItemName").GetComponent<TMP_Text>();
+            item.ItemName.GetLocalizedStringAsync().Completed += handle =>
+            {
+                if (handle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+                {
+                    itemNameText.text = handle.Result;
+                }
+                else
+                {
+                    itemNameText.text = "???";
+                    Debug.LogWarning($"Localization failed for item {item.internalID}");
+                }
+            };
+
+            // Set up BuyButton logic
             Button buyButton = go.transform.Find("BuyButton")?.GetComponent<Button>();
             if (buyButton != null)
             {
@@ -64,6 +79,7 @@ public class SimpleShop : Singleton<SimpleShop>
         UpdateMoneyUI();
         ClearFeedback();
     }
+
 
 
     void BuyItem(ShopItem_SO item)

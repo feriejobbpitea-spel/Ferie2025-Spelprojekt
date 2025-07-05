@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame() 
     {
-        Screen.fullScreen = false; 
+        Screen.fullScreen = !Screen.fullScreen; 
     }
 
     public void StartGame() 

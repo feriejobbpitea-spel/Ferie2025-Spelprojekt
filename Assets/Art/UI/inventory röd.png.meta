@@ -156,6 +156,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: "inventory r\xF6d_2"
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 4, z: 4, w: 4}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13d1189394955e144bce7902720ca141
+      internalID: 2084531063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -174,6 +196,7 @@ TextureImporter:
     nameFileIdTable:
       "inventory r\xF6d_0": 1863919653
       "inventory r\xF6d_1": -135147665
+      "inventory r\xF6d_2": 2084531063
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

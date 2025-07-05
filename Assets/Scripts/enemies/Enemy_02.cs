@@ -125,9 +125,10 @@ public class Enemy_02 : MonoBehaviour
         projScript.SetDirection(direction);
         projScript.speed = projectileSpeed;
 
-        if (shootAudioSource != null && shootSound != null)
+        if (shootAudioSource != null && shootSound != null && !shootAudioSource.isPlaying)
         {
-            shootAudioSource.PlayOneShot(shootSound);
+            shootAudioSource.clip = shootSound;
+            shootAudioSource.Play();
         }
     }
 

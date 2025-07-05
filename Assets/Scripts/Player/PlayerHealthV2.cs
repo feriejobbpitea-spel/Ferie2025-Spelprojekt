@@ -74,7 +74,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             if (!currentMovingPlatform.GetComponent<SpriteRenderer>().enabled) { currentMovingPlatform = null; }
 
 
-            if (currentMovingPlatform.gameObject == null)
+            if (currentMovingPlatform?.gameObject == null)
             {
                 currentMovingPlatform = null;
             }
@@ -362,19 +362,13 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
         if (currentLives >= 0 && currentLives < hearts.Length)
         {
             Image heart = hearts[currentLives];
-            var rt = heart.rectTransform;
-
-            // Reset scale first
-            rt.localScale = Vector3.one;
-
-            Sequence seq = DOTween.Sequence();
-            seq.Append(rt.DOPunchScale(new Vector3(-0.3f, 0.3f, 0), 0.3f, 10, 1)).SetUpdate(true);
-            seq.Join(heart.DOColor(Color.red, 0.15f).SetLoops(2, LoopType.Yoyo)).SetUpdate(true);
-
-            yield return seq.WaitForCompletion();
-            rt.localScale = Vector3.one; // Ensure reset
+            Color originalColor = heart.color;
+            heart.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            heart.color = originalColor;
         }
     }
+
 
 
     private IEnumerator AnimateHeartWrapperGain()
@@ -394,6 +388,7 @@ public class PlayerHealthV2 : Singleton<PlayerHealthV2>
             rt.DOPunchScale(Vector3.one * 0.2f, 0.2f, 5, 1);
         }
     }
+
 
 
     private IEnumerator LockMovementTemporarily(float duration)

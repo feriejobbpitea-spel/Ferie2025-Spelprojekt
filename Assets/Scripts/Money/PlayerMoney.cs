@@ -21,6 +21,10 @@ public class PlayerMoney : Singleton<PlayerMoney>
         {
             AddMoney(9999);
         }
+        if (Input.GetKeyUp(KeyCode.PageUp)) 
+        {
+            AddMoney(10);
+        }
     }
 
     public void AddMoney(int amount)

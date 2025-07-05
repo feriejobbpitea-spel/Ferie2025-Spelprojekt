@@ -756,6 +756,7 @@ MonoBehaviour:
   damageSound: {fileID: 0}
   audioSource: {fileID: 0}
   freezeDuration: 1
+  group: {fileID: 1358229087104834852, guid: 906efdd429563674bb7ee9e888bf5851, type: 2}
   Animator: {fileID: 8197920517632837075}
   GameCompleteScene: CutScene slut
   AltEnding: "Cutscene slut \xE4ger allt"
