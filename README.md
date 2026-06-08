@@ -54,4 +54,4 @@ Git är ett verktyg för att ladda ner (klona) projekt från GitHub.
 2. Skriv in följande kommando och tryck på `Enter`:
 
 ```bash
-git clone https://github.com/ditt-repo-namn/revenge-of-the-gramps.git
+git clone https://github.com/feriejobbpitea-spel/Ferie2025-Spelprojekt.git
