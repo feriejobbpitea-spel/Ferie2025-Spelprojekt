@@ -68,9 +68,7 @@ public class Movement : Singleton<Movement>
         rb = GetComponent<Rigidbody2D>();
         normalSpeed = playerSpeed;
 
-        keybinds["Jump"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Jump", KeyCode.Space.ToString()));
-        keybinds["Sprint"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Sprint", KeyCode.LeftShift.ToString()));
-        keybinds["Shoot"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString()));
+
         platformEffector = GameObject.FindAnyObjectByType<PlatformEffector2D>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
@@ -119,8 +117,13 @@ public class Movement : Singleton<Movement>
 
     void Update()
     {
+        keybinds["Jump"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Jump", KeyCode.Space.ToString()));
+        keybinds["Sprint"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Sprint", KeyCode.LeftShift.ToString()));
+        keybinds["Shoot"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString()));
+        keybinds["Fall"] = (KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Fall", KeyCode.S.ToString()));
+
         // Handle platform drop through
-        if (!isDropping && Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (!isDropping && Input.GetKey(keybinds["Fall"]) && Input.GetKeyDown(keybinds["Jump"]) && isGrounded)
         {
             StartCoroutine(Drop());
         }
@@ -170,7 +173,7 @@ public class Movement : Singleton<Movement>
         {
             knockbackVelocity = knockbackVelocity.normalized * maxKnockbackMagnitude;
         }
-        if (Input.GetKeyDown(keybinds["Jump"]) && !Input.GetKey(KeyCode.S))
+        if (Input.GetKeyDown(keybinds["Jump"]) && !Input.GetKey(keybinds["Fall"]))
         {
             if (isGrounded)
             {
@@ -264,7 +267,7 @@ public class Movement : Singleton<Movement>
             Time.fixedDeltaTime = 0.02f * Time.timeScale;
         }
 
-        if (isGrabingwall && Input.GetKeyDown(KeyCode.S))
+        if (isGrabingwall && Input.GetKeyDown(keybinds["Fall"]))
         {
             isGrabingwall = false;
             gfx.flipX = false;

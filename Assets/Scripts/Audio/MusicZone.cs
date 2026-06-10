@@ -47,7 +47,7 @@ public class MusicZone : MonoBehaviour
             if (fadeCoroutine != null)
                 StopCoroutine(fadeCoroutine);
 
-            if(this.isActiveAndEnabled == true)
+            if(this.gameObject != null && this.gameObject.activeInHierarchy == true)
                 fadeCoroutine = StartCoroutine(FadeOutAndStop());
         }
     }

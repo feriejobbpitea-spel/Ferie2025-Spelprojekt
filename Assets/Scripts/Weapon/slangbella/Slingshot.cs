@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Slingshot : MonoBehaviour
@@ -70,14 +71,14 @@ public class Slingshot : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0) && isCharging)
+        if (Input.GetKey((KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString()))) && isCharging)
         {
             currentForce += chargeRate * Time.deltaTime;
             currentForce = Mathf.Clamp(currentForce, minForce, maxForce);
             UpdateTrajectoryLine(currentForce);
         }
 
-        if (Input.GetMouseButtonUp(0) && isCharging)
+        if (Input.GetKeyUp((KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString()))) && isCharging)
         {
             if (audioSource.isPlaying && audioSource.clip == chargeSound)
             {

@@ -15,7 +15,7 @@ public class RebindMenu : MonoBehaviour
     public Button resetButton;  // Här är knappen för att resetta keybinds
 
     private List<string> actions = new List<string> {
-        "Jump", "Sprint", "Shoot", "Left", "Right", "SkipCutscene", "NextSlide",
+        "Jump", "Sprint", "Shoot", "Left", "Right", "Fall", "SkipCutscene", "NextSlide",
         "WeaponSlot1", "WeaponSlot2", "WeaponSlot3", "WeaponSlot4", "WeaponSlot5", "Interact"
     };
 
@@ -32,6 +32,7 @@ public class RebindMenu : MonoBehaviour
         { "Shoot", KeyCode.Mouse0 },
         { "Left", KeyCode.A },
         { "Right", KeyCode.D },
+        { "Fall", KeyCode.S },
         { "SkipCutscene", KeyCode.Space },
         { "NextSlide", KeyCode.Return },
         { "WeaponSlot1", KeyCode.Alpha1 },

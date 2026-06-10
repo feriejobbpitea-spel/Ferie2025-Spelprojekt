@@ -1,5 +1,6 @@
-using UnityEngine;
+using System;
 using System.Collections;
+using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour
 {
@@ -48,7 +49,7 @@ public class MeleeAttack : MonoBehaviour
     {
         cooldownTimer -= Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(0) && cooldownTimer <= 0f)
+        if (Input.GetKeyDown((KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString()))) && cooldownTimer <= 0f)
         {
             PerformAttack();
             cooldownTimer = attackCooldown;
@@ -71,7 +72,6 @@ public class MeleeAttack : MonoBehaviour
 
 
 
-        Debug.Log("PerformAttack() called on ");
         if (playerAnimator != null)
         {
             playerAnimator.SetBool("isAttacking", true);

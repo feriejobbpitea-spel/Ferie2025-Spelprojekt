@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ConfettiLauncher : MonoBehaviour
@@ -18,7 +19,7 @@ public class ConfettiLauncher : MonoBehaviour
         if (globalCooldownTimer > 0f)
             globalCooldownTimer -= Time.deltaTime;
 
-        if (Input.GetMouseButtonDown(0) && globalCooldownTimer <= 0f)
+        if (Input.GetKeyDown((KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString()))) && globalCooldownTimer <= 0f)
         {
             Shoot();
             globalCooldownTimer = cooldownTime;

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -50,7 +51,7 @@ public class RailgunShot : MonoBehaviour
         if (globalCooldownTimer > 0f)
             globalCooldownTimer -= Time.deltaTime;
 
-        bool inputFire = Input.GetMouseButton(0);
+        bool inputFire = Input.GetKey((KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString())));
         bool canFire = inputFire && Time.timeScale > 0 && globalCurrentEnergy > 0f && globalCooldownTimer <= 0f;
 
         if (canFire)

@@ -1,6 +1,7 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class Cone_inc : MonoBehaviour
 {
@@ -57,7 +58,7 @@ public class Cone_inc : MonoBehaviour
                 sliderFillImage.color = Color.Lerp(normalColor, blinkColor, t);
             }
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown((KeyCode)Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("bind_Shoot", KeyCode.Mouse0.ToString()))))
             {
                 ShootLaser();
                 ChargeManager.currentCharge = 0f;  // Reset laddningen via ChargeManager
